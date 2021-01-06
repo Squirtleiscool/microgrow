@@ -1,7 +1,7 @@
 /*
 Theme Name: Optimizer PRO
 Description: Optimizer, an easy to customize multipurpose theme with lots of powerful features. This theme lets you customize each elements without you having to touch any code. The theme comes with 2 site layout:Full width & boxed, Beautiful image slider, easy Logo upload, powerful theme options, Custom CSS Field & lots of layouts. Optimizer is 100% responsive built with HTML5 & CSS3, it's SEO friendly,mobile optimized & retina ready. It's translation ready and translated in 5 languages. Ready for WooCommerce, bbPress, Mailchimp, Contact Form 7.  The theme is rigorously tested and optimized for speed and faster page load time and has secure and clean code. It's perfect for any types of website - small business, portfolio, photography, corporate, personal & eCommerce websites.
-Version: 0.7.5
+Version: 0.7.6
 Theme URI: https://optimizerwp.com/
 Author: OptimizerWP
 Author URI: https://optimizerwp.com/optimizer-pro/
@@ -841,7 +841,7 @@ body.is_boxed .dummypost .lay4 .hentry{padding-left:0}
 
 .text_block.text_parallax { position: relative; overflow:hidden;background-image:none!important; background-color: transparent!important;}
 .text_block.text_parallax .text_block_wrap { position: relative;z-index:1; }
-.text_block.text_parallax .parallax_img{position: absolute;z-index:9; width: 100%; height: 140%;top: 0; bottom: 0; left: 0;z-index:1;background-position: 50% 20%; background-repeat: no-repeat; background-size: cover;}
+.text_block.text_parallax .parallax_img{position: absolute;z-index:9; width: 100%; height: 100%;top: 0; bottom: 0; left: 0;z-index:1;background-position: 50% 20%; background-repeat: no-repeat; background-size: cover;}
 
 
 /*Call to Action*/
@@ -1053,12 +1053,12 @@ img.ytb_thumb {position: absolute;z-index: 9;  background-color: #111; width:100
 
 /*CLIENTS*/
 .clientsblck{ width:100%; float:left;}
-.client_logoimg { max-width: 160px;height: auto; opacity:0.8; border:none; margin: 35px 20px; filter: grayscale(100%); transition:all 0.2s ease-out;}
+.client_logoimg { max-width: 160px!important;height: auto; opacity:0.8; border:none; margin: 35px 20px; filter: grayscale(100%); transition:all 0.2s ease-out;}
 .client_logoimg:hover{ opacity:1; filter:initial; }
 .clients_grayscale_off .client_logoimg {filter: initial;}
 .clients_logo { text-align: center;}
 .clients_logo ul { margin: 0;  padding: 0;}
-.clients_logo ul li { list-style-type: none;display: inline-block;}
+.clients_logo ul li { list-style-type: none;display: inline-block;vertical-align: middle;}
 
 .ast_clientlogos .homeposts_title {margin-top: 30px;}
 .clientsblck .homeposts_title .home_title{ font-size:30px;}
@@ -1068,6 +1068,7 @@ img.ytb_thumb {position: absolute;z-index: 9;  background-color: #111; width:100
 .clients_logo a:nth-child(4) img{transition-delay: 0.3s;}
 .clients_logo a:nth-child(5) img{transition-delay: 0.4s;}
 .clients_logo a:nth-child(6) img{transition-delay: 0.5s;}
+#footer .ast_clientlogos .homeposts_title h2 {  text-align: center!important; }
 
 
 /* Tiny Carousel */
@@ -1226,14 +1227,14 @@ img.ytb_thumb {position: absolute;z-index: 9;  background-color: #111; width:100
 .lay2{width:100%; float:left; padding:40px 0;}
 .lay2_wrap{overflow: hidden;}
 .lay2 .imgwrap{ position:relative; width:100%; height:auto; overflow:hidden; height:170px;}
-.lay2 .hentry{ width:21%; float:left; margin:1%;margin-bottom: 2%; padding:1%; background:#fff; height:330px; overflow:hidden;}
+.lay2 .hentry, .lay2 .product.type-product { width:21%; float:left; margin:1%;margin-bottom: 2%; padding:1%; background:#fff; height:330px; overflow:hidden;}
 .lay2 .imgwrap > a { width: 100%; height: 100%; display: block;}
-.lay2 .hentry img{ width:100%; height:100%; object-fit: cover; object-position: top center; border:none;vertical-align: bottom;transition:all 0.2s ease-out;}
+.lay2 .hentry img, .lay2 .product.type-product img{ width:100%; height:100%; object-fit: cover; object-position: top center; border:none;vertical-align: bottom;transition:all 0.2s ease-out;}
 
 .lay2 .post_content{ text-align:center; overflow:hidden;}
 .lay2 h2{line-height: 1em;transition:all 0.2s ease-out;}
 .lay2 h2 a{font-size:0.7em;transition:all 0.2s ease-out;}
-.lay2 .hentry p{ line-height:1.8em; font-size:0.9em;}
+.lay2 .hentry p, .lay2 .product.type-product p{ line-height:1.8em; font-size:0.9em;}
 .lay2 .img_hover .icon_wrap{margin-top: 0;bottom: 35%;position: absolute;left: 0;right: 0;margin-left: auto;margin-right: auto;}
 
 
@@ -1793,7 +1794,7 @@ span.widget_border {width: 35px;height: 2px;display: block;margin-bottom: 20px;}
 
 .footer_center{text-align: center;}
 #copyright{width:100%;  float:left; background:rgba(0, 0, 0, 0.2);}
-.copytext{padding:20px 0; line-height:1.9em;}
+.copytext{padding:20px 0px 20px 5%; line-height:1.9em;}
 .copytext:empty{ display:none;}
 .copytext a{opacity: 0.7;}
 
@@ -1883,7 +1884,9 @@ span.widget_border {width: 35px;height: 2px;display: block;margin-bottom: 20px;}
 
 .header_sidebar_border #topmenu ul li, .header_sidebar_border_center #topmenu ul li {padding: 0 30px;}
 .left_header_content {  width: 100%;   padding: 30px;  box-sizing: border-box;float: left;line-height: 1.7em;}
-
+.header_sidebar .headsearch_on .header_s {position: relative; margin-left: 45%;}
+.header_sidebar .headsearch_on .header_s form {top: 40px; left: -90px;}    
+.header_sidebar .headsearch_on .header_s form input {  border: 1px solid rgba(0, 0, 0, 0.2);}
 }
 
 
@@ -2038,7 +2041,7 @@ span.widget_border {width: 35px;height: 2px;display: block;margin-bottom: 20px;}
 	.mfp-content .lts_lightbox_content{ width:85%!important;}
 	
 .lts_headline:after, .lts_headline:before, .headline_type3:before{ display:none;}
-.page_contact_wrap.layer_wrapper.has_contact_map .entry-content{ position:relative!important;width: 100%!important; padding:20px; z-index:inherit!important; bottom:auto!important; right:auto!important; margin-bottom:30px!important; box-sizing:border-box;}
+.page_contact_wrap.layer_wrapper.has_contact_map .optimizer_contact_wrap{ position:relative!important;width: 100%!important; padding:20px; z-index:inherit!important; bottom:auto!important; right:auto!important; margin-bottom:30px!important; box-sizing:border-box;}
 .page_contact_wrap.layer_wrapper.has_contact_map .contact_verify {font-size: 13px;}
 .page_contact_wrap.layer_wrapper.has_contact_map #asthemap{ height:350px!important;}
 
@@ -2075,7 +2078,7 @@ body .headsearch_on .header_s.head_search.head_s_on form { width: 100%; position
 }
 
 @media screen and (max-width: 960px) and (min-width: 481px){
-	.stat_has_img{ height:auto!important; min-height: 400px;}
+	.stat_has_img{ height:auto!important; min-height: 300px!important;}
 	.lay1 .post_image .img_hover .icon_wrap{ display:none;}
 }
 @media screen and (max-width: 960px) and (min-width: 620px){
@@ -2307,9 +2310,6 @@ body .slide_wrap, body #zn_nivo { max-height: 360px;}
 .header2 .head_soc{width: 100%;text-align: center;}
 
 
-body .lay2 .hentry, .lay3 .hentry{ width:94%!important; margin-bottom:15px; height:auto!important; padding:2%!important;}
-body .lay4 .hentry{ width:100%!important;padding:5%!important;margin-bottom: 0;}
-body .lay4 .post_image, .lay4 .post_content{ width:100%;}
 .testi_content{ line-height:1.3em;}
 .more-link, .moretag{ float:none; text-align:center;}
 
@@ -2340,12 +2340,12 @@ a.comment-edit-link{ position:relative;top: -15px; float:right;}
 
 .logo img { max-width:260px!important; height: auto; float: left;}
 
-.page_contact_wrap.layer_wrapper.has_contact_map .entry-content { height: auto;}
+.page_contact_wrap.layer_wrapper.has_contact_map .optimizer_contact_wrap { height: auto;}
 .contact_verify, .contact_submit {  width: 100%;  float: none;}
 .contact_submit input { float: none;  width: 100%;}
-.entry-content .contact_verify input {  width: 140px!important;  margin-bottom: 10px;}
-.page_contact_wrap.layer_wrapper .entry-content p:nth-child(1), .page_contact_wrap.layer_wrapper .entry-content p:nth-child(2) {  width: 100%;}
-.page_contact_wrap.layer_wrapper .entry-content p:nth-child(1) { margin-bottom: 0;}
+.optimizer_contact_wrap .contact_verify input {  width: 140px!important;  margin-bottom: 10px;}
+.page_contact_wrap.layer_wrapper .optimizer_contact_wrap p:nth-child(1), .page_contact_wrap.layer_wrapper .optimizer_contact_wrap p:nth-child(2) {  width: 100%;}
+.page_contact_wrap.layer_wrapper .optimizer_contact_wrap p:nth-child(1) { margin-bottom: 0;}
 }
 
 /*STATIC SLIDER RESPONSIVENESS (Quick Fix in v-0.2.2)*/	
@@ -2357,6 +2357,9 @@ a.comment-edit-link{ position:relative;top: -15px; float:right;}
 .has_trans_header.touchon .stat_content_inner {bottom: 0!important;}
 
 @media screen and (max-width: 480px){
+body .lay2 .hentry, .lay3 .hentry, .lay2 .product.type-product { width:94%!important; margin-bottom:15px; height:auto!important; padding:2%!important;}
+body .lay4 .hentry{ width:100%!important;padding:5%!important;margin-bottom: 0;}
+body .lay4 .post_image, .lay4 .post_content{ width:100%;}
 .touchon .stat_has_img .stat_content_inner{ padding-top:0!important;}
 #stat_img.stat_has_img { min-height:250px; height: auto!important; background-position: center!important;} /*{0.3.7 fix}*/
 }
@@ -2383,7 +2386,7 @@ a.comment-edit-link{ position:relative;top: -15px; float:right;}
 
 .frontpagelinks { }
 
-.frontpageimage {width:33%!important; display: inline-block; margin: auto; }
+.frontpageimage {width: 33%; display: inline-block; margin: auto; }
 
 .midrow_block img {max-width: 33%!important; }
 

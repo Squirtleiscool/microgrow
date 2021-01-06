@@ -440,6 +440,7 @@ class optimizer_front_Slider extends WP_Widget {
 			if($slider_type == 'carousel'){
 				
 				echo '<script>jQuery(window).on("load",function() {
+                  if(jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").hasClass("the_slider_widget--carousel_prepared")){ return; }
 						jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").waitForImages(function() {
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").wrapInner(\'<div id="opt_carousel_'.$id.'"><ul class="slidee"></ul><a class="carousel_left"><i></i></a><a class="carousel_right"><i></i></a></div>\');
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget img").wrap("<li></li>");
@@ -451,7 +452,7 @@ class optimizer_front_Slider extends WP_Widget {
 								
 								jQuery(this).before("<div class=\'acord_text\'><h3 class=\'entry-title\'><a>"+jQuery(this).attr(\'alt\')+"</a></h3>"+slidedesc+" "+slidebtn+"</div>");
 							});
-						
+                     jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").addClass("the_slider_widget--carousel_prepared");
 						var options = {	horizontal: true, itemNav: "centered", speed: 300, activateOn: "click", releaseSwing: 1, mouseDragging: false, touchDragging: 1, startAt: 1, prev:  "#'.$id.' .carousel_left", next: "#'.$id.' .carousel_right", smart: true, easing: "easeOutExpo"};
 						
 						jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly(options);

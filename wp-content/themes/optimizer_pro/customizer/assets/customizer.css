@@ -284,7 +284,7 @@ a.optim_dashboard .footer_tooltip {right: -20px;}
 li#accordion-section-basic_sidebar_section {border-bottom: 1px solid #ddd!important;border-top: 1px solid #ddd!important;margin-bottom: 40px;}
 
 /*Available WIDGETS*/
-h4.optimizer_available_widgets {text-align: center;color: #9198A1;margin: 0 auto;}
+h4.optimizer_available_widgets { color: #4c4c4c; margin: 0 auto; padding-top: 10px; text-align: left; padding-left: 20px;}
 h4.optimizer_available_widgets:after {content: "";width:100%;display: block;height: 1px;background-color: #ddd;margin-top: 15px;margin-left: 0px;}
 
 li.control-section-sidebar.flashlight h3{background:#F2F7FF!important;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
@@ -1086,3 +1086,6 @@ h4.control_cta1_title, h4.control_cta2_title, #customize-control-static_cta1_tex
 .no-widget-areas-rendered-notice.no-widget-areas-rendered-notice--hide{ display: none!important;}
 
 .wp-customizer .widget.open{ z-index: 9;}
+.brave_global_shorcode_field{  display: none; }
+#sub-accordion-section-sidebar-widgets-global_widgets .brave_global_shorcode_field{  display: block; }
+#sub-accordion-section-sidebar-widgets-global_widgets .brave_global_shorcode_field input { font-size: 12px;}

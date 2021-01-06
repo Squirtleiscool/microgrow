@@ -79,23 +79,22 @@ jQuery(window).ready(function() {
 		jQuery(this).find('.price_button').css({"borderColor":button_bg});
 		jQuery(this).find('.pricebox').css({"background":pricebox_bg});
 		
-		jQuery('.pricing_style1 .pricebox_inner').hover(function(){
-			jQuery(this).css({"borderColor": rgbaCol});
+      jQuery('.pricing_style1 .pricebox_inner').on('mouseenter', function(){ 
+         jQuery(this).css({"borderColor": rgbaCol});
 			jQuery(this).find('.price_head h3').css({"backgroundColor": rgbaCol, "color":button_color});
-		}, function(){
-			jQuery(this).css({"borderColor": "rgba(0, 0, 0, 0.04)"});
-			jQuery(this).find('.price_head h3').css({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt});
-		});
+      });
+		jQuery('.pricing_style1 .pricebox_inner').on('mouseleave', function(){ 
+         jQuery(this).css({"borderColor": "rgba(0, 0, 0, 0.04)"});
+			jQuery(this).find('.price_head h3').css({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt}); 
+      });
+
 	});
 	
 	jQuery(".lts_pricing.pricing_style2, .lts_pricing.pricing_style3").each(function(){
 		var button_bg = jQuery(this).attr('data-button-bg');
 		jQuery(this).find('.price_head h3').css({"color":button_bg});
-		jQuery(this).find('.pricebox_inner').hover(function(){
-			jQuery(this).css({"borderColor": button_bg});
-		}, function(){
-			jQuery(this).css({"borderColor": "transparent"});
-		});
+      jQuery(this).find('.pricebox_inner').on('mouseenter', function(){    jQuery(this).css({"borderColor": button_bg});  });
+      jQuery(this).find('.pricebox_inner').on('mouseleave', function(){    jQuery(this).css({"borderColor": "transparent"});  });
 	});	
 	jQuery(".lts_pricing.pricing_style5").each(function(){
 		var button_bg = jQuery(this).attr('data-button-bg');
@@ -221,24 +220,19 @@ jQuery(".lts_list").each(function(){
 	 jQuery(".lts_toggle").each(function (){  if(jQuery(this).next('br')){ jQuery(this).next('br').addClass('tabsbr');  }   });
 	
 	//Widget image opacity animation
-	jQuery('.widget_wrap a img').hover(function(){
-		jQuery(this).stop().animate({ "opacity":"0.7" }, 300);
-		}, function(){
-		jQuery(this).stop().animate({ "opacity":"1" }, 300);	
-	});
+   jQuery('.widget_wrap a img').on('mouseenter', function(){  jQuery(this).stop().animate({ "opacity":"0.7" }, 300); });
+   jQuery('.widget_wrap a img').on('mouseleave', function(){  jQuery(this).stop().animate({ "opacity":"1" }, 300);	 });
 
 	
 	//add CLASS for Slider Widget 
 	for (var i=0; i<10; i++){  
 		jQuery('.ast_slider_widget .slide_wdgt').eq(i).attr('id', 'lts_wdgt_nivo'+i+''); 
 		jQuery('.ast_slider_widget #lts_wdgt_nivo'+i+'').nivoSlider({effect: 'fade', directionNav: true, prevText: '<i class="fa fa-chevron-left"></i>', nextText: '<i class="fa fa-chevron-right"></i>',  controlNav: false}); 
-	}
+   }
+   
 	//Call to action shortcode animation
-	jQuery('.act_right a').hover(function(){
-		jQuery(this).addClass('animated pulse');
-		}, function(){
-		jQuery(this).removeClass('animated pulse');	
-	});
+   jQuery('.act_right a').on('mouseenter', function(){  jQuery(this).addClass('animated pulse');  });
+   jQuery('.act_right a').on('mouseleave', function(){  jQuery(this).removeClass('animated pulse');	 });
 	
 
 

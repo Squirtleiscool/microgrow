@@ -191,6 +191,17 @@ if(!function_exists('optimizer_widget_css_enqueue')){
                }
             }
          }
+         if(is_array($sidebars_widgets['global_widgets']) && count($sidebars_widgets['global_widgets']) > 0){
+            foreach ($sidebars_widgets['global_widgets'] as $key => $widgetid) {
+               $widget_type = strstr( $widgetid, "-", true );
+               if(in_array($widget_type, $allOptimizerWidgets) ){
+                  $sidebarHasOptimizerWidgets = true;
+               }
+            }
+            if($sidebarHasOptimizerWidgets){
+               optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, 'global_widgets');
+            }
+         }
 
    }
 
@@ -242,8 +253,8 @@ function optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $
    }
 }
 
-add_action( 'admin_enqueue_scripts', 'widgetizer_enqueue' );
-function widgetizer_enqueue($hook) {
+add_action( 'admin_enqueue_scripts', 'optimizer_widgetizer_enqueue' );
+function optimizer_widgetizer_enqueue($hook) {
 	    if ( function_exists('get_current_screen')) {  
 			//Do not load if current editing post type is not Page
 			$post_type = get_current_screen()->post_type;
@@ -259,7 +270,7 @@ function widgetizer_enqueue($hook) {
       $widgetized = get_post_meta(get_the_ID(), "widgetized", true);
       //$layoutType = get_post_meta(get_the_ID(), "optimizer_post_layout", true);
 		$sidebarid = get_post_meta(get_the_ID(), "page_sidebar");
-		if ( 'post.php' == $hook ) {
+		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
 			   wp_register_script( 'widgetize-ajax', get_template_directory_uri() . '/customizer/assets/widgetize_ajax.js');
             $optimizerLogo = '<svg xmlns="http://www.w3.org/2000/svg" width="18px" viewBox="0 0 241 286" style="position: relative; margin-top: -8px; top: 5px;"><path fill-rule="evenodd" fill="rgb(85, 99, 133)" d="M121.000,286.000 L0.000,212.000 L0.000,72.000 L121.000,-0.000 L241.000,72.000 L241.000,213.000 L121.000,286.000 ZM193.000,100.301 L120.801,57.000 L48.000,100.301 L48.000,184.497 L120.801,229.000 L193.000,185.098 L193.000,100.301 Z" /></svg>';
          

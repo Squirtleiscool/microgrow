@@ -279,7 +279,7 @@ function optimizer_dynamic_sidebar_params($params){
 
 
 //CUSTOMIZE THIS PAGE PANEL
-function below_the_editor() {
+function optimizer_below_the_editor() {
 	$screen = get_current_screen();
 	if( current_user_can('manage_options') && $screen->id == 'page' ){ 
 	
@@ -302,7 +302,7 @@ function below_the_editor() {
 		echo $cpanel;
 	}
 }
-add_action( 'edit_form_after_editor', 'below_the_editor' );
+add_action( 'edit_form_after_editor', 'optimizer_below_the_editor' );
 
 
 

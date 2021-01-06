@@ -25,11 +25,9 @@ jQuery(window).ready(function() {
 						jQuery(this).removeClass("animated fadeInUp menushow");next();});
 		});
 	
-		jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').hover(function(){
-			jQuery(this).addClass('menu_hover');
-		}, function(){
-			jQuery(this).removeClass('menu_hover');	
-		});
+		jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').on('mouseenter', function(){ jQuery(this).addClass('menu_hover'); });
+      jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').on('mouseleave', function(){ jQuery(this).removeClass('menu_hover');	 });
+      
 	}
 	
 	jQuery('#topmenu li, #topbar_menu li').has("ul").addClass('zn_parent_menu');

@@ -1,6 +1,7 @@
 // Widgetize Page with Sidebar Selection
-
-	window.addEventListener( 'DOMContentLoaded', function(){
+window.addEventListener( 'DOMContentLoaded', function(){
+   setTimeout(() => {
+      if(jQuery('#customize_page_panel_new')[0]){ return; }
       //Append the Widgetizer html
       jQuery('.edit-post-header').prepend(params.content);
       var settigsWidth = jQuery('.edit-post-header__settings').innerWidth();
@@ -89,5 +90,5 @@
          jQuery(this).parent().toggleClass('customize_page_panel_Widgetize--show');
       });
 
-
-   } );
+   }, 1000);
+} );

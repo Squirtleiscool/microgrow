@@ -14,6 +14,7 @@
   url('../fonts/fontawesome/fontawesome-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 i[class*='fa-']{
   display: inline-block;

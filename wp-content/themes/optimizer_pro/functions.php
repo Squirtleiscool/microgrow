@@ -94,7 +94,10 @@ function optimizer_setup() {
 	
 	//GutenBerg
 	// add_theme_support( 'align-wide' );
-	// add_theme_support('editor-styles');
+   // add_theme_support('editor-styles');
+
+   //Remove WP 5.6 the Gutenberg based Widgets System
+   remove_theme_support( 'widgets-block-editor' );
 
 }
 add_action( 'after_setup_theme', 'optimizer_setup' );

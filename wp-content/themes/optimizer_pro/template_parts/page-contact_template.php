@@ -130,7 +130,7 @@ global $optimizer;
                                     <?php do_action('optimizer_after_content'); ?>
                                     
                                   <!--The Contact Form-->
-                                      <div class="entry-content">
+                                 <div class="optimizer_contact_wrap">
                                   <?php echo $response; ?>
                                   <form id="layer_contact_form" action="<?php the_permalink(); ?>" method="post">
                                     <p><input id="layer_cntct_name" placeholder="<?php _e('Name*', 'optimizer'); ?>" type="text" name="message_name" class="cont_inpt" value="<?php if (isset($_POST['message_name'])){ echo esc_attr($_POST['message_name']); } ?>"></label></p>
@@ -145,31 +145,7 @@ global $optimizer;
                                     
                                     <p class="contact_verify"><label for="message_human"><?php _e('Human Verification', 'optimizer'); ?> <span>*</span> <br><input id="layer_cntct_math" type="text" style="width: 50px;" name="message_human"> + 3 = 5</label></p>
                                     <input type="hidden" name="submitted" value="1">
-                                    <p class="contact_submit"><input type="submit" name ="send" value ="<?php _e('Send', 'optimizer'); ?>">
-										<!-- Global site tag (gtag.js) - Google Ads: 950295081 -->
-										<script async src="https://www.googletagmanager.com/gtag/js?id=AW-950295081"></script>
-										<script>
-										  window.dataLayer = window.dataLayer || [];
-										  function gtag(){dataLayer.push(arguments);}
-										  gtag('js', new Date());
-
-										  gtag('config', 'AW-950295081');
-										</script>
-										<!-- Global site tag (gtag.js) - Google Analytics -->
-										<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163295995-1"></script>
-										<script>
-										  window.dataLayer = window.dataLayer || [];
-										  function gtag(){dataLayer.push(arguments);}
-										  gtag('js', new Date());
-
-										  gtag('config', 'UA-163295995-1');
-										</script>
-
-										<!-- Event snippet for April website conversion page -->
-										<script>
-										  gtag('event', 'conversion', {'send_to': 'AW-950295081/cbl5CM72zcsBEKm0kcUD'});
-										</script>
-									</p>
+                                    <p class="contact_submit"><input type="submit" name ="send" value ="<?php _e('Send', 'optimizer'); ?>"></p>
                                   </form>
                                     </div>
                                   </div> 

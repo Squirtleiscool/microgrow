@@ -14,7 +14,7 @@
 		$('#content_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var contentsubset = wp.customize.instance('optimizer[content_font_id][subsets]').get();
-		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+contentsubset, }).appendTo("head");
+		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+contentsubset, }).appendTo("head");
 		$('#content_font_css').text('html body{font-family:'+newval+'}')
 		} );
 	} );
@@ -24,7 +24,7 @@
 		var contentfont = wp.customize.instance('optimizer[content_font_id][font-family]').get();
 		var contentfontclean  =contentfont.replace(" ", "+");
 		
-		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+contentfontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+contentfontclean+"&subset="+newval, }).appendTo("head");
 		$('#content_font_css').text('html body{font-family:'+contentfont+'}');
 		} );
 	} );
@@ -43,7 +43,7 @@
 		$('#ptitle_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var ptitlesubset = wp.customize.instance('optimizer[ptitle_font_id][subsets]').get();
-		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+ptitlesubset, }).appendTo("head");
+		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+ptitlesubset, }).appendTo("head");
 		$('#ptitle_font_css').text('h1, h2, h3, h4, h5, h6, #topmenu ul li a, .postitle, .product_title{font-family:'+newval+'!important}');
 		} );
 	} );
@@ -53,7 +53,7 @@
 		var ptitlefont = wp.customize.instance('optimizer[ptitle_font_id][font-family]').get();
 		var ptitlefontclean  =ptitlefont.replace(" ", "+");
 		
-		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+ptitlefontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+ptitlefontclean+"&subset="+newval, }).appendTo("head");
 		$('#ptitle_font_css').text('h1, h2, h3, h4, h5, h6, #topmenu ul li a, .postitle, .product_title{font-family:'+ptitlefont+'!important}');
 		} );
 	} );
@@ -73,7 +73,7 @@
 		$('#logo_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var logosubset = wp.customize.instance('optimizer[logo_font_id][subsets]').get();
-		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+logosubset, }).appendTo("head");
+		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+logosubset, }).appendTo("head");
 		$('#logo_font_css').text('.logo h2, .logo h1, .logo h2 a, .logo h1 a{font-family:'+newval+'!important}')
 		} );
 	} );
@@ -83,7 +83,7 @@
 		var logofont = wp.customize.instance('optimizer[logo_font_id][font-family]').get();
 		var logofontclean  =logofont.replace(" ", "+");
 		
-		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+logofontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+logofontclean+"&subset="+newval, }).appendTo("head");
 		$('#logo_font_css').text('.logo h2, .logo h1, .logo h2 a, .logo h1 a{font-family:'+logofont+'!important}');
 		} );
 	} );

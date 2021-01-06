@@ -144,7 +144,7 @@ wp.customize.previewer.bind('ready', function() {
 
 
 	//Logo 
-	$('.optimizer_logo').click(function(){
+	$('.optimizer_logo').on('click', function(){
 		$('.quickie i').removeClass('activeq');
 		$('.wp-full-overlay').removeClass('quickiehover subsection-open');
 		wp.customize.panel.each( function ( panel ) {  panel.collapse();});
@@ -242,19 +242,19 @@ jQuery(window).on('load', function(){
 		if(jQuery(this).attr('data-qicon')){   var qicon = jQuery(this).attr('data-qicon');  }else{  var qicon ='fa-cog';  }
 		jQuery('.quickie').append('<i class="fa '+qicon+' quickie_'+quickieid+'"><dl>'+rawtitle+ '</dl></i>');
 		
-		jQuery('.quickie_'+quickieid).click(function(){  
+		jQuery('.quickie_'+quickieid).on('click', function(){  
 			jQuery('.quickie i, .quickie_text dl').removeClass('activeq'); jQuery(this).addClass('activeq'); wp.customize.panel( quickieid ).focus(); 	
 			jQuery('.wp-full-overlay').removeClass('quickiehover subsection-open'); 
 		});
 		
-		jQuery('#'+quickieidraw).find('h3').click(function(){ 
+		jQuery('#'+quickieidraw).find('h3').on('click', function(){ 
 			jQuery('.quickie i, .quickie_text dl').removeClass('activeq'); jQuery('.quickie_'+quickieid).addClass('activeq');
 		});
 		
     });
 	
 
-		jQuery('.quickie i, .quickie_text dl').click(function(){ 
+		jQuery('.quickie i, .quickie_text dl').on('click', function(){ 
 			wp.customize.section.each( function ( section ) {section.collapse();}); 
 		});
 		
@@ -277,12 +277,12 @@ jQuery(window).on('load', function(){
 				var qicon = jQuery(this).attr('data-qicon');
 				jQuery('.quickie_misc_panel').after('<i class="fa '+qicon+' quickie_'+quickieid+'"><dl>'+rawtitle+ '</dl></i>');
 				
-				jQuery('.quickie_'+quickieid).click(function(){  
+				jQuery('.quickie_'+quickieid).on('click', function(){  
 					jQuery('.quickie i, .quickie_text dl').removeClass('activeq'); jQuery(this).addClass('activeq'); wp.customize.section( quickieid ).focus(); 
 					jQuery('.wp-full-overlay').removeClass('quickiehover subsection-open'); 
 				});
 				
-				jQuery('#'+quickieidraw).find('h3').click(function(){ 
+				jQuery('#'+quickieidraw).find('h3').on('click', function(){ 
 					jQuery('.quickie i, .quickie_text dl').removeClass('activeq'); jQuery('.quickie_'+quickieid).addClass('activeq');
 				});
 				
@@ -310,13 +310,13 @@ jQuery(window).on('load', function(){
 		
 		jQuery('#customize-control-blogname').addClass('activelogoption').before('<ul class="logo_control_tabs"><li class="txtlogo activlogo"><a>Text</a></li><li class="imglogo"><a>'+objectL10n.image+'</a></li></ul>');
 		
-	jQuery('.logo_control_tabs li.txtlogo a').click(function(){ 
+	jQuery('.logo_control_tabs li.txtlogo a').on('click', function(){ 
 		jQuery('.logo_control_tabs li').removeClass('activlogo');	jQuery(this).parent().addClass('activlogo');
 		jQuery('#customize-control-blogname, #customize-control-blogdescription, #accordion-section-headlogo_section .font_controlheader, #customize-control-logo_font_family, #customize-control-logo_font_subsets, #customize-control-logo_font_size, #customize-control-logo_color_id, #customize-control-tagline_font_size').addClass('activelogoption').show();
 		jQuery('#customize-control-logo_image_id, #customize-control-home_logo_id, #customize-control-logo_max_width').removeClass('activelogoption');
 	});
 	
-	jQuery('.logo_control_tabs li.imglogo a').click(function(){ 
+	jQuery('.logo_control_tabs li.imglogo a').on('click', function(){ 
 		jQuery('.logo_control_tabs li').removeClass('activlogo');	jQuery(this).parent().addClass('activlogo');
 		jQuery('#customize-control-logo_image_id, #customize-control-home_logo_id, #customize-control-logo_max_width').addClass('activelogoption');
 		jQuery('#customize-control-blogname, #customize-control-blogdescription, #accordion-section-headlogo_section .font_controlheader, #customize-control-logo_font_family, #customize-control-logo_font_subsets, #customize-control-logo_font_size, #customize-control-logo_color_id, #customize-control-tagline_font_size').removeClass('activelogoption').hide();
@@ -354,20 +354,20 @@ jQuery(window).on('load', function(){
 		
 		jQuery('#customize-control-static_image_id').addClass('activebgoption').before('<ul class="slider_control_tabs"><li class="imgbg activbg"><a>'+objectL10n.image+'</a></li><li class="slideshowbg"><a>'+objectL10n.slideshow+'</a></li><li class="vdobg"><a>'+objectL10n.video+'</a></li></ul>');
 		
-	jQuery('.slider_control_tabs li.imgbg a').click(function(){ 
+	jQuery('.slider_control_tabs li.imgbg a').on('click', function(){ 
 		jQuery('.slider_control_tabs li').removeClass('activbg');	jQuery(this).parent().addClass('activbg');
 		jQuery('#customize-control-static_gallery, #customize-control-static_slide_timer, #customize-control-static_video_id, #customize-control-slide_ytbid, #customize-control-static_vid_loop, #customize-control-static_vid_mute').removeClass('activebgoption');
 		jQuery('#customize-control-static_image_id').addClass('activebgoption');
 	});
 	
-	jQuery('.slider_control_tabs li.slideshowbg a').click(function(){ 
+	jQuery('.slider_control_tabs li.slideshowbg a').on('click', function(){ 
 		jQuery('.slider_control_tabs li').removeClass('activbg');	jQuery(this).parent().addClass('activbg');
 		jQuery('#customize-control-static_image_id').attr('style', '').hide();
 		jQuery('#customize-control-static_image_id, #customize-control-static_slide_timer, #customize-control-static_video_id, #customize-control-slide_ytbid, #customize-control-static_vid_loop, #customize-control-static_vid_mute').removeClass('activebgoption');
 		jQuery('#customize-control-static_gallery, #customize-control-static_slide_timer').addClass('activebgoption');
 	});
 	
-	jQuery('.slider_control_tabs li.vdobg a').click(function(){ 
+	jQuery('.slider_control_tabs li.vdobg a').on('click', function(){ 
 		jQuery('.slider_control_tabs li').removeClass('activbg');	jQuery(this).parent().addClass('activbg');
 		jQuery('#customize-control-static_image_id').attr('style', '').hide();
 		jQuery('#customize-control-static_gallery, #customize-control-static_image_id, #customize-control-static_slide_timer').removeClass('activebgoption');
@@ -481,7 +481,7 @@ jQuery(window).on('load', function(){
 		
 		//Custom Sidebar - Update Button
 		//jQuery('#customize-control-custom_sidebar input').after('<button type="button" class="button update-custom-sidebar"><i class="fa fa-circle-o-notch fa-spin" /> Update</button>');
-		jQuery('.update-custom-sidebar').click(function() {
+		jQuery('.update-custom-sidebar').on('click', function() {
 			jQuery('#save').trigger('click');
 			jQuery(this).find('i').fadeIn(200);
             setTimeout(function () {   window.location = objectL10n.widgetfocusurl;  }, 2000)
@@ -518,7 +518,7 @@ jQuery(window).on('load', function(){
 	
 	
 	/*FRONTPAGE EDIT BUTTON*/				
-	jQuery('.frontpage_edit_btn').click(function(){ 		
+	jQuery('.frontpage_edit_btn').on('click', function(){ 		
 		jQuery('.quickie i, .quickie_text dl').removeClass('activeq'); jQuery('.quickie_widgets').addClass('activeq');		
 		wp.customize.section( 'sidebar-widgets-front_sidebar' ).focus();		
 	});		
@@ -569,10 +569,10 @@ jQuery(window).on('load', function(){
 		jQuery('#customize-control-custom_font_woff').after('<a class="font_activate font_deactivate"><i class="fa fa-circle-o-notch fa-spin" /> '+objectL10n.fontstep4+'</a>');
 		}*/
 	
-	jQuery('.font_deactivate').click(function() {
+	jQuery('.font_deactivate').on('click', function() {
 		jQuery('#customize-control-custom_font_ttf input, #customize-control-custom_font_eot input, #customize-control-custom_font_woff input').val('').trigger('change');
 	});
-	jQuery('.font_activate').click(function() {
+	jQuery('.font_activate').on('click', function() {
 			setTimeout(function () {jQuery('#save').trigger('click');  }, 400)
 			jQuery(this).find('i').fadeIn(200);
             setTimeout(function () {   window.location = objectL10n.customfontfocus;  }, 2600)
@@ -664,13 +664,13 @@ jQuery(document).ready(function($) {
 jQuery(window).on('load', function(){
 	//Widgets List Modification
 		jQuery('#available-widgets-list').prepend('<ul class="optimizer_widget_list"><li class="currnt_widgets"><a>'+objectL10n.optimwidgt+'</a></li><li><a>'+objectL10n.othrimwidgt+'</a></li></ul>');
-		jQuery('.optimizer_widget_list li').eq(1).click(function() {
+		jQuery('.optimizer_widget_list li').eq(1).on('click', function() {
 			jQuery( '.optimizer_widget_list li').removeClass('currnt_widgets');
 			jQuery( this ).addClass('currnt_widgets');
 			jQuery( '#available-widgets').addClass('active-otherwidget');
 		});
 		
-		jQuery('.optimizer_widget_list li').eq(0).click(function() {
+		jQuery('.optimizer_widget_list li').eq(0).on('click', function() {
 			jQuery( '.optimizer_widget_list li').removeClass('currnt_widgets');
 			jQuery( this ).addClass('currnt_widgets');
 			jQuery( '#available-widgets').removeClass('active-otherwidget');
@@ -740,7 +740,7 @@ jQuery(window).on('load', function(){
 		jQuery(this).after('<div title="'+title+' Widget Presets" class="widget_preset_btn widget_preset_'+widgetid+'" id="trigger-'+widgetid+'" style="top:'+position.top+'px; bottom:'+position.bottom+'px; left:'+position.left+'px; right:'+position.right+'px;"></div>');
 
 		//Display presets on button clicks
-		jQuery('#trigger-'+widgetid).click(function() {
+		jQuery('#trigger-'+widgetid).on('click', function() {
 			jQuery('#available-widgets-list [id^="widget-tpl-"]').addClass('hide_widgets_fo_presets');
 			jQuery('.widget_preset_right').fadeIn(400);
 			jQuery('.widget_preset_right .preset_tabs, ul.optimizer_widget_list, .widget_preset_btn').hide();
@@ -748,7 +748,7 @@ jQuery(window).on('load', function(){
 			jQuery('.preset_tabs img').trigger("unveil");
 		});
 		
-		jQuery('.widget_preset_right .fa-angle-left').click(function() {
+		jQuery('.widget_preset_right .fa-angle-left').on('click', function() {
 			jQuery('.widget_preset_right, .widget_preset_right .preset_tabs').fadeOut(400);
 			jQuery('ul.optimizer_widget_list, .widget_preset_btn').show();
 			jQuery('#available-widgets-list [id^="widget-tpl-"]').removeClass('hide_widgets_fo_presets');
@@ -895,12 +895,6 @@ jQuery( document ).on('load ready', function() {
 	//Remove all the "Shift Click to Edit this Widget" message
 	setTimeout(function () {  jQuery('.frontpage_sidebar .widget').attr('title','');  }, 3000);
 
-	wp.customize.previewer.bind( 'start-tour', function(){
-		if(!Cookies.get('optimizertour')){
-			jQuery('#optimizerTour, .tour_backdrop').fadeIn();
-		}
-	});
-	
 	//Map APi Key Description
 	jQuery('#customize-control-map_api input').before(objectL10n.getmapkey);
 	
@@ -959,25 +953,31 @@ jQuery( document ).on('load ready', function() {
 } );
 
 
-jQuery(document).ready(function() {
+jQuery( document ).on('load', function() {
+	
+	wp.customize.previewer.bind( 'start-tour', function(){
+		if(!Cookies.get('optimizertour')){
+			jQuery('#optimizerTour, .tour_backdrop').fadeIn();
+		}
+	});
 	
 	//Tutorial Video
-	jQuery('#customize-control-help-tuts .description').click(function() {
+	jQuery('#customize-control-help-tuts .description').on('click', function() {
 		jQuery('.basic_guide, .guide_backdrop').removeClass('vid_maximize vid_minimize vid_minimized').fadeIn();
 	});	
 	
 	//Video Guides
-	jQuery('#customize-control-help-createbus .description').click(function() {
+	jQuery('#customize-control-help-createbus .description').on('click', function() {
 		jQuery('.business_guide, .guide_backdrop').removeClass('vid_maximize vid_minimize vid_minimized').fadeIn();
 	});	
 	
 	//Faq Tabs
-	jQuery('.faq_tab_controls h3').click(function() {
+	jQuery('.faq_tab_controls h3').on('click', function() {
 		jQuery('.faq_tab_controls h3, .faq_tabs').removeClass('faq_active faq_tab_active'); jQuery(this).addClass('faq_active');  jQuery('.'+jQuery(this).attr('data-tab')).addClass('faq_tab_active');
 	});
 	
-	jQuery('#customize-control-help-faq .description a').click(function() {	jQuery('#faq_tab, .guide_backdrop').fadeIn(); });
-	jQuery('.faq_title_bar i').click(function() {	jQuery('#faq_tab, .guide_backdrop').fadeOut(); });
+	jQuery('#customize-control-help-faq .description a').on('click', function() {	jQuery('#faq_tab, .guide_backdrop').fadeIn(); });
+	jQuery('.faq_title_bar i').on('click', function() {	jQuery('#faq_tab, .guide_backdrop').fadeOut(); });
 	
 });
 
