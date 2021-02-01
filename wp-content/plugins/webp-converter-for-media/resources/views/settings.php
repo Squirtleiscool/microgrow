@@ -1,7 +1,11 @@
 <?php
-  $path    = sprintf('%s&_wpnonce=%s', menu_page_url('webpc_admin_page', false), wp_create_nonce('webpc-save'));
+
+  use WebpConverter\Settings\Page;
+
+  $path    = sprintf('%s&_wpnonce=%s', Page::getSettingsPageUrl(), wp_create_nonce('webpc-save'));
   $options = apply_filters('webpc_get_options', []);
   $values  = apply_filters('webpc_get_values',  []);
+
 ?>
 <div class="wrap">
   <h1><?= esc_html(__('WebP Converter for Media', 'webp-converter-for-media')); ?></h1>

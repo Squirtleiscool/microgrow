@@ -25,7 +25,7 @@
         'extensions'  => ['jpg', 'jpeg', 'png'],
         'dirs'        => ['uploads'],
         'method'      => ($methods) ? $methods[0] : '',
-        'features'    => ['only_smaller', 'mod_expires', 'debug_enabled'],
+        'features'    => ['only_smaller', 'mod_expires', 'cron_conversion', 'debug_enabled'],
         'quality'     => 85,
       ]);
       return $this->cache;

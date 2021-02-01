@@ -482,6 +482,14 @@ This is all very important to us and allows us to do even better things for you!
 
 == Changelog ==
 
+= 2.3.0 (2021-01-31) =
+* `[Fixed]` Encoding paths to files
+* `[Fixed]` Retaining PNG transparency using Gd method
+* `[Added]` Cron to convert images uploaded to Media Library
+
+= 2.2.0 (2021-01-13) =
+* `[Added]` Support for WordPress Multisite
+
 = 2.1.3 (2020-12-28) =
 * `[Fixed]` Regex for Pass Thru loading mode
 

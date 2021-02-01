@@ -56,13 +56,14 @@
 
     public function getImageSourcePath($sourcePath)
     {
-      if (!$status = Server::checkIfFileExists($sourcePath)) {
-        $e         = new \Exception(sprintf('Source path "%s" for image does not exist.', $sourcePath));
+      $path = urldecode($sourcePath);
+      if (!$status = Server::checkIfFileExists($path)) {
+        $e         = new \Exception(sprintf('Source path "%s" for image does not exist.', $path));
         $e->status = 'file_unreadable';
         throw $e;
       }
 
-      return $sourcePath;
+      return $path;
     }
 
     public function getImageOutputPath($sourcePath)

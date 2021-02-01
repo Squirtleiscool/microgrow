@@ -97,6 +97,7 @@
             'mod_expires'      => __('Browser Caching for WebP files (saving images in browser cache memory)', 'webp-converter-for-media'),
             'keep_metadata'    => __('Keep images metadata stored in EXIF or XMP formats (only available for Imagick conversion method)', 'webp-converter-for-media'),
             'cron_enabled'     => __('Enable cron to automatically convert images from outside Media Library (images from Media Library are converted immediately after upload)', 'webp-converter-for-media'),
+            'cron_conversion'  => __('Enable cron to convert images uploaded to Media Library to speed up process of adding images (deactivate this option if images added to Media Library are not automatically converted)', 'webp-converter-for-media'),
             'referer_disabled' => __('Force redirections to WebP for all domains (by default, images in WebP are loaded only in domain of your website - when image is displayed via URL on another domain that original file is loaded)', 'webp-converter-for-media'),
             'debug_enabled'    => __('Log errors while converting to debug.log file (when debugging in WordPress is active)', 'webp-converter-for-media'),
           ],

@@ -1,3 +1,8 @@
+<?php
+
+  use WebpConverter\Settings\Page;
+
+?>
 <div class="webpPage__widget">
   <h3 class="webpPage__widgetTitle webpPage__widgetTitle--second">
     <?= esc_html(__('We are waiting for your message', 'webp-converter-for-media')); ?>
@@ -16,7 +21,7 @@
       )); ?>
     </p>
     <p class="center">
-      <a href="<?= esc_url(sprintf('%s&action=server', menu_page_url('webpc_admin_page', false))); ?>" class="webpButton webpButton--blue dashicons-admin-tools">
+      <a href="<?= esc_url(sprintf('%s&action=server', Page::getSettingsPageUrl())); ?>" class="webpButton webpButton--blue dashicons-admin-tools">
         <?= esc_html(__('Server configuration', 'webp-converter-for-media')); ?>
       </a>
       <br>

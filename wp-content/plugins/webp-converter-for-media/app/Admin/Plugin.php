@@ -2,11 +2,14 @@
 
   namespace WebpConverter\Admin;
 
+  use WebpConverter\Settings\Page;
+
   class Plugin
   {
     public function __construct()
     {
-      add_filter('plugin_action_links_' . WEBPC_NAME,               [$this, 'addLinkToSettings']);
+      add_filter('plugin_action_links_' . WEBPC_NAME,               [$this, 'addLinkToSettingsForAdmin']);
+      add_filter('network_admin_plugin_action_links_' . WEBPC_NAME, [$this, 'addLinkToSettingsForNetwork']);
       add_filter('plugin_action_links_' . WEBPC_NAME,               [$this, 'addLinkToDonate']);
       add_filter('network_admin_plugin_action_links_' . WEBPC_NAME, [$this, 'addLinkToDonate']);
     }
@@ -15,11 +18,25 @@
       Functions
     --- */
 
-    public function addLinkToSettings($links)
+    public function addLinkToSettingsForAdmin($links)
+    {
+      if (is_multisite()) {
+        return $links;
+      }
+
+      return $this->addLinkToSettings($links);
+    }
+
+    public function addLinkToSettingsForNetwork($links)
+    {
+      return $this->addLinkToSettings($links);
+    }
+
+    private function addLinkToSettings($links)
     {
       array_unshift($links, sprintf(
         esc_html(__('%sSettings%s', 'webp-converter-for-media')),
-        '<a href="' . menu_page_url('webpc_admin_page', false) . '">',
+        '<a href="' . Page::getSettingsPageUrl() . '">',
         '</a>'
       ));
       return $links;

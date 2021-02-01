@@ -1,3 +1,8 @@
+<?php
+
+  use WebpConverter\Settings\Page;
+
+?>
 <div class="webpPage__widget">
   <h3 class="webpPage__widgetTitle">
     <?= esc_html(__('Settings', 'webp-converter-for-media')); ?>
@@ -23,7 +28,7 @@
           '</a>',
           '<a href="https://wordpress.org/support/plugin/webp-converter-for-media/" target="_blank">',
           '</a>',
-          '<a href="' . sprintf('%s&action=server', menu_page_url('webpc_admin_page', false)) . '">',
+          '<a href="' . sprintf('%s&action=server', Page::getSettingsPageUrl()) . '">',
           '</a>'
         )); ?>
       </p>

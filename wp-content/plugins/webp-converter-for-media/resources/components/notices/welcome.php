@@ -1,3 +1,8 @@
+<?php
+
+  use WebpConverter\Settings\Page;
+
+?>
 <div class="notice notice-success">
   <div class="webpContent webpContent--notice">
     <h4>
@@ -11,7 +16,7 @@
       )); ?>
     </p>
     <div class="webpContent__buttons">
-      <a href="<?= esc_url(menu_page_url('webpc_admin_page', false)); ?>"
+      <a href="<?= esc_url(Page::getSettingsPageUrl()); ?>"
         class="webpContent__button webpButton webpButton--green">
         <?= esc_html(__('Speed up my website', 'webp-converter-for-media')); ?>
       </a>

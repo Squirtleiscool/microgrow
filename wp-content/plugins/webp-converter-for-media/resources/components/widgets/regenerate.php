@@ -1,6 +1,8 @@
 <?php
+
   $apiPaths      = apply_filters('webpc_rest_api_paths', '');
   $apiRegenerate = apply_filters('webpc_rest_api_regenerate', '');
+
 ?>
 <div class="webpPage__widget">
   <h3 class="webpPage__widgetTitle">

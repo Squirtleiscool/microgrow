@@ -31,7 +31,7 @@
       foreach ($paths as $path) {
         if (in_array($path, $excludedDirs)) continue;
 
-        $currentPath = $dirPath . '/' . $path;
+        $currentPath = $dirPath . '/' . urlencode($path);
         if (is_dir($currentPath)) {
           $list = array_merge($list, $this->findFilesInDirectory($currentPath, $allowedExts, $excludedDirs));
         } else if (in_array(strtolower(pathinfo($currentPath, PATHINFO_EXTENSION)), $allowedExts)) {

@@ -25,7 +25,8 @@
       if (get_option(Activation::NEW_INSTALLATION_OPTION) !== '1') return;
 
       new Assets();
-      add_action('admin_notices', ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
+      add_action('admin_notices',         ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
+      add_action('network_admin_notices', ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
     }
 
     public static function loadWelcomeNotice()
@@ -35,11 +36,16 @@
 
     public function showThanksNotice()
     {
-      if (($_SERVER['PHP_SELF'] !== '/wp-admin/index.php') ||
-        (get_option(self::NOTICE_THANKS_OPTION, 0) >= time())) return;
+      if ((basename($_SERVER['PHP_SELF']) !== 'index.php')
+        || (get_option(self::NOTICE_THANKS_OPTION, 0) >= time())) return;
 
-      new Assets();
-      add_action('admin_notices', [$this, 'loadThanksNotice']);
+      if (!is_multisite()) {
+        new Assets();
+        add_action('admin_notices', [$this, 'loadThanksNotice']);
+      } else if (is_network_admin()) {
+        new Assets();
+        add_action('network_admin_notices', [$this, 'loadThanksNotice']);
+      }
     }
 
     public function loadThanksNotice()

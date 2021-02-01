@@ -52,10 +52,10 @@
         throw $e;
       }
 
-      return $this->updateImageResource($image);
+      return $this->updateImageResource($image, $extension);
     }
 
-    private function updateImageResource($image)
+    private function updateImageResource($image, $extension)
     {
       if (!function_exists('imageistruecolor')) {
         $e         = new \Exception(sprintf('Server configuration: "%s" function is not available.', 'imageistruecolor'));
@@ -70,6 +70,24 @@
           throw $e;
         }
         imagepalettetotruecolor($image);
+      }
+
+      switch ($extension) {
+        case 'png':
+          if (!function_exists('imagealphablending')) {
+            $e         = new \Exception(sprintf('Server configuration: "%s" function is not available.', 'imagealphablending'));
+            $e->status = 'server_configuration';
+            throw $e;
+          }
+          imagealphablending($image, false);
+
+          if (!function_exists('imagesavealpha')) {
+            $e         = new \Exception(sprintf('Server configuration: "%s" function is not available.', 'imagesavealpha'));
+            $e->status = 'server_configuration';
+            throw $e;
+          }
+          imagesavealpha($image, true);
+          break;
       }
 
       return $image;

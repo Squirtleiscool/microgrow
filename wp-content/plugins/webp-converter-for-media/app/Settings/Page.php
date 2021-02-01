@@ -12,19 +12,40 @@
 
     public function __construct()
     {
-      add_action('admin_menu', [$this, 'addSettingsPage']);
+      add_action('admin_menu',         [$this, 'addSettingsPageForAdmin']);
+      add_action('network_admin_menu', [$this, 'addSettingsPageForNetwork']);
     }
 
     /* ---
       Functions
     --- */
 
-    public function addSettingsPage()
+    public static function getSettingsPageUrl()
     {
-      if (is_network_admin()) return;
+      if (!is_multisite()) {
+        return menu_page_url('webpc_admin_page', false);
+      } else {
+        return network_admin_url('settings.php?page=webpc_admin_page');
+      }
+    }
 
+    public function addSettingsPageForAdmin()
+    {
+      if (is_multisite()) {
+        return;
+      }
+      $this->addSettingsPage('options-general.php');
+    }
+
+    public function addSettingsPageForNetwork()
+    {
+      $this->addSettingsPage('settings.php');
+    }
+
+    private function addSettingsPage($menuPage)
+    {
       $page = add_submenu_page(
-        'options-general.php',
+        $menuPage,
         'WebP Converter for Media',
         'WebP Converter',
         'manage_options',
@@ -43,7 +64,8 @@
     public function loadScriptsForPage()
     {
       update_option(Activation::NEW_INSTALLATION_OPTION, '0');
-      remove_action('admin_notices', ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
+      remove_action('admin_notices',         ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
+      remove_action('network_admin_notices', ['WebpConverter\Admin\Notice', 'loadWelcomeNotice']);
 
       new Assets();
     }

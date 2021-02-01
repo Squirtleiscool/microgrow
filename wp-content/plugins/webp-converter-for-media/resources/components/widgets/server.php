@@ -1,6 +1,9 @@
 <?php
-  $pageUrl = menu_page_url('webpc_admin_page', false);
-  $info    = apply_filters('webpc_server_info', '');
+
+  use WebpConverter\Settings\Page;
+
+  $info = apply_filters('webpc_server_info', '');
+
 ?>
 <div class="webpPage__widget">
   <h3 class="webpPage__widgetTitle webpPage__widgetTitle--second">
@@ -14,7 +17,7 @@
           '</a>'
         )); ?>
       </p>
-      <a href="<?= esc_url($pageUrl); ?>" class="webpLoader__button webpButton webpButton--blue">
+      <a href="<?= esc_url(Page::getSettingsPageUrl()); ?>" class="webpLoader__button webpButton webpButton--blue">
         <?= esc_html(__('Back to settings', 'webp-converter-for-media')); ?>
       </a>
     </div>
@@ -22,7 +25,7 @@
       <div class="webpServerInfo"><?= wp_kses_post($info); ?></div>
     </div>
     <div class="webpPage__widgetRow">
-      <a href="<?= esc_url($pageUrl); ?>" class="webpLoader__button webpButton webpButton--blue">
+      <a href="<?= esc_url(Page::getSettingsPageUrl()); ?>" class="webpLoader__button webpButton webpButton--blue">
         <?= esc_html(__('Back to settings', 'webp-converter-for-media')); ?>
       </a>
     </div>

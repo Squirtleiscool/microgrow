@@ -25,8 +25,8 @@
 
       $paths = array_diff($paths, $this->convertedPaths);
       $this->convertedPaths = array_merge($this->convertedPaths, $paths);
+      $this->initConversion($paths);
 
-      do_action('webpc_convert_paths', $paths);
       return $data;
     }
 
@@ -49,5 +49,16 @@
       $source = rtrim($upload['basedir'], '/\\') . '/' . rtrim(dirname($path), '/\\') . '/';
       $source = str_replace('\\', '/', $source);
       return $source;
+    }
+
+    private function initConversion($paths)
+    {
+      $settings = apply_filters('webpc_get_values', []);
+
+      if (in_array('cron_conversion', $settings['features'])) {
+        wp_schedule_single_event((time() + 1), 'webpc_convert_paths', [$paths]);
+      } else {
+        do_action('webpc_convert_paths', $paths);
+      }
     }
   }
