@@ -798,8 +798,8 @@ class Mixin_Displayed_Gallery_Validation extends Mixin
                     $this->object->add_error(__('Source not compatible with selected display type', 'nggallery'), 'display_type');
                 }
             }
-            // Allow ONLY recent & random galleries to have their own maximum_entity_count
-            if (!empty($this->object->display_settings['maximum_entity_count']) && in_array($this->object->source, array('random_images', 'recent_images', 'random', 'recent'))) {
+            // Only some sources should have their own maximum_entity_count
+            if (!empty($this->object->display_settings['maximum_entity_count']) && in_array($this->object->source, array('tag', 'tags', 'random_images', 'recent_images', 'random', 'recent'))) {
                 $this->object->maximum_entity_count = $this->object->display_settings['maximum_entity_count'];
             }
             // If no maximum_entity_count has been given, then set a maximum
@@ -1116,7 +1116,11 @@ class Mixin_Displayed_Gallery_Queries extends Mixin
             $container_ids = $this->object->container_ids;
             if ($container_ids) {
                 if ($container_ids !== array('0') && $container_ids !== array('')) {
+                    $container_ids = array_map('intval', $container_ids);
                     $album_mapper->where(array("{$album_key} IN %s", $container_ids));
+                    // This order_by is necessary for albums to be ordered correctly given the WHERE .. IN() above
+                    $order_string = implode(',', $container_ids);
+                    $album_mapper->order_by("FIELD('id', {$order_string})");
                     foreach ($album_mapper->run_query() as $album) {
                         $entity_ids = array_merge($entity_ids, (array) $album->sortorder);
                     }
@@ -1696,6 +1700,15 @@ class Mixin_Displayed_Gallery_Renderer extends Mixin
         $displayed_gallery = NULL;
         // Get the NextGEN settings to provide some defaults
         $settings = C_NextGen_Settings::get_instance();
+        // Perform some conversions...
+        if (isset($params['galleries'])) {
+            $params['gallery_ids'] = $params['galleries'];
+            unset($params['galleries']);
+        }
+        if (isset($params['albums'])) {
+            $params['album_ids'] = $params['albums'];
+            unset($params['albums']);
+        }
         // Configure the arguments
         $defaults = array('id' => NULL, 'ids' => NULL, 'source' => '', 'src' => '', 'container_ids' => array(), 'gallery_ids' => array(), 'album_ids' => array(), 'tag_ids' => array(), 'display_type' => '', 'display' => '', 'exclusions' => array(), 'order_by' => $settings->galSort, 'order_direction' => $settings->galSortOrder, 'image_ids' => array(), 'entity_ids' => array(), 'tagcloud' => FALSE, 'returns' => 'included', 'slug' => NULL, 'sortorder' => array());
         $args = shortcode_atts($defaults, $params, 'ngg');
@@ -1706,7 +1719,6 @@ class Mixin_Displayed_Gallery_Renderer extends Mixin
             unset($mapper);
             // no longer needed
         } else {
-            // Perform some conversions...
             // Galleries?
             if ($args['gallery_ids']) {
                 if ($args['source'] != 'albums' and $args['source'] != 'album') {
@@ -1929,7 +1941,7 @@ class Mixin_Displayed_Gallery_Renderer extends Mixin
             $lookup = FALSE;
         }
         // Enqueue any necessary static resources
-        if ((!defined('NGG_SKIP_LOAD_SCRIPTS') || !NGG_SKIP_LOAD_SCRIPTS) && !$this->is_rest_request()) {
+        if ((!defined('NGG_SKIP_LOAD_SCRIPTS') || !constant('NGG_SKIP_LOAD_SCRIPTS')) && !$this->is_rest_request()) {
             $controller->enqueue_frontend_resources($displayed_gallery);
         }
         // Try cache lookup, if we're to do so
