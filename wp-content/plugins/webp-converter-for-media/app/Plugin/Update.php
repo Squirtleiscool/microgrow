@@ -3,8 +3,8 @@
   namespace WebpConverter\Plugin;
 
   use WebpConverter\Loader\LoaderAbstract;
-  use WebpConverter\Settings\Save;
   use WebpConverter\Plugin\Uninstall;
+  use WebpConverter\Settings\Save;
 
   class Update
   {

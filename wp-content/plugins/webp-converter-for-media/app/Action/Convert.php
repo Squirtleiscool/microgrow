@@ -2,8 +2,8 @@
 
   namespace WebpConverter\Action;
 
-  use WebpConverter\Method\MethodIntegrator;
   use WebpConverter\Media\Attachment;
+  use WebpConverter\Method\MethodIntegrator;
 
   class Convert
   {

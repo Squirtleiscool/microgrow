@@ -88,7 +88,7 @@
       </table>
       <button type="button" target="_blank"
         class="webpLoader__button webpButton webpButton--green"
-        <?= (apply_filters('webpc_server_errors', [])) ? 'disabled' : ''; ?>>
+        <?= (apply_filters('webpc_server_errors', [], true)) ? 'disabled' : ''; ?>>
         <?= esc_html(__('Regenerate All', 'webp-converter-for-media')); ?>
       </button>
     </div>

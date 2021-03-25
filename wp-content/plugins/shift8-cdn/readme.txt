@@ -4,7 +4,7 @@
 * Tags: cdn, free cdn, speed, performance, wordpress cache, content delivery network, free, free content delivery, free content delivery network
 * Requires at least: 3.0.1
 * Tested up to: 5.6
-* Stable tag: 1.46
+* Stable tag: 1.55
 * License: GPLv3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -244,4 +244,31 @@ This is a known issue with how lazy loading is implemented in some scenarios. Cu
 
 = 1.46 =
 * Centralize get_transient for api checks
-* Improved conditional logic to properly rewrite suffix host 
+* Improved conditional logic to properly rewrite suffix host
+
+= 1.47 =
+* Added WP-CLI command to enable/disable CDN
+
+= 1.48 =
+* Resolved issue with missing file
+
+= 1.49 =
+* Improved rewriting mechanism for CDN host rewrite, exclude file list now functioning.
+
+= 1.50 =
+* Implementation of WP-CLI cache flush command. You can now submit a purge request via the command line.
+
+= 1.51 =
+* Fixed problem with custom WP-CLI command registering
+
+= 1.52 =
+* Fixed edge case exception with admin JS textarea for hidden path field in CDN settings
+
+= 1.53 =
+* Fixed bug with image src rewriting to CDN urls
+
+= 1.54 =
+* Fixed stripping of query string for CDN urls when rewritten. 
+
+= 1.55 =
+* New dash icon for WP Dashboard

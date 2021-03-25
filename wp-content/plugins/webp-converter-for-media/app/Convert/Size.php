@@ -4,6 +4,8 @@
 
   class Size
   {
+    const DELETED_FILE_EXTENSION = '.deleted';
+
     public function __construct()
     {
       add_action('webpc_convert_after', [$this, 'removeImageIfIsLarger'], 10, 2); 
@@ -20,7 +22,10 @@
         || (!file_exists($webpPath) || !file_exists($originalPath))
         || (filesize($webpPath) < filesize($originalPath))) return;
 
+      $file = fopen($webpPath . self::DELETED_FILE_EXTENSION, 'w');
+      fclose($file);
       unlink($webpPath);
+
       $e = new \Exception(sprintf(
         'Image "%s" converted to WebP is larger than original and has been deleted.',
         $originalPath

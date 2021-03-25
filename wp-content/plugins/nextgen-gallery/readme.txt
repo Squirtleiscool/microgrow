@@ -1,9 +1,9 @@
 === WordPress Gallery Plugin - NextGEN Gallery ===
 Contributors: photocrati, imagely
 Tags: wordpress gallery plugin, gallery, nextgen, nextgen gallery, photo gallery, image gallery, photography, slideshow, images, photo, photo album, watermark
-Requires at least: 5.4.0
-Stable tag: 3.7.0
-Tested up to: 5.6.1
+Requires at least: 5.5.0
+Stable tag: 3.9.0
+Tested up to: 5.7.0
 License: GPLv3
 Requires PHP: 5.6
 
@@ -62,7 +62,7 @@ Learn more or connect with us:<br>
 == Credits ==
 
 Copyright:<br>
-Imagely 2016-2019
+Imagely 2016-2021
 Photocrati Media 2012-2016<br>
 Alex Rabe 2007-2011
 
@@ -178,6 +178,19 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V3.9.0 - 03.24.2020 =
+* Changed: Resource manager disabled by default
+* Changed: Remove ngg_load_frontend_logic filter
+* Fixed:   Refactored to resolve over 300 plugin & theme conflicts
+* Fixed:   Problem reported with taxonomy controller
+
+= V3.8.0 - 02.24.2020 =
+* NEW:     NGG featured image support for custom post types (1076)
+* Fixed:   Compatibility with Custom Post Type UI plugin (1076)
+* Fixed:   Compatibility with Advanced Custom Fields plugin (1150)
+* Fixed:   Compatibility with Photo Station plugin (855)
+* Fixed:   Compatibility with Stackable (981)
 
 = V3.7.0 - 02.17.2020 =
 * Fixed:   Added ellipsis to pagination to show pages skipped (1099) (1157)

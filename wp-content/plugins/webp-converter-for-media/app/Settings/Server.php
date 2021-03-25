@@ -2,9 +2,9 @@
 
   namespace WebpConverter\Settings;
 
+  use WebpConverter\Error\RewritesError;
   use WebpConverter\Loader\LoaderAbstract;
   use WebpConverter\Settings\Errors;
-  use WebpConverter\Error\RewritesError;
   use WebpConverter\Traits\FileLoaderTrait;
 
   class Server

@@ -25,7 +25,10 @@
 
     private function loadImageWebP($imageUrl)
     {
-      $header = getallheaders()['Accept'] ?? '';
+      $header = function_exists('getallheaders')
+        ? (getallheaders()['Accept'] ?? '')
+        : ($_SERVER['HTTP_ACCEPT'] ?? '');
+
       if ((strpos($header, 'image/webp') === false)
         || (!$source = $this->loadWebpSource($imageUrl))) {
         return $this->loadImageDefault($imageUrl);

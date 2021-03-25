@@ -4,9 +4,9 @@
 
   use WebpConverter\Error\ErrorAbstract;
   use WebpConverter\Error\ErrorInterface;
-  use WebpConverter\Traits\FileLoaderTrait;
   use WebpConverter\Convert\Directory;
   use WebpConverter\Loader\LoaderAbstract;
+  use WebpConverter\Traits\FileLoaderTrait;
 
   class RewritesError extends ErrorAbstract implements ErrorInterface
   {
@@ -28,6 +28,9 @@
       $this->convertImagesForDebug();
       $errors = [];
 
+      add_filter('webpc_get_values', ['WebpConverter\Settings\Errors', 'setExtensionsForDebug']);
+      do_action(LoaderAbstract::ACTION_NAME, true);
+
       if ($this->ifRedirectsAreWorks() !== true) {
         if ($this->ifBypassingApacheIsActive() === true) {
           $errors[] = 'bypassing_apache';
@@ -37,6 +40,9 @@
       } else if ($this->ifRedirectsAreCached() === true) {
         $errors[] = 'rewrites_cached';
       }
+
+      remove_filter('webpc_get_values', ['WebpConverter\Settings\Errors', 'setExtensionsForDebug']);
+      do_action(LoaderAbstract::ACTION_NAME, true);
 
       return $errors;
     }
@@ -78,14 +84,8 @@
     {
       $uploadsUrl = apply_filters('webpc_dir_url', '', 'uploads');
 
-      add_filter('webpc_get_values', ['WebpConverter\Settings\Errors', 'setExtensionsForDebug']);
-      do_action(LoaderAbstract::ACTION_NAME, true);
-
       $filePng  = $this->getFileSizeByUrl($uploadsUrl . self::PATH_OUTPUT_FILE_PNG);
       $filePng2 = $this->getFileSizeByUrl($uploadsUrl . self::PATH_OUTPUT_FILE_PNG2);
-
-      remove_filter('webpc_get_values', ['WebpConverter\Settings\Errors', 'setExtensionsForDebug']);
-      do_action(LoaderAbstract::ACTION_NAME, true);
 
       return ($filePng > $filePng2);
     }

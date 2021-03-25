@@ -2,7 +2,7 @@
 
   use WebpConverter\Settings\Errors;
 
-  $errors = implode(', ', get_option(Errors::ERRORS_CACHE_OPTION, []));
+  $errors = implode(', ', apply_filters('webpc_server_errors', []));
   $items  = [
     [
       'key'         => 'server_config',

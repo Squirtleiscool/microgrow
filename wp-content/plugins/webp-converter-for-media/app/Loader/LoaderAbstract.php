@@ -3,7 +3,6 @@
   namespace WebpConverter\Loader;
 
   use WebpConverter\Loader\LoaderInterface;
-  use WebpConverter\Settings\Errors;
 
   abstract class LoaderAbstract implements LoaderInterface
   {
@@ -21,7 +20,7 @@
 
     public function initHooks()
     {
-      if (!static::isActiveLoader() || get_option(Errors::ERRORS_CACHE_OPTION, [])) {
+      if (!static::isActiveLoader() || apply_filters('webpc_server_errors', [], true)) {
         return;
       }
       $this->hooks();

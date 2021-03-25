@@ -3,9 +3,10 @@
   namespace WebpConverter\Plugin;
 
   use WebpConverter\Admin\Notice;
-  use WebpConverter\Settings\Save;
-  use WebpConverter\Settings\Errors;
+  use WebpConverter\Convert\Size;
   use WebpConverter\Error\RewritesError;
+  use WebpConverter\Settings\Errors;
+  use WebpConverter\Settings\Save;
 
   class Uninstall
   {
@@ -34,7 +35,9 @@
     private static function removeHtaccessFile()
     {
       $path = sprintf('%s/.htaccess', apply_filters('webpc_dir_path', '', 'webp'));
-      if (is_writable($path)) unlink($path);
+      if (is_writable($path)) {
+        unlink($path);
+      }
     }
 
     public static function removeWebpFiles()
@@ -63,7 +66,9 @@
       $path .= '/';
       $files = glob($path . '*');
       foreach ($files as $file) {
-        if (is_dir($file)) $paths = self::getPathsFromLocation($file, $paths);
+        if (is_dir($file)) {
+          $paths = self::getPathsFromLocation($file, $paths);
+        }
         $paths[] = $file;
       }
       return $paths;
@@ -71,11 +76,22 @@
 
     private static function removeFiles($paths)
     {
-      if (!$paths) return;
+      if (!$paths) {
+        return;
+      }
+
+      $deletedExtension = trim(Size::DELETED_FILE_EXTENSION, '.');
       foreach ($paths as $path) {
-        if (!is_writable($path) || !is_writable(dirname($path))) continue;
-        if (is_file($path) && (pathinfo($path, PATHINFO_EXTENSION) === 'webp')) unlink($path);
-        else if (is_dir($path)) rmdir($path);
+        if (!is_writable($path) || !is_writable(dirname($path))) {
+          continue;
+        }
+
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        if (is_file($path) && in_array($extension, ['webp', $deletedExtension])) {
+          unlink($path);
+        } else if (is_dir($path)) {
+          rmdir($path);
+        }
       }
     }
   }

@@ -1,4 +1,4 @@
-<?php if ($errors = apply_filters('webpc_server_errors', [])) : ?>
+<?php if ($errors = apply_filters('webpc_server_errors_messages', [], false, true)) : ?>
   <div class="webpPage__widget">
     <h3 class="webpPage__widgetTitle webpPage__widgetTitle--error">
       <?= esc_html(__('Server configuration error', 'webp-converter-for-media')); ?>

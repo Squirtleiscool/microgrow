@@ -4,7 +4,6 @@
 
   use WebpConverter\Method\Gd;
   use WebpConverter\Method\Imagick;
-  use WebpConverter\Settings\Errors;
 
   class MethodIntegrator
   {
@@ -26,7 +25,7 @@
 
     public function getMethodUsed($methodKey)
     {
-      if (get_option(Errors::ERRORS_CACHE_OPTION, [])) {
+      if (apply_filters('webpc_server_errors', [], true)) {
         return null;
       }
 

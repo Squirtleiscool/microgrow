@@ -83,7 +83,7 @@ class wpsm_accordion {
         global $post;
         switch( $column ) {
           case 'shortcode' :
-            echo '<input type="text" value="[WPSM_AC id='.$post_id.']" readonly="readonly" />';
+            echo '<input type="text" onclick="this.select()" value="[WPSM_AC id='.$post_id.']" readonly="readonly" />';
             break;
           default :
             break;
@@ -130,7 +130,7 @@ class wpsm_accordion {
 		</style>
 		<h3>Accordion Shortcode</h3>
 		<p><?php _e("Use below shortcode in any Page/Post to publish your Accordion", wpshopmart_accordion_text_domain);?></p>
-		<input readonly="readonly" type="text" value="<?php echo "[WPSM_AC id=".get_the_ID()."]"; ?>">
+		<input readonly="readonly" type="text" onclick="this.select()" value="<?php echo "[WPSM_AC id=".get_the_ID()."]"; ?>">
 		<?php
 		 $PostId = get_the_ID();
 		$Accordion_Settings = unserialize(get_post_meta( $PostId, 'Accordion_Settings', true));

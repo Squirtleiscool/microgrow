@@ -3,6 +3,7 @@
   namespace WebpConverter\Regenerate;
 
   use WebpConverter\Convert\Directory;
+  use WebpConverter\Convert\Size;
 
   class Skip
   {
@@ -21,8 +22,10 @@
 
       $directory = new Directory();
       foreach ($paths as $key => $path) {
-        $output = $directory->getPath($path, false);
-        if (file_exists($output)) unset($paths[$key]);
+        $output = $directory->getPath(urldecode($path), false);
+        if (file_exists($output) || file_exists($output . Size::DELETED_FILE_EXTENSION)) {
+          unset($paths[$key]);
+        }
       }
       return $paths;
     }

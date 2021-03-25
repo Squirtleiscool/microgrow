@@ -3,6 +3,7 @@
   namespace WebpConverter\Action;
 
   use WebpConverter\Convert\Directory;
+  use WebpConverter\Convert\Size;
 
   class Delete
   {
@@ -24,9 +25,14 @@
 
     private function deleteFileByPath($path)
     {
-      $source = Directory::getPath($path);
-      if (is_writable($source) && (pathinfo($source, PATHINFO_EXTENSION) === 'webp')) {
-        unlink($source);
+      if (!($sourceWebP = Directory::getPath($path))) {
+        return;
+      }
+
+      if (is_writable($sourceWebP)) {
+        unlink($sourceWebP);
+      } else if (is_writable($sourceWebP . SIZE::DELETED_FILE_EXTENSION)) {
+        unlink($sourceWebP . SIZE::DELETED_FILE_EXTENSION);
       }
     }
   }

@@ -13,37 +13,48 @@
   {
     const ERRORS_CACHE_OPTION = 'webpc_errors_cache';
 
-    private $cache    = null;
-    private $filePath = WEBPC_PATH . '/resources/components/errors/%s.php';
+    private $cache         = [];
+    private $filePath      = WEBPC_PATH . '/resources/components/errors/%s.php';
+    private $allowedErrors = ['rewrites_cached'];
 
     public function __construct()
     {
-      add_filter('webpc_server_errors', [$this, 'getServerErrors']);
+      add_filter('webpc_server_errors',          [$this, 'getServerErrors'],         10, 3);
+      add_filter('webpc_server_errors_messages', [$this, 'getServerErrorsMessages'], 10, 3);
     }
 
     /* ---
       Functions
     --- */
 
-    public function getServerErrors()
+    public function getServerErrors($values, $onlyErrors = false, $isForceRefresh = false)
     {
-      if ($this->cache !== null) return $this->cache;
+      $errors = get_option(self::ERRORS_CACHE_OPTION, $this->cache);
+      if ($isForceRefresh) {
+        $errors = $this->getErrorsList();
+      }
+      $errors = array_filter($errors, function($error) use ($onlyErrors) {
+        return (!$onlyErrors || !in_array($error, $this->allowedErrors));
+      });
 
-      $this->cache = $this->loadErrorMessages();
-      return $this->cache;
+      return $errors;
     }
 
-    private function loadErrorMessages()
+    public function getServerErrorsMessages($values, $onlyErrors = false, $isForceRefresh = false)
     {
-      $errors = $this->getErrorsList();
-      $list   = [];
+      $errors = $this->getServerErrors($values, $onlyErrors, $isForceRefresh);
+      return $this->loadErrorMessages($errors);
+    }
+
+    private function loadErrorMessages($errors)
+    {
+      $list = [];
       foreach ($errors as $error) {
         ob_start();
         include sprintf($this->filePath, str_replace('_', '-', $error));
         $list[$error] = ob_get_clean();
       }
 
-      update_option(self::ERRORS_CACHE_OPTION, array_keys($list));
       return $list;
     }
 
@@ -67,6 +78,9 @@
       if (!$errors && ($newErrors = (new SettingsError())->getErrorCodes())) {
         $errors = array_merge($errors, $newErrors);
       }
+
+      $this->cache = $errors;
+      update_option(self::ERRORS_CACHE_OPTION, $errors);
 
       return $errors;
     }

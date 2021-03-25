@@ -3,7 +3,7 @@ Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=readme-donate
 Tags: convert webp, webp, optimize images, images, webp converter, performance, optimisation
 Requires at least: 4.9
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPLv2 or later
@@ -191,6 +191,8 @@ Only images from the `/uploads` directory are automatically converted. If you us
 = Why are some images not in WebP? =
 
 If the converted image in WebP format is larger than the original, the browser will use the original file. This converted file will be deleted. Therefore, you can also see files other than WebP on the list. When this happens, you will receive information in debug.log.
+
+When such a situation occurs, a file in `.webp.deleted` format will be created. This avoids re-converting images that were larger than original after converting to WebP. If the option of forced conversion of all images is checked, this image will also be re-converted.
 
 If you want to force the use of WebP files, uncheck the `Automatic removal of WebP files larger than original` option in the plugin settings. Then click on the `Regenerate All` button to convert all images again.
 
@@ -477,10 +479,17 @@ This is all very important to us and allows us to do even better things for you!
 
 == Screenshots ==
 
-1. Screenshot of the options panel
-2. Screenshot when regenerating images
+1. How to start using plugin few moments?
+2. Screenshot of the options panel
+3. Screenshot when regenerating images
 
 == Changelog ==
+
+= 2.4.0 (2021-02-28) =
+* `[Fixed]` Error detection of redirects without .png as supported file extension
+* `[Fixed]` Pass Thru loading mode for servers not supporting `getallheaders()` function
+* `[Changed]` Level of error for cached redirects of images to WebP files
+* `[Added]` Skip re-converting images that were larger than original after converting to WebP
 
 = 2.3.0 (2021-01-31) =
 * `[Fixed]` Encoding paths to files
