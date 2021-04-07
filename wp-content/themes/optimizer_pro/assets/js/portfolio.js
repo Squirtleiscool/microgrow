@@ -1,5 +1,5 @@
 // JavaScript Document
-jQuery(window).ready(function() {
+jQuery(function() {
 	
 	jQuery('.widget .portfolio_nav').each(function(index, element) {
 		var wparent =jQuery(this).parent();

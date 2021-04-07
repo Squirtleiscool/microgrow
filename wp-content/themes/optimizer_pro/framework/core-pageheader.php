@@ -8,7 +8,12 @@
  * 
  * @since  LayerFramework 1.0
  */
-global $optimizer;?>
+global $optimizer;
+$headAlign = !empty($optimizer['page_header_align']) ? $optimizer['page_header_align'] : 'center';
+$headAlignMeta = get_post_meta( $post->ID, 'page_head_align', true );
+if($headAlignMeta){   $headAlign = $headAlignMeta ;}
+
+?>
 <?php do_action('optimizer_before_pageheader'); ?>
 <?php if(!empty($optimizer['pageheader_switch'])   || is_customize_preview()  ){ ?>
    <?php if (is_single() || is_page()) {?>
@@ -25,7 +30,7 @@ global $optimizer;?>
           <?php } ?>
       
       <!--The Page Title -->
-          <div class="pagetitle_wrap page_head_<?php echo get_post_meta( $post->ID, 'page_head_align', true ); ?>">
+          <div class="pagetitle_wrap page_head_<?php echo $headAlign; ?>">
               <?php $hide_sidebar = get_post_meta($post->ID, 'hide_page_title', true); if (empty($hide_sidebar)){ ?>
 					<h1 class="postitle"><?php the_title(); ?></h1>
               <?php } ?>

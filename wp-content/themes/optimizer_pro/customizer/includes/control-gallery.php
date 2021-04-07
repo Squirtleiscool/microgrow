@@ -48,7 +48,7 @@ class Optimizer_Controls_Gallery_Control extends WP_Customize_Control {
             <input <?php $this->link(); ?> type="hidden" id="<?php echo $id; ?>" value="<?php $this->value(); ?>" />
         </label>
         <script type="text/javascript">
-			jQuery(document).ready(function($){
+			jQuery(function($) {
 				 var custom_uploader;
 				 $("#<?php echo $id; ?>_add_slides").click(function(e) {
 					e.preventDefault();

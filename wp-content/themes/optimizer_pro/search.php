@@ -31,7 +31,11 @@ global $optimizer;?>
             <!--SEARCH DETAILS END-->  
         <?php do_action('optimizer_after_search'); ?>    
           
-		<?php get_template_part('template_parts/post','layout'.$optimizer['cat_layout_id'].''); ?>
+		<?php 
+      $postLayout = (isset($optimizer['search_layout_id']) ? absint($optimizer['search_layout_id']) : '');
+      if(empty($postLayout)){  $postLayout = (isset($optimizer['cat_layout_id']) ? absint($optimizer['cat_layout_id']) : 1);  }
+      get_template_part('template_parts/post','layout'.$postLayout); 
+      ?>
     
      </div><!--layer_wrapper class END-->
 <?php get_footer(); ?>

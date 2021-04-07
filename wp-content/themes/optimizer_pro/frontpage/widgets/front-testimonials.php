@@ -48,7 +48,8 @@ class optimizer_front_Testimonials extends WP_Widget {
 		$custom_testi = isset( $instance['custom_testi'] ) ? $instance['custom_testi'] : array();
 		$twitter_testi_on = isset( $instance['twitter_testi_on'] ) ? $instance['twitter_testi_on'] : '';
 		$twitter_testi = isset( $instance['twitter_testi'] ) ? $instance['twitter_testi'] : array();
-		$testi_layout = isset( $instance['testi_layout'] ) ? $instance['testi_layout'] : 'col1';
+      $testi_layout = isset( $instance['testi_layout'] ) ? $instance['testi_layout'] : 'col1';
+      $testi_alignment = isset( $instance['testi_align'] ) ? $instance['testi_align'] : 'center';
 		$divider = isset( $instance['divider'] ) ? apply_filters('widget_title', $instance['divider']) : 'fa-stop';
 		$content_color = isset( $instance['content_color'] ) ? $instance['content_color'] : '';
 		$title_color = isset( $instance['title_color'] ) ? $instance['title_color'] : '';
@@ -69,7 +70,7 @@ class optimizer_front_Testimonials extends WP_Widget {
 			//WIDGET EDIT BUTTON(Customizer)
 			if(is_customize_preview()){  echo '<a class="edit_widget" title="'.__('Edit ','optimizer').$this->id.'"><i class="fa fa-pencil"></i></a>'; }
 			
-		echo '<div class="home_testi_inner testi_'.$testi_layout.'"><div class="center">';
+		echo '<div class="home_testi_inner testi_'.$testi_layout.' testi_align_'.$testi_alignment.'"><div class="center">';
 			echo '<div class="homeposts_title testimonial_title title_'.str_replace('fa-','dvd_',$divider).'">';
 				if ( $title || is_customize_preview() ){
 					echo '<h2 class="home_title"><span>'.do_shortcode($title).'</span></h2>';
@@ -99,39 +100,41 @@ class optimizer_front_Testimonials extends WP_Widget {
 						   
 						echo '</div>';
 					}elseif (!empty ($custom_testi)){
-						/*START CUSTOM TESTIMONIALS*/
-						if( $testi_layout == 'col1') { $looper = 'data-looper="go" class="looper slide" data-interval="'.$testi_pausetime.'"'; }else{ $looper = ''; }
+                  /*START CUSTOM TESTIMONIALS*/
+                  $chunkSize = 1; if($testi_layout === 'col2'){ $chunkSize = 2; } if($testi_layout === 'col3'){ $chunkSize = 3; }
+                  $testi_chunks = array_chunk($custom_testi,$chunkSize);
+                  $chunk_count = count($testi_chunks);
+                  if( $chunk_count > 1 ) { $looper = 'data-looper="go" class="looper slide" data-interval="'.$testi_pausetime.'"'; }else{ $looper = ''; }
 						echo '<div id="testi-looper_'.$this->id.'" '.$looper.' ><ul class="looper-inner">';
+                     foreach ((array)$testi_chunks as $testiChunk){ 
+                        echo '<li class="item">';
+                        foreach ((array)$testiChunk as $testimony){ 
 
-							foreach ((array)$custom_testi as $testimony){ 
-
-								 echo '<li class="item">
-									<div class="testi_content">'.do_shortcode( $testimony['testimonial']).'</div>
-									<div class="testi_author">';
-										if (!empty ($testimony['image'])) {
-											echo '<img alt="'.$testimony['title'].'" class="testi_avatar" src="'.$testimony['image'].'" />' ;
-										}
-										if(!empty($testimony['url'])){ $href = 'href="'.esc_url($testimony['url']).'"'; }else{ $href = ''; }
-										echo '<a '.$href.'>'.$testimony['title'].'</a>';
-										if(!empty($testimony['occupation'])){ echo '<span class="testi_occu">'.$testimony['occupation'].'</span>'; }
-								echo '</div>    
-								 </li>';
-	
-							}
-								   
+                           echo '<div class="testi_item">
+                              <div class="testi_content">'.do_shortcode( $testimony['testimonial']).'</div>
+                              <div class="testi_author">';
+                                 if (!empty ($testimony['image'])) {
+                                    echo '<img alt="'.$testimony['title'].'" class="testi_avatar" src="'.$testimony['image'].'" />' ;
+                                 }
+                                 if(!empty($testimony['url'])){ $href = 'href="'.esc_url($testimony['url']).'"'; }else{ $href = ''; }
+                                 echo '<a '.$href.'>'.$testimony['title'].'</a>';
+                                 if(!empty($testimony['occupation'])){ echo '<span class="testi_occu">'.$testimony['occupation'].'</span>'; }
+                           echo '</div>    
+                           </div>';
+                        }
+                        echo '</li>';
+                     }   
 							echo '</ul>';
 
 						
 						//LOOPER NAVIGATION 
-						if( $testi_layout == 'col1') {
+						if( $chunk_count > 1 ) {
 							if(!empty($content_bgimg)){$hasbg = 'has_bg';}else{ $hasbg = 'has_bg'; }
 						
 							echo '<nav><ul class="looper-nav '.$hasbg.'">';
-								$i = 0; 
-								foreach ((array)$custom_testi as $testimony){
-									echo '<li><a href="#testi-looper_'.$this->id.'" data-looper="to" data-args="'.($i +1).'"><span></span></a></li>';
-									$i++;
-								}
+                        for ($i=0; $i < $chunk_count; $i++) { 
+                           echo '<li><a href="#testi-looper_'.$this->id.'" data-looper="to" data-args="'.($i +1).'"><span></span></a></li>';
+                        }
 							echo '</ul></nav>';
 						}
 					
@@ -146,7 +149,7 @@ class optimizer_front_Testimonials extends WP_Widget {
 		//Stylesheet-loaded in Customizer Only.
 		if(is_customize_preview()){
 			$id= $this->id;
-			echo "<script>jQuery(window).ready(function() { jQuery('#".$id." .testi_col1 .looper-inner li').eq(0).addClass('active');  });</script>";
+			echo "<script>jQuery(function() { jQuery('#".$id." .testi_col1 .looper-inner li').eq(0).addClass('active');  });</script>";
          echo  '<style>'.$this->generate_css($id, $instance).'</style>';
 		}
 
@@ -173,7 +176,8 @@ class optimizer_front_Testimonials extends WP_Widget {
 		$instance['subtitle'] = strip_tags($new_instance['subtitle']);
 		$instance['twitter_testi_on'] = isset($new_instance['twitter_testi_on']) ? strip_tags($new_instance['twitter_testi_on']) : '';
 		$instance['divider'] = strip_tags($new_instance['divider']);
-		$instance['testi_layout'] = strip_tags($new_instance['testi_layout']);
+      $instance['testi_layout'] = strip_tags($new_instance['testi_layout']);
+      $instance['testi_align'] = strip_tags($new_instance['testi_align']);
 		$instance['content_color'] = optimizer_sanitize_hex($new_instance['content_color']);
 		$instance['title_color'] = optimizer_sanitize_hex($new_instance['title_color']);
 		$instance['content_bg'] = optimizer_sanitize_hex($new_instance['content_bg']);
@@ -225,7 +229,8 @@ class optimizer_front_Testimonials extends WP_Widget {
 		'custom_testi' => array(),
 		'twitter_testi_on' => '',
 		'twitter_testi' => array(),
-		'testi_layout' => 'col1',
+      'testi_layout' => 'col1',
+      'testi_align' => 'center',
 		'divider' => 'fa-stop',
 		'content_color' => '#ffffff',
 		'title_color' => '#ffffff',
@@ -259,7 +264,15 @@ class optimizer_front_Testimonials extends WP_Widget {
                   <option value="col3" <?php if ( 'col3' == $instance['testi_layout'] ) echo 'selected="selected"'; ?>><?php _e('3 Column', 'optimizer') ?></option>
             </select>
          </p>
-         
+         <!-- TESTIMONIAL Column Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'testi_align' ); ?>"><?php _e('Testimonials Alignment:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'testi_align' ); ?>" name="<?php echo $this->get_field_name( 'testi_align' ); ?>" class="widefat">
+               <option value="left" <?php if ( 'left' === $instance['testi_align'] ) echo 'selected="selected"'; ?>><?php _e('Left', 'optimizer') ?></option>
+               <option value="center" <?php if ( 'center' === $instance['testi_align'] ) echo 'selected="selected"'; ?>><?php _e('Center', 'optimizer') ?></option>
+                  <option value="right" <?php if ( 'right' === $instance['testi_align'] ) echo 'selected="selected"'; ?>><?php _e('Right', 'optimizer') ?></option>
+            </select>
+         </p>
          
          <!-- ----------------Testimonial Field------------------------ -->
          <div class="widget_repeater" data-widget-id="<?php echo $this->get_field_id( 'custom_testi' ); ?>" data-widget-name="<?php echo $this->get_field_name( 'custom_testi' ); ?>">
@@ -342,7 +355,7 @@ class optimizer_front_Testimonials extends WP_Widget {
          
          
          <!-- POSTS Preview Button Field -->
-         <p>
+         <p style="clear:both">
             <label for="<?php echo $this->get_field_id( 'twitter_testi_on' ); ?>"><?php _e('Display Twitter Testimonial', 'optimizer') ?></label>
             <input class="widefat" id="<?php echo $this->get_field_id( 'twitter_testi_on' ); ?>" name="<?php echo $this->get_field_name( 'twitter_testi_on' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['twitter_testi_on'] ) echo 'checked'; ?> />
          </p>
@@ -519,10 +532,12 @@ class optimizer_front_Testimonials extends WP_Widget {
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg. $font_size. $font_family.'}';
       $widget_style .= ($font_size || $font_family) ? '#'.$id.' .testi_content{' . $font_size . $font_family. '}' :'';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .home_title{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= '#'.$id.' .home_title, #'.$id.' .home_subtitle, #'.$id.' span.div_middle{ color:' . $content_color . '}';
       $widget_style .= '#'.$id.' .testi_content, #'.$id.' .testi_author a, #'.$id.' .testi_occu{color:'.$title_color.'; }';
       $widget_style .= '#'.$id.' span.div_left, #'.$id.' span.div_right{background-color:' . $content_color . '}';  

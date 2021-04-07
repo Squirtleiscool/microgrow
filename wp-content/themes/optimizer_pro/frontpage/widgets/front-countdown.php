@@ -280,8 +280,10 @@ class ast_countdown_Widget extends WP_Widget {
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg. $font_size. $font_family.$content_color.'}';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= '#'.$id.' .widget_wrap{' . $content_color . '}';
       $widget_style .= '#'.$id.' .widget_wrap .widgettitle{' . $title_color. $title_size . $title_family . '}';
       $widget_style .= '#'.$id.' .widget_wrap .ast_countdown li{color:rgba('.optimizer_hex2rgb($content_rgba).', 0.8)!important;}';

@@ -291,14 +291,14 @@ jQuery(window).on('load', function(){
 	jQuery('.static_gallery').nivoSlider({effect: 'fade', directionNav: false, controlNav: false, pauseOnHover:false, slices:6, pauseTime:<?php echo optimizer_statslideshow_time(); ?>});
 });
 
-jQuery(document).ready(function() {
+jQuery(function() {
 	jQuery('.pd_flick_gallery li img').addClass('hasimg');
 });
 
 
 <?php if(is_page_template('template_parts/page-contact_template.php') ) { ?>
 	<?php if(!empty($optimizer['contact_latlong_id'])){ ?>
-jQuery(document).ready(function() {
+jQuery(function() {
 	//MAP SHORTCODE
 		var text = '<?php echo str_replace(array("\r\n", "\n"),"",nl2br(do_shortcode(addslashes($optimizer['contact_location_id'])))); ?>';
 		var mapid = 'asthemap';

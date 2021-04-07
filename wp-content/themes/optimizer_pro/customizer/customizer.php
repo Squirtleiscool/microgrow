@@ -184,6 +184,12 @@ require(get_template_directory() . '/customizer/includes/helpers.php');
 			'description' => __( 'To view the live changes you make in this section, select "Category or Tag Page" from the Top bar dropdown list located at the top right corner of the screen.', 'optimizer' ),
         ) );
 
+        $wp_customize->add_section( 'search_section', array(
+         'title'       => __( 'Search Page', 'optimizer' ),
+         'priority'    => 10,
+         'panel'       => 'singlepages_panel',
+         'description' => __( 'To view the live changes you make in this section, select "Search Page" from the Top bar dropdown list located at the top right corner of the screen.', 'optimizer' ),
+     ) );
 		
         $wp_customize->add_section( 'footercolors_section', array(
             'title'       => __( 'Footer Style', 'optimizer' ),

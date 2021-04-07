@@ -26,7 +26,7 @@ add_filter('dynamic_sidebar_params', 'optimizer_dynamic_sidebar_params');
 
 
 function optimizer_in_widget_form($t,$return,$instance){
-    $instance = wp_parse_args( (array) $instance, array( 'width' => 'none', 'animation' => '', 'customclasses' => '', 'visibility' => 'none', 'margin' => array('','','',''), 'padding'=> array('','','','')) );
+    $instance = wp_parse_args( (array) $instance, array( 'width' => 'none', 'max_inner_width'=>'', 'animation' => '', 'customclasses' => '', 'visibility' => 'none', 'margin' => array('','','',''), 'padding'=> array('','','','')) );
     
     if (isset($t->id) && (strpos($t->id, 'optimizer') > -1 || strpos($t->id, 'ast_countdown')  > -1 || strpos($t->id, 'ast_scoial')  > -1  )) {
 
@@ -45,6 +45,9 @@ function optimizer_in_widget_form($t,$return,$instance){
       }
       if ( !isset($instance['padding']) )
          $instance['padding'] = array();	
+
+      if ( !isset($instance['max_inner_width']) )
+         $instance['max_inner_width'] = null;	
       ?>
 
          <div class="optimizer_widget_tab optimizer_widget_tab--advanced" style="display:none">
@@ -85,7 +88,11 @@ function optimizer_in_widget_form($t,$return,$instance){
                   <label for="<?php echo $t->get_field_id('customclasses'); ?>"><span><?php _e('Custom Calsses:','optimizer'); ?></span>
                      <input class="widgt_custom_classes" id="<?php echo $t->get_field_id('customclasses'); ?>" name="<?php echo $t->get_field_name('customclasses'); ?>" value="<?php echo isset($instance['customclasses']) ? $instance['customclasses'] : ''; ?>" placeholder="myclass1, myclass2" />
                   </label>
-                  
+
+                  <label for="<?php echo $t->get_field_id('max_inner_width'); ?>"><span><?php _e('Max Inner Width (in px):','optimizer'); ?></span>
+                     <input class="widgt_custom_classes" id="<?php echo $t->get_field_id('max_inner_width'); ?>" name="<?php echo $t->get_field_name('max_inner_width'); ?>" value="<?php echo isset($instance['max_inner_width']) ? $instance['max_inner_width'] : ''; ?>" placeholder="700px" />
+                  </label>
+
                   <label for="<?php echo $t->get_field_id('margin'); ?>"><span><?php _e('Margin (in px or %):','optimizer'); ?></span><br>
                   <input class="widgt_spacing" id="<?php echo $t->get_field_id('margin'); ?>_Top" name="<?php echo $t->get_field_name('margin'); ?>[]" value="<?php echo isset($instance['margin'][0]) ? $instance['margin'][0] : ''; ?>" placeholder="Top" />
                   <input class="widgt_spacing" id="<?php echo $t->get_field_id('margin'); ?>_Bottom" name="<?php echo $t->get_field_name('margin'); ?>[]" value="<?php echo isset($instance['margin'][1]) ? $instance['margin'][1] : ''; ?>" placeholder="Bottom" />
@@ -182,26 +189,26 @@ function optimizer_widget_basic_styles($instance, $widget, $type='', $hideTitle=
 
 function optimizer_widget_paddingMargin($id, $instance){
    $marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-   $paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
+   $paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing=''; 
    
    //Margin
-   if ( !empty($instance['margin'][0]) || !empty($instance['margin'][1]) || !empty($instance['margin'][2]) || !empty($instance['margin'][3]) ) {
-      if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-      if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-      if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-      if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
+   if ( (isset($instance['margin'][0]) && !empty($instance['margin'][0])) || (isset($instance['margin'][1]) && !empty($instance['margin'][1])) || (isset($instance['margin'][2]) && !empty($instance['margin'][2])) || (isset($instance['margin'][3]) && !empty($instance['margin'][3])) ) {
+      if(isset($instance['margin'][0]) && !empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
+      if(isset($instance['margin'][1]) && !empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
+      if(isset($instance['margin'][2]) && !empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
+      if(isset($instance['margin'][3]) && !empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
          //Width
          $thewidth ='100';
          $leftrightmargin ='0px';
          
-         if ( ! empty( $instance['width']) ) {
+         if ( isset($instance['width']) && !empty( $instance['width']) ) {
                if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
                if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
          }
-         if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-         if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
+         if ( isset($instance['width']) && !empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
+         if ( isset($instance['margin'][0]) && !empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
          
-         if ( ! empty( $instance['width']) ) {
+         if ( isset($instance['width']) && !empty( $instance['width']) ) {
             if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
                   $leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
             }
@@ -211,11 +218,11 @@ function optimizer_widget_paddingMargin($id, $instance){
    }
    
    //Padding
-   if ( !empty($instance['padding'][0]) || !empty($instance['padding'][1]) || !empty($instance['padding'][2]) || !empty($instance['padding'][3]) ) {
-      if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-      if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-      if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-      if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
+   if ( (isset($instance['padding'][0]) && !empty($instance['padding'][0])) || (isset($instance['padding'][1]) && !empty($instance['padding'][1])) || (isset($instance['padding'][2]) && !empty($instance['padding'][2])) || (isset($instance['padding'][3]) && !empty($instance['padding'][3])) ) {
+      if(isset($instance['padding'][0]) && !empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
+      if(isset($instance['padding'][1]) && !empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
+      if(isset($instance['padding'][2]) && !empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
+      if(isset($instance['padding'][3]) && !empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
       
       $boxSizing='box-sizing:border-box;';
    }
@@ -226,10 +233,11 @@ function optimizer_widget_paddingMargin($id, $instance){
 
 function optimizer_in_widget_form_update($instance, $new_instance, $old_instance){
 
-   $instance['width'] = isset($new_instance['customclasses']) ?  $new_instance['width'] : '';
-	$instance['visibility'] = isset($new_instance['customclasses']) ?  $new_instance['visibility'] : '';
-	$instance['margin'] = isset($new_instance['customclasses']) ?  $new_instance['margin'] : '';
-   $instance['padding'] = isset($new_instance['customclasses']) ?  $new_instance['padding'] : '';
+   $instance['width'] = isset($new_instance['width']) ?  $new_instance['width'] : ''; 
+   $instance['max_inner_width'] = isset($new_instance['max_inner_width']) ?  $new_instance['max_inner_width'] : ''; 
+	$instance['visibility'] = isset($new_instance['visibility']) ?  $new_instance['visibility'] : '';
+	$instance['margin'] = isset($new_instance['margin']) ?  $new_instance['margin'] : '';
+   $instance['padding'] = isset($new_instance['padding']) ?  $new_instance['padding'] : '';
    $instance['customclasses'] = isset($new_instance['customclasses']) ? $new_instance['customclasses'] :'';
    $instance['title_size'] = isset($new_instance['title_size']) ? $new_instance['title_size'] :'';
    $instance['font_size'] = isset($new_instance['font_size']) ?$new_instance['font_size'] :'';

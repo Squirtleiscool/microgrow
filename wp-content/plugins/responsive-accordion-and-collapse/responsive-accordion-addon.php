@@ -55,22 +55,7 @@ final class Responsive_Accordion_Addon
 		add_action( 'elementor/elements/categories_registered',array($this, 'add_elementor_widget_categories' ));
 		add_action('elementor/editor/before_enqueue_scripts', array($this, 'editor_enqueue_scripts'));
 
-    }  
-
-	public function safe_url($url)
-    {
-        if (is_ssl()) {
-            $url = wp_parse_url($url);
-
-            if (!empty($url['host'])) {
-                $url['scheme'] = 'https';
-            }
-
-            return $this->unparse_url($url);
-        }
-
-        return $url;
-    }
+    } 	
 	
 	public function editor_enqueue_scripts()
     {
@@ -78,7 +63,7 @@ final class Responsive_Accordion_Addon
         // editor style
         wp_enqueue_style(
             'responsive-accordion-editor',
-            $this->safe_url(wpshopmart_accordion_directory_url . 'responsive-accordion-elementor-addon/assets/css/editor.css'),
+            wpshopmart_accordion_directory_url . 'responsive-accordion-elementor-addon/assets/css/editor.css',
             false
         );
     }

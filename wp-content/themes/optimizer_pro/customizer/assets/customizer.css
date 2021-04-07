@@ -174,37 +174,10 @@ strong.panel-title {color: #555;margin-top: -20px;}
 
 /*CONTROLS*/
 /*Radio Image*/
-
-.customize-control-radio-image .ui-button {
-    margin:        0;
-    border-radius: 0;
-    border:        none;
-    background:    transparent;
-    display: inline-block;
-    height: auto!important;
-    padding: 0;
-    box-shadow: none!important;
-}
-
-.customize-control-radio-image .ui-button-text { padding: 0; }
-
-.customize-control-radio-image img {
-    box-sizing: border-box;
-    max-width:  100%;
-    height:     auto;
-    padding:    1px;
-    border:     4px solid transparent;
-}
-
-    .customize-control-radio-image img:hover,
-    .customize-control-radio-image img:focus {
-        border-color: #ddd;
-    }
-
-    .customize-control-radio-image .ui-state-active img {
-        border-color: #0094f3;
-    }
-
+.customize-control.customize-control-radio-image input[type=radio] { display: none; }
+.customize-control.customize-control-radio-image img { border: 3px solid transparent; }
+.customize-control.customize-control-radio-image input[type=radio]:checked + label img { border-color: #537ee0; }
+.customize-control.customize-control-radio-image .buttonset label { max-width: 115px; display: block; float: left; margin: 10px 10px 10px 0; }
 
 /*Text Box*/
 .customize-control input[type=email], .customize-control input[type=number], .customize-control input[type=password], .customize-control input[type=search], .customize-control input[type=tel], .customize-control input[type=text], .customize-control input[type=url]{ padding:5px;}
@@ -247,10 +220,10 @@ body.adding-widget.optimizer_expand #available-widgets{ left:150px;}
 i.customize-tooltip {color: #ccc;margin-left: 7px; position:relative;}
 i.customize-tooltip:hover, i.customize-tooltip.tipactive{color: #333;}
 i.customize-tooltip span{display:none;position: absolute;background-color: #222;color: #fff;font-size: 12px;font-family: sans-serif;font-weight: bold;padding: 7px;z-index: 999;width: 230px;bottom: 20px;border-radius: 3px;line-height: 14px;}
-dl.tipbottom{position: absolute;display: block;margin-top: 7px;width: 0;  height: 0;  border-style: solid;  border-width: 4px 5px 0 5px;  border-color: #222 transparent transparent transparent;}
+dl.tipbottom{position: absolute;display: none;margin-top: 7px;width: 0;  height: 0;  border-style: solid;  border-width: 4px 5px 0 5px;  border-color: #222 transparent transparent transparent;}
 
 
-ul.accordion-section-content .optim_tooltip.first_tooltip {bottom: -56px;}
+ul.accordion-section-content .optim_tooltip.first_tooltip {bottom: -48px;}
 ul.accordion-section-content .optim_tooltip.first_tooltip dl {  margin-top: -11px;  border-width: 0 5px 4px 5px;  border-color: transparent transparent #222222 transparent;}
 ul.accordion-section-content .optim_tooltip.first_tooltip dl:nth-child(2){ display:none;}
 
@@ -1089,3 +1062,26 @@ h4.control_cta1_title, h4.control_cta2_title, #customize-control-static_cta1_tex
 .brave_global_shorcode_field{  display: none; }
 #sub-accordion-section-sidebar-widgets-global_widgets .brave_global_shorcode_field{  display: block; }
 #sub-accordion-section-sidebar-widgets-global_widgets .brave_global_shorcode_field input { font-size: 12px;}
+
+#customize-control-hide_post_info_date, #customize-control-hide_post_info_author, #customize-control-hide_post_info_comment, #customize-control-hide_post_info_cats {
+   padding-left: 5px;
+   width: 100%;
+   box-sizing: border-box;
+   padding-right: 5px;
+   border-left: 1px solid #ccc;
+   border-right: 1px solid #ccc;
+}
+#customize-control-hide_post_info_date { border-top: 1px solid #ccc; margin-top: 10px; padding-top: 10px; }
+#customize-control-hide_post_info_cats { border-bottom: 1px solid #ccc; margin-bottom: 15px; }
+
+#customize-control-hide_post_info_date .customize-control-title,
+#customize-control-hide_post_info_author .customize-control-title,
+#customize-control-hide_post_info_comment .customize-control-title,
+#customize-control-hide_post_info_cats .customize-control-title{
+   max-width: 197px;
+}
+
+.optimizer_sidebar_preview_link { display: block;float: right; border: 1px solid #ccc; padding: 6px; position: relative;  right: -15px; color: #999; margin-top: -6px;}
+.optimizer_sidebar_preview_link:hover { background: #5782ec; color: #fff; border-color: #5782ec; }
+
+.customize-control-widget_form .optimizer_widget_tab input[type="color"] { float: right;  position: absolute; right: 0; margin-top: -23px;  cursor: pointer; }

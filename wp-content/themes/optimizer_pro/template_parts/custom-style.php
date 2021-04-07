@@ -75,6 +75,14 @@ if($singlebg){
 	<?php } ?>
 <?php } ?>
 /*----------------------------------------------------*/		
+
+<?php if(isset($optimizer['blog_layout_width']) && !empty($optimizer['blog_layout_width'])){ ?>body.single-post #content > .center { max-width: <?php echo $optimizer['blog_layout_width']; ?>; }'; <?php } ?>
+
+<?php } ?>
+
+<?php if(is_search() ) { ?> 
+   .search_wrap .hentry .imgwrap, .lay4 .post_image{ display:none;}
+   .lay4 .post_content { width: 100%; }
 <?php } ?>
 
 
@@ -448,8 +456,9 @@ body, .home_cat a, .comment-form-comment textarea, .single_post_content .tabs li
 
 .lay4 .ast_navigation .alignleft i:after, .lay5 .ast_navigation .alignleft i:after {content: "<?php _e('Previous Posts', 'optimizer'); ?>";}
 .lay4 .ast_navigation .alignright i:after, .lay5 .ast_navigation .alignright i:after {content: "<?php _e('Next Posts', 'optimizer'); ?>";}
-.lay4 .ast_navigation .alignleft i:after, .lay5 .ast_navigation .alignleft i:after , .lay4 .ast_navigation .alignright i:after, .lay5 .ast_navigation .alignright i:after{ font-family:<?php $content_font = $optimizer['content_font_id']; echo $content_font['font-family']; ?>;}
-
+<?php $content_font = $optimizer['content_font_id']; if(isset($content_font['font-family'])) {?>
+.lay4 .ast_navigation .alignleft i:after, .lay5 .ast_navigation .alignleft i:after , .lay4 .ast_navigation .alignright i:after, .lay5 .ast_navigation .alignright i:after{ font-family:<?php echo $content_font['font-family'];?>;}
+<?php } ?>
 
 .sidr{ background-color:<?php echo $optimizer['hamburger_bg']; ?>}
 

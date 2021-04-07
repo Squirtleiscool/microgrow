@@ -1,7 +1,7 @@
 /*
 Theme Name: Optimizer PRO
 Description: Optimizer, an easy to customize multipurpose theme with lots of powerful features. This theme lets you customize each elements without you having to touch any code. The theme comes with 2 site layout:Full width & boxed, Beautiful image slider, easy Logo upload, powerful theme options, Custom CSS Field & lots of layouts. Optimizer is 100% responsive built with HTML5 & CSS3, it's SEO friendly,mobile optimized & retina ready. It's translation ready and translated in 5 languages. Ready for WooCommerce, bbPress, Mailchimp, Contact Form 7.  The theme is rigorously tested and optimized for speed and faster page load time and has secure and clean code. It's perfect for any types of website - small business, portfolio, photography, corporate, personal & eCommerce websites.
-Version: 0.7.6
+Version: 0.8.0
 Theme URI: https://optimizerwp.com/
 Author: OptimizerWP
 Author URI: https://optimizerwp.com/optimizer-pro/
@@ -81,6 +81,7 @@ body .no_sidebar{ width:100%;}
 .page.page_header_transparent .header_wrap.layer_wrapper {  position: relative;}
 
 .hide_header .header { display: none;}
+.hide_header_menu .header #topmenu, .hide_header_menu .header #simple-menu{ display: none!important;}
 
 /*TOP HEADER*/
 .head_top{padding: 7px;background: rgba(0, 0, 0, 0.1);width: 100%;float: left;text-align: right;box-sizing: border-box;}
@@ -851,11 +852,10 @@ body.is_boxed .dummypost .lay4 .hentry{padding-left:0}
 .home_action_button p{ margin:0;}
 .home_action_button:hover{ opacity:0.7; }
 .home_action_button_wrap{float: left;width: 100%;margin-top: 30px;}
-
+.home_action_cta_wrap { width: 100%; float: left;  display: flex; }
 .cta_button_right .home_action_left{ width:74%; float:left;text-align: left;line-height: 1.6em;}
-.cta_button_right .home_action_right{right:14%; margin-left:2%; float:left;}
 .cta_button_left .home_action_left{width:74%; float:right;text-align: right;}
-.cta_button_left .home_action_right{right:14%; margin-left:2%; float:left;}
+.cta_button_right .home_action_right{float:left;vertical-align: middle;align-self: center;padding-left: 20px;}
 .cta_button_right .home_action_button_wrap, .cta_button_left .home_action_button_wrap{ margin-top:0;}
 
 .button_rounded{ border-radius:25px!important; }
@@ -869,25 +869,34 @@ body.is_boxed .dummypost .lay4 .hentry{padding-left:0}
 .testi_col2 .home_tweet{width: 47%;}
 .testi_col2 .home_tweet iframe{width: 100%!important;}
 
-.home_testi .looper {padding: 0;border: none;}
+.home_testi .looper {padding: 0;border: none; width: 100%;}
 .home_testi .looper ul{ padding:0; text-align:center;}
 .home_testi .looper li.testi_item{ list-style-type:none;}
 .testi_content {font-style: italic;font-size: 18px; line-height: 1.7em; }
 img.testi_avatar {width: 60px;height: 60px;border-radius: 50%;display: block;margin: 30px auto 0px;}
-.testi_author a {display: inline-block;margin: 15px 0;font-size: 16px;}
-.testi_occu { font-size:14px; line-height: 18px; display:block; margin-top:-5px; opacity: 0.8; }
+.testi_author a {display: inline-block;margin:20px 0 12px 0;font-size: 16px;}
+.testi_occu { font-size:0.8em; line-height: 18px; display:block; margin-top:-5px; opacity: 0.8; }
 .testi_author a:link, .testi_author a:visited{ font-weight:bold;}
 .looper-nav span {display: inline-block;width: 7px;height: 7px;border: 2px solid rgba(0, 0, 0, 0.5);margin: 0 2px;border-radius: 50%; opacity:0.7;}
 .looper-nav li.active span{ background:rgba(0, 0, 0, 0.5);border: 2px solid transparent; opacity:1;}
 
 .home_testi iframe.twitter-tweet{ box-shadow:none!important; border:none!important; width:100%!important;}
 
-.testi_col3 ul.looper-inner, .testi_col2 ul.looper-inner {margin: 0; padding: 0;}
-.testi_col3 ul.looper-inner li, .testi_col2 ul.looper-inner li { list-style-type: none; width: 30%; float: left; margin: 1.5%;}
-.testi_col2 ul.looper-inner li{ width: 47%;}
+ul.looper-inner {margin: 0; padding: 0;}
+ul.looper-inner li{ list-style-type: none; width: 100%; float: left;}
+ul.looper-inner li .testi_item{ width: 100%; float: left; box-sizing: border-box;  padding: 20px;}
+.testi_col2 ul.looper-inner li .testi_item{ width: 47%; margin: 1.5%;}
+.testi_col3 ul.looper-inner li .testi_item{  width: 30%; margin: 1.5%;}
 .testi_col3 ul.looper-inner .testi_content, .testi_col2 ul.looper-inner .testi_content{ font-size: 1em; text-align: center;}
 .testi_col3 ul.looper-inner li .testi_author, .testi_col2 ul.looper-inner li .testi_author { text-align: center;}
-.testi_col2 ul.looper-inner {margin: 0; padding: 0;}
+
+.testi_align_left ul.looper-inner li .testi_content {  text-align: left;}
+.testi_align_left ul.looper-inner li .testi_author { text-align: left; margin-top: 30px;}
+.testi_align_left ul.looper-inner li .testi_avatar { float: left; margin-top: 10px;  margin-right: 20px; }
+.testi_align_right ul.looper-inner li .testi_content {  text-align: right;}
+.testi_align_right ul.looper-inner li .testi_author { text-align: right; margin-top: 30px;}
+.testi_align_right ul.looper-inner li .testi_avatar { float: right; margin-top: 10px;  margin-left: 20px; }
+
 
 .optimizer_front_testimonials { background-size:cover;}
 .looper-nav.has_bg li a span {border: 2px solid rgba(255, 255, 255, 0.5);}
@@ -1225,9 +1234,9 @@ img.ytb_thumb {position: absolute;z-index: 9;  background-color: #111; width:100
 
 /*Layout2 */
 .lay2{width:100%; float:left; padding:40px 0;}
-.lay2_wrap{overflow: hidden;}
+.lay2_wrap_ajax{overflow: hidden; display: flex; flex-wrap: wrap;}
 .lay2 .imgwrap{ position:relative; width:100%; height:auto; overflow:hidden; height:170px;}
-.lay2 .hentry, .lay2 .product.type-product { width:21%; float:left; margin:1%;margin-bottom: 2%; padding:1%; background:#fff; height:330px; overflow:hidden;}
+.lay2 .hentry, .lay2 .product.type-product { width:21%; float:left; margin:1%;margin-bottom: 2%; padding:1%; background:#fff; overflow:hidden;}
 .lay2 .imgwrap > a { width: 100%; height: 100%; display: block;}
 .lay2 .hentry img, .lay2 .product.type-product img{ width:100%; height:100%; object-fit: cover; object-position: top center; border:none;vertical-align: bottom;transition:all 0.2s ease-out;}
 
@@ -1374,7 +1383,7 @@ a.pagi_prev.page-numbers.current, a.pagi_next.page-numbers.current {  border: no
 
 .meta_comm, .catag_list{ display:inline;}
 .single_metainfo{ padding-bottom:20px;}
-.single_metainfo, .single_post .single_metainfo a{ font-size:0.9em;}
+.single_metainfo, .single_post .single_metainfo a, .single_post .single_metainfo span{ font-size:0.9em;}
 .single_metainfo i{ padding-left:10px; padding-right:5px;opacity:0.7;}
 .single_metainfo .fa-calendar{ padding-left:0;}
 
@@ -1398,14 +1407,14 @@ a.pagi_prev.page-numbers.current, a.pagi_next.page-numbers.current {  border: no
 .single-post.single_style_header .single_metainfo {text-align: center;color: #fff; opacity:0.7;}
 .single.single_style_header.single_has_feat_image .single_metainfo a, .single-post.single_style_header.single_has_feat_image .post_head_content .postitle, .single-post.single_style_header.single_has_feat_image .single_metainfo i{color: #fff!important;}
 .single-post.single_style_header .thn_post_wrap {margin-top: 50px;width: 100%; line-height: 2.3em;}
-.single-post.single_style_header .single_post_header img {width: 100%;  vertical-align:bottom; min-height: 200px; object-fit: cover;}
-.single-post.single_style_header .single_post_header {min-height:200px;max-height: 600px;overflow: hidden; background:#000; position:relative;}
+.single-post.single_style_header .single_post_header img {width: 100%;  vertical-align:bottom; min-height: 200px; object-fit: cover; opacity: 0.5; }
+.single-post.single_style_header .single_post_header {min-height:200px;max-height: 450px;overflow: hidden; background:#000; position:relative;}
 .single-post.single_style_header #sidebar { margin-top: 60px; }
 .single-post.single_style_header .post_wrap #content{ margin-top:0;}
 .single-post.single_style_narrow .post_wrap.layer_wrapper #content .center { width: 70%;}
 .single-post.single_style_header .single_post_content .postitle, .single_style_header .single_metainfo{width: 100%;}
 .single-post.single_style_header .single_featured{ display:none!important;}
-.single-post.single_style_header .post_head_content { width: 100%; position: absolute; z-index: 99; top:10%}
+.single-post.single_style_header .post_head_content { width: 100%; position: absolute; z-index: 99; top:10%; text-align: center;}
 .single-post.single_style_header.single_has_feat_image .post_head_content{ top: 40%;}
 
 /*NEXT PREVIOUS POSTS*/
@@ -1688,6 +1697,7 @@ p.form-submit {width:200px;float:right;}
 
 .pagetitle_wrap.page_head_left{text-align:left;}
 .pagetitle_wrap.page_head_right{text-align:right;}
+.pagetitle_wrap.page_head_middle{text-align:center; top: 50%!important; transform: translateY(-50%); margin: 0 auto!important;}
 .page_head .pagetitle_wrap {padding: 0 1.5%; box-sizing: border-box;}
 .postitle.hide_title {  display: none;}
 
@@ -1742,10 +1752,11 @@ span.widget_border {width: 35px;height: 2px;display: block;margin-bottom: 20px;}
 
 /*Search*/
 .search_term {width: 96%;padding: 2%;float: left;margin-top: 50px;text-align: center;}
-.search_term h2{ margin-bottom:5px;}
+.search_term h2{ margin-bottom:5px; filter: brightness(0.5); }
 .search_term #searchform #s, .error_msg #searchform #s{font-size:16px;border: none; box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1) inset; width: 70%;padding: 20px;margin-top: 30px;margin-bottom: 30px;background: rgba(0, 0, 0, 0.04); color:#999;}
 .search_term #searchsubmit, .error_msg #searchsubmit{ padding:20px 15px;font-size: 16px;font-weight: bold;cursor:pointer;transition:all 0.2s ease-out;}
 .search_term #searchsubmit:hover, .error_msg #searchsubmit:hover{opacity:0.7;}
+.search_wrap .lay4 .hentry.page .single_metainfo, .search_wrap .lay5 .hentry.page .single_metainfo{display: none;}
 
 /*404*/
 .fourofour a{font-size: 280px; opacity:0.4;}
@@ -2386,7 +2397,7 @@ body .lay4 .post_image, .lay4 .post_content{ width:100%;}
 
 .frontpagelinks { }
 
-.frontpageimage {width: 33%; display: inline-block; margin: auto; }
+.frontpageimage {width:33%; display: inline-block; margin: auto; }
 
 .midrow_block img {max-width: 33%!important; }
 

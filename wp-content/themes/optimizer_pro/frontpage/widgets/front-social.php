@@ -304,9 +304,11 @@ class ast_scoial_Widget extends WP_Widget {
       $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg.'}';
       $widget_style .= ($title_size || $title_family ||$icon_color) ? '#'.$id.' .widgettitle{' . $title_size . $title_family. $title_color. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= $icon_color && !$icon_color  == '#FFFFFF' ? '#'.$id.' .ast_scoial_widget .ast_scoial a{ background-color:' . $icon_color.'!important;}' : '';
       $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
       

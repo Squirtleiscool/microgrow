@@ -81,7 +81,7 @@ class optimizer_front_Text extends WP_Widget {
          echo  '<style>'.$this->generate_css($id, $instance).'</style>';
 		}
 
-		if($parallax){ echo '<script>jQuery(window).ready(function() {jQuery("#'.$id.' .parallax_img").parallax({naturalHeight: jQuery(this).parent().outerHeight(), bleed: 50, iosFix: true, androidFix: true});  });</script>';}
+		if($parallax){ echo '<script>jQuery(function() { jQuery("#'.$id.' .parallax_img").parallax({naturalHeight: jQuery(this).parent().outerHeight(), bleed: 50, iosFix: true, androidFix: true});  });</script>';}
 		
 		
 		/* After widget (defined by themes). */
@@ -243,6 +243,7 @@ class optimizer_front_Text extends WP_Widget {
       $content_color =	!empty( $instance['content_color'] ) ? 'color:'.$instance['content_color'].';' : 'color:#ffffff;';
       $link_color =	!empty( $instance['link_color'] ) ? 'color:'.$instance['link_color'].';' : $content_color;
       $line_height =	!empty( $instance['line_height'] ) && $instance['line_height'] != 0 ? 'line-height:'.$instance['line_height'].'px;' : '';
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
       
       //error_log('$line_height: '.json_encode($instance));
       //Basic Styles
@@ -253,6 +254,7 @@ class optimizer_front_Text extends WP_Widget {
       $widget_style = '#'.$id.' .text_block{ ' . $content_bg . $content_bgimg. $content_color. $font_size. $font_family.$paddingside.$padtopbottom.'}';
       $widget_style .= '#'.$id.' .text_block a:link, #'.$id.' .text_block a:visited{'.$link_color. '}';
       $widget_style .= $line_height ? '#'.$id.' .text_block_wrap{'.$line_height. '}':'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= $content_bgimg ? '@media screen and (max-width: 480px){#'.$id.' .text_block .parallax_img{'.$content_bgimg.'}} ' : ''; 
       $widget_style .= '@media screen and (min-width: 480px){#'.$id.' .text_block{'.$marginPadding[0].'} .frontpage_sidebar #'.$id.' {'.$marginPadding[1].'} } ';
       return $widget_style;

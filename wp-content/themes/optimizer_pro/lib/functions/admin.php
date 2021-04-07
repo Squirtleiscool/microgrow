@@ -212,7 +212,7 @@ function optimizer_post_colorpicker(){
 	
 	$screen = get_current_screen();
 	if ( $screen->base == 'post' ){ 
-		echo '<script type="text/javascript">jQuery(document).ready(function() {     jQuery(".optimizer_meta_control .color-picker").wpColorPicker();    });</script>';
+		echo '<script type="text/javascript">jQuery(function() {    jQuery(".optimizer_meta_control .color-picker").wpColorPicker();    });</script>';
 	}	
 }
 add_action('admin_head', 'optimizer_post_colorpicker');

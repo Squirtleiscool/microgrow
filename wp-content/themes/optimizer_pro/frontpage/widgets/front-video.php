@@ -124,7 +124,7 @@ class optimizer_front_Video extends WP_Widget {
 						}
 					}
 					
-					if($autoplay == ''){  echo '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i><img id="ytb_thumb_'.$this->id.'" class="ytb_thumb ytb_video_'.$id.'" src= "'.$thumbid.'" />';  }
+					if($autoplay == ''){  echo '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i><img id="ytb_thumb_'.$this->id.'" class="ytb_thumb ytb_video_'.$id.'" src="'.$thumbid.'" alt="'.__("Youtube Video","optimizer").'" />';  }
 					
 					echo '<div class="ast_vid"><div class="responsive-container"><div class="ytb_widget_iframe" data-video-id="'.$id .'" data-autoplay="'.$autoplay .'" data-position="'.$contentposition .'" id="ytb_'.$widgetid.'" '.$loop.'></div></div></div>';
 					
@@ -146,7 +146,7 @@ class optimizer_front_Video extends WP_Widget {
 					$autoplayClass = '';
 					if( $autoplay == '1' && $contentposition == 'on_video'){  $loop='&loop=1'; $mute= '&background=1';  }else{  $loop='';$mute= ''; }
 					
-					if(!empty($vdothumb )){$vimeothumb = '<img id="vim_thumb_'.$this->id.'" class="vim_thumb vim_video_'.$id.'" src= "'.$vdothumb.'" '.optimizer_image_attr( esc_url($vdothumb) ).' '.optimizer_image_alt(esc_url($vdothumb) ).' />';}else{$vimeothumb ='';}
+					if(!empty($vdothumb )){$vimeothumb = '<img id="vim_thumb_'.$this->id.'" class="vim_thumb vim_video_'.$id.'" src= "'.$vdothumb.'" '.optimizer_image_attr( esc_url($vdothumb) ).' alt="'.__("Youtube Video","optimizer").'" />';}else{$vimeothumb ='';}
 					
 					if( $autoplay == '1'){
 						$vimbutton = '';
@@ -375,9 +375,11 @@ class optimizer_front_Video extends WP_Widget {
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg . $content_color. $font_size. $font_family.'}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .widgettitle{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
       
       return $widget_style;

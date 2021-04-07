@@ -273,7 +273,7 @@ nav.woocommerce-pagination {margin-bottom: 30px;}
 .archive.woocommerce-page.woo_archive_layout2 ul.products li.product.first {clear: none;}
 .archive.woocommerce-page.woo_archive_layout2 ul.products li.product .price del { display: inline-block;}
 .archive.woocommerce-page.woo_archive_layout2 ul.products li.product span.price del, .archive.woocommerce-page.woo_archive_layout2 ul.products li.product span.price ins {font-size: 80%;}
-.archive.woocommerce-page ul.products li.product .price del{ font-size: 0.7em; }
+.archive.woocommerce-page ul.products li.product .price del{ font-size: 0.9em; }
 
 .archive.woocommerce-page.woo_archive_layout3 ul.products li.product{width:33.3%;padding:1.5%!important; margin:0;float: left;padding: 20px;box-sizing: border-box;}
 .archive.woocommerce-page.woo_archive_layout3 ul.products li.product span.price {font-size: 100%!important;}

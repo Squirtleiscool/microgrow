@@ -123,7 +123,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                               </div>            
-                          <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a>		
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a>		
                           </div>
                           
                           <?php elseif(!optimizer_first_image() == ''): ?>
@@ -136,7 +136,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                               </div>            
-                          <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a>		
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a>		
                           </div>
                           
                           <?php else : ?>
@@ -146,7 +146,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                             </div>
-                          <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                                    
                           <?php endif; ?>
                           
@@ -236,7 +236,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                     
                     <?php elseif(!optimizer_first_image() == ''): ?>
                     <div class="imgwrap"> 
@@ -250,7 +250,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                     <?php else : ?>
                     
                     <div class="imgwrap">
@@ -261,7 +261,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>
-                    <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                              
                     <?php endif; ?>
                     <div class="post_content">
@@ -351,7 +351,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                     
                     
                     <?php elseif(!optimizer_first_image() == ''): ?>
@@ -366,7 +366,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                     <?php else : ?>
                     
                     <div class="imgwrap">
@@ -377,7 +377,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                                 <?php } ?>
                         </div>
                     </div>
-                    <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                              
                     <?php endif; ?>
                 </div>
@@ -450,18 +450,18 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category=array(
                             <?php elseif(!optimizer_gallery_thumb() == ''): ?>
             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                             
                             
                             <?php elseif(!optimizer_first_image() == ''): ?>
             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                         
                             <?php else : ?>
                             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="optimizer_thumbnail" width="500" height="350" /></a></div>   
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="optimizer_thumbnail" width="500" height="350" /></a></div>   
                                      
                             <?php endif; ?>
                         </div>

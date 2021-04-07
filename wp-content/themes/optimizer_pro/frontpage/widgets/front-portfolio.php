@@ -474,9 +474,11 @@ echo '<div class="optimizer_widget_tab optimizer_widget_tab--content">';
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
-
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
+      
       $widget_style = '#'.$id.' .optimportfolio{ ' . $secbgcolor . $font_size. $font_family.'}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .home_title{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= $title_family ? '#'.$id.' .postitle{' . $title_family. '}' :'';
       $widget_style .= $hovercolor ? '#'.$id.' .img_hover{' . $hovercolor. '}' :'';
       $widget_style .= '#'.$id.' .optimportfolio .home_title, #'.$id.' .optimportfolio .home_subtitle, #'.$id.' span.div_middle, #'.$id.' .portfolio_wrap .hover_style_5 .post_content .catag_list, #'.$id.' .portfolio_wrap .hover_style_5 .post_content .catag_list a, #'.$id.' .portfolio_wrap .hover_style_5 .post_content h2 a{color:'.$titlecolor.' }';

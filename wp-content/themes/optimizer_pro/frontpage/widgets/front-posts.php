@@ -115,7 +115,7 @@ class optimizer_front_Posts extends WP_Widget {
          echo  '<style>'.$this->generate_css($id, $instance).'</style>';
          
 			echo '<script type="text/javascript">
-			jQuery(window).ready(function() {		
+			jQuery(function() {	
 				jQuery(".lay1").each(function(index, element) {
 					var divs = jQuery(this).find(".hentry");
 					for(var i = 0; i < divs.length; i+=3) {
@@ -502,10 +502,12 @@ echo $productcatid->name; ?></label>
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.' .lay'.$layout.'{ ' . $secbgcolor . $font_size. $font_family.'}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .home_title{' . $title_size . $title_family. '}' :'';
       $widget_style .= ($title_family || $postitlecolor) ? '#'.$id.' .postitle a, #'.$id.' .blog_mo a{' . $title_family . $postitlecolor.'}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= $hovercolor ? '#'.$id.' .img_hover{' . $hovercolor. '}' :'';
       $widget_style .= $contentcolor ? '#'.$id.' .post_content, #'.$id.' .single_metainfo, #'.$id.' .single_metainfo a{' . $contentcolor. '}' :'';
       $widget_style .= '#'.$id.' .lay'.$layout.' .hentry, #'.$id.' .lay'.$layout.' .lay2_wrap .type-product{ '.$postbgcolor.' }';

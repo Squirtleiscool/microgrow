@@ -13,6 +13,7 @@
 			<key name="tophone_id" />
 			<key name="meta_title_id" />
 			<key name="meta_desc_id" />
+         <key name="gdpr_policy" />
         </key>
     </admin-texts>    
 </wpml-config>

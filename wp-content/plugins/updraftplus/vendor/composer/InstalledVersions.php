@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'cd4ab62aa564b94a7892f011699546946ad87a82',
+    'reference' => '8d386c025b5058bf8c9619a06df079d7c0794aec',
     'name' => 'updraftplus/updraftplus',
   ),
   'versions' => 
@@ -344,7 +344,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'cd4ab62aa564b94a7892f011699546946ad87a82',
+      'reference' => '8d386c025b5058bf8c9619a06df079d7c0794aec',
     ),
   ),
 );

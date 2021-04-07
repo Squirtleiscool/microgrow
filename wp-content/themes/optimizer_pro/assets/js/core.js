@@ -1,4 +1,4 @@
-jQuery(window).ready(function() {
+jQuery(function() {
 
 	/*CAROUSEL SHORTCODE*/
 	jQuery(".looper-inner p, .looper-inner .item, .lts_pricing p, .lts_blocks p, .lts_blocks br, .lts_tab br, .lts_tabtitle").each(function(){
@@ -129,7 +129,7 @@ jQuery(".lts_pricing").each(function(){
 /*Column Shortcode*/
 jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
    var colParent = jQuery(this);
-   var col2Selectors = [1,3,5,7,9,11,13,15,17,19]; var col3Selectors = [2,5,8,11,14,17,20,23,26,29]; var col4Selectors = [3,7,11,15,19,23,27,31,35,29];
+   var col2Selectors = [1,3,5,7,9,11,13,15,17,19]; var col3Selectors = [2,5,8,11,14,17,20,23,26,29]; var col4Selectors = [3,7,11,15,19,23,27,31,35,39];
    col2Selectors.forEach(function(selectorIndex){  colParent.find('.col2').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
    col3Selectors.forEach(function(selectorIndex){  colParent.find('.col3').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
    col4Selectors.forEach(function(selectorIndex){  colParent.find('.col4').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
@@ -203,7 +203,7 @@ jQuery(".lts_list").each(function(){
 
 	//Toggle Shortcode
 	jQuery('.lts_toggle_content').hide(); // Hide even though it's already hidden
-	jQuery('.lts_toggle .trigger').click(function() {
+	jQuery('.lts_toggle .trigger').on('click',function() {
     jQuery(this).closest('.lts_toggle').find('.lts_toggle_content').slideToggle("fast"); // First click should toggle to 'show'
 	  return false;
    });
@@ -284,19 +284,19 @@ jQuery('.tooltip').miniTip({ fadeIn: 100 });
 //post shortcode layout1 thumbnal resize
 	var laywidth = jQuery('.lts_layout1 .listing-item').width();
 	jQuery('.lts_layout1 .listing-item').height( (laywidth * 66)/100);
-	jQuery(window).resize(function() {
+	jQuery(window).on('resize',function() {
 		var laywidth = jQuery('.lts_layout1 .listing-item').width();
 		jQuery('.lts_layout1 .listing-item').height( (laywidth * 66)/100);
 	});
 	
 	var flaywidth = jQuery('.lay1 .hentry').width();
 		jQuery('.lay1 .ast_row').height( (flaywidth * 66)/100);
-	jQuery(window).resize(function() {
+	jQuery(window).on('resize',function() {
 		var flaywidth = jQuery('.lay1 .hentry').width();
 		jQuery('.lay1 .ast_row').height( (flaywidth * 66)/100);
 	});
 	
-jQuery(window).ready(function() {
+jQuery(function() {
 	
 if(jQuery('body .lts_layout3').length){
 	jQuery('.lts_layout3 .listing-item').wrapAll('<div class="lts3_inner" />');
@@ -568,7 +568,7 @@ jQuery(window).on('load', function(){
 var players = {};
 function onYouTubePlayerAPIReady() {
         
-     jQuery(document).ready(function() { 
+      jQuery(function() {
          jQuery('.ytb_widget_iframe').each(function(event) {
                 
             var iframeID = jQuery(this).attr('id');
@@ -600,7 +600,7 @@ function playYouTubeVideo(iframeID) {
     players[iframeID].playVideo();
 }
 
-jQuery(document).ready(function() {
+jQuery(function() {
     jQuery('.astytb i.fa.fa-play').on('click', function() {
        var iframeID = jQuery(this).closest('.optimizer_video_wrap').find('iframe').attr('id');
        playYouTubeVideo(iframeID);
@@ -643,7 +643,7 @@ jQuery(window).on('load',function() {
  
 //Custom Video
 	jQuery('.video_on_video .custom_vdo_wrap').each(function(index, element) {
-		jQuery(this).find('.mejs-overlay-button').click(function() {
+		jQuery(this).find('.mejs-overlay-button').on('click',function() {
 			jQuery(this).closest('.video_on_video').find('.widget_video_content').hide();
 			jQuery(this).next('.customvdo_thumb').hide();
 		});
@@ -653,7 +653,7 @@ jQuery(window).on('load',function() {
 
 
 //MAP SHORTCODE
-jQuery(document).ready(function() {
+jQuery(function() {
    //MAP SHORTCODE
    jQuery(".lts_map_wrap").each(function(){
       var lat = jQuery(this).find('.lts_map').attr('data-map-lat');

@@ -467,24 +467,194 @@ function optimizer_get_instagram_media($token, $user, $limit = 10, $fields = 'me
 
 }
 
+function optimizer_get_widget_data($sidebar_id) {
+	global $wp_registered_sidebars, $wp_registered_widgets;
+	
+	// Holds the final data to return
+	$output = array();
+	
+	if( !$sidebar_id ) {
+		// There is no sidebar registered with the name provided.
+		return $output;
+	} 
+	
+	// A nested array in the format $sidebar_id => array( 'widget_id-1', 'widget_id-2' ... );
+	$sidebars_widgets = wp_get_sidebars_widgets();
+	$widget_ids = isset($sidebars_widgets[$sidebar_id]) ? $sidebars_widgets[$sidebar_id] : array();
+	
+	if( !$widget_ids ) {
+		// Without proper widget_ids we can't continue. 
+		return array();
+	}
+	
+	// Loop over each widget_id so we can fetch the data out of the wp_options table.
+	foreach( $widget_ids as $id ) {
+		// The name of the option in the database is the name of the widget class.  
+		$option_name = $wp_registered_widgets[$id]['callback'][0]->option_name;
+		
+		// Widget data is stored as an associative array. To get the right data we need to get the right key which is stored in $wp_registered_widgets
+		$key = $wp_registered_widgets[$id]['params'][0]['number'];
+		$widget_data = get_option($option_name);
+		if(isset($wp_registered_widgets[$id]['name'])){
+         $widget_data[$key]['widgetname'] = str_replace('&diams; ','',$wp_registered_widgets[$id]['name']);
+      }
+		// Add the widget data on to the end of the output array.
+		$output[] = $widget_data[$key];
+	}
+
+   $finalWidgetContent = '';
+   foreach( $output as $ar ) {
+
+      // error_log(json_encode($ar));
+
+      $finalWidgetContent .= '<div class="optimizer_widget" data-widgetname="'.(!empty($ar['widgetname']) ? esc_attr($ar['widgetname']) : '').'">';
+         //Common Widget Content
+         if(!empty($ar['title'])){    $finalWidgetContent .= '<h2>'.$ar['title'].'</h2>'; }
+         if(!empty($ar['subtitle'])){  $finalWidgetContent .= '<i>'.$ar['subtitle'].'</i>';   }
+         if(!empty($ar['desc'])){  $finalWidgetContent .= do_shortcode($ar['desc']); }
+         if(!empty($ar['content'])){   $finalWidgetContent .= do_shortcode($ar['content']); }
+         if(!empty($ar['text'])){   $finalWidgetContent .= do_shortcode($ar['text']); }
+
+         //Blocks Widget Content
+         if((isset($ar['block1title']) && !empty($ar['block1title']) || (isset($ar['block1content']) && !empty($ar['block1content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block1title']) && !empty($ar['block1title'])){   $finalWidgetContent .= '<h3>'.$ar['block1title'].'</h3>'; } if(!empty($ar['block1img'])){   $finalWidgetContent .= '<img src="'.$ar['block1img'].'" />'; } if(!empty($ar['block1content'])){   $finalWidgetContent .= $ar['block1content']; }
+         if((isset($ar['block1title']) && !empty($ar['block1title']) || (isset($ar['block1content']) && !empty($ar['block1content'])) )){  $finalWidgetContent .= '</section>';}
+         
+         if((isset($ar['block2title']) && !empty($ar['block2title']) || (isset($ar['block2content']) && !empty($ar['block2content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block2title']) && !empty($ar['block2title'])){   $finalWidgetContent .= '<h3>'.$ar['block2title'].'</h3>'; } if(!empty($ar['block2img'])){   $finalWidgetContent .= '<img src="'.$ar['block2img'].'" />'; } if(!empty($ar['block2content'])){   $finalWidgetContent .= $ar['block2content']; }
+         if((isset($ar['block2title']) && !empty($ar['block2title']) || (isset($ar['block2content']) && !empty($ar['block2content'])) )){  $finalWidgetContent .= '</section>';}
+
+         if((isset($ar['block3title']) && !empty($ar['block3title']) || (isset($ar['block3content']) && !empty($ar['block3content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block3title']) && !empty($ar['block3title'])){   $finalWidgetContent .= '<h3>'.$ar['block3title'].'</h3>'; } if(!empty($ar['block3img'])){   $finalWidgetContent .= '<img src="'.$ar['block3img'].'" />'; } if(!empty($ar['block3content'])){   $finalWidgetContent .= $ar['block3content']; }
+         if((isset($ar['block3title']) && !empty($ar['block3title']) || (isset($ar['block3content']) && !empty($ar['block3content'])) )){ $finalWidgetContent .= '</section>';}
+
+         if((isset($ar['block4title']) && !empty($ar['block4title']) || (isset($ar['block4content']) && !empty($ar['block4content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block4title']) && !empty($ar['block4title'])){   $finalWidgetContent .= '<h3>'.$ar['block4title'].'</h3>'; } if(!empty($ar['block4img'])){   $finalWidgetContent .= '<img src="'.$ar['block4img'].'" />'; } if(!empty($ar['block4content'])){   $finalWidgetContent .= $ar['block4content']; }
+         if((isset($ar['block4title']) && !empty($ar['block4title']) || (isset($ar['block4content']) && !empty($ar['block4content'])) )){  $finalWidgetContent .= '</section>';}
+
+         if((isset($ar['block5title']) && !empty($ar['block5title']) || (isset($ar['block5content']) && !empty($ar['block5content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block5title']) && !empty($ar['block5title'])){   $finalWidgetContent .= '<h3>'.$ar['block5title'].'</h3>'; } if(!empty($ar['block5img'])){   $finalWidgetContent .= '<img src="'.$ar['block5img'].'" />'; } if(!empty($ar['block5content'])){   $finalWidgetContent .= $ar['block5content']; }
+         if((isset($ar['block5title']) && !empty($ar['block5title']) || (isset($ar['block5content']) && !empty($ar['block5content'])) )){  $finalWidgetContent .= '</section>';}
+
+         if((isset($ar['block6title']) && !empty($ar['block6title']) || (isset($ar['block6content']) && !empty($ar['block6content'])) )){  $finalWidgetContent .= '<section class="optimizer_widget_block">';}
+         if(isset($ar['block6title']) && !empty($ar['block6title'])){   $finalWidgetContent .= '<h3>'.$ar['block6title'].'</h3>'; } if(!empty($ar['block6img'])){   $finalWidgetContent .= '<img src="'.$ar['block6img'].'" />'; } if(!empty($ar['block6content'])){   $finalWidgetContent .= $ar['block6content']; }
+         if((isset($ar['block6title']) && !empty($ar['block6title']) || (isset($ar['block6content']) && !empty($ar['block6content'])) )){  $finalWidgetContent .= '</section>';}
+
+         //Testimonial Widget
+         if(isset($ar['custom_testi']) && is_array($ar['custom_testi']) && count($ar['custom_testi'])){ 
+            foreach ((array)$ar['custom_testi']as $testimony){ 
+               if(!empty($testimony['testimonial'])){
+                  $finalWidgetContent .= '<section class="optimizer_widget_block optimizer_widget_block--testimonial">';
+                     $finalWidgetContent .= '<p>'.$testimony['testimonial'].'</p>';
+                     if(!empty($testimony['title'])){ $finalWidgetContent .= $testimony['title'];  }
+                     if(!empty($testimony['occupation'])){ $finalWidgetContent .= ' / '.$testimony['occupation'];  }
+                  $finalWidgetContent .= '</section>';
+               }
+            }
+         }
+
+         //Dynamic Widget
+         if(isset($ar['carousel']) && is_array($ar['carousel']) && count($ar['carousel'])){ 
+            $dynamicType = !empty($ar['type']) ? $ar['type'] : 'carousel';
+            $finalWidgetContent .= '<div class="optimizer_widget_dynamic_wrap optimizer_widget_dynamic_wrap--'.$dynamicType.'">';
+            foreach ((array)$ar['carousel'] as $index => $dynamic){ 
+               if(!empty($dynamic['content'])){
+                  $finalWidgetContent .= '<section class="optimizer_widget_block" data-widgetname="'.$dynamicType.' Item '.($index+1).'">';
+                     if(!empty($dynamic['title'])){ $finalWidgetContent .= '<a>'.$dynamic['title'].'</a>';  }
+                     if(!empty($dynamic['image'])){ $finalWidgetContent .= '<img src="'.$dynamic['image'].'" alt="'.(!empty($dynamic['title']) ? $dynamic['title'] : '').'" />'; }
+                     $finalWidgetContent .= do_shortcode($dynamic['content']);
+                  $finalWidgetContent .= '</section>';
+               }
+            }
+            $finalWidgetContent .= '</div>';
+         }
+
+         
+         //Brave Widgets
+         if(!empty($ar['section_title'])){    $finalWidgetContent .= '<h2>'.$ar['section_title'].'</h2>'; }
+         if(!empty($ar['slider_title'])){    $finalWidgetContent .= '<h1>'.$ar['slider_title'].'</h1>'; }
+         if(!empty($ar['section_pretitle'])){  $finalWidgetContent .= '<i>'.$ar['section_pretitle'].'</i>';   }
+         if(!empty($ar['section_content_right'])){   $finalWidgetContent .= do_shortcode($ar['section_content_right']); }
+         if(!empty($ar['slider_content_right'])){   $finalWidgetContent .= do_shortcode($ar['slider_content_right']); }
+
+         //Brave Tabs Widget
+         if(isset($ar['items']) && is_array($ar['items']) && count($ar['items'])){ 
+            foreach ((array)$ar['items']as $tab){ 
+               if(!empty($tab['title']) && !empty($tab['content'])){
+                  $finalWidgetContent .= '<section class="optimizer_widget_block">';
+                     $finalWidgetContent .= '<a>'.$tab['title'].'</a>';
+                     $finalWidgetContent .= do_shortcode($tab['content']);
+                  $finalWidgetContent .= '</section>';
+               }
+            }
+         }
+
+
+      $finalWidgetContent .= '</div>';
+	}
+
+   //error_log(($finalWidgetContent));
+
+	return $finalWidgetContent;
+}
+
 //Allow Widgetized Pages to appear in Search
-// add_filter( 'the_posts', function ( $posts, \WP_Query $wp_query ){
-//    if($wp_query && !empty($wp_query->query['s'])){
-//       $searchTerm = $wp_query->query['s'];
-//       $pages = get_pages(); 
-//       $matched_pages = array(); 
-//       foreach ( $pages as $page ) {
-//          $sidebarid = get_post_meta($page->ID, "page_sidebar", true);
-//          if( !empty($sidebarid) ){
-//            $widgetContent = optimizer_get_widget_data($sidebarid);
-//            //error_log($sidebarid.' : ');
-//            $widgetContent = isset($widgetContent) && is_string($widgetContent) ? $widgetContent : false;
-//            if($widgetContent && stripos($widgetContent, $searchTerm ) !== false ){  
-//                array_push($matched_pages, $page);   
-//             }
-//          }
-//       }
-//       $posts = array_merge( $matched_pages, $posts );
-//    }
-//    return $posts;
-// }, 10, 2 );
+add_filter( 'the_posts', function ( $posts, \WP_Query $wp_query ){
+   if($wp_query && !empty($wp_query->query['s'])){
+      $searchTerm = $wp_query->query['s'];
+      $pages = get_pages(); 
+      $matched_pages = array(); 
+      foreach ( $pages as $page ) {
+         $sidebarid = get_post_meta($page->ID, "page_sidebar", true);
+         if( !empty($sidebarid) ){
+           $widgetContent = optimizer_get_widget_data($sidebarid);
+           //error_log($sidebarid.' : ');
+           $widgetContent = isset($widgetContent) && is_string($widgetContent) ? $widgetContent : false;
+           if($widgetContent && stripos($widgetContent, $searchTerm ) !== false ){  
+               array_push($matched_pages, $page);
+               $page->post_content = $widgetContent;
+            }
+         }
+      }
+
+      $posts = array_merge( $matched_pages, $posts );
+   }
+   return $posts;
+}, 10, 2 );
+
+
+add_action('admin_head', 'optimizer_get_all_widgetized_pages'); //For Customizer page
+add_action('customize_controls_print_footer_scripts', 'optimizer_get_all_widgetized_pages'); //For Widgets.php page
+function optimizer_get_all_widgetized_pages(){
+   global $current_screen;
+   if(is_customize_preview() ||( $current_screen && isset($current_screen->id) && $current_screen->id === 'widgets' )){ 
+      $args = array(
+         'post_type' => 'page',
+         'post_status' => 'any',
+         'numberposts' => -1, 
+         'meta_query' => array( array( 'key' => 'widgetized', 'value' => true,'compare' => 'LIKE' ) ) 
+      );
+
+      $widget_query = new WP_Query( $args );
+      $allWidgetizedPages = array();
+      //error_log(json_encode($widget_query));
+      if(isset($widget_query->posts) && is_array($widget_query->posts) && count($widget_query->posts) > 0){
+         foreach ((array)$widget_query->posts as $key => $page) {
+            if(isset($page->guid)){
+               $sidebar = get_post_meta($page->ID, "page_sidebar", true);
+               if($sidebar){
+                  $item = new stdClass();
+                  $item->ID = $page->ID;
+                  $item->title = esc_attr($page->post_title);
+                  $item->url = get_permalink($page->ID);
+                  $item->name = $page->post_name;
+                  $item->sidebar = $sidebar;
+                  $allWidgetizedPages[] = $item;
+               }
+            }
+         }
+      }
+
+      echo '<script type="text/javascript">var optimizer_widgetized_pages = '.json_encode($allWidgetizedPages).'</script>';
+   }
+}

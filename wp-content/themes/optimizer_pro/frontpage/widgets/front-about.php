@@ -289,7 +289,8 @@ class optimizer_front_About extends WP_Widget {
       $aboutwidth =		isset( $instance['aboutwidth'] ) ? 'width:'.$instance['aboutwidth'].'%;' : 'width:60%;';
       $link_color =	!empty( $instance['link_color'] ) ? 'color:'.$instance['link_color'].';' : $content_color;
       $line_height =	!empty( $instance['line_height'] ) && $instance['line_height'] != 0 ? 'line-height:'.$instance['line_height'].'px;' : '';
-               
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
+
       //Basic Styles
       $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
       $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
@@ -299,6 +300,7 @@ class optimizer_front_About extends WP_Widget {
 
       $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg. $font_size. $font_family.$line_height.'}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .about_header{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= $line_height ? '#'.$id.' .about_content{'.$line_height. '}':'';
       $widget_style .= '#'.$id.' .about_header, #'.$id.' .about_pre, #'.$id.' span.div_middle{color: ' . $title_color . '}';
       $widget_style .= '#'.$id.' span.div_left, #'.$id.' span.div_right{background-color: ' . $title_color . '}';

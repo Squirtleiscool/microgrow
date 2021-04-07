@@ -114,7 +114,7 @@ global $optimizer;?>
                 <!--MOBILE MENU START-->
                 <?php if(!empty($optimizer['hide_head_menu'])){ ?>
                 <?php }else{ ?>
-                	<?php if( $optimizer['head_menu_type'] == '7' || $optimizer['mobile_menu_type'] == 'hamburger'){ ?><a id="simple-menu" class="<?php if($optimizer['head_menu_type'] == '7' ){ echo 'desktop_hamburger';} ?>" href="#sidr"><i class="fa fa-bars"></i></a><?php } ?>
+                	<?php if( $optimizer['head_menu_type'] == '7' || $optimizer['mobile_menu_type'] == 'hamburger'){ ?><a id="simple-menu" class="<?php if($optimizer['head_menu_type'] == '7' ){ echo 'desktop_hamburger';} ?>" href="#sidr" aria-label="<?php echo _e('Menu','optimizer'); ?>"><i class="fa fa-bars"></i></a><?php } ?>
                 	<?php if( $optimizer['mobile_menu_type'] == 'dropdown'){ ?><a id="dropdown-menu"><?php echo _e('Menu','optimizer'); ?> <i class="fa fa-chevron-down"></i></a><?php } ?>
                 <?php } ?>
                 <!--MOBILE MENU END--> 

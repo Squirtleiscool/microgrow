@@ -8,7 +8,7 @@
  * @since  LayerFramework 1.0
  */
 
-jQuery(window).ready(function() {
+ jQuery(function() {
 	//MENU Animation
 	if (jQuery(window).width() > 768) {
 		
@@ -53,7 +53,7 @@ jQuery(window).ready(function() {
 			jQuery(this).attr('href', '#'+scrollname); 
 		
 		//console.log(scrollid);
-		jQuery(this).click(function() {
+		jQuery(this).on('click',function() {
 			//e.preventDefault();
 			jQuery(this).attr('data-scrollid', scrollid); 
 			
@@ -73,7 +73,7 @@ jQuery(window).ready(function() {
 		var getClass = jQuery.grep(this.className.split(" "), function(v, i){if( v.indexOf('optimizer_front_') === 0){ return v.indexOf('optimizer_front_') ===0; }else{ return v.indexOf('ast_') ===0; } }).join();
 
 		if(jQuery('#'+getClass).length){
-			jQuery('#topmenu ul .'+getClass+' a, #topbar_menu ul .'+getClass+' a, #footer_menu ul .'+getClass+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
+			jQuery('#topmenu ul .'+getClass+' a, #topbar_menu ul .'+getClass+' a, #footer_menu ul .'+getClass+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
 
 	var menucount = jQuery('#topmenu ul>li').length;
 	var onemenucount = jQuery('#topmenu ul>li[class^="optimizer_front_"]').length;
@@ -190,7 +190,7 @@ jQuery(window).ready(function() {
 			jQuery(".to_top").fadeOut('fast');
 		}
 	});
-	jQuery(".to_top").click(function() {
+	jQuery(".to_top").on('click',function() {
 	  jQuery("html, body").animate({ scrollTop: 0 }, "slow");
 	  return false;
 	});
@@ -207,19 +207,20 @@ jQuery(window).ready(function() {
     });
 
 	//STICKY SINGLE SHARE LEFT ICONS
-	jQuery(".share_pos_left").stick_in_parent();
+	//jQuery(".share_pos_left").stick_in_parent();
 	//Share Buttons move after:
 	jQuery('.share_foot.share_pos_after').appendTo(".single_post_content");
 
 	//STATIC SLIDER IMAGE FIXED
 	jQuery('.stat_has_img').waitForImages(function() {
 		var statimg = jQuery(".stat_has_img .stat_bg_img").attr('src');
+      var statimgAlt = jQuery(".stat_has_img .stat_bg_img").attr('alt');
 		var body_size = jQuery('.stat_has_img .stat_content_inner .center').height() + 120;
 		var statimgheight = jQuery(".stat_has_img .stat_bg_img").height() + jQuery(".header").height();
 		if(body_size > statimgheight){var statimgheight = body_size + jQuery(".header").height();}
 		var hheight = jQuery(".header").height();
 		
-		jQuery("body.home").prepend('<div class="stat_bg" style="height:'+statimgheight+'px"><img src="'+statimg+'" /></div><div class="stat_bg_overlay overlay_off" style="height:'+statimgheight+'px" />');
+		jQuery("body.home").prepend('<div class="stat_bg" style="height:'+statimgheight+'px"><img src="'+statimg+'" alt="'+statimgAlt+'" /></div><div class="stat_bg_overlay overlay_off" style="height:'+statimgheight+'px" />');
 		jQuery('#slidera').css({"minHeight":"initial"});
 		jQuery('.home .stat_has_img .stat_bg_img').css('opacity', 0);
 
@@ -303,7 +304,7 @@ if (jQuery(window).width() > 480) {
 	//Mobile Menu
 		var padmenu = jQuery("#simple-menu").html();
 		
-		jQuery("#simple-menu").click(function(e) {
+		jQuery("#simple-menu").on('click',function(e) {
 				e.preventDefaultEvents;
 				e.preventDefault();
 		});
@@ -323,7 +324,7 @@ if (jQuery(window).width() > 480) {
 		jQuery('#topbar-hamburger-menu').sidr({ name: 'sidr-topbar', source: '#topbar_menu', side: 'right'});
 		jQuery(".sidr").prepend("<div class='pad_menutitle'><i class='fa fa-bars'></i><span><i class='fa-times'></i></span></div>");
 		
-		jQuery(".pad_menutitle span").click(function() {
+		jQuery(".pad_menutitle span").on('click',function() {
 			jQuery.sidr('close', 'sidr-main');
 			jQuery.sidr('close', 'sidr-topbar');
 			preventDefaultEvents: true;
@@ -337,11 +338,11 @@ if (jQuery(window).width() > 480) {
 		var getClasso = getClassrawo.replace("sidr-class-", "");
 
 		if(jQuery('#'+getClass).length){
-			jQuery('.sidr-class-menu .'+getClassraw+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
+			jQuery('.sidr-class-menu .'+getClassraw+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
 		}
 		//For Other optimizer widgets
 		if(jQuery('#'+getClasso).length){
-			jQuery('.sidr-class-menu .'+getClassrawo+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClasso).offset().top -100}, 'slow'); });
+			jQuery('.sidr-class-menu .'+getClassrawo+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClasso).offset().top -100}, 'slow'); });
 		}
 		
 	});	
@@ -404,7 +405,7 @@ if (jQuery(window).width() < 480) {
         jQuery('.home_testi .looper').on('shown', function(e){
             jQuery('.looper-nav > li', this).removeClass('active').eq(e.relatedIndex).addClass('active');
         });
-	jQuery('.testi_col3 ul.looper-inner li').matchHeight({ property: 'min-height', byRow: 'height'});	
+	//jQuery('.testi_col3 ul.looper-inner li').matchHeight({ property: 'min-height', byRow: 'height'});	
 	
 	
 	//HEADER SWITCH
@@ -460,11 +461,6 @@ if (jQuery(window).width() < 480) {
 	//Subscribe2
 	jQuery('.ast_subs_form').has("#s2email").addClass('ast_subscribe2');
 	
-
-
-	//Center Call to Action Button
-	jQuery('.cta_button_right .home_action_right').flexVerticalCenter({ cssAttribute: 'padding-top', parentSelector: '.cta_button_right' });
-	jQuery('.cta_button_left .home_action_right').flexVerticalCenter({ cssAttribute: 'padding-top', parentSelector: '.cta_button_left' });
 
 	//Next-Previous Post Image Check
 	jQuery(".nav-box.ast-prev, .nav-box.ast-next").not(":has(img)").addClass('navbox-noimg');
@@ -579,7 +575,7 @@ if(!document.querySelector('body.customizer-prev')){
       }
     }
    
-   jQuery(window).ready(function() {
+   jQuery(function() {
       allWidgetAnimTargets.forEach(function(elm){
          elm.target.waypoint({  handler: function(direction) {   elm.target.addClass(elm.animation);  },   offset: '50%'   });
       });

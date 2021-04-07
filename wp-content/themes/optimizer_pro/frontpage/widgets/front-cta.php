@@ -63,7 +63,7 @@ class optimizer_front_Cta extends WP_Widget {
 			echo '<span class="so_widget_id" data-panel-id="'.$this->id.'"></span>';
 			if(is_customize_preview()) echo '<span class="widgetname">'.$this->name.'</span>';
 		
-		echo '<div class="home_action cta_'.$buttonalign.'"><div class="center">';
+		echo '<div class="home_action cta_'.$buttonalign.'"><div class="center"><div class="home_action_cta_wrap">';
 			//Make inline editable
 			if(is_customize_preview()){ $id= $this->id; $controlid = 'data-optionid="widget-'.$id.'-content"';}else{ $controlid = '';}
 			
@@ -74,7 +74,7 @@ class optimizer_front_Cta extends WP_Widget {
 			echo '<div class="home_action_right"><div class="home_action_button_wrap"><div class="home_action_button '.$buttonstyle.'"><a '.$buttonlink.'>'.do_shortcode(strip_tags($buttontxt)).'</a></div></div></div>';
 		}
 		
-		echo '</div></div>';
+		echo '</div></div></div>';
 
 
 		//Stylesheet-loaded in Customizer Only.
@@ -264,9 +264,11 @@ class optimizer_front_Cta extends WP_Widget {
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
       
       $widget_style = '#'.$id.' .home_action{ ' . $ctabgcolor . '' . $ctabgimg . ''.$ctatxtcolor. $font_size.$font_family.'}';   
       $widget_style .= '#'.$id.' .home_action_button a{ ' . $buttontxtcolor . $title_size. $title_family.'}';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= '#'.$id.' .home_action_button.button_hollow{ ' . $hollhowborder . '}';
       $widget_style .= '#'.$id.' .button_flat, #'.$id.' .button_rounded{' . $buttontxtcolor . '' . $buttonbgcolor . ' ' . $roundedborder . '}';  
       $widget_style .= '@media screen and (min-width: 480px){#'.$id.' .home_action{'.$marginPadding[0].$marginPadding[1].'} } ';

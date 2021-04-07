@@ -123,7 +123,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block1img) ){
 											if(!empty($block1link)){ $link1start = '<a href="'.esc_url($block1link).'">'; $link1end ='</a>';}else{ $link1start = ''; $link1end ='';}
-											echo '<div class="block_img">'.$link1start.'<img '.optimizer_image_alt( $block1img ).' src="'.$block1img.'" '.optimizer_image_attr( esc_url($block1img) ).' />'.$link1end.'</div>';
+											echo '<div class="block_img">'.$link1start.'<img alt="'.($block1title ? esc_attr($block1title) : 'Block 1').'" src="'.$block1img.'" '.optimizer_image_attr( esc_url($block1img) ).' />'.$link1end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -151,7 +151,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block2img) ){
 											if(!empty($block2link)){ $link2start = '<a href="'.esc_url($block2link).'">'; $link2end ='</a>';}else{ $link2start = ''; $link2end ='';}
-											echo '<div class="block_img">'.$link2start.'<img '.optimizer_image_alt( $block2img ).' src="'.$block2img.'" '.optimizer_image_attr( esc_url($block2img) ).' />'.$link2end.'</div>';
+											echo '<div class="block_img">'.$link2start.'<img alt="'.($block2title ? esc_attr($block1title) : 'Block 2').'" src="'.$block2img.'" '.optimizer_image_attr( esc_url($block2img) ).' />'.$link2end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -179,7 +179,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block3img) ){
 											if(!empty($block3link)){ $link3start = '<a href="'.esc_url($block3link).'">'; $link3end ='</a>';}else{ $link3start = ''; $link3end ='';}
-											echo '<div class="block_img">'.$link3start.'<img '.optimizer_image_alt( $block3img ).' src="'.$block3img.'" '.optimizer_image_attr( esc_url($block3img) ).' />'.$link3end.'</div>';
+											echo '<div class="block_img">'.$link3start.'<img alt="'.($block3title ? esc_attr($block3title) : 'Block 3').'"  src="'.$block3img.'" '.optimizer_image_attr( esc_url($block3img) ).' />'.$link3end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -207,7 +207,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block4img) ){
 											if(!empty($block4link)){ $link4start = '<a href="'.esc_url($block4link).'">'; $link4end ='</a>';}else{ $link4start = ''; $link4end ='';}
-											echo '<div class="block_img">'.$link4start.'<img '.optimizer_image_alt( $block4img ).' src="'.$block4img.'" '.optimizer_image_attr( esc_url($block4img) ).' />'.$link4end.'</div>';
+											echo '<div class="block_img">'.$link4start.'<img alt="'.($block4title ? esc_attr($block4title) : 'Block 4').'"  src="'.$block4img.'" '.optimizer_image_attr( esc_url($block4img) ).' />'.$link4end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -235,7 +235,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block5img) || is_customize_preview() ){
 											if(!empty($block5link)){ $link5start = '<a href="'.esc_url($block5link).'">'; $link5end ='</a>';}else{ $link5start = ''; $link5end ='';}
-											echo '<div class="block_img">'.$link5start.'<img '.optimizer_image_alt( $block5img ).' src="'.$block5img.'" '.optimizer_image_attr( esc_url($block5img) ).' />'.$link5end.'</div>';
+											echo '<div class="block_img">'.$link5start.'<img alt="'.($block5title ? esc_attr($block5title) : 'Block 1').'"  src="'.$block5img.'" '.optimizer_image_attr( esc_url($block5img) ).' />'.$link5end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -263,7 +263,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block6img) ){
 											if(!empty($block6link)){ $link6start = '<a href="'.esc_url($block6link).'">'; $link6end ='</a>';}else{ $link6start = ''; $link6end ='';}
-											echo '<div class="block_img">'.$link6start.'<img '.optimizer_image_alt( $block6img ).' src="'.$block6img.'" '.optimizer_image_attr( esc_url($block6img) ).' />'.$link6end.'</div>';
+											echo '<div class="block_img">'.$link6start.'<img alt="'.($block6title ? esc_attr($block6title) : 'Block 1').'"  src="'.$block6img.'" '.optimizer_image_attr( esc_url($block6img) ).' />'.$link6end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -808,6 +808,7 @@ class optimizer_front_Blocks extends WP_Widget {
       $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
       $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
 
       if ( ! empty( $instance['blocksbgcolor'] ) ) {	$blocksbgcolor = 'background-color: ' . $instance['blocksbgcolor'] . '; ';}
@@ -829,7 +830,8 @@ class optimizer_front_Blocks extends WP_Widget {
       $widget_style = '#'.$id.'{ ' . $font_size. $font_family.'}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .block_header{' . $title_size . $title_family. '}' :'';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
-      
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
+
       $widget_style .= '#'.$id.' .midrow{ ' . $blocksbgcolor . '' . $blocksbgimg . '}';
       $widget_style .= '#'.$id.' .midrow h3{color: ' . $blockstitlecolor . '}';
       $widget_style .= '#'.$id.' .midrow, #'.$id.' .midrow a{' . $blockstxtcolor . '}';

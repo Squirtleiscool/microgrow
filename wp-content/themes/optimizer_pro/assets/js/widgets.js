@@ -1,12 +1,12 @@
 // JavaScript Document
 
-jQuery(document).ready(function(){
+jQuery(function() {
 
 	//Customize Page-------------
 	jQuery('body.post-type-page .wp-editor-tabs').append('<a id="customize_page_btn">Customize</a>');
 
 	//console.log(objectL10n.pageid);
-	jQuery('body.post-type-page .wp-editor-tabs a, body.post-type-page .wp-editor-tabs button').click(function(){ 
+	jQuery('body.post-type-page .wp-editor-tabs a, body.post-type-page .wp-editor-tabs button').on('click',function(){ 
 			if(jQuery(this).attr('id') == 'customize_page_btn'){
 				jQuery('#post-body-content').addClass('active_customize');	
 			}else{
@@ -20,7 +20,23 @@ jQuery(document).ready(function(){
 	}
 	
 	//-----------------------------------		
-
+   if(window.optimizer_widgetized_pages && window.optimizer_widgetized_pages.length > 0){
+      jQuery("#widgets-right .widgets-holder-wrap div[id^='optimizer_']").each(function(){
+            var sidebarID = jQuery(this).attr('id');
+            var sidebarPageURL = ''; var pageTitle = '';
+            if(sidebarID){
+               optimizer_widgetized_pages.forEach( function(page) {
+                  if(page.sidebar === sidebarID){
+                     sidebarPageURL = page.url;
+                     pageTitle = page.title;
+                  }
+               });
+            }
+            if(sidebarPageURL){
+               jQuery(this).find('.sidebar-name h2').append('<a class="optimizer_sidebar_page_link" target="_blank" href="'+sidebarPageURL+'" title="Open Page \''+pageTitle+'\'"><i class="fa fa-external-link" /></a>');
+            }
+      })
+   }
 });
 
 
@@ -108,7 +124,7 @@ jQuery(document).on('panelsopen', function(e) {
 	
 					$( document ).on( 'widget-added widget-updated', onFormUpdate );
 	
-					$( document ).ready( function() {
+					$(function() {
 						$( '#widgets-right .widget:has(.color-picker), .so-panels-dialog-wrapper .so-content .color-picker' ).each( function () {
 							initColorPicker( $( this ) );
 						} );
@@ -145,8 +161,8 @@ jQuery(document).on('panelsopen', function(e) {
          });
 
 
-jQuery(document).ready(function($) {
-    $(".meta_nav a").click(function(event) {
+jQuery(function($) {
+    $(".meta_nav a").on('click',function(event) {
         event.preventDefault();
         $(this).parent().addClass("tabcurrent");
         $(this).parent().siblings().removeClass("tabcurrent");
@@ -171,7 +187,7 @@ jQuery( window ).on( 'load widget-added widget-updated', function () {
 
 	//Posts Widget Category Select
 	jQuery('.widget_post_type_select').each(function(index, element) {
-			jQuery(this).find('select').change(function () {
+			jQuery(this).find('select').on('change', function () {
 				if (jQuery(this).val() == 'post') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.post_cat_select').addClass('post_type_selected');		}
 				if (jQuery(this).val() == 'page') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.post_page_select').addClass('post_type_selected');		}
 				if (jQuery(this).val() == 'product') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.product_cat_select').addClass('post_type_selected');	}
@@ -379,7 +395,7 @@ jQuery(window).on( 'load', function() {
 
 });
 
-jQuery(document).ready(function() {
+jQuery(function() {
 	//CountDown Widget
     function runDatepicker() {
         var found = jQuery( '#widgets-right .ast_date' );
@@ -518,7 +534,7 @@ WPEditorWidget = {
 };
 
 /*-----------------------------------------------------FONTAWESOME----------------------------------------------------------*/
-jQuery(document).ready(function() {
+jQuery(function() {
 	//jQuery(".layer-menu-icon .icon_added").after("");
 	jQuery(document).on("click", ".layer-icon-select>i", function(e) {
 	  jQuery(this).parent().find('.package').remove();

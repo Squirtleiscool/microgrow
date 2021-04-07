@@ -1,5 +1,5 @@
 // Gallery plugin by Layerthemes
-jQuery(window).ready(function() {
+jQuery(function() {
 //======================Gallery=================================//
 //Check if image links to attachment
 jQuery(".optimizergallery .blocks-gallery-item a[href$='.jpg'], .optimizergallery .blocks-gallery-item a[href$='.jpeg'], .optimizergallery .blocks-gallery-item a[href$='.png'], .optimizergallery .blocks-gallery-item a[href$='.gif']").each(function() {

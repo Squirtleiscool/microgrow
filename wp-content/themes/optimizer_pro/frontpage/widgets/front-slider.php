@@ -209,7 +209,7 @@ class optimizer_front_Slider extends WP_Widget {
 							};
 							jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly(options);
 							jQuery("#'.$id.' .slider_widget_carousel").css({"maxHeight":"none"});
-							jQuery(window).resize(function(e) {
+							jQuery(window).on("resize",function(e) {
 								jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly("reload");
 							});
 							
@@ -406,7 +406,7 @@ class optimizer_front_Slider extends WP_Widget {
 		if ( ! empty( $instance['slider_type'] ) ) {$slider_type = $instance['slider_type'];  }else{$slider_type = 'nivo';}
 		
 		if($slider_type == 'accordion'){
-				echo '<script type="text/javascript">jQuery(document).ready(function() {
+				echo '<script type="text/javascript">jQuery(function() {
 						jQuery(".slider_widget_accordion .the_slider_widget").wrapInner(\'<div id="accordion"><ul class=" kwicks horizontal"></ul></div>\');
 						jQuery(".slider_widget_accordion .the_slider_widget img").wrap("<li></li>");
 						
@@ -458,7 +458,7 @@ class optimizer_front_Slider extends WP_Widget {
 						jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly(options);
                   jQuery("#'.$id.' .slider_widget_carousel").css({"maxHeight":"none"});
                   
-						jQuery(window).resize(function(e) {
+						jQuery(window).on("resize",function(e) {
 							jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly("reload");
 						});
 							
@@ -502,11 +502,13 @@ class optimizer_front_Slider extends WP_Widget {
       $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
       $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
       $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
       $widget_style = '#'.$id.', #'.$id.' .slide_desc, #'.$id.' .slide_button_wrap a{ '. $font_size. $font_family.'}';
       $widget_style .= '#'.$id.' .widget_slider_content, #'.$id.' .nivo-html-caption, #'.$id.' .acord_text .slide_desc, #'.$id.' .acord_text .entry-title{' . $content_color. '}';
       $widget_style .= '#'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li, #'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li img, #'.$id.' #accordion, #'.$id.' #slide_acord, #'.$id.' .kwicks li, #'.$id.' .nivoSlider, #'.$id.' .slidee li{' . $slider_height . '}';
       $widget_style .= ($title_size || $title_family) ? '#'.$id.' .entry-title, #'.$id.' .entry-title a{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
       $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
       
       return $widget_style;

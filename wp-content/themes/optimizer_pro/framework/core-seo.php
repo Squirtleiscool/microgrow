@@ -24,6 +24,14 @@ global $optimizer;?>
 
 <?php } ?>
 
+<?php if( is_category() && !empty(category_description())) { ?>
+   <meta name="description" content="<?php echo trim(esc_attr(strip_tags(category_description())));?>">
+<?php } ?>
+
+<?php if( is_tag() && !empty(tag_description()) ) { ?>
+   <meta name="description" content="<?php echo trim(esc_attr(strip_tags(tag_description())));?>">
+<?php } ?>
+
 <meta property="og:title" content="<?php if( is_front_page() ) { echo bloginfo('name');  }else{ echo the_title_attribute();} ?>"/>
 <meta property="og:type" content="<?php if( is_singular('post') ) { echo 'article'; } elseif( is_singular('product') ){ echo 'product'; }else{ echo 'website';}?>"/>
 <meta property="og:url" content="<?php if( is_page() || is_single() ) { echo the_permalink();  }else{ echo home_url();} ?>" />

@@ -69,11 +69,19 @@ function optimizer_body_class( $classes ) {
 		$classes[] = 'customizer-prev';
 	}
 	if ( is_singular()){
-		global $post;
+      global $post; 
+      global $wp_query; $postid = $wp_query->post->ID; 
+      $custom_calsses = get_post_meta( $postid, 'custom_classes', true); 
+      $custom_calsses = $custom_calsses ? explode(',', $custom_calsses) : false;
 		if (optimizer_empty_content($post->post_content)) {
 			$classes[] = 'has_no_content';
 		}
 
+      if($custom_calsses && is_array($custom_calsses) && count($custom_calsses) > 0){
+         foreach ($custom_calsses as $key => $class) {
+            $classes[] = $class;
+         }
+      }
 	}
 	
 	if ( is_single()){
@@ -92,9 +100,13 @@ function optimizer_body_class( $classes ) {
 			$classes[] = 'page_header_transparent';
 		}
 		
-	$page_header_hide = get_post_meta( $postid, 'hide_header', true); 
+	   $page_header_menu_hide = get_post_meta( $postid, 'hide_header_menu', true); 
+      $page_header_hide = get_post_meta( $postid, 'hide_header', true); 
 		if(!empty($page_header_hide)){
 			$classes[] = 'hide_header';
+		}
+      if(!empty($page_header_menu_hide)){
+			$classes[] = 'hide_header_menu';
 		}
 	}
 	//Woocommerce Classes
@@ -460,7 +472,7 @@ function optimizer_gallery_control() {
 
   <script>
 
-    jQuery(document).ready(function(){
+   jQuery(function() {
 
       // add your shortcode attribute and its default value to the
       // gallery settings list; $.extend should work as well...

@@ -7,7 +7,7 @@ function optimizer_css_js() {
 	$theme_data = wp_get_theme();
 	wp_enqueue_style( 'optimizer-style', get_stylesheet_uri());
 	wp_enqueue_style( 'optimizer-style-core', get_template_directory_uri().'/style_core.css', 'style_core', $theme_data->get( 'Version' ));
-	wp_enqueue_style('icons',get_template_directory_uri().'/assets/fonts/font-awesome.css', 'font_awesome', $theme_data->get( 'Version' ));
+	wp_enqueue_style('optimizer-icons',get_template_directory_uri().'/assets/fonts/font-awesome.css', 'font_awesome', $theme_data->get( 'Version' ));
 	//wp_enqueue_style('animated_css',get_template_directory_uri().'/assets/css/animate.min.css', 'optimizer-style', $theme_data->get( 'Version' ));
 	if ( is_rtl() ) {
 		wp_enqueue_style('rtl_css',get_template_directory_uri().'/assets/css/rtl.css', 'rtl_css' );
@@ -160,6 +160,17 @@ if(!function_exists('optimizer_widget_css_enqueue')){
                optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $sidebarID);
             }
          }
+         
+         //If user created a Custom Right Sidebar
+         if(is_singular('page') || is_singular('post')){
+            global $post;
+            $right_sidebarid = get_post_meta($post->ID, "sidebar");
+            $right_sidebarID = isset($right_sidebarid[0]) ? $right_sidebarid[0] : '';
+            if( $right_sidebarID ){
+               optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $right_sidebarID);
+            }
+         }
+
          //Load the Optimizer widget CSS for the Frontpage
          if(is_front_page() || is_home()){
             optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, 'front_sidebar');
@@ -191,7 +202,7 @@ if(!function_exists('optimizer_widget_css_enqueue')){
                }
             }
          }
-         if(is_array($sidebars_widgets['global_widgets']) && count($sidebars_widgets['global_widgets']) > 0){
+         if(isset($sidebars_widgets['global_widgets']) && is_array($sidebars_widgets['global_widgets']) && count($sidebars_widgets['global_widgets']) > 0){
             foreach ($sidebars_widgets['global_widgets'] as $key => $widgetid) {
                $widget_type = strstr( $widgetid, "-", true );
                if(in_array($widget_type, $allOptimizerWidgets) ){
@@ -207,7 +218,7 @@ if(!function_exists('optimizer_widget_css_enqueue')){
 
 }
 
-function optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $sidebarID){
+function optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $sidebarID, $output_only=false){
    $currentWidgets = array();
    $allWidgetCSS = '';
    if(!empty( $sidebars_widgets[$sidebarID] ) ){
@@ -246,10 +257,12 @@ function optimizer_generate_widgetCSS($allOptimizerWidgets, $sidebars_widgets, $
             }
          }
       }
-      if($allWidgetCSS){
+      if($allWidgetCSS && !$output_only){
          wp_add_inline_style( 'optimizer-style-core', $allWidgetCSS );
       }
-
+      if($allWidgetCSS && $output_only){
+         return  $allWidgetCSS;
+      }
    }
 }
 

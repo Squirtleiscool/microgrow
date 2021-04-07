@@ -266,9 +266,10 @@ class optimizer_front_Newsletter extends WP_Widget {
          $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
          $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
          $marginPadding = optimizer_widget_paddingMargin($id, $instance);
-
+         $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
          $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg. $font_size. $font_family.'}';
+         $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
          $widget_style .= '#'.$id.' .optim_newsletter_form .button, #'.$id.' .optim_newsletter_form input[type="button"], #'.$id.' .optim_newsletter_form input[type="submit"], #'.$id.' .optim_newsletter_form button{' . $button_bg . '' . $button_color . '}   ';
          $widget_style .= '#'.$id.' .newsletter_content, #'.$id.' .optim_newsletter_form, #'.$id.' .optim_newsletter_form .ctct-embed-signup >div{' . $content_color . '}';
          $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';

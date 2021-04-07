@@ -495,7 +495,7 @@
 	wp.customize( 'optimizer[link_color_hover]', function( value ) { value.bind( function( newval ) {  
 		$("#optimlink_hover").text(".org_comment a:hover, .thn_post_wrap a:link:hover, .lts_lightbox_content a:link:hover, .lts_lightbox_content a:visited:hover, .athor_desc a:link:hover, .athor_desc a:visited:hover{color:"+newval+"!important}");  } );    
 	} );
-	
+ 
 	//Turn Menu Text &amp; All Headings to Uppercase
 	$("head").append("<style id='txt_upcase_css'></style>"); 
 	wp.customize( 'optimizer[txt_upcase_id]', function( value ) {
@@ -600,7 +600,7 @@
 
 
 /*Customizer----------------------------------------------------------*/
-jQuery(window).ready(function() {
+jQuery(function() {
 if (! jQuery( "body" ).hasClass( "customizer-prev" ) ) { return; }
 jQuery('label.current_edit a').on('click',function() {
    if(!jQuery('#customizer_nav').hasClass('customizer_nav_open')){
@@ -656,7 +656,7 @@ jQuery('.customize_page_setting').on('click',function() {
 			var body_size = jQuery('.stat_has_img .stat_bg_img').height();
 			jQuery('.stat_bg, .stat_bg_overlay').height(body_size + 50);
 		var resizeTimer;
-		jQuery(window).resize(function() {
+		jQuery(window).on('resize',function() {
 		  clearTimeout(resizeTimer);
 		  resizeTimer = setTimeout(function() {
 			var body_size = jQuery('.stat_has_img .stat_bg_img').height();
@@ -998,6 +998,29 @@ jQuery('.page_sidebar_position label, .add_widget_topage').miniTip();
 			
 	});
 });
+
+wp.customize.bind( 'preview-ready', function() {
+   //console.log('PREVIEW READY!!!!');
+   wp.customize.preview.bind( 'OPTIMIZER_CUSTOMIZER_LOAD_URL', function( URL ) {
+      console.info( 'OPTIMIZER_CUSTOMIZER_LOAD_URL:', URL );
+      if(URL){
+         window.location = URL;
+         jQuery('body').append('<a id="optimizer_new_preview_link" href="'+URL+'" style="display:none"></a>');
+         jQuery('#optimizer_new_preview_link').trigger('click');
+      }
+   } );
+   setTimeout(() => {
+      var optim_focus_sidebar = jQuery('#pagesidebar').attr('data-sidebarid')
+      //console.log(optim_focus_sidebar);
+      if(optim_focus_sidebar){
+         wp.customize.preview.send( 'focus-page-sidebar', optim_focus_sidebar );
+      }
+   }, 1000);
+
+
+});
+
+
 jQuery(window).on("load", function() { 
 	jQuery(".short_colpick").colpick({layout:'hex',submit:0,colorScheme:'dark',onChange:function(hsb,hex,rgb,el,bySetColor) {
 	jQuery(el).css('border-color','#'+hex);

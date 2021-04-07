@@ -1,7 +1,7 @@
 jQuery.noConflict();
 var customizerLoaded = false;
 /** Fire up jQuery - let's dance! */
-jQuery(document).ready(function($) {
+jQuery(function($) {
 	
 	//Get customizer settings:
 	//console.log(_wpCustomizeSettings);
@@ -108,6 +108,24 @@ wp.customize.previewer.bind('ready', function() {
 
       jQuery('.button.change-theme').append('<span class="footer_tooltip">'+jQuery(this).attr('title')+'<dl class="tipbottom" /></span>');
       
+      if(window.optimizer_widgetized_pages && window.optimizer_widgetized_pages.length > 0){
+         jQuery("#sub-accordion-panel-widgets li[id^='accordion-section-sidebar-widgets-optimizer_']").each(function(){
+               var sidebarID = jQuery(this).attr('id').replace('accordion-section-sidebar-widgets-', '');
+               var sidebarPageURL = ''; var pageTitle = '';
+               if(sidebarID){
+                  optimizer_widgetized_pages.forEach( function(page) {
+                     if(page.sidebar === sidebarID){
+                        sidebarPageURL = page.url;
+                        pageTitle = page.title;
+                     }
+                  });
+               }
+               if(sidebarPageURL){
+                  jQuery(this).find('.accordion-section-title').append('<a class="optimizer_sidebar_preview_link" onclick="optimizer_preview_link(\''+sidebarPageURL+'\')" title="Open Page \''+pageTitle+'\'"><i class="fa fa-arrow-right" /></a>');
+               }
+         })
+      }
+
       customizerLoaded = true;
    }
 });
@@ -177,7 +195,11 @@ wp.customize.previewer.bind('ready', function() {
 			
 			var thewidgetid = param.replace( /^\D+/g, ''); 
 			var thewidgetname = param.split("-")[0];
-			wp.customize.control( 'widget_'+thewidgetname+'['+thewidgetid+']' ).focus();
+         if(thewidgetname && thewidgetid){
+            if(wp.customize.control( 'widget_'+thewidgetname+'['+thewidgetid+']' ).expanded() === false){
+               wp.customize.control( 'widget_'+thewidgetname+'['+thewidgetid+']' ).focus();
+            }
+         }
 			
 		} );
 	//Wordpress 4.7 - Group All Controls in sections
@@ -217,6 +239,11 @@ wp.customize.previewer.bind('ready', function() {
 	optim_preset_widgets();
 
 });
+
+function optimizer_preview_link(pageURL){
+   console.log(pageURL);
+   wp.customize.previewer.send( 'OPTIMIZER_CUSTOMIZER_LOAD_URL', pageURL );
+}
 
 /*REFACTOR CONTROLS*/
 jQuery(window).on('load', function(){
@@ -536,7 +563,23 @@ jQuery(window).on('load', function(){
 			jQuery('#customize-control-sidebars_widgets-'+param+' .add-new-widget').trigger('click');  
 	} );
 	
-	
+   //Only Open the Selected Sidebar Panel
+   wp.customize.previewer.bind( 'focus-page-sidebar', function(param){
+      //wp.customize.section.each( function ( section ) {  if(section.expanded()) section.collapse();  });
+      wp.customize.section.each( function ( section ) {  
+         if(section.id === 'sidebar-widgets-'+param){ 
+            console.log(section);
+            wp.customize.section( 'sidebar-widgets-'+param ).focus();
+         }else{
+            section.collapse(); 
+         }
+      });
+      // setTimeout(() => {
+      //    wp.customize.section( 'sidebar-widgets-'+param ).focus();
+      // }, 1000);
+      
+	} );
+
 	//Widget Advanced Controls Toggle
 	jQuery(document).on("click", ".widget_advanced.advanced_widget_toggle_off h4", function(e) {
 			jQuery(this).parent().removeClass('advanced_widget_toggle_off').addClass('advanced_widget_toggle_on');
@@ -607,29 +650,24 @@ jQuery(window).on('load', function(){
 
 jQuery( document ).on('load ready', function() {
 
-    /* === Checkbox Multiple Control === */
+      jQuery( document ).on( 'change', '.customize-control-multicheck input[type="checkbox"]', function() {
 
-    jQuery( '.customize-control-multicheck input[type="checkbox"]' ).on(
-        'change',
-        function() {
+         checkbox_values = jQuery( this ).parents( '.customize-control' ).find( 'input[type="checkbox"]:checked' ).map(
+            function() {
+               return this.value;
+            }
+         ).get().join( ',' );
 
-            checkbox_values = jQuery( this ).parents( '.customize-control' ).find( 'input[type="checkbox"]:checked' ).map(
-                function() {
-                    return this.value;
-                }
-            ).get().join( ',' );
+         jQuery( this ).parents( '.customize-control' ).find( 'input[type="hidden"]' ).val( checkbox_values ).trigger( 'change' );
+      });
 
-            jQuery( this ).parents( '.customize-control' ).find( 'input[type="hidden"]' ).val( checkbox_values ).trigger( 'change' );
-        }
-    );
 	/* === RADIO Image Control === */
 	
     // Use buttonset() for radio images.
     jQuery( '.customize-control-radio-image .buttonset' ).buttonset();
 
     // Handles setting the new value in the customizer.
-    jQuery( '.customize-control-radio-image input:radio' ).change(
-        function() {
+    jQuery( '.customize-control-radio-image input:radio' ).on('change', function() {
 
             // Get the name of the setting.
             var setting = jQuery( this ).attr( 'data-customize-setting-link' );
@@ -648,7 +686,7 @@ jQuery( document ).on('load ready', function() {
 } ); // jQuery( document ).on('load ready)
 
 
-jQuery(document).ready(function($) {
+jQuery(function($) {
 	"use strict";
 
 	$(".customize-control-toggle").on("click", ".Switch.On", function(e) {
@@ -759,7 +797,7 @@ jQuery(window).on('load', function(){
 });
 
 /*GENERATE EXPORT*/
-jQuery(document).ready(function($) {
+jQuery(function($) {
 	jQuery( '#generatexport' ).on( "click", function(e) {
 		e.preventDefault();
 		var value = jQuery.ajax({

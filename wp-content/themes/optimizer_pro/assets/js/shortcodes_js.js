@@ -1618,7 +1618,7 @@
 								optimColpick();		
 								//CALL THE COLORPICKER END
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -3145,7 +3145,7 @@
 								});
 
 								//SLIDER IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -4368,7 +4368,7 @@
 								optimColpick();		
 								//CALL THE COLORPICKER END
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -4585,7 +4585,7 @@
 								optimMedia('.mce-lightboxmedia','.mce-lightboxmce');
 								
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
