@@ -32,7 +32,7 @@ class optimizer_front_Map extends WP_Widget {
 		) );
 		$this->alt_option_name = 'optimizer_front_map';
 		add_action('wp_enqueue_scripts', array(&$this, 'optimizer_map_styles'));
-		add_action('wp_enqueue_scripts', array(&$this, 'front_map_enqueue_css'));
+		//add_action('wp_enqueue_scripts', array(&$this, 'front_map_enqueue_css'));
 		add_action('wp_footer', array(&$this,  'optimizer_map_run'), 100);
 	}
 
@@ -207,56 +207,7 @@ class optimizer_front_Map extends WP_Widget {
 		//Stylesheet-loaded in Customizer Only.
 		if(is_customize_preview()){
 			$id= $this->id;
-			$content_bg =	'background-color:#ffffff;';
-			$title_color =	'#333333;';
-			
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-			
-			if ( ! empty( $instance['content_bg'] ) ) {		$content_bg = 'background-color: ' . $instance['content_bg'] . '; ';}
-			if ( ! empty( $instance['content_bgimg'] ) ) {	$content_bgimg = 'background-image: url(' . $instance['content_bgimg'] . ')!important; ';  }
-			if ( ! empty( $instance['title_color'] ) ) {	$title_color = $instance['title_color'] . '; ';}
-			
-			echo '<style>#'.$id.'{ ' . $content_bg . ''.$content_bgimg.'}#'.$id.' .home_title, #'.$id.' .home_subtitle, #'.$id.' span.div_middle{ color:' . $title_color . '}#'.$id.' span.div_left, #'.$id.' span.div_right{background-color:' . $title_color . '}  @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }</style>';
-			
+         echo  '<style>'.$this->generate_css($id, $instance).'</style>';			
 		}
 
 		/* After widget (defined by themes). */
@@ -277,7 +228,7 @@ class optimizer_front_Map extends WP_Widget {
 		
 		/* No need to strip tags */
 		$instance['subtitle'] = wp_kses_post( $new_instance['subtitle']);
-		$instance['contactform'] = strip_tags( $new_instance['contactform']);
+		$instance['contactform'] = isset($new_instance['contactform']) ? strip_tags( $new_instance['contactform']) : '';
 		$instance['contactfield1'] = strip_tags( $new_instance['contactfield1']);
 		$instance['contactstyle'] = strip_tags( $new_instance['contactstyle']);
 		$instance['contactalign'] = strip_tags( $new_instance['contactalign']);
@@ -336,225 +287,233 @@ class optimizer_front_Map extends WP_Widget {
 		);
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
+      <div class="optimizer_widget_tab optimizer_widget_tab--content">
+         <!-- MAP TITLE Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo htmlspecialchars($instance['title'], ENT_QUOTES, "UTF-8"); ?>" type="text" />
+         </p>
+         
+         <!-- MAP Subtitle Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'subtitle' ); ?>"><?php _e('Subtitle:', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'subtitle' ); ?>" name="<?php echo $this->get_field_name( 'subtitle' ); ?>" value="<?php echo esc_attr($instance['subtitle']); ?>" type="hidden" />
+               <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'subtitle' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
+         </p>
+         
+      
+         <a class="widget_contact_title widget_active_contact"><?php _e('Contact Form', 'optimizer') ?></a> <a class="widget_map_title"><?php _e('Map', 'optimizer') ?></a>
+         <!-- Contact Form Field -->
+         <p class="widget_contact_fields">
+            <label for="<?php echo $this->get_field_id( 'contactform' ); ?>"><?php _e('Display Contact Form', 'optimizer') ?>
+               </label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'contactform' ); ?>" name="<?php echo $this->get_field_name( 'contactform' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['contactform'] ) echo 'checked'; ?> /><br>
+               <small><?php _e('Emails will be sent to your WordPress Admin Email Address.', 'optimizer') ?></small>
+         </p>
+         
+         <!-- Contact Form Additional Field -->
+         <p class="widget_contact_fields">
+            <label for="<?php echo $this->get_field_id( 'contactfield1' ); ?>"><?php _e('Contact Form Additional Field', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'contactfield1' ); ?>" name="<?php echo $this->get_field_name( 'contactfield1' ); ?>" value="<?php echo htmlspecialchars($instance['contactfield1'], ENT_QUOTES, "UTF-8"); ?>" type="text" placeholder="<?php _e('Field Name (e.g: Phone Number)','optimizer');?>" />
+         </p> 
 
-		<!-- MAP TITLE Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo htmlspecialchars($instance['title'], ENT_QUOTES, "UTF-8"); ?>" type="text" />
-		</p>
-        
-        <!-- MAP Subtitle Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'subtitle' ); ?>"><?php _e('Subtitle:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'subtitle' ); ?>" name="<?php echo $this->get_field_name( 'subtitle' ); ?>" value="<?php echo esc_attr($instance['subtitle']); ?>" type="hidden" />
-            <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'subtitle' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
-		</p>
-        
+         <!-- Contact Form Style -->
+         <p class="widget_contact_fields">
+            <label for="<?php echo $this->get_field_id( 'contactstyle' ); ?>"><?php _e('Contact Form Style:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'contactstyle' ); ?>" name="<?php echo $this->get_field_name( 'contactstyle' ); ?>" class="widefat">
+               <option value="style1" <?php if ( 'style1' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 1', 'optimizer') ?></option>
+               <option value="style2" <?php if ( 'style2' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 2', 'optimizer') ?></option>
+                  <option value="style3" <?php if ( 'style3' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 3', 'optimizer') ?></option>
+               <option value="style4" <?php if ( 'style4' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 4', 'optimizer') ?></option>
+               <option value="style5" <?php if ( 'style5' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 5', 'optimizer') ?></option>
+               
+            </select>
+         </p>
+         
+         
+         <!-- Contact Form Style -->
+         <p class="widget_contact_fields">
+            <label for="<?php echo $this->get_field_id( 'contactalign' ); ?>"><?php _e('Contact Form Alignment:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'contactalign' ); ?>" name="<?php echo $this->get_field_name( 'contactalign' ); ?>" class="widefat">
+               <option value="left" <?php if ( 'left' == $instance['contactalign'] ) echo 'selected="selected"'; ?>><?php _e('Left', 'optimizer') ?></option>
+               <option value="center" <?php if ( 'center' == $instance['contactalign']) echo 'selected="selected"'; ?>><?php _e('Center', 'optimizer') ?></option>
+                  <option value="right" <?php if ( 'right' == $instance['contactalign'] ) echo 'selected="selected"'; ?>><?php _e('Right', 'optimizer') ?></option>
+            </select>
+         </p>
+         
+         <!-- Contact Form GDPR -->
+         <p class="widget_contact_fields">
+            <label for="<?php echo $this->get_field_id( 'gdpr_policy' ); ?>"><?php _e('GDPR Consent Checkbox', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'gdpr_policy' ); ?>" name="<?php echo $this->get_field_name( 'gdpr_policy' ); ?>" value="<?php echo htmlspecialchars($instance['gdpr_policy'], ENT_QUOTES, "UTF-8"); ?>" type="text" placeholder="<?php _e('I agree with this Site\'s Privacy Policy','optimizer');?>" /><br>
+            <small><?php _e('Clear the field to hide the checkbox in the Contact Form', 'optimizer') ?></small>
+         </p> 
+         
+         <!-- MAP Location Field -->
+         <div class="widget_repeater widget_map_fields" data-widget-id="<?php echo $this->get_field_id( 'locations' ); ?>" data-widget-name="<?php echo $this->get_field_name( 'locations' ); ?>">
+         <?php 
+         $locations = isset( $instance['locations'] ) ? $instance['locations'] : array();
+         $location_num = count($locations);
+         $locations[$location_num+1] = '';
+         $locations_html = array();
+         $location_counter = 0;
 
-        
-        <!-- MAP TITLE DIVIDER Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'divider' ); ?>"><?php _e('Title Divider:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'divider' ); ?>" name="<?php echo $this->get_field_name( 'divider' ); ?>" class="widefat">
-                <option value="underline" <?php if ( 'underline' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Underline', 'optimizer') ?></option>
-                <option value="border-center" <?php if ( 'border-center' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Center)', 'optimizer') ?></option>
-                <option value="border-left" <?php if ( 'border-left' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Left)', 'optimizer') ?></option>
-                <option value="border-right" <?php if ( 'border-right' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Right)', 'optimizer') ?></option>
-                <option value="fa-stop" <?php if ( 'fa-stop' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rhombus', 'optimizer') ?></option>
-				<option value="fa-star" <?php if ( 'fa-star' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Star', 'optimizer') ?></option>
-                <option value="fa-times" <?php if ( 'fa-times' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cross', 'optimizer') ?></option>
-				<option value="fa-bolt" <?php if ( 'fa-bolt' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bolt', 'optimizer') ?></option>
-				<option value="fa-asterisk" <?php if ( 'fa-asterisk' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Asterisk', 'optimizer') ?></option>
-                <option value="fa-chevron-down" <?php if ( 'fa-chevron-down' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Chevron', 'optimizer') ?></option>
-				<option value="fa-heart" <?php if ( 'fa-heart' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Heart', 'optimizer') ?></option>
-				<option value="fa-plus" <?php if ( 'fa-plus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Plus', 'optimizer') ?></option>
-                <option value="fa-bookmark" <?php if ( 'fa-bookmark' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bookmark', 'optimizer') ?></option>
-				<option value="fa-circle-o" <?php if ( 'fa-circle-o' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Circle', 'optimizer') ?></option>
-                <option value="fa-th-large" <?php if ( 'fa-th-large' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blocks', 'optimizer') ?></option>
-				<option value="fa-minus" <?php if ( 'fa-minus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Sides', 'optimizer') ?></option>
-				<option value="fa-cog" <?php if ( 'fa-cog' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cog', 'optimizer') ?></option>
-                <option value="fa-reorder" <?php if ( 'fa-reorder' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blinds', 'optimizer') ?></option>
-                <option value="fa-diamond" <?php if ( 'fa-diamond' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Diamond', 'optimizer') ?></option>
-                <option value="fa-gg" <?php if ( 'fa-gg' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Tetris', 'optimizer') ?></option>
-                <option value="fa-houzz" <?php if ( 'fa-houzz' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Digital', 'optimizer') ?></option>
-                <option value="fa-rocket" <?php if ( 'fa-rocket' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rocket', 'optimizer') ?></option>
-                <option value="no_divider" <?php if ( 'no_divider' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Hide Divider', 'optimizer') ?></option>
-			</select>
-		</p>
-        
-        
-        <a class="widget_contact_title widget_active_contact"><?php _e('Contact Form', 'optimizer') ?></a> <a class="widget_map_title"><?php _e('Map', 'optimizer') ?></a>
-        <!-- Contact Form Field -->
-		<p class="widget_contact_fields">
-			<label for="<?php echo $this->get_field_id( 'contactform' ); ?>"><?php _e('Display Contact Form', 'optimizer') ?>
-            </label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'contactform' ); ?>" name="<?php echo $this->get_field_name( 'contactform' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['contactform'] ) echo 'checked'; ?> /><br>
-            <small><?php _e('Emails will be sent to your WordPress Admin Email Address.', 'optimizer') ?></small>
-		</p>
-        
-		<!-- Contact Form Additional Field -->
-		<p class="widget_contact_fields">
-			<label for="<?php echo $this->get_field_id( 'contactfield1' ); ?>"><?php _e('Contact Form Additional Field', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'contactfield1' ); ?>" name="<?php echo $this->get_field_name( 'contactfield1' ); ?>" value="<?php echo htmlspecialchars($instance['contactfield1'], ENT_QUOTES, "UTF-8"); ?>" type="text" placeholder="<?php _e('Field Name (e.g: Phone Number)','optimizer');?>" />
-		</p> 
+         foreach ( $locations as $location ) 
+         {   
+               if ( isset($location['title']) && isset($location['latlong']) )
+               {
+                  $locations_html[] = sprintf(
+                     '<div class="widget_input_wrap"><span id="%9$s%2$s" class="repeat_handle" onclick="repeatOpen(this.id)">%3$s</span><input type="text" name="%1$s[%2$s][title]" value="%3$s" class="widefat sourc%2$s" placeholder="%6$s"><input type="text" name="%1$s[%2$s][latlong]" value="%4$s" class="widefat sourc%2$s" placeholder="%7$s"><textarea name="%1$s[%2$s][description]" class="widefat sourc%2$s" placeholder="%8$s">%5$s</textarea><span class="remove-field button button-primary button-large">Remove</span></div>',
+                     $this->get_field_name( 'locations' ),
+                     $location_counter,
+                  esc_attr( $location['title'] ),
+                     esc_attr( $location['latlong'] ),
+                  esc_attr( $location['description'] ),
+                  __('Location Title (Required)','optimizer'),
+                  __('Latitude , Longitude (Required)','optimizer'),
+                  __('Location Description','optimizer'),
+                  $this->get_field_id('add_field').'-repeat'
+                  );
+               }
 
-        <!-- Contact Form Style -->
-        <p class="widget_contact_fields">
-			<label for="<?php echo $this->get_field_id( 'contactstyle' ); ?>"><?php _e('Contact Form Style:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'contactstyle' ); ?>" name="<?php echo $this->get_field_name( 'contactstyle' ); ?>" class="widefat">
-				<option value="style1" <?php if ( 'style1' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 1', 'optimizer') ?></option>
-				<option value="style2" <?php if ( 'style2' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 2', 'optimizer') ?></option>
-                <option value="style3" <?php if ( 'style3' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 3', 'optimizer') ?></option>
-				<option value="style4" <?php if ( 'style4' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 4', 'optimizer') ?></option>
-				<option value="style5" <?php if ( 'style5' == $instance['contactstyle'] ) echo 'selected="selected"'; ?>><?php _e('Style 5', 'optimizer') ?></option>
-				
-			</select>
-		</p>
-        
-        
-        <!-- Contact Form Style -->
-        <p class="widget_contact_fields">
-			<label for="<?php echo $this->get_field_id( 'contactalign' ); ?>"><?php _e('Contact Form Alignment:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'contactalign' ); ?>" name="<?php echo $this->get_field_name( 'contactalign' ); ?>" class="widefat">
-				<option value="left" <?php if ( 'left' == $instance['contactalign'] ) echo 'selected="selected"'; ?>><?php _e('Left', 'optimizer') ?></option>
-				<option value="center" <?php if ( 'center' == $instance['contactalign']) echo 'selected="selected"'; ?>><?php _e('Center', 'optimizer') ?></option>
-                <option value="right" <?php if ( 'right' == $instance['contactalign'] ) echo 'selected="selected"'; ?>><?php _e('Right', 'optimizer') ?></option>
-			</select>
-		</p>
-        
-		<!-- Contact Form GDPR -->
-		<p class="widget_contact_fields">
-			<label for="<?php echo $this->get_field_id( 'gdpr_policy' ); ?>"><?php _e('GDPR Consent Checkbox', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'gdpr_policy' ); ?>" name="<?php echo $this->get_field_name( 'gdpr_policy' ); ?>" value="<?php echo htmlspecialchars($instance['gdpr_policy'], ENT_QUOTES, "UTF-8"); ?>" type="text" placeholder="<?php _e('I agree with this Site\'s Privacy Policy','optimizer');?>" /><br>
-			<small><?php _e('Clear the field to hide the checkbox in the Contact Form', 'optimizer') ?></small>
-		</p> 
-        
-        <!-- MAP Location Field -->
-		<div class="widget_repeater widget_map_fields" data-widget-id="<?php echo $this->get_field_id( 'locations' ); ?>" data-widget-name="<?php echo $this->get_field_name( 'locations' ); ?>">
-        <?php 
-        $locations = isset( $instance['locations'] ) ? $instance['locations'] : array();
-        $location_num = count($locations);
-        $locations[$location_num+1] = '';
-        $locations_html = array();
-        $location_counter = 0;
+               $location_counter += 1;
+         }
 
-        foreach ( $locations as $location ) 
-        {   
-            if ( isset($location['title']) && isset($location['latlong']) )
-            {
-                $locations_html[] = sprintf(
-                    '<div class="widget_input_wrap"><span id="%9$s%2$s" class="repeat_handle" onclick="repeatOpen(this.id)">%3$s</span><input type="text" name="%1$s[%2$s][title]" value="%3$s" class="widefat sourc%2$s" placeholder="%6$s"><input type="text" name="%1$s[%2$s][latlong]" value="%4$s" class="widefat sourc%2$s" placeholder="%7$s"><textarea name="%1$s[%2$s][description]" class="widefat sourc%2$s" placeholder="%8$s">%5$s</textarea><span class="remove-field button button-primary button-large">Remove</span></div>',
-                    $this->get_field_name( 'locations' ),
-                    $location_counter,
-					esc_attr( $location['title'] ),
-                    esc_attr( $location['latlong'] ),
-					esc_attr( $location['description'] ),
-					__('Location Title (Required)','optimizer'),
-					__('Latitude , Longitude (Required)','optimizer'),
-					__('Location Description','optimizer'),
-					$this->get_field_id('add_field').'-repeat'
-                );
+         echo '<h4>'.__('Locations','optimizer').'</h4>' . join( $locations_html );
+
+         ?>
+         
+         <script type="text/javascript">
+            var fieldnum = <?php echo json_encode( $location_counter-1 ) ?>;
+            var count = fieldnum;
+            function mapclickFunction(buttondid){
+               //var count = fieldnum;
+               var fieldname = jQuery('#'+buttondid).data('widget-fieldname');
+               var fieldid = jQuery('#'+buttondid).data('widget-fieldid');
+               
+                  jQuery('#'+buttondid).prev().append("<div class='widget_input_wrap'><span id='"+buttondid+"-repeat"+(count+1)+"' class='repeat_handle' onclick='repeatOpen(this.id)'></span><input type='text' name='"+fieldname+"["+(count+1)+"][title]' value='<?php _e( 'Location Name (Required)', 'optimizer' ); ?>' class='widefat' placeholder='<?php _e( 'Location Title (Required)', 'optimizer' ); ?>'><input type='text' name='"+fieldname+"["+(count+1)+"][latlong]' value='53.359286 , -2.040904' class='widefat sourc"+(count+1)+"' placeholder='<?php _e( 'Latitude , Longitude (Required)', 'optimizer' ); ?>'><textarea name='"+fieldname+"["+(count+1)+"][description] class='widefat sourc"+(count+1)+"' placeholder='<?php _e( 'Location Description', 'optimizer' ); ?>'></textarea><span class='remove-field button button-primary button-large'>Remove</span></div>");
+                  count++;
+               
             }
+            
 
-            $location_counter += 1;
-        }
+            jQuery( document ).on( 'load widget-added widget-updated', function () {
+               
+               jQuery(document).on("click", ".remove-field", function(e) {
+                  jQuery(this).parent().remove();
+               });
+            });
 
-        echo '<h4>'.__('Locations','optimizer').'</h4>' . join( $locations_html );
+         </script>
 
-        ?>
+         <span id="<?php echo $this->get_field_id( 'field_clone' );?>" class="repeat_clone_field" data-empty-content="<?php _e('No Map Location Added', 'optimizer') ?>"></span>
+
+         <?php echo '<input onclick="mapclickFunction(this.id)" class="button button-primary button-large" type="button" value="' . __( '+ Add New', 'optimizer' ) . '" id="'.$this->get_field_id('add_field').'" data-widget-fieldname="'.$this->get_field_name('locations').'" data-widget-fieldid="'.$this->get_field_id('locations').'" />';?>
+         </div>
+         
+
+         <!-- MAP Height Field -->
+         <p class="widget_map_fields">
+         <?php _e('If your Maps are not working you will have to <a href="https://optimizerwp.com/documentation/get-google-map-api-key/" target="_blank">Get a Map Api Key</a> and then insert the key in Customize > Miscellaneous > Other > Google Map Api Key.','optimizer');?>
+         </p>
+         
+         <!-- MAP Height Field -->
+         <p class="widget_map_fields">
+            <label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e('Map Height:', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" value="<?php echo $instance['height']; ?>" type="text" />
+         </p>
+         
+      
+         <!-- MAP Content STYLE Field -->
+         <p class="widget_map_fields">
+            <label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _e('Map Style:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat">
+               <option value="map_default" <?php if ( 'map_default' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Default', 'optimizer') ?></option>
+               <option value="map_bluish" <?php if ( 'map_bluish' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Bluish', 'optimizer') ?></option>
+                  <option value="map_angel" <?php if ( 'map_angel' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Angel', 'optimizer') ?></option>
+               <option value="map_pale" <?php if ( 'map_pale' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Pale', 'optimizer') ?></option>
+               <option value="map_gowalla" <?php if ( 'map_gowalla' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Gowalla', 'optimizer') ?></option>
+                  <option value="map_pastel" <?php if ( 'map_pastel' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Pastel', 'optimizer') ?></option>
+               <option value="map_old" <?php if ( 'map_old' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Old', 'optimizer') ?></option>
+               <option value="map_light" <?php if ( 'map_light' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Light', 'optimizer') ?></option>
+                  <option value="map_dark" <?php if ( 'map_dark' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Dark', 'optimizer') ?></option>
+               <option value="map_greyscale" <?php if ( 'map_greyscale' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Greyscale', 'optimizer') ?></option>
+                  
+            </select>
+         </p>
+         
+         <!-- Map Zoom Field -->
+         <p class="widget_map_fields">
+            <label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _e('Map Zoom', 'optimizer') ?></label>
+            <input class="widefat optimizer_range_slider" id="<?php echo $this->get_field_id( 'zoom' ); ?>" name="<?php echo $this->get_field_name( 'zoom' ); ?>" value="<?php echo $instance['zoom']; ?>" type="range" min="2" max="20" />
+         </p>
+
+
+      </div>
         
-        <script type="text/javascript">
-			var fieldnum = <?php echo json_encode( $location_counter-1 ) ?>;
-			var count = fieldnum;
-			function mapclickFunction(buttondid){
-				//var count = fieldnum;
-				var fieldname = jQuery('#'+buttondid).data('widget-fieldname');
-				var fieldid = jQuery('#'+buttondid).data('widget-fieldid');
-				
-					jQuery('#'+buttondid).prev().append("<div class='widget_input_wrap'><span id='"+buttondid+"-repeat"+(count+1)+"' class='repeat_handle' onclick='repeatOpen(this.id)'></span><input type='text' name='"+fieldname+"["+(count+1)+"][title]' value='<?php _e( 'Location Name (Required)', 'optimizer' ); ?>' class='widefat' placeholder='<?php _e( 'Location Title (Required)', 'optimizer' ); ?>'><input type='text' name='"+fieldname+"["+(count+1)+"][latlong]' value='53.359286 , -2.040904' class='widefat sourc"+(count+1)+"' placeholder='<?php _e( 'Latitude , Longitude (Required)', 'optimizer' ); ?>'><textarea name='"+fieldname+"["+(count+1)+"][description] class='widefat sourc"+(count+1)+"' placeholder='<?php _e( 'Location Description', 'optimizer' ); ?>'></textarea><span class='remove-field button button-primary button-large'>Remove</span></div>");
-					count++;
-				
-			}
-			
 
-			jQuery( document ).on( 'ready widget-added widget-updated', function () {
-				
-				jQuery(document).on("click", ".remove-field", function(e) {
-					jQuery(this).parent().remove();
-				});
-			});
+      <div class="optimizer_widget_tab optimizer_widget_tab--style" style="display:none">
 
-        </script>
+         <!-- MAP TITLE DIVIDER Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'divider' ); ?>"><?php _e('Title Divider:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'divider' ); ?>" name="<?php echo $this->get_field_name( 'divider' ); ?>" class="widefat">
+                  <option value="underline" <?php if ( 'underline' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Underline', 'optimizer') ?></option>
+                  <option value="border-center" <?php if ( 'border-center' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Center)', 'optimizer') ?></option>
+                  <option value="border-left" <?php if ( 'border-left' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Left)', 'optimizer') ?></option>
+                  <option value="border-right" <?php if ( 'border-right' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Right)', 'optimizer') ?></option>
+                  <option value="fa-stop" <?php if ( 'fa-stop' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rhombus', 'optimizer') ?></option>
+               <option value="fa-star" <?php if ( 'fa-star' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Star', 'optimizer') ?></option>
+                  <option value="fa-times" <?php if ( 'fa-times' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cross', 'optimizer') ?></option>
+               <option value="fa-bolt" <?php if ( 'fa-bolt' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bolt', 'optimizer') ?></option>
+               <option value="fa-asterisk" <?php if ( 'fa-asterisk' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Asterisk', 'optimizer') ?></option>
+                  <option value="fa-chevron-down" <?php if ( 'fa-chevron-down' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Chevron', 'optimizer') ?></option>
+               <option value="fa-heart" <?php if ( 'fa-heart' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Heart', 'optimizer') ?></option>
+               <option value="fa-plus" <?php if ( 'fa-plus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Plus', 'optimizer') ?></option>
+                  <option value="fa-bookmark" <?php if ( 'fa-bookmark' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bookmark', 'optimizer') ?></option>
+               <option value="fa-circle-o" <?php if ( 'fa-circle-o' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Circle', 'optimizer') ?></option>
+                  <option value="fa-th-large" <?php if ( 'fa-th-large' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blocks', 'optimizer') ?></option>
+               <option value="fa-minus" <?php if ( 'fa-minus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Sides', 'optimizer') ?></option>
+               <option value="fa-cog" <?php if ( 'fa-cog' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cog', 'optimizer') ?></option>
+                  <option value="fa-reorder" <?php if ( 'fa-reorder' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blinds', 'optimizer') ?></option>
+                  <option value="fa-diamond" <?php if ( 'fa-diamond' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Diamond', 'optimizer') ?></option>
+                  <option value="fa-gg" <?php if ( 'fa-gg' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Tetris', 'optimizer') ?></option>
+                  <option value="fa-houzz" <?php if ( 'fa-houzz' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Digital', 'optimizer') ?></option>
+                  <option value="fa-rocket" <?php if ( 'fa-rocket' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rocket', 'optimizer') ?></option>
+                  <option value="no_divider" <?php if ( 'no_divider' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Hide Divider', 'optimizer') ?></option>
+            </select>
+         </p>
+         
+         <!-- Map Title Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'title_color' ); ?>"><?php _e('Title Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'title_color' ); ?>" name="<?php echo $this->get_field_name( 'title_color' ); ?>" value="<?php echo $instance['title_color']; ?>" type="text" />
+         </p>
 
-        <span id="<?php echo $this->get_field_id( 'field_clone' );?>" class="repeat_clone_field" data-empty-content="<?php _e('No Map Location Added', 'optimizer') ?>"></span>
-
-        <?php echo '<input onclick="mapclickFunction(this.id)" class="button button-primary button-large" type="button" value="' . __( '+ Add New', 'optimizer' ) . '" id="'.$this->get_field_id('add_field').'" data-widget-fieldname="'.$this->get_field_name('locations').'" data-widget-fieldid="'.$this->get_field_id('locations').'" />';?>
-        </div>
-        
-
-        <!-- MAP Height Field -->
-		<p class="widget_map_fields">
-        <?php _e('If your Maps are not working you will have to <a href="https://optimizerwp.com/documentation/get-google-map-api-key/" target="_blank">Get a Map Api Key</a> and then insert the key in Customize > Miscellaneous > Other > Google Map Api Key.','optimizer');?>
-		</p>
-        
-        <!-- MAP Height Field -->
-		<p class="widget_map_fields">
-			<label for="<?php echo $this->get_field_id( 'height' ); ?>"><?php _e('Map Height:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'height' ); ?>" name="<?php echo $this->get_field_name( 'height' ); ?>" value="<?php echo $instance['height']; ?>" type="text" />
-		</p>
-        
-   
-        <!-- MAP Content STYLE Field -->
-        <p class="widget_map_fields">
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _e('Map Style:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat">
-				<option value="map_default" <?php if ( 'map_default' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Default', 'optimizer') ?></option>
-				<option value="map_bluish" <?php if ( 'map_bluish' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Bluish', 'optimizer') ?></option>
-                <option value="map_angel" <?php if ( 'map_angel' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Angel', 'optimizer') ?></option>
-				<option value="map_pale" <?php if ( 'map_pale' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Pale', 'optimizer') ?></option>
-				<option value="map_gowalla" <?php if ( 'map_gowalla' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Gowalla', 'optimizer') ?></option>
-                <option value="map_pastel" <?php if ( 'map_pastel' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Pastel', 'optimizer') ?></option>
-				<option value="map_old" <?php if ( 'map_old' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Old', 'optimizer') ?></option>
-				<option value="map_light" <?php if ( 'map_light' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Light', 'optimizer') ?></option>
-                <option value="map_dark" <?php if ( 'map_dark' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Dark', 'optimizer') ?></option>
-				<option value="map_greyscale" <?php if ( 'map_greyscale' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Greyscale', 'optimizer') ?></option>
-                
-			</select>
-		</p>
-        
-        <!-- Map Zoom Field -->
-		<p class="widget_map_fields">
-			<label for="<?php echo $this->get_field_id( 'zoom' ); ?>"><?php _e('Map Zoom', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'zoom' ); ?>" name="<?php echo $this->get_field_name( 'zoom' ); ?>" value="<?php echo $instance['zoom']; ?>" type="range" min="2" max="20" />
-		</p>
-        
-        <hr style="margin: 30px 0;">
-        
-		<!-- Map Title Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title_color' ); ?>"><?php _e('Title &amp; Subtitle Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'title_color' ); ?>" name="<?php echo $this->get_field_name( 'title_color' ); ?>" value="<?php echo $instance['title_color']; ?>" type="text" />
-		</p>
-
-                
-        <!-- Map Background Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_bg' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_bg' ); ?>" name="<?php echo $this->get_field_name( 'content_bg' ); ?>" value="<?php echo $instance['content_bg']; ?>" type="text" />
-		</p>
-        
-		<!-- MAP Background Image Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_bgimg' ); ?>"><?php _e('Background Image', 'optimizer') ?></label>
-			<div class="media-picker-wrap">
-            <?php if(!empty($instance['content_bgimg'])) { ?>
-				<img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['content_bgimg']); ?>" />
-                <i class="fa fa-times media-picker-remove"></i>
-            <?php } ?>
-            <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'content_bgimg' ); ?>" name="<?php echo $this->get_field_name( 'content_bgimg' ); ?>" value="<?php echo esc_url($instance['content_bgimg']); ?>" type="hidden" />
-            <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'content_bgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
+                  
+         <!-- Map Background Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_bg' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_bg' ); ?>" name="<?php echo $this->get_field_name( 'content_bg' ); ?>" value="<?php echo $instance['content_bg']; ?>" type="text" />
+         </p>
+         
+         <!-- MAP Background Image Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_bgimg' ); ?>"><?php _e('Background Image', 'optimizer') ?></label>
+            <div class="media-picker-wrap">
+               <?php if(!empty($instance['content_bgimg'])) { ?>
+               <img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['content_bgimg']); ?>" />
+                  <i class="fa fa-times media-picker-remove"></i>
+               <?php } ?>
+               <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'content_bgimg' ); ?>" name="<?php echo $this->get_field_name( 'content_bgimg' ); ?>" value="<?php echo esc_url($instance['content_bgimg']); ?>" type="hidden" />
+               <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'content_bgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
             </div>
-		</p>
+         </p>
+
+         <!-- Basic Widget Styles -->
+         <?php optimizer_widget_basic_styles($instance, $this);?>
+
+      </div>
+
 
 <?php
 	}
@@ -678,75 +637,44 @@ if (!empty ($locations)){ ?>
 }
 		
 		
-		//ENQUEUE CSS
-        function front_map_enqueue_css() {
+   //ENQUEUE CSS
+   function front_map_enqueue_css() {
 		$settings = $this->get_settings();
-
 		if ( empty( $settings ) ) {
 			return;
 		}
-
 		foreach ( $settings as $instance_id => $instance ) {
 			$id = $this->id_base . '-' . $instance_id;
 			if(!is_customize_preview()){
-			if ( ! is_active_widget( false, $id, $this->id_base ) ) {
-				continue;
+            if ( ! is_active_widget( false, $id, $this->id_base ) ) {
+               continue;
+            }
+			   wp_add_inline_style( 'optimizer-style', $this->generate_css($id, $instance) );
 			}
-			
-			$content_bg =		'background-color:#ffffff;';
-			$title_color =		'#333333;';
-			$content_bgimg = '';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-			
-			
-			if ( ! empty( $instance['content_bg'] ) ) {		$content_bg = 'background-color: ' . $instance['content_bg'] . '; ';}
-			if ( ! empty( $instance['content_bgimg'] ) ) {	$content_bgimg = 'background-image: url(' . $instance['content_bgimg'] . ')!important; ';  }
-			if ( ! empty( $instance['title_color'] ) ) {	$title_color = $instance['title_color'] . '; ';}
-			
-			$widget_style = '#'.$id.'{ ' . $content_bg . ''.$content_bgimg.'}#'.$id.' .home_title, #'.$id.' .home_subtitle, #'.$id.' span.div_middle{ color:' . $title_color . '}#'.$id.' span.div_left, #'.$id.' span.div_right{background-color:' . $title_color . '}  @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }';
-			wp_add_inline_style( 'optimizer-style', $widget_style );
-			
-			}
-        }
-	}
+      }
+   }
+   
+   function generate_css($id, $instance){
+      $content_bg = ! empty( $instance['content_bg']) ? 'background-color: ' . $instance['content_bg'] . '; ': 'background-color:#ffffff;';
+      $content_bgimg = ! empty( $instance['content_bgimg'] ) ? 'background-image: url(' . $instance['content_bgimg'] . '); ': '';  
+      $title_color = ! empty( $instance['title_color'] ) ? $instance['title_color'] . '; ' : '#333333;';
+
+      //Basic Styles
+      $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
+      $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
+      $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
+      $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
+      $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
+
+      $widget_style = '#'.$id.'{ ' . $content_bg . ''.$content_bgimg. $font_size. $font_family.'}';
+      $widget_style .= ($title_size || $title_family) ? '#'.$id.' .home_title{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
+      $widget_style .= '#'.$id.' .home_title, #'.$id.' .home_subtitle, #'.$id.' span.div_middle{ color:' . $title_color . '}';
+      $widget_style .= '#'.$id.' span.div_left, #'.$id.' span.div_right{background-color:' . $title_color . '}';
+      $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
+
+      return $widget_style;
+   }
 }
 ?>

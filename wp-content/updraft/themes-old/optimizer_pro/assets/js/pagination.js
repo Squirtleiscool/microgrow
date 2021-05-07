@@ -5,12 +5,12 @@
 		
 		jQuery('.widget .ast_pagenav').each(function(index, element) {
 			if(jQuery(this).data('query-max') >= 10){
-            	jQuery(this).find('.page-numbers:nth-child(1), .page-numbers:nth-child(2), .page-numbers:nth-child(3), .page-numbers:nth-child(1), .page-numbers:nth-child(3), .page-numbers:nth-last-child(3), .page-numbers:nth-last-child(2), .page-numbers:nth-last-child(1)').addClass('pagi_visible');
+            jQuery(this).find('.page-numbers:nth-child(1), .page-numbers:nth-child(2), .page-numbers:nth-child(3), .page-numbers:nth-child(1), .page-numbers:nth-child(3), .page-numbers:nth-last-child(3), .page-numbers:nth-last-child(2), .page-numbers:nth-last-child(1)').addClass('pagi_visible');
 				jQuery( this ).find('.page-numbers:nth-last-child(3)').before('<span class="pagi_dots">....</span>');
 			}else{
 				jQuery( this ).find('.page-numbers').addClass('pagi_visible');
 			}
-        });
+      });
 		
 		
 		//PAGINATION AJAX BEGIN
@@ -106,15 +106,22 @@
 				"previewbtn": previewbtn,
 				"previewbtn": previewbtn,
 				"nextpage": nextpage,
-				action: "optimizer_posts"
+            action: "optimizer_posts",
+            beforeSend: function(){
+               if(navigation =='infscroll_auto'){
+                  jQuery('div[data-post-navigation="infscroll_auto"] #nav-below').addClass('infscroll--loading');
+               }
+            }
 				}
 		
+         })
+			.fail(function(r,status,jqXHR) {
+				console.log("failed");
+            if(navigation =='infscroll_auto'){
+               jQuery('div[data-post-navigation="infscroll_auto"] #nav-below').removeClass('infscroll--loading');
+            }
 			})
-			 .fail(function(r,status,jqXHR) {
-				 console.log("failed");
-		
-			 })
-			 .done(function(response,status,jqXHR) {
+			.done(function(response,status,jqXHR) {
 				//console.log(navigation);
 				console.log(product_category);
 				//console.log(response);
@@ -141,7 +148,9 @@
 					}
 				}
 				//}
-
+            if(navigation =='infscroll_auto'){
+               jQuery('div[data-post-navigation="infscroll_auto"] #nav-below').removeClass('infscroll--loading');
+            }
 				
 				if(navigation =='oldnew'){
 					jQuery(this).parentsUntil('.optimposts').find('.lay'+layout+'_wrap_ajax').html(newappend);
@@ -211,23 +220,25 @@
 			 //Ajax Loading Animation
 			jQuery(this).parentsUntil('.optimposts').find('.hentry, .type-product').animate({"opacity":"1"});
 		
-		});	
-
-		//Infinite Scroll AUTO
-		jQuery('div[data-post-navigation="infscroll_auto"] #nav-below').each(function(index, element) {
-				jQuery(this).find('a').html('<i class="fa fa-circle-o-notch fa-spin"></i> Loading..');
-			jQuery(this).on('inview', function(event, isInView) {
-			  if (isInView) {
-						jQuery(this).find('a').click();
-						var postoucnt = jQuery(this).parentsUntil('.optimposts').find('.hentry').length;
-						if(postoucnt >= jQuery(this).data('infinite-max') ){
-							jQuery(this).addClass('infloaded');
-							jQuery(this).find('a').html('<i class="fa fa-smile-o"></i> Loading Complete');
-						}
-			  }
-			});
-    	});
-
+      });	
+      
+       document.addEventListener("scroll", function(evt){
+         var infnsCrollContainer  = jQuery('div[data-post-navigation="infscroll_auto"] #nav-below');
+         if( infnsCrollContainer ){
+            infnsCrollContainer.each(function(index, element) {
+               if(optimizer_is_in_view(infnsCrollContainer[0]) && !infnsCrollContainer.hasClass('infscroll--loading')){
+                  var postoucnt = jQuery(this).parentsUntil('.optimposts').find('.hentry').length;
+                  if(postoucnt >= jQuery(this).data('infinite-max') ){
+                     jQuery(this).addClass('infloaded');
+                     jQuery(this).find('a').html('<i class="fa fa-smile-o"></i> Loading Complete');
+                  }else{
+                     jQuery(this).find('a').html('<i class="fa fa-circle-o-notch fa-spin"></i> Loading..');
+                     jQuery(this).find('a').click();
+                  }
+               }
+   
+            });
+         }
+      });
 
 	});	
-	

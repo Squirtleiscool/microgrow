@@ -175,17 +175,13 @@ function wp_ajax_query_themes()
 				<div class="theme-screenshot">
 					<img src="<?php echo $theme->screenshot_url ?>" alt="">
 				</div>
-						<div class="theme-id-container">
-				
-					<h2 class="theme-name" id="<?php echo $theme->name ?>-name"><?php echo $theme->name ?></h2>
-				
-
-				<div class="theme-actions">
+				<div class="theme-id-container">
 					
-										<a class="button button-primary" href="<?php echo $theme->install_url ?>" aria-label="Activate bizlite">Install/Activate</a>
-						
+					<h2 class="theme-name" id="<?php echo $theme->name ?>-name"><?php echo $theme->name ?></h2>
+					<div class="theme-actions">
+						<a class="button button-primary" href="<?php echo $theme->install_url ?>" aria-label="Activate bizlite">Install/Activate</a>
+					</div>
 				</div>
-			</div>
 			
 			</div>
 			<?php

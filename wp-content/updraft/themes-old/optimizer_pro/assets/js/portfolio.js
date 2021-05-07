@@ -1,5 +1,5 @@
 // JavaScript Document
-jQuery(window).ready(function() {
+jQuery(function() {
 	
 	jQuery('.widget .portfolio_nav').each(function(index, element) {
 		var wparent =jQuery(this).parent();
@@ -9,14 +9,13 @@ jQuery(window).ready(function() {
 			jQuery(this).addClass('active_port_cat');
 
 			var getClass = jQuery.grep(this.className.split(" "), function(v, i){return v.indexOf('cat-item-') === 0; }).join();
-			jQuery(this).parent().parent().find('.hentry').removeClass('matched_port').fadeOut(400);
-			
+			jQuery(this).parent().parent().find('.hentry').removeClass('matched_port').hide();
 				jQuery(this).parent().parent().find('.hentry').each(function(index, element) {
 					var string = jQuery(this).attr('data-cats');
 					var array = string.split(',');
 
 					if(jQuery.inArray( getClass, array ) !== -1 ){
-						jQuery(this).addClass('matched_port').fadeIn(400);
+						jQuery(this).addClass('matched_port').fadeIn(600);
 					}
 				});
 		});
@@ -147,7 +146,7 @@ jQuery(function() {
 				//console.log(response);
 				var ajaxsource = jQuery('<div>' + response + '</div>');
 
-				if(navigation =='infscroll'){
+				if(navigation ==='infscroll'){
 					var currentpage = jQuery(this).parent().parent().data('infinte-next');
 					jQuery(this).parent().parent().data('infinte-next', currentpage + 1);
 					jQuery('html, body').animate({scrollTop: jQuery(this).offset().top -300}, 'medium');
@@ -163,13 +162,12 @@ jQuery(function() {
 				}
 
 				//LAYOUT 3 MASONRY with Infinite Scroll
-				if(layout == 3 && navigation == 'infscroll' || layout == 4 && navigation == 'infscroll'){
-					var container = jQuery(this).parentsUntil('.optimportfolio').find('.port_layout_'+layout+' .lay1_wrap_ajax');
+				if((layout === 3 ) || (layout === 4 )){
+               var container = jQuery(this).parentsUntil('.optimportfolio').find('.port_layout_'+layout+' .lay1_wrap_ajax');
+               var allPortSelected = jQuery(this).parentsUntil('.optimportfolio').find('.portfolio_nav .portcat_all').hasClass('active_port_cat') ? true : false;
+               console.log(allPortSelected);
 						imagesLoaded( container, function() {
-							container.masonry({
-						  // options
-						  itemSelector: '.hentry'
-						});
+							container.masonry({ itemSelector: allPortSelected ? '.hentry' : '.matched_port' });
 						});
 						jQuery(this).parentsUntil('.optimportfolio').find('.lay1_wrap').css({"height":"auto"});
 

@@ -8,7 +8,7 @@
  * @since  LayerFramework 1.0
  */
 
-jQuery(window).ready(function() {
+ jQuery(function() {
 	//MENU Animation
 	if (jQuery(window).width() > 768) {
 		
@@ -25,11 +25,9 @@ jQuery(window).ready(function() {
 						jQuery(this).removeClass("animated fadeInUp menushow");next();});
 		});
 	
-		jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').hover(function(){
-			jQuery(this).addClass('menu_hover');
-		}, function(){
-			jQuery(this).removeClass('menu_hover');	
-		});
+		jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').on('mouseenter', function(){ jQuery(this).addClass('menu_hover'); });
+      jQuery('#topmenu ul li').not('#topmenu ul li.mega-menu-item, #topmenu ul li ul li').on('mouseleave', function(){ jQuery(this).removeClass('menu_hover');	 });
+      
 	}
 	
 	jQuery('#topmenu li, #topbar_menu li').has("ul").addClass('zn_parent_menu');
@@ -48,13 +46,14 @@ jQuery(window).ready(function() {
 			var scrollidraw = jQuery(this).attr('href'); 
 			var scrollid = scrollidraw.substr(0, scrollidraw.indexOf('='));
 			if(scrollid.indexOf('#') !== -1){
-				scrollid = '#'+scrollid.split("#")[1];
+				//scrollid = '#'+scrollid.split("#")[1];
 				
 			}
 			var scrollname = scrollidraw.substr(scrollidraw.indexOf("=") + 1);
 			jQuery(this).attr('href', '#'+scrollname); 
 		
-		jQuery(this).click(function() {
+		//console.log(scrollid);
+		jQuery(this).on('click',function() {
 			//e.preventDefault();
 			jQuery(this).attr('data-scrollid', scrollid); 
 			
@@ -74,27 +73,27 @@ jQuery(window).ready(function() {
 		var getClass = jQuery.grep(this.className.split(" "), function(v, i){if( v.indexOf('optimizer_front_') === 0){ return v.indexOf('optimizer_front_') ===0; }else{ return v.indexOf('ast_') ===0; } }).join();
 
 		if(jQuery('#'+getClass).length){
-			jQuery('#topmenu ul .'+getClass+' a, #topbar_menu ul .'+getClass+' a, #footer_menu ul .'+getClass+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
+			jQuery('#topmenu ul .'+getClass+' a, #topbar_menu ul .'+getClass+' a, #footer_menu ul .'+getClass+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
 
 	var menucount = jQuery('#topmenu ul>li').length;
 	var onemenucount = jQuery('#topmenu ul>li[class^="optimizer_front_"]').length;
 	if(menucount == onemenucount){jQuery('body').addClass('optimizer_onepager');}
 	
 		if(menucount == onemenucount){
-				var inview = new Waypoint.Inview({
+				new Waypoint.Inview({
 				  element: jQuery('#'+getClass)[0],
 				  enter: function(direction) {  
 				  jQuery('.header ul li').removeClass('current-menu-item onepagemenu_highlight');
 				  jQuery('.header ul li.'+getClass).addClass('current-menu-item onepagemenu_highlight'); 
 				  },
 				});
-			jQuery(window).bind("scroll", function() {
+			jQuery(window).on("scroll", function() {
 				if (jQuery(this).scrollTop() < 300) {
 					jQuery('.header ul li').removeClass('current-menu-item onepagemenu_highlight');
 				}
 			});
 		}else{
-				var inview = new Waypoint.Inview({
+				new Waypoint.Inview({
 				  element: jQuery('#'+getClass)[0],
 				  enter: function(direction) {  jQuery('.header ul li.'+getClass).addClass('current-menu-item onepagemenu_highlight'); },
 				  exited: function(direction) { jQuery('.header ul li.'+getClass).removeClass('current-menu-item onepagemenu_highlight'); }
@@ -104,7 +103,7 @@ jQuery(window).ready(function() {
 		}
 	});
 	//Scroll to the specific widget when clicked from other pages
-	jQuery(window).bind("load", function() {
+	jQuery(window).on("load", function() {
 		if(window.location.hash) {
 			var currenturl = window.location.href;
 
@@ -127,7 +126,7 @@ jQuery(window).ready(function() {
 	var logopos = Math.round(menunum/2);
 	jQuery('.logo_middle #topmenu ul.menu > li:nth-child('+logopos+'), .logo_middle #topmenu .menu>ul>li:nth-child('+logopos+')').after('<div class="logo">'+jQuery('.logo_middle .logo').html()+'</div>');
 	jQuery('.logo_middle, .logo_middle #topmenu .logo').animate({"opacity": "1"});
-	jQuery('.logo_middle #topmenu ul.menu>li:lt('+logopos+')').wrapAll('<div class="logobefore"></div>');
+	jQuery('.logo_middle #topmenu ul.menu>li').slice( 0, logopos ).wrapAll('<div class="logobefore"></div>');
 	jQuery('.logo_middle #topmenu .logo').each(function () { jQuery(this).nextAll('li').wrapAll('<div class="logoafter"/>'); });
 	
 
@@ -146,6 +145,14 @@ jQuery(window).ready(function() {
 			jQuery(this).find('.midrow_block').matchHeight({ property: 'min-height', byRow: 'height'});
 		});
     });
+	
+	//Equal Heights - Blog Page
+	jQuery('.page_blog_wrap .lay4, .page_blog_wrap .lay2').each(function(index, element) {
+		jQuery(this).waitForImages(function() {
+			jQuery(this).find('.hentry').matchHeight({ property: 'min-height', byRow: 'height'});
+		});
+    });
+	
 	//if Blocks image has image link and the image is set as background
 	jQuery('.hasimglink').each(function(index, element) {
 		var blocklink = jQuery(this).find('.block_img a').attr('href');
@@ -176,14 +183,14 @@ jQuery(window).ready(function() {
     });
 	
 	// TO_TOP
-	jQuery(window).bind("scroll", function() {
+	jQuery(window).on("scroll", function() {
 		if (jQuery(this).scrollTop() > 800) {
 			jQuery(".to_top").fadeIn('slow');
 		} else {
 			jQuery(".to_top").fadeOut('fast');
 		}
 	});
-	jQuery(".to_top").click(function() {
+	jQuery(".to_top").on('click',function() {
 	  jQuery("html, body").animate({ scrollTop: 0 }, "slow");
 	  return false;
 	});
@@ -200,19 +207,20 @@ jQuery(window).ready(function() {
     });
 
 	//STICKY SINGLE SHARE LEFT ICONS
-	jQuery(".share_pos_left").stick_in_parent();
+	//jQuery(".share_pos_left").stick_in_parent();
 	//Share Buttons move after:
 	jQuery('.share_foot.share_pos_after').appendTo(".single_post_content");
 
 	//STATIC SLIDER IMAGE FIXED
 	jQuery('.stat_has_img').waitForImages(function() {
 		var statimg = jQuery(".stat_has_img .stat_bg_img").attr('src');
+      var statimgAlt = jQuery(".stat_has_img .stat_bg_img").attr('alt');
 		var body_size = jQuery('.stat_has_img .stat_content_inner .center').height() + 120;
 		var statimgheight = jQuery(".stat_has_img .stat_bg_img").height() + jQuery(".header").height();
 		if(body_size > statimgheight){var statimgheight = body_size + jQuery(".header").height();}
 		var hheight = jQuery(".header").height();
 		
-		jQuery("body.home").prepend('<div class="stat_bg" style="height:'+statimgheight+'px"><img src="'+statimg+'" /></div><div class="stat_bg_overlay overlay_off" style="height:'+statimgheight+'px" />');
+		jQuery("body.home").prepend('<div class="stat_bg" style="height:'+statimgheight+'px"><img src="'+statimg+'" alt="'+statimgAlt+'" /></div><div class="stat_bg_overlay overlay_off" style="height:'+statimgheight+'px" />');
 		jQuery('#slidera').css({"minHeight":"initial"});
 		jQuery('.home .stat_has_img .stat_bg_img').css('opacity', 0);
 
@@ -224,7 +232,7 @@ jQuery(window).ready(function() {
 		overlayoff.waypoint({  handler: function(direction) {   jQuery('.home .stat_bg_overlay').removeClass("overlay_on").addClass("overlay_off");;  },   offset: '-90px'   });
 		
 		//Slider Image Resize Function v0.4.5
-		jQuery(window).bind("resize", function() {
+		jQuery(window).on("resize", function() {
 				var body_size = jQuery('.stat_bg_img').height();
 				jQuery('#stat_img, .stat_bg, .stat_bg img, .stat_bg_overlay').css('height',body_size);
 
@@ -236,7 +244,7 @@ jQuery(window).ready(function() {
 	jQuery('.stat_has_img').waitForImages(function() {
 		if (jQuery(window).width() > 480) {	
 			var resizeTimer;
-			jQuery(window).bind("load resize", function() {
+			jQuery(window).on("load resize", function() {
 			  clearTimeout(resizeTimer);
 			  resizeTimer = setTimeout(function() {
 				var body_size = jQuery('.stat_has_img .stat_content_inner .center').height() + 120;
@@ -248,7 +256,7 @@ jQuery(window).ready(function() {
 
 		
 		
-jQuery(window).bind("load resize", function() {
+jQuery(window).on("load resize", function() {
 	if (jQuery(window).width() <= 480) {	
 		jQuery(".stat_bg_img").css({"opacity":"0"});
 		jQuery('.stat_content_inner').waitForImages(function() { jQuery("#stat_img").height(jQuery(".stat_content_inner").height());  });
@@ -271,58 +279,13 @@ jQuery(window).bind("load resize", function() {
 });
 //WAYPOINT ANIMATIONS
 if (jQuery(window).width() > 480) {	
-	
-
-		jQuery('.home #zn_nivo, .home #accordion').waitForImages(function() {
-			//Header color on scroll
-			
-			var sliderheight = jQuery('.home #zn_nivo, .home #accordion').height();
-
-	var stickyheadwaypoint = jQuery(".home #zn_nivo, .home #accordion");
-	stickyheadwaypoint.waypoint({  handler: function(direction) { jQuery(".is-sticky .header").addClass("headcolor"); },   offset: '-'+sliderheight/2+'px'  });
-	stickyheadwaypoint.waypoint({  handler: function(direction) { jQuery(".is-sticky .header").removeClass("headcolor"); },   offset: '-90px'  });
-			
-		});	
-	  
-	//BLOCKS Animation
-	var blockswaypoint = jQuery(".midrow_blocks .midrow_bloc");
-	blockswaypoint.css({"opacity":"0"});
-	blockswaypoint.waypoint({  handler: function(direction) {   blockswaypoint.addClass('animated bounceIn');  },   offset: '90%'   });
-	  
-	
-	//WELCOME Animation
-	var textwaypoint = jQuery(".welcmblock .text_block_wrap");
-	textwaypoint.css({"opacity":"0"});
-	textwaypoint.waypoint({  handler: function(direction) {   textwaypoint.addClass('animated fadeIn');  },   offset: '90%'   });
-	  
-	//Posts Animation
-	var postswaypoint = jQuery(".home .postsblck .center");
-	postswaypoint.css({"opacity":"0"});
-	postswaypoint.waypoint({  handler: function(direction) {   postswaypoint.addClass('animated fadeInUp');  },   offset: '85%'   });
-
-	//Call to Action
-	var ctawaypoint = jQuery(".home_action_left, .home_action_right");
-	ctawaypoint.waypoint({  handler: function(direction) {   ctawaypoint.addClass('animated fadeIn');  },   offset: '100%'   });
-	
-	//Testimonial
-	var testiwaypoint = jQuery(".home_testi .center");
-	testiwaypoint.css({"opacity":"0"});
-	testiwaypoint.waypoint({  handler: function(direction) {   testiwaypoint.addClass('animated fadeIn');  },   offset: '95%'   });
-
-	//Footer Widgets
-	var footerwaypoint = jQuery(".home #footer .widgets");
-	footerwaypoint.css({"opacity":"0"});
-	footerwaypoint.waypoint({  handler: function(direction) {   footerwaypoint.addClass('animated fadeInUp');  },   offset: '90%'   });
-
-	//MAP
-	var mapwaypoint = jQuery(".ast_map");
-	mapwaypoint.waypoint({  handler: function(direction) {   mapwaypoint.addClass('animated fadeIn');  },   offset: '95%'   });
-	
-	//Clients
-	var clientswaypoint = jQuery(".client_logoimg");
-	clientswaypoint.css({"opacity":"0"});
-	clientswaypoint.waypoint({  handler: function(direction) {   clientswaypoint.addClass('animated fadeInUp');  },   offset: '95%'   });
-	
+	jQuery('.home #zn_nivo, .home #accordion').waitForImages(function() {
+      //Header color on scroll
+      var sliderheight = jQuery('.home #zn_nivo, .home #accordion').height();
+      var stickyheadwaypoint = jQuery(".home #zn_nivo, .home #accordion");
+      stickyheadwaypoint.waypoint({  handler: function(direction) { jQuery(".is-sticky .header").addClass("headcolor"); },   offset: '-'+sliderheight/2+'px'  });
+      stickyheadwaypoint.waypoint({  handler: function(direction) { jQuery(".is-sticky .header").removeClass("headcolor"); },   offset: '-90px'  });
+	});	
 }
 
 //Next Previous post button Link
@@ -341,7 +304,7 @@ if (jQuery(window).width() > 480) {
 	//Mobile Menu
 		var padmenu = jQuery("#simple-menu").html();
 		
-		jQuery("#simple-menu").click(function(e) {
+		jQuery("#simple-menu").on('click',function(e) {
 				e.preventDefaultEvents;
 				e.preventDefault();
 		});
@@ -361,7 +324,7 @@ if (jQuery(window).width() > 480) {
 		jQuery('#topbar-hamburger-menu').sidr({ name: 'sidr-topbar', source: '#topbar_menu', side: 'right'});
 		jQuery(".sidr").prepend("<div class='pad_menutitle'><i class='fa fa-bars'></i><span><i class='fa-times'></i></span></div>");
 		
-		jQuery(".pad_menutitle span").click(function() {
+		jQuery(".pad_menutitle span").on('click',function() {
 			jQuery.sidr('close', 'sidr-main');
 			jQuery.sidr('close', 'sidr-topbar');
 			preventDefaultEvents: true;
@@ -375,11 +338,11 @@ if (jQuery(window).width() > 480) {
 		var getClasso = getClassrawo.replace("sidr-class-", "");
 
 		if(jQuery('#'+getClass).length){
-			jQuery('.sidr-class-menu .'+getClassraw+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
+			jQuery('.sidr-class-menu .'+getClassraw+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClass).offset().top -100}, 'slow'); });
 		}
 		//For Other optimizer widgets
 		if(jQuery('#'+getClasso).length){
-			jQuery('.sidr-class-menu .'+getClassrawo+' a').click(function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClasso).offset().top -100}, 'slow'); });
+			jQuery('.sidr-class-menu .'+getClassrawo+' a').on('click',function(e) {e.preventDefault(); jQuery('html, body').animate({scrollTop: jQuery('#'+getClasso).offset().top -100}, 'slow'); });
 		}
 		
 	});	
@@ -387,7 +350,7 @@ if (jQuery(window).width() > 480) {
 	jQuery('.sidr-class-menu_arrow').on( 'click', function ( e ) {
 			e.preventDefault();  e.stopPropagation();
 			jQuery(this).addClass('sidrsubmenu_on');
-			jQuery(this).parent().parent().find('.sidr-class-sub-menu:eq(0)').slideToggle();
+			jQuery(this).parent().parent().find('.sidr-class-sub-menu').eq(0).slideToggle();
 	});	
 	
 	//If the topmenu is empty remove it
@@ -398,12 +361,16 @@ if (jQuery(window).width() > 480) {
 	}
 	
 	//Dropdown Mobile Menu
-	jQuery("#dropdown-menu").toggle(function(e) {
-		jQuery('#topmenu.mobile_dropdown').css("top", jQuery('.head_inner').outerHeight()).slideDown(300);
-		jQuery("#dropdown-menu i.fa-chevron-down").removeClass('fa-chevron-down').addClass('fa-chevron-up');
-	}, function(){
-		jQuery('#topmenu.mobile_dropdown').slideUp(300);
-		jQuery("#dropdown-menu i.fa-chevron-up").removeClass('fa-chevron-up').addClass('fa-chevron-down');
+	jQuery("#dropdown-menu").on('click',function(e) {
+      if(!jQuery(this).hasClass('mobile_dropdown_on')){
+         jQuery('#topmenu.mobile_dropdown').css("top", jQuery('.head_inner').outerHeight()).slideDown(300);
+         jQuery("#dropdown-menu i.fa-chevron-down").removeClass('fa-chevron-down').addClass('fa-chevron-up');
+         jQuery(this).addClass('mobile_dropdown_on');
+      }else{
+         jQuery('#topmenu.mobile_dropdown').slideUp(300);
+         jQuery("#dropdown-menu i.fa-chevron-up").removeClass('fa-chevron-up').addClass('fa-chevron-down');
+         jQuery(this).removeClass('mobile_dropdown_on');
+      }
 	});
 	
 
@@ -414,7 +381,7 @@ if (jQuery(window).width() < 480) {
 	
 	jQuery('#zn_nivo img, .clients_logo img, .static_gallery img').unveil();
 	
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
 			jQuery("#zn_nivo img, .static_gallery img").trigger("unveil");
 						
 
@@ -438,7 +405,7 @@ if (jQuery(window).width() < 480) {
         jQuery('.home_testi .looper').on('shown', function(e){
             jQuery('.looper-nav > li', this).removeClass('active').eq(e.relatedIndex).addClass('active');
         });
-	jQuery('.testi_col3 ul.looper-inner li').matchHeight({ property: 'min-height', byRow: 'height'});	
+	//jQuery('.testi_col3 ul.looper-inner li').matchHeight({ property: 'min-height', byRow: 'height'});	
 	
 	
 	//HEADER SWITCH
@@ -457,21 +424,22 @@ if (jQuery(window).width() < 480) {
 	
 	//Rearragnge comment form box
 	jQuery(".comm_wrap").insertAfter(".comment-form-comment");
-	jQuery(".comm_wrap input").placeholder();
 	
 	//404 class is not being added in body
 	jQuery('body').has('.error_msg').addClass('error404');
 	
 	//TOP Header Search
 	jQuery('.head_search').each(function() {
-	  jQuery(this).find('i').toggle(function(){
-			jQuery(this).parent().find('form').css({"width":"200px"});
-			console.log('i clicked');  jQuery('.header_s.head_search').removeClass('head_s_on')
-	  },function(){
-			jQuery(this).parent().find('form').css({"width":"0px"});
-			console.log('i clicked');  jQuery('.header_s.head_search').removeClass('head_s_on')
-	  });	
-	});
+      jQuery(this).find('i').on('click',function(){
+         if(!jQuery('.header_s.head_search').hasClass('head_s_on')){
+          jQuery(this).parent().find('form').css({"width":"200px"});
+          jQuery('.header_s.head_search').addClass('head_s_on')
+         }else{
+          jQuery(this).parent().find('form').css({"width":"0px"});
+          jQuery('.header_s.head_search').removeClass('head_s_on');
+         }
+      });	
+   });
 	
 	//Search in Hamburger
 	if (jQuery(window).width() < 961) {  
@@ -494,17 +462,12 @@ if (jQuery(window).width() < 480) {
 	jQuery('.ast_subs_form').has("#s2email").addClass('ast_subscribe2');
 	
 
-
-	//Center Call to Action Button
-	jQuery('.cta_button_right .home_action_right').flexVerticalCenter({ cssAttribute: 'padding-top', parentSelector: '.cta_button_right' });
-	jQuery('.cta_button_left .home_action_right').flexVerticalCenter({ cssAttribute: 'padding-top', parentSelector: '.cta_button_left' });
-
 	//Next-Previous Post Image Check
 	jQuery(".nav-box.ast-prev, .nav-box.ast-next").not(":has(img)").addClass('navbox-noimg');
 	
 	
 	//Make sure the footer always stays to the bottom of the page when the page is short
-	jQuery(window).bind("load", function() {
+	jQuery(window).on("load", function() {
 		var docHeight = jQuery(window).height();
 		var footerHeight = jQuery('#footer').height();
 		var footerTop = jQuery('#footer').position().top + footerHeight;
@@ -526,21 +489,20 @@ if (jQuery(window).width() < 480) {
 		jQuery(this).find('span.price').prependTo(jQuery(this).find('.post_image '));
     });
 	
-	jQuery('.header').on("click", 'li.woocom_cart_icon.menu-item a', function(e) {
-		e.preventDefault();
-		jQuery(this).toggle(function(e) {
-			e.preventDefault();
-			jQuery('#optimizer_minicart_wrap').fadeIn();
-		}, function(){
-			jQuery('#optimizer_minicart_wrap').fadeOut();
-		}).trigger('click');
+	jQuery('.header li.woocom_cart_icon.menu-item a').on("click", function(e) {
+      e.preventDefault();
+      if(!jQuery('#optimizer_minicart_wrap').hasClass('optimizer_minicart_wrap--active')){
+         jQuery('#optimizer_minicart_wrap').addClass('optimizer_minicart_wrap--active').fadeIn();
+      }else{
+         jQuery('#optimizer_minicart_wrap').removeClass('optimizer_minicart_wrap--active').fadeOut();
+      }
 	});
 	
 	//MENU WIDGET & TOPBAR MENU DROPDOWN
 	jQuery('#frontsidebar .widget_nav_menu ul.menu li, #topbar_menu ul li').not('#topbar_menu ul > li.mega-menu-item').hoverIntent( function(){
-		jQuery(this).find('ul:first').fadeIn();
+		jQuery(this).find('ul').first().fadeIn();
 	}, function(){
-		jQuery(this).find('ul:first').fadeOut();
+		jQuery(this).find('ul').first().fadeOut();
 	});
 
 	//Hide the Next Previous Post area when empty
@@ -549,10 +511,12 @@ if (jQuery(window).width() < 480) {
 	//Portfolio Share Buttons
 	jQuery('.portfolio_wrapper .social_buttons').append('<div class="lgn_more"><i class="fa fa-ellipsis-h"></i></div>');
 	jQuery('.portfolio_wrapper .social_buttons .lgn_stmbl, .portfolio_wrapper .social_buttons .lgn_del, .portfolio_wrapper .social_buttons .lgn_digg, .portfolio_wrapper .social_buttons .lgn_email, .portfolio_wrapper .social_buttons .lgn_print').wrapAll('<div class="social_more" />');
-	jQuery('.portfolio_wrapper .lgn_more').toggle(function(e) {
-        jQuery('.portfolio_wrapper .social_more').addClass('social_more_show');
-    }, function(){
-		jQuery('.portfolio_wrapper .social_more').removeClass('social_more_show');
+	jQuery('.portfolio_wrapper .lgn_more').on('click',function(e) {
+      if(!jQuery('.portfolio_wrapper .social_more').hasClass('social_more_show')){
+         jQuery('.portfolio_wrapper .social_more').addClass('social_more_show');
+      }else{
+         jQuery('.portfolio_wrapper .social_more').removeClass('social_more_show');
+      }
 	});
 	
 	//IF iOS, Hide the video slider:
@@ -587,3 +551,33 @@ if (jQuery(window).width() < 480) {
 	jQuery('.single.single_style_header .single_post .postitle, .single.single_style_header .single_post .single_metainfo').appendTo('.single.single_style_header .post_head_content')
 
 });
+
+// var isInViewport = function (elem) {
+//    var rect = elem.getBoundingClientRect();
+//    return (rect.bottom >= 0 && rect.right >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.left <= (window.innerWidth || document.documentElement.clientWidth));
+// };
+
+if(!document.querySelector('body.customizer-prev')){
+   var widgetsWithAnimation = document.querySelectorAll('[data-animation]');
+   var allWidgetAnimTargets = [];
+   for (var i = 0; i < widgetsWithAnimation.length; ++i) {
+      var widgetID = '#'+jQuery(widgetsWithAnimation[i]).attr('id');
+      var animType = 'opti'+jQuery(widgetsWithAnimation[i]).attr('data-animation');
+      var animTarget = 'widget_wrap';
+      if(widgetID.includes('optimizer_front_text')){  animTarget = 'text_block_wrap'; }
+      if(widgetID.includes('optimizer_front_blocks')){  animTarget = 'midrow_wrap'; }
+      if(widgetID.includes('optimizer_front_slider')){  animTarget = 'the_slider_widget '; }
+      
+      if(animTarget && animType){
+         var animTarget = jQuery(widgetID+' .'+animTarget);
+         animTarget.css('opacity', 0);
+         allWidgetAnimTargets.push({target:animTarget, animation: animType});
+      }
+    }
+   
+   jQuery(function() {
+      allWidgetAnimTargets.forEach(function(elm){
+         elm.target.waypoint({  handler: function(direction) {   elm.target.addClass(elm.animation);  },   offset: '50%'   });
+      });
+   });
+}

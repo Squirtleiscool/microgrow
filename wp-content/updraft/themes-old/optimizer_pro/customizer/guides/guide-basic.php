@@ -737,27 +737,29 @@ jQuery('.vid_content > a').click(function() {
 });	
 
 //Video popup buttons
-jQuery('.basic_guide .video_controls i:eq(0)').click(function() {
+jQuery('.basic_guide .video_controls i').eq(0).click(function() {
 	jQuery('.basic_guide').removeClass('vid_maximize').addClass('vid_minimize'); jQuery('.guide_backdrop').fadeOut(200);
 	setTimeout(function(){  jQuery('.basic_guide').removeClass('vid_maximize vid_minimize').addClass('vid_minimized').show();     }, 400);	
 });
 
-jQuery('.basic_guide .video_controls i:eq(1)').click(function() {
+jQuery('.basic_guide .video_controls i').eq(1).click(function() {
 	jQuery('.basic_guide').removeClass('vid_maximize vid_minimized').addClass('vid_minimize').hide(); jQuery('.guide_backdrop').show();
 	setTimeout(function(){  jQuery('.basic_guide').removeClass('vid_minimize vid_minimized').addClass('vid_maximize').show();   }, 200);	
 });
 
-jQuery('.basic_guide .video_controls i:eq(2)').click(function() {
+jQuery('.basic_guide .video_controls i').eq(2).click(function() {
 	jQuery('.basic_guide, .guide_backdrop').removeClass('vid_maximize vid_minimize vid_minimized').fadeOut();
 	tutsplayer.stopVideo();
 });
 
 
-jQuery('.vid_content_trigger').toggle(function() {
-	jQuery('.vid_content').removeClass('content_active');
-	jQuery(this).parent().addClass('content_active');
-},function(){
-	jQuery(this).parent().removeClass('content_active');
+jQuery('.vid_content_trigger').on('click',function() {
+   if(!jQuery(this).parent().hasClass('content_active')){
+      jQuery('.vid_content').removeClass('content_active');
+	   jQuery(this).parent().addClass('content_active');
+   }else{
+      jQuery(this).parent().removeClass('content_active');
+   }
 });
 
 function tuts_initialize(){

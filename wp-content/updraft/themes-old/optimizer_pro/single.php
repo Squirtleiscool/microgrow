@@ -13,10 +13,10 @@
            <!--POST START-->
 				<?php 
 				//NO SIDEBAR LOGIC
-                $nosidebar ='';
-                $hidesidebar = get_post_meta($post->ID, 'hide_sidebar', true);
+            $nosidebar ='';
+            $hidesidebar = get_post_meta($post->ID, 'hide_sidebar', true);
+            //$post_layout = get_post_meta($post->ID, 'optimizer_post_layout', true) === 'full' && true;
 				$sidebar = get_post_meta($post->ID, 'sidebar', true);
-
                 if (!empty( $hidesidebar )){
                         $nosidebar = 'no_sidebar';
                 }else{
@@ -61,27 +61,39 @@
 						<?php do_action('optimizer_after_title'); ?>
                         <!--POST TITLE END-->
                         
-                            <!--POST INFO START-->
-								<?php if (!empty ($optimizer['post_info_id']) || is_customize_preview()) { ?>
+                           <!--POST INFO START-->
+								   <?php if (!empty ($optimizer['post_info_id']) || is_customize_preview()) { ?>
                                 <div class="single_metainfo <?php if (empty($optimizer['post_info_id'])){ echo 'hide_singlemeta';}?>">
+
                                 	<!--DATE-->
-                                    <i class="fa-calendar"></i><a class="comm_date post-date updated"><?php the_time( get_option('date_format') ); ?></a>
+                                    <?php if (!empty($optimizer['hide_post_info_date'])){ ?>
+                                    <i class="fa-calendar"></i><span class="comm_date post-date updated"><?php the_time( get_option('date_format') ); ?></span>
+                                    <?php } ?>
                                     
                                     <!--AUTHOR-->
+                                    <?php if (!empty($optimizer['hide_post_info_author'])){ ?>
                                     <i class="fa-user"></i>
-									<?php global $authordata; ?>
-									<a class="vcard author post-author" href="<?php echo get_author_posts_url( $authordata->ID, $authordata->user_nicename );?>" <?php optimizer_schema_item_type('author'); ?> <?php optimizer_schema_prop('author'); ?> ><span class='fn author' <?php optimizer_schema_prop('name'); ?>><?php echo get_the_author(); ?></span></a>
-									
+									            <?php global $authordata; ?>
+									         <a class="vcard author post-author" href="<?php echo get_author_posts_url( $authordata->ID, $authordata->user_nicename );?>" <?php optimizer_schema_item_type('author'); ?> <?php optimizer_schema_prop('author'); ?> ><span class='fn author' <?php optimizer_schema_prop('name'); ?>><?php echo get_the_author(); ?></span></a>
+                                    <?php } ?>
 
                                     <!--COMMENTS COUNT-->
-                                    <i class="fa-comments-o"></i><?php if (!empty($post->post_password)) { ?>
-                                <?php } else { ?><div class="meta_comm"><?php comments_popup_link( __('0 Comment', 'optimizer'), __('1 Comment', 'optimizer'), __('% Comments', 'optimizer'), '', __('Off' , 'optimizer')); ?></div><?php } ?>
+                                    <?php if (!empty($optimizer['hide_post_info_comment'])){ ?>
+                                    <i class="fa-comments-o"></i>
+                                       <?php if (!empty($post->post_password)) { ?>
+                                       <?php } else { ?><div class="meta_comm"><?php comments_popup_link( __('0 Comment', 'optimizer'), __('1 Comment', 'optimizer'), __('% Comments', 'optimizer'), '', __('Off' , 'optimizer')); ?></div><?php } ?>
+                                    <?php } ?>
+
+
                                 	<!--CATEGORY LIST-->
+                                   <?php if (!empty($optimizer['hide_post_info_cats'])){ ?>
                                   <i class="fa-th-list"></i><div class="catag_list" <?php optimizer_schema_prop('category'); ?>><?php the_category(', '); ?></div>
+                                  <?php } ?>
                                   
                                   <?php do_action('optimizer_after_single_meta'); ?>
+                                  
                                 </div>
-                                <?php } ?>
+                           <?php } ?>
                             <!--POST INFO END-->
                             
                             <!--SOCIAL SHARE POSTS START-->
@@ -164,11 +176,13 @@
 			</div>
 	</div>
             
-            <!--SIDEBAR START--> 
-            <?php $hide_sidebar = get_post_meta($post->ID, 'hide_sidebar', true); if (empty($hide_sidebar )){ ?>
-            	<?php get_sidebar(); ?>
-            <?php }?> 
-            <!--SIDEBAR END--> 
+                <!--SIDEBAR LEFT OR RIGHT--> 
+                <?php /* Sidebar Variables */?>
+                  <?php $hide_sidebar = get_post_meta( $post->ID, 'hide_sidebar', true);  
+                        //$hide_sidebar = get_post_meta($post->ID, 'optimizer_post_layout', true) === 'full' && true;
+                     if(empty($hide_sidebar)){	get_sidebar(); 	}
+                  ?>
+                <!--SIDEBAR LEFT OR RIGHT END--> 
 
 
 

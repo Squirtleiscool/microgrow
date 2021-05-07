@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitbf2d1e8ab3a1950ed7aef886b373c248
+class ComposerStaticInit9b97786baa18a2131b86fc40df508740
 {
     public static $prefixLengthsPsr4 = array (
         'W' => 
@@ -16,15 +16,15 @@ class ComposerStaticInitbf2d1e8ab3a1950ed7aef886b373c248
     public static $prefixDirsPsr4 = array (
         'WebpConverter\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/app',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitbf2d1e8ab3a1950ed7aef886b373c248::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitbf2d1e8ab3a1950ed7aef886b373c248::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9b97786baa18a2131b86fc40df508740::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9b97786baa18a2131b86fc40df508740::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

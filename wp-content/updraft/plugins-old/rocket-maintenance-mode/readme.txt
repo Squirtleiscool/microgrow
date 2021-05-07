@@ -1,10 +1,10 @@
 === Rocket Maintenance Mode & Coming Soon Page ===
-Contributors: WebFactory, UnderConstructionPage, wpreset, googlemapswidget
+Contributors: wpexpertsio
 Tags: maintenance mode, coming soon, coming soon page, maintenance mode page, maintenance, under construction, under construction page
 Requires at least: 3.1
-Requires PHP: 5.0
-Tested up to: 5.2
-Stable tag: 3.92
+Requires PHP: 7.0
+Tested up to: 5.5.3
+Stable tag: 4.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,10 +16,6 @@ Create great looking Maintenance Mode Page or Coming Soon Page that sets up in m
 Maintenance mode or a coming soon page with progress bar and responsive layout. Simply enable the maintenance mode from the plugin settings and in few seconds you can put your site in maintenance mode.
 
 With a progress bar and countdown timer visitors will be informed about the time left till launch and you can collect their emails using built-in MailChimp integration.
-
-If you're in a rush and need <a href="https://comingsoonwp.com/themes/?utm_source=wordpressorg&utm_medium=content&utm_campaign=readme-rocket">100+ perfectly designed themes</a> for your coming soon page have a look at our <a href="https://comingsoonwp.com/?utm_source=wordpressorg&utm_medium=content&utm_campaign=readme-rocket">PRO version</a>.
-
-Increase 20-40% Sales & Interaction in Your Site with <a href="https://wordpress.org/plugins/notificationx/">NotificationX</a>!
 
 **Features**
 
@@ -108,6 +104,21 @@ The subscribe form can be used to collect email addresses of visitors and at the
 
 
 == Changelog ==
+= v4.2 - 2020/11/11 =
+* Updated Freemius SDK to version 2.4.1
+
+= v4.1 - 2020/09/29 =
+* Update Mailchimp API to V3
+* Fixed Freemius menu link
+
+= v4.0 - 2020/09/18 =
+* Added Jquery Conditions
+* Added Freemius SDK, which will help with improving the product in the future. It’s completely opt-in, you can keep it disabled.
+* update Tested upto WordPress 5.5.1
+* Update Tested Upto PHP 7.0
+* Fixed Jquery Errors
+* Fixed Font options
+* Removed Theme, Script and Advance tab form the admin settings.
 
 = v3.92 - 2019/08/07 =
 * NotificationX integration

@@ -141,7 +141,6 @@ div.lts_quote div {display: inline;}
 
 /*Headline Shortcode*/
 .short_preview .lts_headline{ position:relative; font-weight:bold;}
-.short_preview .lts_headline_parent{ }
 .short_preview .lts_headline_type2{ text-align:center;}
 .short_preview .lts_headline_type3{ text-align:right;}
 .short_preview .lts_headline:after{content: "";position: absolute;top: 50%;height: 3px;width: 9999px;display: block;margin-top: -2px;border-top: 1px solid rgba(0, 0, 0, 0.15);border-bottom: 1px solid rgba(0, 0, 0, 0.15);left: 100%;margin-left: 0.5em;}
@@ -227,7 +226,7 @@ body .tabs_capsule .tabs li.active a {border:none;border: 1px solid;}
 .mce-window .lts_blocks_layout7 .lts_block:nth-child(2){width:73%;}
 .mce-window .lts_blocks_layout8 .lts_block:nth-child(1){width:73%;}
 .mce-window .lts_blocks_layout8 .lts_block:nth-child(2){width:24.25%;}
-.mce-window .lts_oneblock{}
+
 .mce-window .lts_twoblocks .lts_block{ margin-right:2%}
 .mce-window .lts_threeblocks .lts_block{ margin-right:1.2%}
 .mce-window .lts_fourblocks .lts_block{margin-right:1%}
@@ -428,10 +427,10 @@ body .tabs_capsule .tabs li.active a {border:none;border: 1px solid;}
 
 /* Direction nav styles (e.g. Next & Prev) */
 .nivo-directionNav, .nivo-directionNav a{-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;-ms-transition:all 0.2s ease-out;-o-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
-.nivoSlider:hover .nivo-directionNav{}
+
 .nivo-directionNav a {position:absolute;top:200px!important;z-index:9;cursor:pointer;}
-.nivo-prevNav {left:10px;width:27px!important; height:53px!important; display:block!important; text-indent:-999999px; background:url('.get_template_directory_uri().'/assets/images/nivo_nav.png) left no-repeat!important;}
-.nivo-nextNav {right:10px;width:27px!important; height:53px!important; display:block; text-indent:-999999px; background:url('.get_template_directory_uri().'/assets/images/nivo_nav.png) right no-repeat!important;}
+.nivo-prevNav {left:10px;width:27px!important; height:53px!important; display:block!important; text-indent:-999999px; background:url(../images/nivo_nav.png) left no-repeat!important;}
+.nivo-nextNav {right:10px;width:27px!important; height:53px!important; display:block; text-indent:-999999px; background:url(../images/nivo_nav.png) right no-repeat!important;}
 .ast_slide_wrap {width: 80%!important; margin:15px auto!important; position:relative!important;}
 .ast_slider {position:relative!important; height:auto!important; width:100%!important; overflow:hidden!important;}
 .nivoSlider {position:relative;width:100%;height:auto;overflow: hidden;}

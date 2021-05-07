@@ -478,9 +478,9 @@ class ast_bio_Widget extends WP_Widget {
 		/* Our variables from the widget settings.  */
 		$title = isset( $instance['title'] ) ? apply_filters('widget_title', $instance['title'] ) : '';
 		$image_uri = isset( $instance['image_uri'] ) ? $instance['image_uri'] : '';
-		$name = $instance['name'];isset( $instance['name'] ) ? $instance['name'] : 'John Doe';
-		$occu = $instance['occu'];	isset( $instance['occu'] ) ? $instance['occu'] : __('Blogger','optimizer');	
-		$bio = $instance['bio'];isset( $instance['bio'] ) ? $instance['bio'] : __('Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.','optimizer');
+		$name =  isset( $instance['name'] ) ? $instance['name'] : 'John Doe';
+		$occu = 	isset( $instance['occu'] ) ? $instance['occu'] : __('Blogger','optimizer');	
+		$bio =  isset( $instance['bio'] ) ? $instance['bio'] : __('Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.','optimizer');
 		
 		$bgcolor = isset( $instance['bgcolor'] ) ? $instance['bgcolor'] : '';
 		$txtcolor = isset( $instance['txtcolor'] ) ? $instance['txtcolor'] : '';
@@ -649,7 +649,9 @@ class ast_bio_Widget extends WP_Widget {
 				
 			$postbgcolor =		'';
 			$titlecolor =		'';
-			$secbgcolor =		'';
+         $secbgcolor =		'';
+         $txtcolor =		'';
+         $bgcolor =		'';
 			
 			if ( ! empty( $instance['bgcolor'] ) ){	$bgcolor = 'background-color: ' . $instance['bgcolor'] . '; ';}
 			if ( ! empty( $instance['txtcolor'] ) ){	$txtcolor = 'color: ' . $instance['txtcolor'] . '; ';}
@@ -661,563 +663,6 @@ class ast_bio_Widget extends WP_Widget {
 		}
 	} //END FOREACH
 }
-
-
-
-
-/* ---------------------------- */
-/* -------- Coundown Widget -------- */
-/* ---------------------------- */
-add_action( 'widgets_init', 'ast_countdown_widgets' );
-
-function optimizer_datepicker(){
-  wp_enqueue_script('jquery-ui-datepicker');
-}
-add_action('admin_enqueue_scripts', 'optimizer_datepicker');
-
-/*
- * Register widget.
- */
-function ast_countdown_widgets() {
-	register_widget( 'ast_countdown_widget' );
-}
-
-/*
- * Widget class.
- */
-class ast_countdown_Widget extends WP_Widget {
-
-	/* ---------------------------- */
-	/* -------- Widget setup -------- */
-	/* ---------------------------- */
-	
-	
-	function __construct() {
-		parent::__construct( 'ast_countdown_widget', __( 'Countdown', 'optimizer' ), array(
-			'classname'   => 'optim_countdown_widget',
-			'description' => __( 'An Optimizer widget to display a Countdown.', 'optimizer' ),
-		) );
-		$this->alt_option_name = 'ast_countdown_widget';
-		add_action('wp_enqueue_scripts', array(&$this, 'front_countdown_enqueue_css'));
-	}
-
-	/* ---------------------------- */
-	/* ------- Display Widget -------- */
-	/* ---------------------------- */
-	
-	function widget( $args, $instance ) {
-		extract( $args );
-
-		/* Our variables from the widget settings. */
-		$title = isset( $instance['title'] ) ? apply_filters('widget_title', $instance['title'] ) : __('Minutes to Midnight','optimizer');
-		$desc = isset( $instance['desc'] ) ? $instance['desc'] : __('Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence.','optimizer');
-		$day = isset( $instance['day'] ) ? $instance['day'] : '11/27/2016';
-		$hour = isset( $instance['hour'] ) ? $instance['hour'] : '00';
-		$minute = isset( $instance['minute'] ) ? $instance['minute'] : '00';
-		$seconds = isset( $instance['seconds'] ) ? $instance['seconds'] : '00';
-		$style = isset( $instance['style'] ) ? $instance['style'] : 'circle_trans';	
-		$title_color = isset( $instance['title_color'] ) ? $instance['title_color'] : '#666E73';
-		$content_color = isset( $instance['content_color'] ) ? $instance['content_color'] : '#666E73';
-		$content_bg = isset( $instance['content_bg'] ) ? $instance['content_bg'] : '#F2F9FD';	
-		$content_bgimg = isset( $instance['content_bgimg'] ) ? $instance['content_bgimg'] : '';	
-
-		/* Before widget (defined by themes). */
-		echo $before_widget;
-		
-		if(is_customize_preview()) echo '<span class="widgetname">'.$this->name.'</span>';
-
-		/* Display a containing div */
- 		if(!empty($content_bgimg)){ $hasbgimg = 'hasbgimg';}else{$hasbgimg = '';}
-		echo '<div class="ast_countdown '.$hasbgimg.'">';
-			if ( $title ){
-				echo $before_title . $title . $after_title;
-			}
-			
-			if ( $desc || is_customize_preview() ) {
-				echo '<div class="ast_count"><span class="countdown_content">'.$desc.' </span></div>';
-			}
-			echo '<ul id="countdown" class="countdown_'.$style.'" data-countdown="'.$day.' '.$hour.':'.$minute.':'.$seconds.'"></ul>';
-
-		echo '</div>';
-
-
-		
-		//Stylesheet-loaded in Customizer Only.
-		if(is_customize_preview()){
-			$id= $this->id;
-			
-			echo '<script>jQuery(window).bind("load", function(){
-					jQuery("#'.$id.'").each(function(index, element) {
-						jQuery(this).find(".ast_countdown ul").countdown(jQuery(this).find(".ast_countdown ul").attr("data-countdown")).on("update.countdown", function(event) {
-					   jQuery(this).html(event.strftime(""
-						+ "<li><span class=\'days\'>%D</span><p class=\'timeRefDays\'>'.__('Days', 'optimizer').'</p></li>"
-						+ "<li><span class=\'hours\'>%H</span><p class=\'timeRefHours\'>'.__('Hours', 'optimizer').'</p></li>"
-						+ "<li><span class=\'minutes\'>%M</span><p class=\'timeRefMinutes\'>'.__('Min', 'optimizer').'</p></li>"
-						+ "<li><span class=\'seconds\'>%S</span><p class=\'timeRefSeconds\'>'.__('Sec', 'optimizer').'</p></li>"));
-						});
-					});
-				});</script>';
-			
-				$content_bg =		'background-color:#F2F9FD;';
-				$title_color =	'color:#666E73;';
-				$content_color =	'color:#666E73;';
-				$content_bgimg =	'';
-				
-				if ( ! empty( $instance['content_bg'] ) ) {$content_bg = 'background-color: ' . $instance['content_bg'] . '!important; ';}
-				if ( ! empty( $instance['content_color'] ) ) {$content_color = 'color: ' . $instance['content_color'] . '!important; ';}
-				if ( ! empty( $instance['title_color'] ) ) {$title_color = 'color: ' . $instance['title_color'] . '!important; ';}
-				if ( ! empty( $instance['content_bgimg'] ) ) {$content_bgimg = 'background-image: url(' . $instance['content_bgimg'] . ')!important; ';}
-				
-				echo '<style>#'.$id.'{ ' . $content_bg . '' . $content_color . ''.$content_bgimg.'}#'.$id.' .widget_wrap{' . $content_color . '}#'.$id.' .widget_wrap .widgettitle{' . $title_color . '}#'.$id.' .widget_wrap .ast_countdown li{color:rgba('.optimizer_hex2rgb($instance['content_color']).', 0.8)!important;}</style>';
-			
-		}
-
-		/* After widget (defined by themes). */
-		echo $after_widget;
-	}
-
-
-	/* ---------------------------- */
-	/* ------- Update Widget -------- */
-	/* ---------------------------- */
-	
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-
-		/* Strip tags for title and name to remove HTML (important for text inputs). */
-        $instance['title'] = strip_tags( $new_instance['title'] );
-        $instance['desc'] = wp_kses_post($new_instance['desc']) ;		
-        $instance['day'] = strip_tags( $new_instance['day'] );
-		$instance['hour'] = strip_tags( $new_instance['hour'] );
-		$instance['minute'] = strip_tags( $new_instance['minute'] );
-		$instance['seconds'] = strip_tags( $new_instance['seconds'] );
-		$instance['style'] = strip_tags( $new_instance['style'] );
-		$instance['title_color'] = optimizer_sanitize_hex($new_instance['title_color']);
-		$instance['content_color'] = optimizer_sanitize_hex($new_instance['content_color']);
-		$instance['content_bg'] = optimizer_sanitize_hex($new_instance['content_bg']);
-		$instance['content_bgimg'] = esc_url_raw($new_instance['content_bgimg']);
-
-		return $instance;
-	}
-	
-	/* ---------------------------- */
-	/* ------- Widget Settings ------- */
-	/* ---------------------------- */
-	
-	/**
-	 * Displays the widget settings controls on the widget panel.
-	 * Make use of the get_field_id() and get_field_name() function
-	 * when creating your form elements. This handles the confusing stuff.
-	 */
-	
-	function form( $instance ) {
-	
-		/* Set up some default widget settings. */
-		$defaults = array(
-		'title' => __('Minutes to Midnight','optimizer'),
-		'desc' => __('Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence.','optimizer'),		
-		'day' => '11/27/2016',
-		'hour' => '00',
-		'minute' => '00',
-		'seconds' => '00',
-		'style' => 'circle_trans',
-		'title_color' => '#666E73',
-		'content_color' => '#666E73',
-		'content_bg' => '#F2F9FD',
-		'content_bgimg' => ''
-		);
-		
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-
-		<!-- Widget Title: Text Input -->
-    <p>
-      <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo $instance['title']; ?>" class="widefat" />
-    </p>
-    
-        <p>
-        <label><?php _e('Description', 'optimizer'); ?></label>
-        <textarea class="widefat" rows="4" cols="20" id="<?php echo $this->get_field_id('desc'); ?>" name="<?php echo $this->get_field_name('desc'); ?>"><?php echo $instance['desc']; ?></textarea>
-        </p>
-        
-        
-    <p>
-    <label><?php _e('Set Countdown Date', 'optimizer'); ?></label>
-        <input style="display:inline;" type="text" class="widefat ast_date" name="<?php echo $this->get_field_name('day'); ?>" id="<?php echo $this->get_field_id('day'); ?>" value="<?php echo $instance['day']; ?>" placeholder="mm/dd/yyyy"></p>
-        
-
-        
-        <p>
-        <label><?php _e('Set Countdown Time', 'optimizer'); ?></label>
-        <input style="display:inline;width:50px;" type="text" size="3" name="<?php echo $this->get_field_name('hour'); ?>" id="<?php echo $this->get_field_id('hour'); ?>" value="<?php echo $instance['hour']; ?>">:
-        <input style="display:inline;width:50px;" type="text" size="3" name="<?php echo $this->get_field_name('minute'); ?>" id="<?php echo $this->get_field_id('minute'); ?>" value="<?php echo $instance['minute']; ?>">:
-        <input style="display:inline;width:50px;" type="text" size="3" name="<?php echo $this->get_field_name('seconds'); ?>" id="<?php echo $this->get_field_id('seconds'); ?>" value="<?php echo $instance['seconds']; ?>">
-        <div>
-        <span style="width:50px; text-align:center; display: inline-block;">Hours</span>
-        <span style="width:50px; text-align:center; margin-right:5px;display: inline-block;">Minutes</span>
-        <span style="width:50px; text-align:center;display: inline-block;">Seconds</span>
-        </div>
-
-
-    </p>
-    
-		<p>
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _e('Coundtown Style:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat">
-				<option value="circle_trans" <?php if ( 'circle_trans' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Circle (Transparent)', 'optimizer') ?></option>
-				<option value="circle_white" <?php if ( 'circle_white' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Circle (White)', 'optimizer') ?></option>
-                <option value="circle_black" <?php if ( 'circle_black' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Circle (Black)', 'optimizer') ?></option>
-                <option value="square_trans" <?php if ( 'square_trans' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Square (Transparent)', 'optimizer') ?></option>
-				<option value="square_white" <?php if ( 'square_white' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Square (White)', 'optimizer') ?></option>
-                <option value="square_black" <?php if ( 'square_black' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Square (Black)', 'optimizer') ?></option>
-				<option value="skewed_trans" <?php if ( 'skewed_trans' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Skewed (Transparent)', 'optimizer') ?></option>
-				<option value="skewed_white" <?php if ( 'skewed_white' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Skewed (White)', 'optimizer') ?></option>
-                <option value="skewed_black" <?php if ( 'skewed_black' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Skewed (Black)', 'optimizer') ?></option>
-				<option value="diamond_trans" <?php if ( 'diamond_trans' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Diamond (Transparent)', 'optimizer') ?></option>
-				<option value="diamond_white" <?php if ( 'diamond_white' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Diamond (White)', 'optimizer') ?></option>
-                <option value="diamond_black" <?php if ( 'diamond_black' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Diamond (Black)', 'optimizer') ?></option>
-			</select>
-		</p>
-        
-		<!-- Countdown Content Title Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title_color' ); ?>"><?php _e('Title Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'title_color' ); ?>" name="<?php echo $this->get_field_name( 'title_color' ); ?>" value="<?php echo $instance['title_color']; ?>" type="text" />
-		</p>
-    
-    
-		<!-- Countdown Content Text Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_color' ); ?>"><?php _e('Text Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_color' ); ?>" name="<?php echo $this->get_field_name( 'content_color' ); ?>" value="<?php echo $instance['content_color']; ?>" type="text" />
-		</p>
-                
-        <!-- Countdown Content Background Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_bg' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_bg' ); ?>" name="<?php echo $this->get_field_name( 'content_bg' ); ?>" value="<?php echo $instance['content_bg']; ?>" type="text" />
-		</p>
-        
-        <!-- Countdown Content Background Image -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_bgimg' ); ?>"><?php _e('Background Image', 'optimizer') ?></label>
-			<div class="media-picker-wrap">
-            <?php if(!empty($instance['content_bgimg'])) { ?>
-				<img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['content_bgimg']); ?>" />
-                <i class="fa fa-times media-picker-remove"></i>
-            <?php } ?>
-            <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'content_bgimg' ); ?>" name="<?php echo $this->get_field_name( 'content_bgimg' ); ?>" value="<?php echo esc_url($instance['content_bgimg']); ?>" type="hidden" />
-            <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'content_bgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
-            </div>
-		</p>
-		
-	<?php
-	}
-
-		//ENQUEUE CSS
-        function front_countdown_enqueue_css() {
-		$settings = $this->get_settings();
-		if(!is_customize_preview()){
-		if ( empty( $settings ) ) {
-			return;
-		}
-
-			foreach ( $settings as $instance_id => $instance ) {
-				$id = $this->id_base . '-' . $instance_id;
-	
-				if ( ! is_active_widget( false, $id, $this->id_base ) ) {
-					continue;
-				}
-				
-				$content_bg =		'background-color:#F2F9FD;';
-				$content_color =	'color:#666E73;';
-				$title_color =	'color:#666E73;';
-				$content_bgimg =	'';
-				
-				if ( ! empty( $instance['content_bg'] ) ) {$content_bg = 'background-color: ' . $instance['content_bg'] . '!important; '; }
-				if ( ! empty( $instance['content_color'] ) ) { $content_color = 'color: ' . $instance['content_color'] . '!important; '; }
-				if ( ! empty( $instance['title_color'] ) ) { $title_color = 'color: ' . $instance['title_color'] . '!important; '; }
-				if ( ! empty( $instance['content_bgimg'] ) ) { $content_bgimg = 'background-image: url(' . $instance['content_bgimg'] . ')!important; '; }
-				if ( ! empty( $instance['content_color'] ) ) {$content_rgba =	$instance['content_color'];}
-				
-				$widget_style = '#'.$id.'{ ' . $content_bg . '' . $content_color . '' . $content_bgimg . '}#'.$id.' .widget_wrap{' . $content_color . '}#'.$id.' .widget_wrap .widgettitle{' . $title_color . '}#'.$id.' .widget_wrap .ast_countdown li{color:rgba('.optimizer_hex2rgb($content_rgba).', 0.8)!important;}';
-				wp_add_inline_style( 'optimizer-style', $widget_style );
-			}
-		}
-	} //END FOREACH
-}
-
-
-/* ---------------------------- */
-/* -------- Social Widget -------- */
-/* ---------------------------- */
-add_action( 'widgets_init', 'ast_scoial_widgets' );
-
-
-/*
- * Register widget.
- */
-function ast_scoial_widgets() {
-	register_widget( 'ast_scoial_widget' );
-}
-
-/*
- * Widget class.
- */
-class ast_scoial_Widget extends WP_Widget {
-
-	/* ---------------------------- */
-	/* -------- Widget setup -------- */
-	/* ---------------------------- */
-
-	
-	function __construct() {
-		parent::__construct( 'ast_scoial_widget', __( 'Social Bookmark', 'optimizer' ), array(
-			'classname'   => 'ast_scoial_widget',
-			'description' => __( 'An Optimizer Social widget to display your Social Follow Buttons.', 'optimizer' ),
-		) );
-		$this->alt_option_name = 'ast_scoial_widget';
-		add_action('wp_enqueue_scripts', array(&$this, 'front_social_enqueue_css'));
-	}
-
-	/* ---------------------------- */
-	/* ------- Display Widget -------- */
-	/* ---------------------------- */
-	
-	function widget( $args, $instance ) {
-		extract( $args );
-
-		/* Our variables from the widget settings.*/
-		$title = isset( $instance['title'] ) ? apply_filters('widget_title', $instance['title'] ) : '';
-		$verb = isset( $instance['verb'] ) ? $instance['verb'] : __('Follow Us On','optimizer');
-		$style = isset( $instance['style'] ) ? $instance['style'] : 'square_text';
-		$icon_color = isset( $instance['icon_color'] ) ? $instance['icon_color'] : '#ffffff';
-		
-		$facebook_uri = isset( $instance['fb_uri'] ) ? esc_url($instance['fb_uri']) : 'https://www.facebook.com/optimizerwp';
-		$twitter_uri = isset( $instance['twt_uri'] ) ? esc_url($instance['twt_uri']) : 'https://twitter.com/optimizerwp';
-		$google_uri = isset( $instance['gplus_uri'] ) ? esc_url($instance['gplus_uri']) :'https://plus.google.com/u/0/b/103483167150562533630/+Layerthemes/posts';
-		$youtube_uri = isset( $instance['ytb_uri'] ) ? esc_url($instance['ytb_uri']) : '';
-		$flickr_uri = isset( $instance['flckr_uri'] ) ? esc_url($instance['flckr_uri']) : '';
-		$linkedin_uri = isset( $instance['lnkdn_uri'] ) ? esc_url($instance['lnkdn_uri']) : '';
-		$pinterest_uri = isset( $instance['pntrst_uri'] ) ? esc_url($instance['pntrst_uri']) : '';
-		$tumblr_uri = isset( $instance['tumblr_uri'] ) ? esc_url($instance['tumblr_uri']) : '';
-		$instagram_uri = isset( $instance['insta_uri'] ) ? esc_url($instance['insta_uri']) : '';
-
-		/* Before widget (defined by themes). */
-		echo $before_widget;
-		
-		if(is_customize_preview()) echo '<span class="widgetname">'.$this->name.'</span>';
-
-		/* Display the widget title if one was input (before and after defined by themes). */
-		if ( $title )
-			echo $before_title . $title . $after_title;
-			
-		
-		if($style == 'square_text' || $style == 'round_text' || $style == 'full_text' ){ $has_text = 'soc_has_text'; }else{ $has_text = ''; }
-		/* Display a containing div */
-		echo '<div class="ast_scoial social_style_'. $style .' '.$has_text.'">';
-		
-		if($icon_color == '#FFFFFF' || $icon_color == '#ffffff'){ $icon_color = ''; }else{ $icon_color = 'style="background-color:'.$instance['icon_color'].'!important;"'; }
-		if( $style == 'simple'){ $icon_color = 'style="color:'.$instance['icon_color'].'!important;"'; }	 
-
-
-		if($facebook_uri){ echo '<a target="_blank" class="ast_wdgt_fb" href="'.$facebook_uri.'" '.$icon_color.'><i class="fa-facebook"></i> <span>'.do_shortcode($verb).' </span></a>'; }
-		
-		if($twitter_uri){echo '<a target="_blank" class="ast_wdgt_twt" href="'.$twitter_uri.'" '.$icon_color.'><i class="fa-twitter"></i> <span>'.do_shortcode($verb).' </span></a>';}
-		
-		if($google_uri){echo '<a target="_blank" class="ast_wdgt_gplus" href="'.$google_uri.'" '.$icon_color.'><i class="fa-google-plus"></i> <span>'.do_shortcode($verb).' </span></a>';}		
-		
-		if($youtube_uri){echo '<a target="_blank" class="ast_wdgt_ytb" href="'.$youtube_uri.'" '.$icon_color.'><i class="fa-youtube-play"></i> <span>'.do_shortcode($verb).' </span></a>';}		
-		
-		if($flickr_uri){echo '<a target="_blank" class="ast_wdgt_flickr" href="'.$flickr_uri.'" '.$icon_color.'><i class="fa-flickr"></i> <span>'.do_shortcode($verb).' </span></a>';}
-		
-		if($linkedin_uri){echo '<a target="_blank" class="ast_wdgt_lnkdn" href="'.$linkedin_uri.'" '.$icon_color.'><i class="fa-linkedin"></i> <span>'.do_shortcode($verb).' </span></a>';}		
-		
-		if($pinterest_uri){echo '<a target="_blank" class="ast_wdgt_pntrst" href="'.$pinterest_uri.'" '.$icon_color.'><i class="fa-pinterest"></i> <span>'.do_shortcode($verb).' </span></a>';	}	
-		
-		if($tumblr_uri){echo '<a target="_blank" class="ast_wdgt_tmblr" href="'.$tumblr_uri.'" '.$icon_color.'><i class="fa-tumblr"></i> <span>'.do_shortcode($verb).' </span></a>';}	
-			
-		if($instagram_uri){echo '<a target="_blank" class="ast_wdgt_insta" href="'.$instagram_uri.'" '.$icon_color.'><i class="fa-instagram"></i> <span>'.do_shortcode($verb).' </span></a>';	}	
-				
-
-		echo '</div>';
-		
-		//Stylesheet-loaded in Customizer Only.
-		if(is_customize_preview()){
-			$id= $this->id;
-				if ( ! empty( $instance['icon_color'] ) && !$instance['icon_color'] =='#FFFFFF' ) {	 
-					echo '<style>#'.$id.' .ast_scoial a, #'.$id.' .ast_scoial.social_style_round_text a i{background-color:' . $instance['icon_color']. ';} #'.$id.' .ast_scoial.social_style_round_text a span{color:' . $instance['icon_color']. '!important;} #'.$id.'.ast_scoial_widget .ast_scoial a{background-color:' . $instance['icon_color']. '!important;}</style>';
-				}
-		}
-
-		/* After widget (defined by themes). */
-		echo $after_widget;
-	}
-
-	/* ---------------------------- */
-	/* ------- Update Widget -------- */
-	/* ---------------------------- */
-	
-	function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-
-		/* Strip tags for title and name to remove HTML (important for text inputs). */
-        $instance['title'] = strip_tags( $new_instance['title'] );
-		$instance['verb'] = strip_tags( $new_instance['verb']);
-		$instance['style'] = strip_tags( $new_instance['style']);
-		$instance['icon_color'] = optimizer_sanitize_hex( $new_instance['icon_color']);
-		$instance['fb_uri'] = esc_url_raw( $new_instance['fb_uri']);
-		$instance['twt_uri'] = esc_url_raw( $new_instance['twt_uri']);
-		$instance['gplus_uri'] = esc_url_raw( $new_instance['gplus_uri']);	
-		$instance['ytb_uri'] = esc_url_raw( $new_instance['ytb_uri']);
-		$instance['flckr_uri'] = esc_url_raw( $new_instance['flckr_uri']);
-		$instance['lnkdn_uri'] = esc_url_raw( $new_instance['lnkdn_uri']);
-		$instance['pntrst_uri'] = esc_url_raw( $new_instance['pntrst_uri']);
-		$instance['tumblr_uri'] = esc_url_raw( $new_instance['tumblr_uri']);
-		$instance['insta_uri'] = esc_url_raw( $new_instance['insta_uri']);
-		
-
-		return $instance;
-	}
-	
-	/* ---------------------------- */
-	/* ------- Widget Settings ------- */
-	/* ---------------------------- */
-	
-	function form( $instance ) {
-	
-		/* Set up some default widget settings. */
-		$defaults = array(
-		'title' => '',
-		'verb' => 'Follow me on',
-		'style' => 'square_text',
-		'icon_color' => '#ffffff',
-		'fb_uri' => 'https://www.facebook.com/optimizerwp',
-		'twt_uri' => 'https://twitter.com/optimizerwp',
-		'gplus_uri' => 'https://plus.google.com/u/0/b/103483167150562533630/+Layerthemes/posts',
-		'ytb_uri' => '',
-		'flckr_uri' => '',
-		'lnkdn_uri' => '',
-		'pntrst_uri' => '',
-		'tumblr_uri' => '',
-		'insta_uri' => '',
-		);
-		
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
-
-		<!-- Widget Title: Text Input -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo htmlentities($instance['title']); ?>" type="text" />
-		</p>
-    
-        <p>
-          <label for="<?php echo $this->get_field_id('verb'); ?>"><?php _e('Follow Text', 'optimizer'); ?></label>
-          <input type="text" name="<?php echo $this->get_field_name('verb'); ?>" id="<?php echo $this->get_field_id('verb'); ?>" value="<?php echo $instance['verb']; ?>" class="widefat" />
-        </p>
-    
-		<p>
-			<label for="<?php echo $this->get_field_id( 'style' ); ?>"><?php _e('Icon Style:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'style' ); ?>" name="<?php echo $this->get_field_name( 'style' ); ?>" class="widefat">
-           		<option value="simple" <?php if ( 'simple' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Simple', 'optimizer') ?></option>
-				<option value="round" <?php if ( 'round' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Round', 'optimizer') ?></option>
-                <option value="square" <?php if ( 'square' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Square', 'optimizer') ?></option>
-				<option value="round_text" <?php if ( 'round_text' == $instance['style']) echo 'selected="selected"'; ?>><?php _e('Round (With Text)', 'optimizer') ?></option>
-				<option value="square_text" <?php if ( 'square_text' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Square (With Text)', 'optimizer') ?>
-                <option value="full" <?php if ( 'full' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Full', 'optimizer') ?>
-                <option value="full_text" <?php if ( 'full_text' == $instance['style'] ) echo 'selected="selected"'; ?>><?php _e('Full (With Text)', 'optimizer') ?>
-			</select>
-		</p>
-        
-		<p>
-			<label for="<?php echo $this->get_field_id( 'icon_color' ); ?>"><?php _e('Override Default Icons Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'icon_color' ); ?>" name="<?php echo $this->get_field_name( 'icon_color' ); ?>" value="<?php echo $instance['icon_color']; ?>" type="text" />
-		</p>
-
-	<p style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px;"><strong><?php _e('Pleace Your Social Links in the fields below and they will be auto detected:','optimizer'); ?></strong></p>
-
-    <p>
-      <label for="<?php echo $this->get_field_id('fb_uri'); ?>"><?php _e('Link 1 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('fb_uri'); ?>" id="<?php echo $this->get_field_id('fb_uri'); ?>" value="<?php echo esc_url($instance['fb_uri']); ?>" class="widefat" />
-    </p>
-    
-    <p>
-      <label for="<?php echo $this->get_field_id('twt_uri'); ?>"><?php _e('Link 2 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('twt_uri'); ?>" id="<?php echo $this->get_field_id('twt_uri'); ?>" value="<?php echo esc_url($instance['twt_uri']); ?>" class="widefat" />
-    </p>
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('gplus_uri'); ?>"><?php _e('Link 3 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('gplus_uri'); ?>" id="<?php echo $this->get_field_id('gplus_uri'); ?>" value="<?php echo esc_url($instance['gplus_uri']); ?>" class="widefat" />
-    </p>
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('ytb_uri'); ?>"><?php _e('Link 4 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('ytb_uri'); ?>" id="<?php echo $this->get_field_id('ytb_uri'); ?>" value="<?php echo esc_url($instance['ytb_uri']); ?>" class="widefat" />
-    </p>   
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('flckr_uri'); ?>"><?php _e('Link 5 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('flckr_uri'); ?>" id="<?php echo $this->get_field_id('flckr_uri'); ?>" value="<?php echo esc_url($instance['flckr_uri']); ?>" class="widefat" />
-    </p>
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('lnkdn_uri'); ?>"><?php _e('Link 6 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('lnkdn_uri'); ?>" id="<?php echo $this->get_field_id('lnkdn_uri'); ?>" value="<?php echo esc_url($instance['lnkdn_uri']); ?>" class="widefat" />
-    </p>
-    
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('pntrst_uri'); ?>"><?php _e('Link 7 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('pntrst_uri'); ?>" id="<?php echo $this->get_field_id('pntrst_uri'); ?>" value="<?php echo esc_url($instance['pntrst_uri']); ?>" class="widefat" />
-    </p>    
-    
-	<p>
-      <label for="<?php echo $this->get_field_id('tumblr_uri'); ?>"><?php _e('Link 8 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('tumblr_uri'); ?>" id="<?php echo $this->get_field_id('tumblr_uri'); ?>" value="<?php echo esc_url($instance['tumblr_uri']); ?>" class="widefat" />
-    </p>   
-    
-    <p>
-      <label for="<?php echo $this->get_field_id('insta_uri'); ?>"><?php _e('Link 9 ', 'optimizer'); ?></label>
-      <input type="text" name="<?php echo $this->get_field_name('insta_uri'); ?>" id="<?php echo $this->get_field_id('insta_uri'); ?>" value="<?php echo esc_url($instance['insta_uri']); ?>" class="widefat" />
-    </p>
-
-	<?php
-	}
-	
-		//ENQUEUE CSS
-        function front_social_enqueue_css() {
-		$settings = $this->get_settings();
-		if(!is_customize_preview()){
-			if ( empty( $settings ) ) {
-				return;
-			}
-
-			foreach ( $settings as $instance_id => $instance ) {
-				$id = $this->id_base . '-' . $instance_id;
-	
-				if ( ! is_active_widget( false, $id, $this->id_base ) ) {
-					continue;
-				}
-				
-				$icon_color = '';
-				if ( ! empty( $instance['icon_color'] ) ) {
-					$icon_color = $instance['icon_color'];
-				}
-				
-				if ( ! empty( $instance['icon_color'] ) && !$instance['icon_color'] =='#FFFFFF' ) {	 
-				$widget_style = '#'.$id.'.ast_scoial_widget .ast_scoial a{background-color:' . $icon_color. '!important;}';
-				}{ $widget_style = '';}
-				
-				wp_add_inline_style( 'optimizer-style', $widget_style );
-				
-				}
-			} //END FOREACH
-		}
-	//front_social_enqueue_css
-
-}
-
 
 
 /* ---------------------------- */
@@ -1258,11 +703,11 @@ class ast_instagram_Widget extends WP_Widget {
 		extract( $args );
 
 		/* Our variables from the widget settings. */
-		$title = apply_filters('widget_title', $instance['title'] );
-		$client_id = $instance['client_id'];
-		$access_token = $instance['access_token'];
-		$num = $instance['num'];
-		$size = isset( $instance['size'] ) ? $instance['size'] : 'thumb';
+		$title =        isset($instance['title']) ? apply_filters('widget_title', $instance['title'] ) :'';
+		$client_id =    isset($instance['client_id']) ? $instance['client_id'] :'';
+		$access_token = isset($instance['access_token']) ? $instance['access_token'] :'';
+		$num =          isset($instance['num']) ?$instance['num'] :'';
+		$size =         isset( $instance['size'] ) ? $instance['size'] : 'thumb';
 
 		/* Before widget (defined by themes). */
 		echo $before_widget;
@@ -1272,17 +717,19 @@ class ast_instagram_Widget extends WP_Widget {
 		/* Display the widget title if one was input (before and after defined by themes). */
 		if ( $title )
 			echo $before_title . $title . $after_title;
-			
+
+         
 		/* Display a containing div */
-		echo '<ul id="ast_instagram" class="widget_insta_'.$size.'">';
-		
+		echo '<ul id="ast_instagram" class="widget_insta_'.$size.' widget_insta-'.$this->id.'">';
+      $photos = optimizer_get_instagram_media( $access_token, $client_id, $num);
+      if($photos){
+         foreach ($photos as $key => $photo) {
+            if(isset($photo->media_url) && isset($photo->permalink)){
+               echo '<li><a href="'.esc_url( $photo->permalink ).'" target="_blank"><img src="'. $photo->media_url.'"></a></li>';
+            }
+         }
+      }
 		echo '</ul>';
-		
-		echo '<script type="text/javascript">';
-			echo 'jQuery(window).bind("load", function(){';
-			echo 'jQuery("#ast_instagram").jqinstapics({"user_id": "'.$client_id.'","access_token": "'.$access_token.'","count": '.$num.'});';
-			echo '});';
-		echo '</script>';
 
 		/* After widget (defined by themes). */
 		echo $after_widget;
@@ -1534,7 +981,8 @@ class optimizer_pinterest_Widget extends WP_Widget {
     function get_pins($username, $num) {
 
         // Set caching.
-        add_filter('wp_feed_cache_transient_lifetime', create_function('$a', 'return '. $this->widget['cache_lifetime'] .';'));
+        //add_filter('wp_feed_cache_transient_lifetime', create_function('$a', 'return '. $this->widget['cache_lifetime'] .';'));
+		add_filter( 'wp_feed_cache_transient_lifetime' . function($a) {return $this->widget['cache_lifetime'];},999);
 
         // Get the RSS feed.
         $url = sprintf($this->widget['pinterest_feed_url'], $username);

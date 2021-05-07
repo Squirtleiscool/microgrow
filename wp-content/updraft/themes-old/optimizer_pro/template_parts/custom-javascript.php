@@ -16,7 +16,7 @@ global $optimizer;?>
 <?php } ?>
 <?php if($optimizer['slider_type_id'] == "nivo"){ ?>
 <script type="text/javascript">
-    jQuery(window).bind('load', function(){
+    jQuery(window).on('load', function(){
 		jQuery('#zn_nivo').waitForImages(function() {
 		// nivoslider init
 		jQuery('#zn_nivo').nivoSlider({
@@ -38,7 +38,7 @@ global $optimizer;?>
 				pauseOnHover:true,
 				captionOpacity:0.8,
 				afterLoad: function(){
-					jQuery("#zn_nivo .nivo-main-image").attr('src', jQuery('#zn_nivo img:eq(0)').attr('data-src'));
+					jQuery("#zn_nivo .nivo-main-image").attr('src', jQuery('#zn_nivo img').eq(0).attr('data-src'));
 					jQuery(".nivo-caption .slide_button_wrap .lts_button").css({"display":"none"});
 					jQuery(".nivo-caption").animate({"opacity": "1"}, {easing:"easeOutQuad", duration: 600});
 					
@@ -82,7 +82,7 @@ global $optimizer;?>
 
 <?php if($optimizer['slider_type_id'] == "accordion"){ ?>
 <script type="text/javascript">
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
 		//Accordion
 		if (jQuery(window).width() > 500) {
 		jQuery('.kwicks').kwicks({maxSize : '80%', behavior: 'menu', spacing: 0});
@@ -96,7 +96,7 @@ global $optimizer;?>
 <?php } ?>
 <?php if($optimizer['slider_type_id'] == "static" && empty($optimizer['head_transparent'])){ ?>
 <script type="text/javascript">
-	jQuery(window).load(function() {
+	jQuery(window).on('load',function() {
 		//STATIC SLIDER IMAGE FIXED
 		var statimgheight = jQuery(".stat_has_img .stat_bg_img").height();
 		var hheight = jQuery(".header").height() + jQuery('.admin-bar #wpadminbar').height() + jQuery('#customizer_topbar').height();
@@ -123,14 +123,14 @@ global $optimizer;?>
 
 		<?php 
 			if($optimizer['static_textbox_bottom'] == '0'){
-				echo '<script>jQuery(".stat_content_inner").find("p:last").css({"marginBottom":"0"});</script>';
+				echo '<script>jQuery(".stat_content_inner").find("p").last().css({"marginBottom":"0"});</script>';
 			} 
 		?>
 
 
 <?php if(!empty($optimizer['head_sticky'])){ ?>
 <script type="text/javascript">
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
         if (jQuery("body").hasClass('admin-bar')) {
 			if (jQuery(window).width() > 601) {  
 				jQuery(".header").sticky({topSpacing:27}); 
@@ -152,12 +152,12 @@ global $optimizer;?>
 			jQuery('body.site_boxed .header, body .header_wrap .sticky-wrapper .header').css({"width":jQuery('.header_wrap').width()});		
 	 }
 	 function resizeStickyLogo(){
-		<?php if(!empty($optimizer['logo_image_id']['url']) && !empty($optimizer['head_sticky'])){   ?>
-		<?php $logoimgid = optimizer_attachment_id_by_url($optimizer['logo_image_id']['url']);  $imgaltraw = wp_prepare_attachment_for_js($logoimgid);  $logoheight = $imgaltraw['height']; ?>
-			<?php if($logoheight > '60') { ?>
-				jQuery('.header').on('sticky-start', function() { jQuery('.logo img').animate({"height": "60px"}, 300 ) }); 
-				jQuery('.header').on('sticky-end', function() { jQuery('.logo img').animate({"height": "<?php echo $logoheight; ?>px"}, 300 ) });  
-			<?php } ?>
+      <?php if(!empty($optimizer['logo_image_id']['url']) && !empty($optimizer['head_sticky'])){   ?>
+      var logoInitHeight = jQuery('.logo img').innerHeight();
+      if(logoInitHeight > 60){
+			jQuery('.header').on('sticky-start', function() { jQuery('.logo img').animate({"height": "60px"}, 300 ) }); 
+			jQuery('.header').on('sticky-end', function() { jQuery('.logo img').animate({"height": logoInitHeight+"px"}, 300 ) });  
+      }
 		<?php } ?>
 	}
 	 
@@ -181,7 +181,7 @@ jQuery('#zn_nivo, .nivo-controlNav').css({"display":"none"});
 
 
 <?php if(is_page_template('template_parts/page-contact_template.php') ) { ?>
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
 	//FORM VALIDATION
 		jQuery('#layer_contact_form').isHappy({
 			fields: {
@@ -209,7 +209,7 @@ jQuery('#zn_nivo, .nivo-controlNav').css({"display":"none"});
 
 <?php if(($optimizer['cat_layout_id'] == "3")){ ?>
 	<?php if(is_category() || (is_tag()) || (is_archive())) { ?>
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
 		//Layout3 Masonry
 		var container = document.querySelector('.lay3_wrap');
 		var msnry;
@@ -227,7 +227,7 @@ jQuery('#zn_nivo, .nivo-controlNav').css({"display":"none"});
 
 <?php if(($optimizer['blog_layout_id'] == "5")){ ?>
 	<?php if( $optimizer['blog_layout_id'] == '5' && is_page_template('template_parts/page-blog_template.php') ) { ?>
-	jQuery(window).bind('load', function(){
+	jQuery(window).on('load', function(){
 		//Layout3 Masonry
 		var container = document.querySelector('.blog_layout5 .lay4_wrap');
 		var msnry;
@@ -286,19 +286,19 @@ jQuery('#zn_nivo, .nivo-controlNav').css({"display":"none"});
 	}
 <?php } ?>
 
-jQuery(window).bind('load', function(){
+jQuery(window).on('load', function(){
 	jQuery('.stat_has_slideshow').css({"maxHeight":"none"});
 	jQuery('.static_gallery').nivoSlider({effect: 'fade', directionNav: false, controlNav: false, pauseOnHover:false, slices:6, pauseTime:<?php echo optimizer_statslideshow_time(); ?>});
 });
 
-jQuery(document).ready(function() {
+jQuery(function() {
 	jQuery('.pd_flick_gallery li img').addClass('hasimg');
 });
 
 
 <?php if(is_page_template('template_parts/page-contact_template.php') ) { ?>
 	<?php if(!empty($optimizer['contact_latlong_id'])){ ?>
-jQuery(document).ready(function() {
+jQuery(function() {
 	//MAP SHORTCODE
 		var text = '<?php echo str_replace(array("\r\n", "\n"),"",nl2br(do_shortcode(addslashes($optimizer['contact_location_id'])))); ?>';
 		var mapid = 'asthemap';
@@ -331,15 +331,12 @@ jQuery(document).ready(function() {
 	<?php } ?>
 <?php } ?>
 
-<?php if ( class_exists( 'WooCommerce' ) && ($optimizer['woo_archive_layout'] == 'layout5' )){ ?>
-jQuery('.archive.woocommerce-page.woo_archive_layout5 ul.products li.product').each(function(index, element) {
-   // jQuery(this).find('h3').prependTo(jQuery(this).find('.post_content'));
-});
+<?php if ( class_exists( 'WooCommerce' ) ){ ?>
+   jQuery(window).on('load', function(){
+      jQuery('.single-product .single_post .thumbnails').looper({interval: false});
+      jQuery('.archive.woocommerce-page.woo_archive_layout4 ul.products li.product').matchHeight({ property: 'min-height', byRow: 'height'});
+      jQuery('.woocommerce.single.woo_single_layout1 .yith-wcwl-add-to-wishlist').insertBefore('div[itemprop="offers"]');
+      jQuery('.woocommerce.single.woo_single_layout4 #content .onsale').prependTo('.woocommerce.single.woo_single_layout4 #content .product .images');
+   });
 <?php } ?>
-jQuery(window).bind('load', function(){
-	jQuery('.single-product .single_post .thumbnails').looper({interval: false});
-	jQuery('.archive.woocommerce-page.woo_archive_layout4 ul.products li.product').matchHeight({ property: 'min-height', byRow: 'height'});
-	jQuery('.woocommerce.single.woo_single_layout1 .yith-wcwl-add-to-wishlist').insertBefore('div[itemprop="offers"]');
-	jQuery('.woocommerce.single.woo_single_layout4 #content .onsale').prependTo('.woocommerce.single.woo_single_layout4 #content .product .images');
-});
 </script> 

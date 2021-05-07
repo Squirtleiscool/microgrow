@@ -83,7 +83,7 @@ class wpsm_accordion {
         global $post;
         switch( $column ) {
           case 'shortcode' :
-            echo '<input type="text" value="[WPSM_AC id='.$post_id.']" readonly="readonly" />';
+            echo '<input type="text" onclick="this.select()" value="[WPSM_AC id='.$post_id.']" readonly="readonly" />';
             break;
           default :
             break;
@@ -93,6 +93,8 @@ class wpsm_accordion {
 	public function wpsm_accordion_meta_boxes_group(){
 		add_meta_box('add_accordion', __('Add Accordion', wpshopmart_accordion_text_domain), array(&$this, 'wpsm_add_ac_meta_box_function'), 'responsive_accordion', 'normal', 'low' );
 		add_meta_box ('accordion_shortcode', __('Accordion Shortcode', wpshopmart_accordion_text_domain), array(&$this, 'wpsm_pic_ac_shortcode'), 'responsive_accordion', 'normal', 'low');
+		add_meta_box ('wpsm_pic_ac_help', __('Support & Docs', wpshopmart_accordion_text_domain), array(&$this, 'wpsm_pic_ac_help'), 'responsive_accordion', 'normal', 'low');
+		
 		add_meta_box('accordion_follow', __('BLACK FRIDAY DEAL', wpshopmart_accordion_text_domain), array(&$this, 'wpsm_accordion_follow_meta_box_function'), 'responsive_accordion', 'side', 'low');
 		
 		add_meta_box('accordion_rateus', __('Rate Us If You Like This Plugin', wpshopmart_accordion_text_domain), array(&$this, 'wpsm_accordion_rateus_meta_box_function'), 'responsive_accordion', 'side', 'low');
@@ -128,7 +130,7 @@ class wpsm_accordion {
 		</style>
 		<h3>Accordion Shortcode</h3>
 		<p><?php _e("Use below shortcode in any Page/Post to publish your Accordion", wpshopmart_accordion_text_domain);?></p>
-		<input readonly="readonly" type="text" value="<?php echo "[WPSM_AC id=".get_the_ID()."]"; ?>">
+		<input readonly="readonly" type="text" onclick="this.select()" value="<?php echo "[WPSM_AC id=".get_the_ID()."]"; ?>">
 		<?php
 		 $PostId = get_the_ID();
 		$Accordion_Settings = unserialize(get_post_meta( $PostId, 'Accordion_Settings', true));
@@ -161,7 +163,9 @@ class wpsm_accordion {
 	public function wpsm_add_ac_setting_meta_box_function($post){
 		require('settings.php');
 	}
-	
+	public function wpsm_pic_ac_help(){
+		require_once('help.php');
+	}
 	public function add_accordion_meta_box_save($PostID) {
 		require('data-post/ac-save-data.php');
     }
@@ -213,6 +217,9 @@ class wpsm_accordion {
 					border:1px solid #000;
 				
 			}
+			.handle-order-higher, .handle-order-lower{
+				display:none;
+			}
 		</style>
 		<br />
 		<a href="http://demo.wpshopmart.com/responsive-accordion-and-collapse/" target="_blank" class="button button-primary button-hero ">View Demo For Help</a>
@@ -257,19 +264,20 @@ class wpsm_accordion {
 				font-size: 40px;
 			}
 			#accordion_rateus .button-hero{
-				    background: #fff;
-					color: #000;
-					box-shadow: none;
-					text-shadow: none;
-					font-weight: 500;
-					font-size: 17px;
-					border:1px solid #000;
+				       background: #efda4a;
+    color: #312c2c;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: 500;
+    font-size: 22px;
+    border: 1px solid #efda4a;
 				
 			}
 		</style>
-		   <h1>Need Help </h1>
-			<h3>Feel free to ask any query to us related to this plugin here </h3>
-			<a href="https://wordpress.org/support/plugin/responsive-accordion-and-collapse" target="_blank" class="button button-primary button-hero ">Submit Your Query Here</a>
+		   <h1>Follow Us On</h1>
+		   <h3>Youtube To Grab Free Web design Course & WordPress Help/Tips </h3>
+			<a href="https://www.youtube.com/c/wpshopmart" target="_blank"><img style="width:200px;height:auto" src="<?php echo wpshopmart_accordion_directory_url.'img/youtube.png'; ?>" /></a>
+			<a href="https://www.youtube.com/c/wpshopmart?sub_confirmation=1" target="_blank" class="button button-primary button-hero ">Subscribe Us Now</a>
 			
 		<?php 
 	}

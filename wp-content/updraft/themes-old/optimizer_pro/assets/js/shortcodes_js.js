@@ -131,30 +131,34 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="2 Columns"]').addClass('2col_window');
 									jQuery(".2col_window .mce-foot>div").prepend("<a class='short_preview_btn 2col_prevbtn'><span></span>Preview</a>");
-									jQuery('.short_preview_btn.2col_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var col2one = jQuery('.mce-twocolonemce').val();
-										var col2two = jQuery('.mce-twocoltwomce').val();
-										var col2onewidth = jQuery('.mce-twocolonewidth').val();
-										var col2twowidth = jQuery('.mce-twocoltwowidth').val();
-										
-										if(col2onewidth !==''){var col2onewidth = 'style="width:'+col2onewidth+'"';}
-										if(col2twowidth !==''){var col2twowidth = 'style="width:'+col2twowidth+'"';}
-										
-										if(col2one =='' && col2two ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="col2" '+col2onewidth+'>'+col2one+'</div><div class="col2" '+col2twowidth+'>'+col2two+'</div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".short_preview.2col_prev").remove();
-										jQuery(".2col_window .mce-window-head").next('.2col_window .mce-container-body').find('.mce-container:first').prepend("<div class='short_preview 2col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".short_preview.2col_prev").css({"height":jQuery(".2col_window .mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".short_preview.2col_prev").remove();
+									jQuery('.short_preview_btn.2col_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var col2one = jQuery('.mce-twocolonemce').val();
+                                 var col2two = jQuery('.mce-twocoltwomce').val();
+                                 var col2onewidth = jQuery('.mce-twocolonewidth').val();
+                                 var col2twowidth = jQuery('.mce-twocoltwowidth').val();
+                                 
+                                 if(col2onewidth !==''){var col2onewidth = 'style="width:'+col2onewidth+'"';}
+                                 if(col2twowidth !==''){var col2twowidth = 'style="width:'+col2twowidth+'"';}
+                                 
+                                 if(col2one =='' && col2two ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="col2" '+col2onewidth+'>'+col2one+'</div><div class="col2" '+col2twowidth+'>'+col2two+'</div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".short_preview.2col_prev").remove();
+                                 jQuery(".2col_window .mce-window-head").next('.2col_window .mce-container-body').find('.mce-container').first().prepend("<div class='short_preview 2col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".short_preview.2col_prev").css({"height":jQuery(".2col_window .mce-window-head").next('.mce-container-body').height()});
+                              
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".short_preview.2col_prev").remove();
+                              }
+
 									});
 									}, 500);
 									//PREVIEW END
@@ -306,34 +310,36 @@
 									//PREVIEW WINDOW
 									setTimeout(function(){ 	
 									jQuery('[aria-label="3 Columns"]').addClass('3col_window');
-									jQuery(".3col_window .mce-foot>div").prepend("<a class='short_preview_btn 2col_prevbtn'><span></span>Preview</a>");
-									jQuery('.2col_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var col3one = jQuery('.mce-threecolonemce').val();
-										var col3two = jQuery('.mce-threecoltwomce').val();
-										var col3three = jQuery('.mce-threecolthreemce').val();
-										var col3onewidth = jQuery('.mce-threecolonewidth').val();
-										var col3twowidth = jQuery('.mce-threecoltwowidth').val();
-										var col3threewidth = jQuery('.mce-threecolthreewidth').val();
-										
-										if(col3onewidth !==''){var col3onewidth = 'style="width:'+col3onewidth+'"';}
-										if(col3twowidth !==''){var col3twowidth = 'style="width:'+col3twowidth+'"';}
-										if(col3threewidth !==''){var col3threewidth = 'style="width:'+col3threewidth+'"';}
-										
-										if(col3one =='' && col3two =='' && col3three ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="col3" '+col3onewidth+'>'+col3one+'</div><div class="col3" '+col3twowidth+'>'+col3two+'</div><div class="col3" '+col3threewidth+'>'+col3three+'</div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".3col_prev").remove();
-										jQuery(".3col_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview 3col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".3col_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".3col_prev").remove();
+									jQuery(".3col_window .mce-foot>div").prepend("<a class='short_preview_btn 3col_prevbtn'><span></span>Preview</a>");
+                           jQuery('.short_preview_btn.3col_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var col3one = jQuery('.mce-threecolonemce').val();
+                                 var col3two = jQuery('.mce-threecoltwomce').val();
+                                 var col3three = jQuery('.mce-threecolthreemce').val();
+                                 var col3onewidth = jQuery('.mce-threecolonewidth').val();
+                                 var col3twowidth = jQuery('.mce-threecoltwowidth').val();
+                                 var col3threewidth = jQuery('.mce-threecolthreewidth').val();
+                                 
+                                 if(col3onewidth !==''){var col3onewidth = 'style="width:'+col3onewidth+'"';}
+                                 if(col3twowidth !==''){var col3twowidth = 'style="width:'+col3twowidth+'"';}
+                                 if(col3threewidth !==''){var col3threewidth = 'style="width:'+col3threewidth+'"';}
+                                 
+                                 if(col3one =='' && col3two =='' && col3three ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="col3" '+col3onewidth+'>'+col3one+'</div><div class="col3" '+col3twowidth+'>'+col3two+'</div><div class="col3" '+col3threewidth+'>'+col3three+'</div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".3col_prev").remove();
+                                 jQuery(".3col_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview 3col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".3col_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+									   }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".3col_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -519,38 +525,40 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="4 Columns"]').addClass('4col_window');
 									jQuery(".4col_window .mce-foot>div").prepend("<a class='short_preview_btn 4col_prevbtn''><span></span>Preview</a>");
-									jQuery('.4col_prevbtn').toggle(function(){
+                           jQuery('.short_preview_btn.4col_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var col4one = jQuery('.mce-focolonemce').val();
-										var col4two = jQuery('.mce-focoltwomce').val();
-										var col4three = jQuery('.mce-focolthreemce').val();
-										var col4fo = jQuery('.mce-focolfomce').val();
-										var col4onewidth = jQuery('.mce-focolonewidth').val();
-										var col4twowidth = jQuery('.mce-focoltwowidth').val();
-										var col4threewidth = jQuery('.mce-focolthreewidth').val();
-										var col4fowidth = jQuery('.mce-focolfowidth').val();
-										
-										if(col4onewidth !==''){var col4onewidth = 'style="width:'+col4onewidth+'"';}
-										if(col4twowidth !==''){var col4twowidth = 'style="width:'+col4twowidth+'"';}
-										if(col4threewidth !==''){var col4threewidth = 'style="width:'+col4threewidth+'"';}
-										if(col4fowidth !==''){var col4fowidth = 'style="width:'+col4fowidth+'"';}
-										
-										
-										if(col4one =='' && col4two =='' && col4three =='' && col4fo ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="col4" '+col4onewidth+'>'+col4one+'</div><div class="col4" '+col4twowidth+'>'+col4two+'</div><div class="col4" '+col4threewidth+'>'+col4three+'</div><div class="col4" '+col4fowidth+'>'+col4fo+'</div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".4col_prev").remove();
-										jQuery(".4col_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview 4col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".4col_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".4col_prev").remove();
-									});
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var col4one = jQuery('.mce-focolonemce').val();
+                                 var col4two = jQuery('.mce-focoltwomce').val();
+                                 var col4three = jQuery('.mce-focolthreemce').val();
+                                 var col4fo = jQuery('.mce-focolfomce').val();
+                                 var col4onewidth = jQuery('.mce-focolonewidth').val();
+                                 var col4twowidth = jQuery('.mce-focoltwowidth').val();
+                                 var col4threewidth = jQuery('.mce-focolthreewidth').val();
+                                 var col4fowidth = jQuery('.mce-focolfowidth').val();
+                                 
+                                 if(col4onewidth !==''){var col4onewidth = 'style="width:'+col4onewidth+'"';}
+                                 if(col4twowidth !==''){var col4twowidth = 'style="width:'+col4twowidth+'"';}
+                                 if(col4threewidth !==''){var col4threewidth = 'style="width:'+col4threewidth+'"';}
+                                 if(col4fowidth !==''){var col4fowidth = 'style="width:'+col4fowidth+'"';}
+                                 
+                                 
+                                 if(col4one =='' && col4two =='' && col4three =='' && col4fo ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="col4" '+col4onewidth+'>'+col4one+'</div><div class="col4" '+col4twowidth+'>'+col4two+'</div><div class="col4" '+col4threewidth+'>'+col4three+'</div><div class="col4" '+col4fowidth+'>'+col4fo+'</div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".4col_prev").remove();
+                                 jQuery(".4col_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview 4col_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".4col_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".4col_prev").remove();
+                              }
+                           });
 									}, 500);
 									//PREVIEW END
 								
@@ -687,41 +695,44 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Button"]').addClass('button_window');
 									jQuery(".button_window .mce-foot>div").prepend("<a class='short_preview_btn button_prevbtn'><span></span>Preview</a>");
-									jQuery('.button_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var btn_text = jQuery('.mce-btn_txt').val();
-										var btn_link = jQuery('.mce-btn_url').val();
-										var btn_bg = jQuery('.mce-btn_bgcolor').val();
-										var btn_color = jQuery('.mce-btn_txtcolor').val();
-										var btn_style = jQuery('.mce-btn_style button').text();
-											if(btn_style =='Square (Flat)'){var btn_style = 'lt_flat'}
-											if(btn_style =='Square (Hollow)'){var btn_style = 'lt_hollow'}
-											if(btn_style =='Circular (Flat)'){var btn_style = 'lt_circular'}
-											if(btn_style =='Circular (Hollow)'){var btn_style = 'lt_circular lt_hollow'}
+                           jQuery('.button_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var btn_text = jQuery('.mce-btn_txt').val();
+                                 var btn_link = jQuery('.mce-btn_url').val();
+                                 var btn_bg = jQuery('.mce-btn_bgcolor').val();
+                                 var btn_color = jQuery('.mce-btn_txtcolor').val();
+                                 var btn_style = jQuery('.mce-btn_style button').text();
+                                    if(btn_style =='Square (Flat)'){var btn_style = 'lt_flat'}
+                                    if(btn_style =='Square (Hollow)'){var btn_style = 'lt_hollow'}
+                                    if(btn_style =='Circular (Flat)'){var btn_style = 'lt_circular'}
+                                    if(btn_style =='Circular (Hollow)'){var btn_style = 'lt_circular lt_hollow'}
 
-										
-										var btn_size = jQuery('.mce-btn_size button').text().toLowerCase();
-										var btn_icon = jQuery('.mce-button_icon_value').val();
-										if(btn_icon !==''){var btn_icon = '<i class="fa '+btn_icon+'"></i>';}
-										var btn_roundedval = jQuery('.mce-btn_rounded').attr("aria-checked");
-										var btn_rounded ='';
-										if(btn_roundedval =='true'){var btn_rounded = 'lt_rounded';}
-										
-										if(btn_text ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<p style="text-align:center; margin-top:150px;"><a class="lts_button lts_button_'+btn_size+' '+btn_rounded+' '+btn_style+'" style="background:'+btn_bg+';color:'+btn_color+'!important;border-color:'+btn_bg+';" href="'+btn_link+'">'+btn_icon+' ' +btn_text+'</a></p>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".button_prev").remove();
-										jQuery(".button_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview button_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".button_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".button_prev").remove();
+                                 
+                                 var btn_size = jQuery('.mce-btn_size button').text().toLowerCase();
+                                 var btn_icon = jQuery('.mce-button_icon_value').val();
+                                 if(btn_icon !==''){var btn_icon = '<i class="fa '+btn_icon+'"></i>';}
+                                 var btn_roundedval = jQuery('.mce-btn_rounded').attr("aria-checked");
+                                 var btn_rounded ='';
+                                 if(btn_roundedval =='true'){var btn_rounded = 'lt_rounded';}
+                                 
+                                 if(btn_text ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<p style="text-align:center; margin-top:150px;"><a class="lts_button lts_button_'+btn_size+' '+btn_rounded+' '+btn_style+'" style="background:'+btn_bg+';color:'+btn_color+'!important;border-color:'+btn_bg+';" href="'+btn_link+'">'+btn_icon+' ' +btn_text+'</a></p>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".button_prev").remove();
+                                 jQuery(".button_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview button_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".button_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".button_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -787,25 +798,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Quote"]').addClass('quote_window');
 									jQuery(".quote_window .mce-foot>div").prepend("<a class='short_preview_btn quote_prevbtn'><span></span>Preview</a>");
-									jQuery('.quote_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var qauthor = jQuery('.mce-ltsmce_author').val();
-										var qsource = jQuery('.mce-ltsmce_src').val();
-										var thequoute = jQuery('.mce-ltsmce').val();
-										if(thequoute ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_quote_wrap"><div class="lts_quote">'+thequoute+'</div><div class="lts_quote_author"><a target="_blank" href="'+qsource+'">'+qauthor+'</a></div></div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".quote_prev").remove();
-										jQuery(".quote_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview quote_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".quote_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".quote_prev").remove();
+                           jQuery('.quote_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var qauthor = jQuery('.mce-ltsmce_author').val();
+                                 var qsource = jQuery('.mce-ltsmce_src').val();
+                                 var thequoute = jQuery('.mce-ltsmce').val();
+                                 if(thequoute ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_quote_wrap"><div class="lts_quote">'+thequoute+'</div><div class="lts_quote_author"><a target="_blank" href="'+qsource+'">'+qauthor+'</a></div></div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".quote_prev").remove();
+                                 jQuery(".quote_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview quote_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".quote_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".quote_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -869,25 +882,28 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Divider"]').addClass('divider_window');
 									jQuery(".divider_window .mce-foot>div").prepend("<a class='short_preview_btn divider_prevbtn'><span></span>Preview</a>");
-									jQuery('.divider_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var dvd_style = jQuery('.mce-dvd_style button').text().toLowerCase();
-										var dvd_height = jQuery('.mce-dvd_height').val();
-										var dvd_color = jQuery('.mce-dividercolor').val();
-										if(dvd_height ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="ast_divide" style="padding-top:7%;clear:both;border-bottom: '+dvd_height+' '+dvd_style+' '+dvd_color+'; width:100%; height:2px; margin:15px 0;"></div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".divider_prev").remove();
-										jQuery(".divider_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview divider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".divider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".divider_prev").remove();
+									jQuery('.divider_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var dvd_style = jQuery('.mce-dvd_style button').text().toLowerCase();
+                                 var dvd_height = jQuery('.mce-dvd_height').val();
+                                 var dvd_color = jQuery('.mce-dividercolor').val();
+                                 if(dvd_height ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="ast_divide" style="padding-top:7%;clear:both;border-bottom: '+dvd_height+' '+dvd_style+' '+dvd_color+'; width:100%; height:2px; margin:15px 0;"></div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".divider_prev").remove();
+                                 jQuery(".divider_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview divider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".divider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+									   }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".divider_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -958,48 +974,51 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Title Divider"]').addClass('tdivider_window');
 									jQuery(".tdivider_window .mce-foot>div").prepend("<a class='short_preview_btn tdivider_prevbtn'><span></span>Preview</a>");
-									jQuery('.tdivider_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var tdvd_style_raw = jQuery('.mce-tdvd_style button').text()
-										var tdvd_style = '';
-										if(tdvd_style_raw =='Rhombus'){  var tdvd_style = 'fa-stop';  }
-										if(tdvd_style_raw =='Star'){  var tdvd_style = 'fa-star';  }
-										if(tdvd_style_raw =='Cross'){  var tdvd_style = 'fa-times';  }
-										if(tdvd_style_raw =='Bolt'){  var tdvd_style = 'fa-bolt';  }
-										if(tdvd_style_raw =='Asterisk'){  var tdvd_style = 'fa-asterisk';  }
-										if(tdvd_style_raw =='Chevron'){  var tdvd_style = 'fa-chevron-down';  }
-										if(tdvd_style_raw =='Heart'){  var tdvd_style = 'fa-heart';  }
-										if(tdvd_style_raw =='Plus'){  var tdvd_style = 'fa-plus';  }
-										if(tdvd_style_raw =='Bookmark'){  var tdvd_style = 'fa-bookmark';  }
-										if(tdvd_style_raw =='Circle'){  var tdvd_style = 'fa-circle-o';  }
-										if(tdvd_style_raw =='Blocks'){  var tdvd_style = 'fa-th-large';  }
-										if(tdvd_style_raw =='Sides'){  var tdvd_style = 'fa-minus';  }
-										if(tdvd_style_raw =='Cog'){  var tdvd_style = 'fa-cog';  }
-										if(tdvd_style_raw =='Blinds'){  var tdvd_style = 'fa-reorder';  }
-										
-										if(tdvd_style_raw =='Diamond'){  var tdvd_style = 'fa-diamond';  }
-										if(tdvd_style_raw =='Tetris'){  var tdvd_style = 'fa-gg';  }
-										if(tdvd_style_raw =='Digital'){  var tdvd_style = 'fa-houzz';  }
-										if(tdvd_style_raw =='Rocket'){  var tdvd_style = 'fa-rocket';  }
-										
-										
-										var tdvd_color = jQuery('.mce-tdvd_color').val();
-										if(tdvd_color ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_title_divider"><span class="div_left" style="background:'+tdvd_color+'"></span><span class="div_middle" style="color:'+tdvd_color+'"><i class="fa '+tdvd_style+'"></i></span><span class="div_right" style="background:'+tdvd_color+'"></span></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".tdivider_prev").remove();
-										jQuery(".tdivider_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview tdivider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".tdivider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-										jQuery('.tdivider_prev .div_middle i.fa-minus').after('<i class="fa fa-minus"></i><i class="fa fa-minus"></i>');
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".tdivider_prev").remove();
+									jQuery('.tdivider_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var tdvd_style_raw = jQuery('.mce-tdvd_style button').text()
+                                 var tdvd_style = '';
+                                 if(tdvd_style_raw =='Rhombus'){  var tdvd_style = 'fa-stop';  }
+                                 if(tdvd_style_raw =='Star'){  var tdvd_style = 'fa-star';  }
+                                 if(tdvd_style_raw =='Cross'){  var tdvd_style = 'fa-times';  }
+                                 if(tdvd_style_raw =='Bolt'){  var tdvd_style = 'fa-bolt';  }
+                                 if(tdvd_style_raw =='Asterisk'){  var tdvd_style = 'fa-asterisk';  }
+                                 if(tdvd_style_raw =='Chevron'){  var tdvd_style = 'fa-chevron-down';  }
+                                 if(tdvd_style_raw =='Heart'){  var tdvd_style = 'fa-heart';  }
+                                 if(tdvd_style_raw =='Plus'){  var tdvd_style = 'fa-plus';  }
+                                 if(tdvd_style_raw =='Bookmark'){  var tdvd_style = 'fa-bookmark';  }
+                                 if(tdvd_style_raw =='Circle'){  var tdvd_style = 'fa-circle-o';  }
+                                 if(tdvd_style_raw =='Blocks'){  var tdvd_style = 'fa-th-large';  }
+                                 if(tdvd_style_raw =='Sides'){  var tdvd_style = 'fa-minus';  }
+                                 if(tdvd_style_raw =='Cog'){  var tdvd_style = 'fa-cog';  }
+                                 if(tdvd_style_raw =='Blinds'){  var tdvd_style = 'fa-reorder';  }
+                                 
+                                 if(tdvd_style_raw =='Diamond'){  var tdvd_style = 'fa-diamond';  }
+                                 if(tdvd_style_raw =='Tetris'){  var tdvd_style = 'fa-gg';  }
+                                 if(tdvd_style_raw =='Digital'){  var tdvd_style = 'fa-houzz';  }
+                                 if(tdvd_style_raw =='Rocket'){  var tdvd_style = 'fa-rocket';  }
+                                 
+                                 
+                                 var tdvd_color = jQuery('.mce-tdvd_color').val();
+                                 if(tdvd_color ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_title_divider"><span class="div_left" style="background:'+tdvd_color+'"></span><span class="div_middle" style="color:'+tdvd_color+'"><i class="fa '+tdvd_style+'"></i></span><span class="div_right" style="background:'+tdvd_color+'"></span></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".tdivider_prev").remove();
+                                 jQuery(".tdivider_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview tdivider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".tdivider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 jQuery('.tdivider_prev .div_middle i.fa-minus').after('<i class="fa fa-minus"></i><i class="fa fa-minus"></i>');
+                                 
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".tdivider_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1065,7 +1084,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Drop Cap"]').addClass('dropcap_window');
 									jQuery(".dropcap_window .mce-foot>div").prepend("<a class='short_preview_btn dropcap_prevbtn'><span></span>Preview</a>");
-									jQuery('.dropcap_prevbtn').toggle(function(){
+									jQuery('.dropcap_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1079,11 +1099,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".dropcap_prev").remove();
-										jQuery(".dropcap_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview dropcap_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".dropcap_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview dropcap_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".dropcap_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".dropcap_prev").remove();
+                              jQuery(".dropcap_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1156,7 +1177,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="List"]').addClass('list_window');
 									jQuery(".list_window .mce-foot>div").prepend("<a class='short_preview_btn list_prevbtn'><span></span>Preview</a>");
-									jQuery('.list_prevbtn').toggle(function(){
+									jQuery('.list_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1179,12 +1201,13 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".list_prev").remove();
-										jQuery(".list_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview list_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".list_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview list_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".list_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
 										jQuery('<style>.lts_list li:before{color:'+list_color+'}</style>').appendTo('head');
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".list_prev").remove();
+                              jQuery(".list_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1238,7 +1261,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Tooltip"]').addClass('tooltip_window');
 									jQuery(".tooltip_window .mce-foot>div").prepend("<a class='short_preview_btn tooltip_prevbtn'><span></span>Preview</a>");
-									jQuery('.tooltip_prevbtn').toggle(function(){
+									jQuery('.tooltip_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1252,11 +1276,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".tooltip_prev").remove();
-										jQuery(".tooltip_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview tooltip_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".tooltip_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview tooltip_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".tooltip_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".tooltip_prev").remove();
+                              jQuery(".tooltip_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1372,7 +1397,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Icons"]').addClass('icon_window');
 									jQuery(".icon_window .mce-foot>div").prepend("<a class='short_preview_btn icon_prevbtn'><span></span>Preview</a>");
-									jQuery('.icon_prevbtn').toggle(function(){
+									jQuery('.icon_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1397,11 +1423,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".icon_prev").remove();
-										jQuery(".icon_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview icon_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".icon_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview icon_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".icon_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".icon_prev").remove();
+                              jQuery(".icon_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1478,7 +1505,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Headline"]').addClass('headline_window');
 									jQuery(".headline_window .mce-foot>div").prepend("<a class='short_preview_btn headline_prevbtn'><span></span>Preview</a>");
-									jQuery('.headline_prevbtn').toggle(function(){
+									jQuery('.headline_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1498,11 +1526,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".headline_prev").remove();
-										jQuery(".headline_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview headline_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".headline_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview headline_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".headline_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".headline_prev").remove();
+                              jQuery(".headline_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -1589,7 +1618,7 @@
 								optimColpick();		
 								//CALL THE COLORPICKER END
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -1645,7 +1674,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Section"]').addClass('section_window');
 									jQuery(".section_window .mce-foot>div").prepend("<a class='short_preview_btn section_prevbtn'><span></span>Preview</a>");
-									jQuery('.short_preview_btn.section_prevbtn').toggle(function(){
+									jQuery('.short_preview_btn.section_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -1662,11 +1692,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".short_preview.section_prev").remove();
-										jQuery(".section_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview section_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".section_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview section_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".short_preview.section_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".short_preview.section_prev").remove();
+                              jQuery(".short_preview.section_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2003,7 +2034,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Content Blocks"]').addClass('blocks_window');
 									jQuery(".blocks_window .mce-foot>div").prepend("<a class='short_preview_btn blocks_prevbtn'><span></span>Preview</a>");
-									jQuery('.blocks_prevbtn').toggle(function(){
+									jQuery('.blocks_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -2057,11 +2089,12 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".blocks_prev").remove();
-										jQuery(".blocks_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview blocks_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".blocks_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview blocks_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".blocks_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".blocks_prev").remove();
+                              jQuery(".blocks_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2305,84 +2338,86 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Tabs"]').addClass('tabs_window');
 									jQuery(".tabs_window .mce-foot>div").prepend("<a class='short_preview_btn tabs_prevbtn'><span></span>Preview</a>");
-									jQuery('.tabs_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var tabs_style = jQuery('.mce-tabs_style button').text().toLowerCase();
-										var active_color = jQuery('.mce-tabactive').val();
-										
-										var tab1tt = jQuery('.mce-tab1tt').val();
-										var tabonemce = jQuery('.mce-tabonemce').val();
+									jQuery('.tabs_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var tabs_style = jQuery('.mce-tabs_style button').text().toLowerCase();
+                                 var active_color = jQuery('.mce-tabactive').val();
+                                 
+                                 var tab1tt = jQuery('.mce-tab1tt').val();
+                                 var tabonemce = jQuery('.mce-tabonemce').val();
 
-										var tab2tt = jQuery('.mce-tab2tt').val();
-										var tabtwomce = jQuery('.mce-tabtwomce').val();
+                                 var tab2tt = jQuery('.mce-tab2tt').val();
+                                 var tabtwomce = jQuery('.mce-tabtwomce').val();
 
-										var tab3tt = jQuery('.mce-tab3tt').val();
-										var tabthreemce = jQuery('.mce-tabthreemce').val();
-										
-										var tab4tt = jQuery('.mce-tab4tt').val();
-										var tabfourmce = jQuery('.mce-tabfourmce').val();
-										
-										var tab5tt = jQuery('.mce-tab5tt').val();
-										var tabfivemce = jQuery('.mce-tabfivemce').val();
-										
-										if(tab1tt !==''){ var tab1tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab1tt+'</a></li>';}
-										if(tab2tt !==''){ var tab2tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab2tt+'</a></li>';}
-										if(tab3tt !==''){ var tab3tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab3tt+'</a></li>';}
-										if(tab4tt !==''){ var tab4tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab4tt+'</a></li>';}
-										if(tab5tt !==''){ var tab5tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab5tt+'</a></li>';}
-										
-										if(tabonemce !==''){ var tabonemce ='<div class="lts_tab_child">'+tabonemce+'</div>';}
-										if(tabtwomce !==''){ var tabtwomce ='<div class="lts_tab_child">'+tabtwomce+'</div>';}
-										if(tabthreemce !==''){ var tabthreemce ='<div class="lts_tab_child">'+tabthreemce+'</div>';}
-										if(tabfourmce !==''){ var tabfourmce ='<div class="lts_tab_child">'+tabfourmce+'</div>';}
-										if(tabfivemce !==''){ var tabfivemce ='<div class="lts_tab_child">'+tabfivemce+'</div>';}
-										
+                                 var tab3tt = jQuery('.mce-tab3tt').val();
+                                 var tabthreemce = jQuery('.mce-tabthreemce').val();
+                                 
+                                 var tab4tt = jQuery('.mce-tab4tt').val();
+                                 var tabfourmce = jQuery('.mce-tabfourmce').val();
+                                 
+                                 var tab5tt = jQuery('.mce-tab5tt').val();
+                                 var tabfivemce = jQuery('.mce-tabfivemce').val();
+                                 
+                                 if(tab1tt !==''){ var tab1tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab1tt+'</a></li>';}
+                                 if(tab2tt !==''){ var tab2tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab2tt+'</a></li>';}
+                                 if(tab3tt !==''){ var tab3tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab3tt+'</a></li>';}
+                                 if(tab4tt !==''){ var tab4tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab4tt+'</a></li>';}
+                                 if(tab5tt !==''){ var tab5tt ='<li class="tabli lts_tabtitle"><a href="#">'+tab5tt+'</a></li>';}
+                                 
+                                 if(tabonemce !==''){ var tabonemce ='<div class="lts_tab_child">'+tabonemce+'</div>';}
+                                 if(tabtwomce !==''){ var tabtwomce ='<div class="lts_tab_child">'+tabtwomce+'</div>';}
+                                 if(tabthreemce !==''){ var tabthreemce ='<div class="lts_tab_child">'+tabthreemce+'</div>';}
+                                 if(tabfourmce !==''){ var tabfourmce ='<div class="lts_tab_child">'+tabfourmce+'</div>';}
+                                 if(tabfivemce !==''){ var tabfivemce ='<div class="lts_tab_child">'+tabfivemce+'</div>';}
+                                 
 
-										if(tab1tt ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="tabs-container lts_tabs tabs_'+tabs_style+' " data-active-color="'+active_color+'"><ul class="tabs ">'+tab1tt+' '+tab2tt+' '+tab3tt+' '+tab4tt+' '+tab5tt+'</ul><div class="lts_tab">'+tabonemce+' '+tabtwomce+' '+tabthreemce+' '+tabfourmce+' '+tabfivemce+'</div></div><div style="clear:both"></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".tabs_prev").remove();
-										jQuery(".tabs_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview tabs_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".tabs_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-										
-//load nivoslider
-									jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js", function(){ 
-									//Tabs Javascript
-									 jQuery(".lts_tab p:empty").remove();
-									  jQuery(".lts_tabs .lts_tabtitle.emptyp_clear").remove();
-									 var i = 1; 
-									 jQuery(".tabs-container .tabli a").each(function (){jQuery(this).attr('href', '#tab-'+i+''); i++;});
-										
-									 var i = 1; 
-									 jQuery(".lts_tab > div").each(function (){jQuery(this).attr('id', 'tab-'+i+''); i++;});
-										
-									 var i = 1; 
-									 jQuery(".tabs-container").each(function (){jQuery(this).attr('id', 'tabs-container_'+i+''); i++;});
-									 
-  jQuery(".tabs-container.tabs_default").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
- });
-   jQuery(".tabs-container.tabs_circular").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:#fff!important;background:'+active_color+'}</style>').appendTo('head');
- });
-   jQuery(".tabs-container.tabs_minimal").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+';background:transparent;}</style>').appendTo('head');
- });
-    jQuery(".tabs-container.tabs_capsule").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:#fff!important;background:'+active_color+';border-color:'+active_color+'}</style>').appendTo('head');
- });
-									
-									jQuery('#tabs-container_1, #tabs-container_2, #tabs-container_3').easytabs();
- 									});
-									},function(){
+                                 if(tab1tt ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="tabs-container lts_tabs tabs_'+tabs_style+' " data-active-color="'+active_color+'"><ul class="tabs ">'+tab1tt+' '+tab2tt+' '+tab3tt+' '+tab4tt+' '+tab5tt+'</ul><div class="lts_tab">'+tabonemce+' '+tabtwomce+' '+tabthreemce+' '+tabfourmce+' '+tabfivemce+'</div></div><div style="clear:both"></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".tabs_prev").remove();
+                                 jQuery(".tabs_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview tabs_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".tabs_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+   //load nivoslider
+                              jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery.easytabs/3.2.0/jquery.easytabs.min.js", function(){ 
+                                 //Tabs Javascript
+                                 jQuery(".lts_tab p:empty").remove();
+                                 jQuery(".lts_tabs .lts_tabtitle.emptyp_clear").remove();
+                                 var i = 1; 
+                                 jQuery(".tabs-container .tabli a").each(function (){jQuery(this).attr('href', '#tab-'+i+''); i++;});
+                                    
+                                 var i = 1; 
+                                 jQuery(".lts_tab > div").each(function (){jQuery(this).attr('id', 'tab-'+i+''); i++;});
+                                    
+                                 var i = 1; 
+                                 jQuery(".tabs-container").each(function (){jQuery(this).attr('id', 'tabs-container_'+i+''); i++;});
+                                 
+                                 jQuery(".tabs-container.tabs_default").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
+                                    jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
+                                 });
+                                    jQuery(".tabs-container.tabs_circular").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
+                                    jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:#fff!important;background:'+active_color+'}</style>').appendTo('head');
+                                 });
+                                    jQuery(".tabs-container.tabs_minimal").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
+                                    jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+';background:transparent;}</style>').appendTo('head');
+                                 });
+                                    jQuery(".tabs-container.tabs_capsule").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
+                                    jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:#fff!important;background:'+active_color+';border-color:'+active_color+'}</style>').appendTo('head');
+                                 });
+                                 
+                                 jQuery('#tabs-container_1, #tabs-container_2, #tabs-container_3').easytabs();
+                              });
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".tabs_prev").remove();
+                              jQuery(".tabs_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2449,7 +2484,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Toggle"]').addClass('toggle_window');
 									jQuery(".toggle_window .mce-foot>div").prepend("<a class='short_preview_btn toggle_prevbtn'><span></span>Preview</a>");
-									jQuery('.toggle_prevbtn').toggle(function(){
+									jQuery('.toggle_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -2465,7 +2501,7 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".toggle_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
-										jQuery(".toggle_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview toggle_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".toggle_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview toggle_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".toggle_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
 										//TOGGLE FUNCTION
 										jQuery('.lts_toggle_content').hide(); // Hide even though it's already hidden
@@ -2473,16 +2509,17 @@
 										jQuery(this).closest('.lts_toggle').find('.lts_toggle_content').slideToggle("fast"); 
 										  return false;
 									   });
-										jQuery('.lts_toggle a.trigger').toggle(function(){
+										jQuery('.lts_toggle a.trigger').on('click',function(){
 											jQuery(this).find('i').animateRotate(135);
 											jQuery(this).addClass('down');
 										}, function(){
 											jQuery(this).find('i').animateRotate(-90);
 											jQuery(this).removeClass('down');	
 										});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".toggle_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                              jQuery(".toggle_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2572,28 +2609,30 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Panel"]').addClass('panel_window');
 									jQuery(".panel_window .mce-foot>div").prepend("<a class='short_preview_btn panel_prevbtn'><span></span>Preview</a>");
-									jQuery('.panel_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var paneltitle = jQuery('.mce-paneltitle').val();
-										var panelcontent = jQuery('.mce-panelmce').val();
-										var panelbg = jQuery('.mce-panelbg').val();
-										var panelcolor = jQuery('.mce-panelcolor').val();
+									jQuery('.panel_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var paneltitle = jQuery('.mce-paneltitle').val();
+                                 var panelcontent = jQuery('.mce-panelmce').val();
+                                 var panelbg = jQuery('.mce-panelbg').val();
+                                 var panelcolor = jQuery('.mce-panelcolor').val();
 
-										if(panelcontent ==''){
-											var shortcontent = '<h3 class="no_shortcode">Please Select an Icon!</h3>';
-										}else{
-											var shortcontent = '<div style="border-color:'+panelbg+'" class="lts_panel"><h3 style="background-color:'+panelbg+';color:'+panelcolor+'">'+paneltitle+'</h3><div class="lts_panel_body">'+panelcontent+'</div></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".panel_prev").remove();
-										jQuery(".panel_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview panel_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".panel_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".panel_prev").remove();
+                                 if(panelcontent ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">Please Select an Icon!</h3>';
+                                 }else{
+                                    var shortcontent = '<div style="border-color:'+panelbg+'" class="lts_panel"><h3 style="background-color:'+panelbg+';color:'+panelcolor+'">'+paneltitle+'</h3><div class="lts_panel_body">'+panelcontent+'</div></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".panel_prev").remove();
+                                 jQuery(".panel_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview panel_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".panel_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".panel_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2715,38 +2754,40 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Call to Action"]').addClass('cta_window');
 									jQuery(".cta_window .mce-foot>div").prepend("<a class='short_preview_btn cta_prevbtn'><span></span>Preview</a>");
-									jQuery('.cta_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var ctacontent = jQuery('.mce-ctamce').val();
-										var ctabtntxt = jQuery('.mce-ctabtntxt').val();
-										var ctabtnlink = jQuery('.mce-ctabtnlink').val();
-										var ctabg = jQuery('.mce-ctabg').val();
-										var ctacolor = jQuery('.mce-ctacolor').val();
-										var ctabtnbg = jQuery('.mce-ctabtnbg').val();
-										var ctabtncolor = jQuery('.mce-ctabtncolor').val();
-										var ctabtnroundval = jQuery('.mce-ctabtnround').attr("aria-checked");
-										var ctabtnround ='0';
-										if(ctabtnroundval =='true'){var ctabtnround = "lt_rounded";}
+									jQuery('.cta_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var ctacontent = jQuery('.mce-ctamce').val();
+                                 var ctabtntxt = jQuery('.mce-ctabtntxt').val();
+                                 var ctabtnlink = jQuery('.mce-ctabtnlink').val();
+                                 var ctabg = jQuery('.mce-ctabg').val();
+                                 var ctacolor = jQuery('.mce-ctacolor').val();
+                                 var ctabtnbg = jQuery('.mce-ctabtnbg').val();
+                                 var ctabtncolor = jQuery('.mce-ctabtncolor').val();
+                                 var ctabtnroundval = jQuery('.mce-ctabtnround').attr("aria-checked");
+                                 var ctabtnround ='0';
+                                 if(ctabtnroundval =='true'){var ctabtnround = "lt_rounded";}
 
-										
-										if(ctacontent ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div style="background:'+ctabg+';color:'+ctacolor+'!important;" class="ast_shrt_action ' + ctabtnround+'"><div class="act_left">'+ctacontent+'</div><div class="act_right"><a class="'+ctabtnround+'" style="background:'+ctabtnbg+';color:'+ctabtncolor+'!important;" href="'+ctabtnlink+'">'+ctabtntxt+'</a></div></div><div style="clear:both"></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".cta_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
-										jQuery(".cta_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview cta_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".cta_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-										
-										jQuery('.lts_lightbox_bttn').on("click",function(){  jQuery('<div class="lts_lightbox_content"><span onclick="closeclick();" class="ltsclose">×</span>'+lightboxmce+'</div><div class="lts_lightbox_blank"></div>').appendTo('body');  });
-										
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".cta_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                                 
+                                 if(ctacontent ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div style="background:'+ctabg+';color:'+ctacolor+'!important;" class="ast_shrt_action ' + ctabtnround+'"><div class="act_left">'+ctacontent+'</div><div class="act_right"><a class="'+ctabtnround+'" style="background:'+ctabtnbg+';color:'+ctabtncolor+'!important;" href="'+ctabtnlink+'">'+ctabtntxt+'</a></div></div><div style="clear:both"></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".cta_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                                 jQuery(".cta_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview cta_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".cta_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+                                 jQuery('.lts_lightbox_bttn').on("click",function(){  jQuery('<div class="lts_lightbox_content"><span onclick="closeclick();" class="ltsclose">×</span>'+lightboxmce+'</div><div class="lts_lightbox_blank"></div>').appendTo('body');  });
+                                 
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".cta_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2793,25 +2834,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Success Message Box"]').addClass('success_window');
 									jQuery(".success_window .mce-foot>div").prepend("<a class='short_preview_btn success_prevbtn'><span></span>Preview</a>");
-									jQuery('.success_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var content = jQuery('.mce-successmce').val();
+									jQuery('.success_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var content = jQuery('.mce-successmce').val();
 
-										if(content ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_scs">'+content+'</div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".success_prev").remove();
-										jQuery(".success_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview success_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".success_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".success_prev").remove();
+                                 if(content ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_scs">'+content+'</div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".success_prev").remove();
+                                 jQuery(".success_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview success_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".success_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".success_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2858,25 +2901,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Info Message Box"]').addClass('info_window');
 									jQuery(".info_window .mce-foot>div").prepend("<a class='short_preview_btn info_prevbtn'><span></span>Preview</a>");
-									jQuery('.info_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var content = jQuery('.mce-infomce').val();
+									jQuery('.info_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var content = jQuery('.mce-infomce').val();
 
-										if(content ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_info">'+content+'</div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".info_prev").remove();
-										jQuery(".info_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview info_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".info_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".info_prev").remove();
+                                 if(content ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_info">'+content+'</div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".info_prev").remove();
+                                 jQuery(".info_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview info_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".info_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".info_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2922,25 +2967,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Warning Message Box"]').addClass('warning_window');
 									jQuery(".warning_window .mce-foot>div").prepend("<a class='short_preview_btn warning_prevbtn'><span></span>Preview</a>");
-									jQuery('.warning_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var content = jQuery('.mce-warningmce').val();
+									jQuery('.warning_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var content = jQuery('.mce-warningmce').val();
 
-										if(content ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_wng">'+content+'</div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".warning_prev").remove();
-										jQuery(".warning_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview warning_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".warning_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".warning_prev").remove();
+                                 if(content ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_wng">'+content+'</div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".warning_prev").remove();
+                                 jQuery(".warning_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview warning_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".warning_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".warning_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -2987,25 +3034,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Error Message Box"]').addClass('error_window');
 									jQuery(".error_window .mce-foot>div").prepend("<a class='short_preview_btn error_prevbtn'><span></span>Preview</a>");
-									jQuery('.error_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var content = jQuery('.mce-errormce').val();
+									jQuery('.error_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var content = jQuery('.mce-errormce').val();
 
-										if(content ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_err">'+content+'</div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".error_prev").remove();
-										jQuery(".error_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview error_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".error_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".error_prev").remove();
+                                 if(content ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_err">'+content+'</div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".error_prev").remove();
+                                 jQuery(".error_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview error_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".error_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".error_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3096,7 +3145,7 @@
 								});
 
 								//SLIDER IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -3146,37 +3195,39 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Slider"]').addClass('slider_window');
 									jQuery(".slider_window .mce-foot>div").prepend("<a class='short_preview_btn slider_prevbtn'><span></span>Preview</a>");
-									jQuery('.slider_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var slide_images = jQuery('.mce-slide_images').html();
-										var slide_trans = jQuery('.mce-slide_trans button').text().toLowerCase().replace(/ /g,"_");
-										var slide_time = jQuery('.mce-slide_time').val();
-										var slide_auto_val = jQuery('.mce-slide_auto').attr("aria-checked");
-										var slide_auto ='false'; if(slide_auto_val =='true'){var slide_auto = 'true';}
-										var slide_nav_val = jQuery('.mce-slide_nav').attr("aria-checked");
-										var slide_nav ='false'; if(slide_nav_val =='true'){var slide_nav = 'true';}
-										
-										if(slide_images ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="ast_slide_wrap"><div class="ast_slider">'+slide_images+'</div></div>';
-										}
-									//load nivoslider
-									jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js", function(){ 
-				jQuery(".ast_slider").nivoSlider({ effect :slide_trans, pauseTime: slide_time, directionNav: slide_nav, autoplay:slide_auto,pauseOnHover:false, slices:7,controlNav:false}); 
-										});
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".slider_prev").remove();
-										jQuery(".slider_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview slider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".slider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-										
-										
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".slider_prev").remove();
+									jQuery('.slider_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var slide_images = jQuery('.mce-slide_images').html();
+                                 var slide_trans = jQuery('.mce-slide_trans button').text().toLowerCase().replace(/ /g,"_");
+                                 var slide_time = jQuery('.mce-slide_time').val();
+                                 var slide_auto_val = jQuery('.mce-slide_auto').attr("aria-checked");
+                                 var slide_auto ='false'; if(slide_auto_val =='true'){var slide_auto = 'true';}
+                                 var slide_nav_val = jQuery('.mce-slide_nav').attr("aria-checked");
+                                 var slide_nav ='false'; if(slide_nav_val =='true'){var slide_nav = 'true';}
+                                 
+                                 if(slide_images ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="ast_slide_wrap"><div class="ast_slider">'+slide_images+'</div></div>';
+                                 }
+                              //load nivoslider
+                              jQuery.getScript("https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js", function(){ 
+               jQuery(".ast_slider").nivoSlider({ effect :slide_trans, pauseTime: slide_time, directionNav: slide_nav, autoplay:slide_auto,pauseOnHover:false, slices:7,controlNav:false}); 
+                                 });
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".slider_prev").remove();
+                                 jQuery(".slider_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview slider_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".slider_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+                                 
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".slider_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3402,31 +3453,33 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Facebook Like Button"]').addClass('fblike_window');
 									jQuery(".fblike_window .mce-foot>div").prepend("<a class='short_preview_btn fblike_prevbtn'><span></span>Preview</a>");
-									jQuery('.fblike_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var fbstyle = jQuery('.mce-fbstyle button').text().toLowerCase().replace(/ /g,"_");
-										var fbaction = jQuery('.mce-fbaction button').text().toLowerCase().replace(/ /g,"_");
-										if( fbstyle.slice(-1) == '_'){var fbstyle = fbstyle.replace(/_([^_]*)$/,'$1');}
-										if( fbaction.slice(-1) == '_'){var fbaction = fbaction.replace(/_([^_]*)$/,'$1');}
-										var fbshare_val = jQuery('.mce-fbshare').attr("aria-checked");
-										var fbshare ='false';
-										if(fbshare_val =='true'){var fbshare = 'true';}
-										if(fbstyle ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											
-											var shortcontent = '<iframe src="//www.facebook.com/plugins/like.php?href=http://google.com/&amp;width&amp;layout='+fbstyle+'&amp;action='+fbaction+'&amp;show_faces=false&amp;share='+fbshare+'&amp;height=35&amp" scrolling="no" frameborder="0" style="border:none; overflow:hidden; allowTransparency="true"></iframe>';
-											
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".fblike_prev").remove();
-										jQuery(".fblike_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview fblike_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".fblike_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".fblike_prev").remove();
+									jQuery('.fblike_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var fbstyle = jQuery('.mce-fbstyle button').text().toLowerCase().replace(/ /g,"_");
+                                 var fbaction = jQuery('.mce-fbaction button').text().toLowerCase().replace(/ /g,"_");
+                                 if( fbstyle.slice(-1) == '_'){var fbstyle = fbstyle.replace(/_([^_]*)$/,'$1');}
+                                 if( fbaction.slice(-1) == '_'){var fbaction = fbaction.replace(/_([^_]*)$/,'$1');}
+                                 var fbshare_val = jQuery('.mce-fbshare').attr("aria-checked");
+                                 var fbshare ='false';
+                                 if(fbshare_val =='true'){var fbshare = 'true';}
+                                 if(fbstyle ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    
+                                    var shortcontent = '<iframe src="//www.facebook.com/plugins/like.php?href=http://google.com/&amp;width&amp;layout='+fbstyle+'&amp;action='+fbaction+'&amp;show_faces=false&amp;share='+fbshare+'&amp;height=35&amp" scrolling="no" frameborder="0" style="border:none; overflow:hidden; allowTransparency="true"></iframe>';
+                                    
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".fblike_prev").remove();
+                                 jQuery(".fblike_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview fblike_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".fblike_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".fblike_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3497,32 +3550,34 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Twitter Share Button"]').addClass('twitter_window');
 									jQuery(".twitter_window .mce-foot>div").prepend("<a class='short_preview_btn twitter_prevbtn'><span></span>Preview</a>");
-									jQuery('.twitter_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT
-										var twtsize = jQuery('.mce-twtsize button').text().toLowerCase();
-										if(twtsize =='standard'){var twtsize =''}
-										if(twtsize =='big'){var twtsize ='data-size="large"' }
-										var twtcount = jQuery('.mce-twtcount button').text().toLowerCase();
-										if(twtcount =='horizontal'){var twtcount =''}
-										if(twtcount =='vertical'){var twtcount ='data-count="vertical"' }
-										if(twtvia !==''){var twtvia = 'data-via="'+jQuery('.mce-twtvia').val()+'"';}else{var twtvia =''; }
-										var twtshare_val = jQuery('.mce-twtshare').attr("aria-checked");
-										var twtshare ='data-count="none"';
-										if(twtshare_val =='true'){var twtshare = '';}
-															
-											var shortcontent = '<a href="https://twitter.com/share" class="twitter-share-button" '+twtvia+' '+twtcount+' '+twtsize+' '+twtcount+'>Tweet</a>';
-											
+									jQuery('.twitter_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT
+                                 var twtsize = jQuery('.mce-twtsize button').text().toLowerCase();
+                                 if(twtsize =='standard'){var twtsize =''}
+                                 if(twtsize =='big'){var twtsize ='data-size="large"' }
+                                 var twtcount = jQuery('.mce-twtcount button').text().toLowerCase();
+                                 if(twtcount =='horizontal'){var twtcount =''}
+                                 if(twtcount =='vertical'){var twtcount ='data-count="vertical"' }
+                                 if(twtvia !==''){var twtvia = 'data-via="'+jQuery('.mce-twtvia').val()+'"';}else{var twtvia =''; }
+                                 var twtshare_val = jQuery('.mce-twtshare').attr("aria-checked");
+                                 var twtshare ='data-count="none"';
+                                 if(twtshare_val =='true'){var twtshare = '';}
+                                                
+                                    var shortcontent = '<a href="https://twitter.com/share" class="twitter-share-button" '+twtvia+' '+twtcount+' '+twtsize+' '+twtcount+'>Tweet</a>';
+                                    
 
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".twitter_prev").remove();
-										jQuery(".twitter_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview twitter_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".twitter_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".twitter_prev").remove();
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".twitter_prev").remove();
+                                 jQuery(".twitter_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview twitter_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".twitter_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?"http":"https";if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document, "script", "twitter-wjs");
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".twitter_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3578,30 +3633,32 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Google+ Share Button"]').addClass('gplus_window');
 									jQuery(".gplus_window .mce-foot>div").prepend("<a class='short_preview_btn gplus_prevbtn'><span></span>Preview</a>");
-									jQuery('.gplus_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										
-										//GET PREVIEW CONTENT
-										var gplustyle = jQuery('.mce-gplustyle button').text().toLowerCase();
-										if(gplustyle =='no count'){var gplustyle ='none'}
-										
-										var gplusize = jQuery('.mce-gplusize button').text().toLowerCase();
-										if(gplusize =='small'){var gplusize ='data-size="small"' }
-										if(gplusize =='large'){var gplusize ='data-size="tall"' }
-										if(gplusize =='medium'){var gplusize =''}
-															
-											var shortcontent = '<div class="gplus_wrap gplus_'+gplustyle+'"><div class="g-plusone" '+gplusize+' data-annotation="'+gplustyle+'"></div></div>';
-											
+									jQuery('.gplus_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 
+                                 //GET PREVIEW CONTENT
+                                 var gplustyle = jQuery('.mce-gplustyle button').text().toLowerCase();
+                                 if(gplustyle =='no count'){var gplustyle ='none'}
+                                 
+                                 var gplusize = jQuery('.mce-gplusize button').text().toLowerCase();
+                                 if(gplusize =='small'){var gplusize ='data-size="small"' }
+                                 if(gplusize =='large'){var gplusize ='data-size="tall"' }
+                                 if(gplusize =='medium'){var gplusize =''}
+                                                
+                                    var shortcontent = '<div class="gplus_wrap gplus_'+gplustyle+'"><div class="g-plusone" '+gplusize+' data-annotation="'+gplustyle+'"></div></div>';
+                                    
 
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".gplus_prev").remove();
-										jQuery(".gplus_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview gplus_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".gplus_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-(function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);})();
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".gplus_prev").remove();
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".gplus_prev").remove();
+                                 jQuery(".gplus_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview gplus_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".gplus_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+   (function() { var po = document.createElement("script"); po.type = "text/javascript"; po.async = true; po.src = "https://apis.google.com/js/plusone.js"; var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(po, s);})();
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".gplus_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3657,30 +3714,32 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Pinterest Pin Button"]').addClass('pin_window');
 									jQuery(".pin_window .mce-foot>div").prepend("<a class='short_preview_btn pin_prevbtn'><span></span>Preview</a>");
-									jQuery('.pin_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										
-										//GET PREVIEW CONTENT
-										var pinstyle = jQuery('.mce-pinstyle button').text().toLowerCase();
-										if(pinstyle =='red'){var pinstyle ='data-pin-color="red"' }
-										if(pinstyle =='white'){var pinstyle ='data-pin-color="white"' }
-										if(pinstyle =='gray'){var pinstyle =''}
-										
-										var pinsize = jQuery('.mce-pinsize button').text().toLowerCase();
-										if(pinsize =='standard'){var pinsize ='' }
-										if(pinsize =='big'){var pinsize ='data-pin-height="28"' }
-															
-											var shortcontent = '<a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" '+pinsize+' '+pinstyle+'><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>';
-											
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".pin_prev").remove();
-										jQuery(".pin_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview pin_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".pin_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-!function(a,b,c){var d,e,f;f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c+"?"+f,d.parentNode.insertBefore(e,d)},10))}(window,document,"//assets.pinterest.com/js/pinit_main.js");
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".pin_prev, #pinscript").remove();
+									jQuery('.pin_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 
+                                 //GET PREVIEW CONTENT
+                                 var pinstyle = jQuery('.mce-pinstyle button').text().toLowerCase();
+                                 if(pinstyle =='red'){var pinstyle ='data-pin-color="red"' }
+                                 if(pinstyle =='white'){var pinstyle ='data-pin-color="white"' }
+                                 if(pinstyle =='gray'){var pinstyle =''}
+                                 
+                                 var pinsize = jQuery('.mce-pinsize button').text().toLowerCase();
+                                 if(pinsize =='standard'){var pinsize ='' }
+                                 if(pinsize =='big'){var pinsize ='data-pin-height="28"' }
+                                                
+                                    var shortcontent = '<a href="//pinterest.com/pin/create/button/" data-pin-do="buttonBookmark" '+pinsize+' '+pinstyle+'><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>';
+                                    
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".pin_prev").remove();
+                                 jQuery(".pin_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview pin_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".pin_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+   !function(a,b,c){var d,e,f;f="PIN_"+~~((new Date).getTime()/864e5),a[f]||(a[f]=!0,a.setTimeout(function(){d=b.getElementsByTagName("SCRIPT")[0],e=b.createElement("SCRIPT"),e.type="text/javascript",e.async=!0,e.src=c+"?"+f,d.parentNode.insertBefore(e,d)},10))}(window,document,"//assets.pinterest.com/js/pinit_main.js");
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".pin_prev, #pinscript").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3744,25 +3803,27 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Featured Image"]').addClass('feat_window');
 									jQuery(".feat_window .mce-foot>div").prepend("<a class='short_preview_btn feat_prevbtn'><span></span>Preview</a>");
-									jQuery('.feat_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										
-										//GET PREVIEW CONTENT
-										var featimg = jQuery('#set-post-thumbnail').html();
-										var featimgalign = jQuery('.mce-featalign button').text().toLowerCase();
-										
+									jQuery('.feat_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 
+                                 //GET PREVIEW CONTENT
+                                 var featimg = jQuery('#set-post-thumbnail').html();
+                                 var featimgalign = jQuery('.mce-featalign button').text().toLowerCase();
+                                 
 
-															
-											var shortcontent = '<p style="text-align:'+featimgalign+'">'+featimg+'</p>';
-											
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".feat_prev").remove();
-										jQuery(".feat_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview feat_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".feat_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".feat_prev, #pinscript").remove();
+                                                
+                                    var shortcontent = '<p style="text-align:'+featimgalign+'">'+featimg+'</p>';
+                                    
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".feat_prev").remove();
+                                 jQuery(".feat_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview feat_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".feat_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".feat_prev, #pinscript").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -3845,7 +3906,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Flickr Gallery"]').addClass('flickr_window');
 									jQuery(".flickr_window .mce-foot>div").prepend("<a class='short_preview_btn flickr_prevbtn'><span></span>Preview</a>");
-									jQuery('.flickr_prevbtn').toggle(function(){
+									jQuery('.flickr_prevbtn').on('click',function(){
+                           if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										
@@ -3860,38 +3922,39 @@
 										
 										if(userid == '' && userkey ==''){ var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';	}else{				
 											var shortcontent = '<div id="flickr_badge_wrapper" class="clearfix flckr_'+flickrsize+'"></div>';
-					(function($){
-						var userID = userid;
-						var apiKey = userkey;
-						var itemsPerPage = flickrcount; // Max is 500
-						$.getJSON("https://api.flickr.com/services/rest/?&method=flickr.people.getPhotos&api_key=" + apiKey + "&user_id=" + userID + "&per_page=" + itemsPerPage + "&format=json&jsoncallback=?", function(data){        
-							
-							var htmlOutput = "<ul class=\'pd_flick_gallery\'>";
-							//loop through the results
-							$.each(data.photos.photo, function(i,item){
-								// URLs
-								var photoURL = "http://farm" + item.farm + ".static.flickr.com/" + item.server + "/" + item.id + "_" + item.secret + "_"+flickrsize+".jpg";
-								var linkURL = "http://farm" + item.farm + ".static.flickr.com/" + item.server + "/" + item.id + "_" + item.secret + "_b.jpg";
-								
-								htmlOutput += '<li><a href="' + linkURL + '" target="_blank">';
-								htmlOutput += '<img title="' + item.title + '" src="' + photoURL;
-								htmlOutput += '" alt="' + item.title + '" />';
-								htmlOutput += '</a></li>';
-							});
-							htmlOutput += "</ul><div style=\'clear:both;\'></div>";
-							   
-							// Assign result to a unique container
-							$("#flickr_badge_wrapper").html(htmlOutput);
-						});
-					})(jQuery);
+                              (function($){
+                                 var userID = userid;
+                                 var apiKey = userkey;
+                                 var itemsPerPage = flickrcount; // Max is 500
+                                 $.getJSON("https://api.flickr.com/services/rest/?&method=flickr.people.getPhotos&api_key=" + apiKey + "&user_id=" + userID + "&per_page=" + itemsPerPage + "&format=json&jsoncallback=?", function(data){        
+                                    
+                                    var htmlOutput = "<ul class=\'pd_flick_gallery\'>";
+                                    //loop through the results
+                                    $.each(data.photos.photo, function(i,item){
+                                       // URLs
+                                       var photoURL = "http://farm" + item.farm + ".static.flickr.com/" + item.server + "/" + item.id + "_" + item.secret + "_"+flickrsize+".jpg";
+                                       var linkURL = "http://farm" + item.farm + ".static.flickr.com/" + item.server + "/" + item.id + "_" + item.secret + "_b.jpg";
+                                       
+                                       htmlOutput += '<li><a href="' + linkURL + '" target="_blank">';
+                                       htmlOutput += '<img title="' + item.title + '" src="' + photoURL;
+                                       htmlOutput += '" alt="' + item.title + '" />';
+                                       htmlOutput += '</a></li>';
+                                    });
+                                    htmlOutput += "</ul><div style=\'clear:both;\'></div>";
+                                       
+                                    // Assign result to a unique container
+                                    $("#flickr_badge_wrapper").html(htmlOutput);
+                                 });
+                              })(jQuery);
 									}
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".flickr_prev").remove();
-										jQuery(".flickr_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview flickr_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".flickr_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview flickr_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".flickr_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".flickr_prev, #pinscript").remove();
+                              jQuery(".flickr_prev, #pinscript").remove();
+                           }
 									});
 									}, 500);
 							},
@@ -3960,30 +4023,32 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Responsive Youtube Video"]').addClass('youtube_window');
 									jQuery(".youtube_window .mce-foot>div").prepend("<a class='short_preview_btn youtube_prevbtn'><span></span>Preview</a>");
-									jQuery('.youtube_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										
-										//GET PREVIEW CONTENT
-										var ytburl = jQuery('.mce-ytburl').val();
-										var ytbheight = jQuery('.mce-ytbheight').val();
-										var ytbwidth = jQuery('.mce-ytbwidth').val();
-										var ytbautoplayval = jQuery('.mce-ytbautoplay').attr("aria-checked");
-										var ytbautoplay ='';
-										if(ytbautoplayval =='true'){var ytbautoplay = "?autoplay=1";}
-									
-										
-										if(ytburl ==''){ var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';	}else{
-											
-											var shortcontent = '<div class="ast_vid"><div class="responsive-container"><iframe class="vid_iframe" style=" width: '+ytbwidth+'; height: '+ytbheight+';" src="//www.youtube.com/embed/'+videourl(ytburl)+''+ytbautoplay+'" allowfullscreen></iframe></div></div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".youtube_prev").remove();
-										jQuery(".youtube_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview youtube_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".youtube_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".youtube_prev, #pinscript").remove();
+									jQuery('.youtube_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 
+                                 //GET PREVIEW CONTENT
+                                 var ytburl = jQuery('.mce-ytburl').val();
+                                 var ytbheight = jQuery('.mce-ytbheight').val();
+                                 var ytbwidth = jQuery('.mce-ytbwidth').val();
+                                 var ytbautoplayval = jQuery('.mce-ytbautoplay').attr("aria-checked");
+                                 var ytbautoplay ='';
+                                 if(ytbautoplayval =='true'){var ytbautoplay = "?autoplay=1";}
+                              
+                                 
+                                 if(ytburl ==''){ var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';	}else{
+                                    
+                                    var shortcontent = '<div class="ast_vid"><div class="responsive-container"><iframe class="vid_iframe" style=" width: '+ytbwidth+'; height: '+ytbheight+';" src="//www.youtube.com/embed/'+videourl(ytburl)+''+ytbautoplay+'" allowfullscreen></iframe></div></div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".youtube_prev").remove();
+                                 jQuery(".youtube_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview youtube_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".youtube_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".youtube_prev, #pinscript").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -4054,30 +4119,32 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Responsive Vimeo Video"]').addClass('vimeo_window');
 									jQuery(".vimeo_window .mce-foot>div").prepend("<a class='short_preview_btn vimeo_prevbtn'><span></span>Preview</a>");
-									jQuery('.vimeo_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										
-										//GET PREVIEW CONTENT
-										var vimeourl = jQuery('.mce-vimeourl').val();
-										var vimeoheight = jQuery('.mce-vimeoheight').val();
-										var vimeowidth = jQuery('.mce-vimeowidth').val();
-										var vimeoautoplayval = jQuery('.mce-vimeoautoplay').attr("aria-checked");
-										var vimeoautoplay ='0';
-										if(vimeoautoplayval =='true'){var vimeoautoplay = "1";}
-									
-										
-										if(vimeourl ==''){ var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';	}else{
-											
-											var shortcontent = '<div class="ast_vid"><div class="responsive-container"><iframe class="vid_iframe" style=" width: '+vimeowidth+'; height: '+vimeoheight+';" src="//player.vimeo.com/video/'+videourl(vimeourl)+'?title=1&amp;byline=0&amp;portrait=0&amp;color=00adef&amp;autoplay='+vimeoautoplay+'"></iframe></div></div>';
-										}
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".vimeo_prev").remove();
-										jQuery(".vimeo_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview vimeo_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".vimeo_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".vimeo_prev, #pinscript").remove();
+									jQuery('.vimeo_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 
+                                 //GET PREVIEW CONTENT
+                                 var vimeourl = jQuery('.mce-vimeourl').val();
+                                 var vimeoheight = jQuery('.mce-vimeoheight').val();
+                                 var vimeowidth = jQuery('.mce-vimeowidth').val();
+                                 var vimeoautoplayval = jQuery('.mce-vimeoautoplay').attr("aria-checked");
+                                 var vimeoautoplay ='0';
+                                 if(vimeoautoplayval =='true'){var vimeoautoplay = "1";}
+                              
+                                 
+                                 if(vimeourl ==''){ var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';	}else{
+                                    
+                                    var shortcontent = '<div class="ast_vid"><div class="responsive-container"><iframe class="vid_iframe" style=" width: '+vimeowidth+'; height: '+vimeoheight+';" src="//player.vimeo.com/video/'+videourl(vimeourl)+'?title=1&amp;byline=0&amp;portrait=0&amp;color=00adef&amp;autoplay='+vimeoautoplay+'"></iframe></div></div>';
+                                 }
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".vimeo_prev").remove();
+                                 jQuery(".vimeo_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview vimeo_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".vimeo_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".vimeo_prev, #pinscript").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -4163,9 +4230,6 @@
 										},									
 											
 									],
-
-								
-
 							
 									onsubmit: function( e ) {
 									var selectedpost = jQuery(".mce-lts_posts select").val(); 
@@ -4304,7 +4368,7 @@
 								optimColpick();		
 								//CALL THE COLORPICKER END
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -4357,36 +4421,38 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="About Author Box"]').addClass('author_window');
 									jQuery(".author_window .mce-foot>div").prepend("<a class='short_preview_btn author_prevbtn'><span></span>Preview</a>");
-									jQuery('.author_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var authorname = jQuery('.mce-authorname').val();
-										
-										if(authorimg_button !==''){var authorimg_button = '<div class="author_image"><img src="'+jQuery('.mce-authorimg_button button').val()+'" alt="'+authorname+'" title="'+authorname+'" /></div>'; }else{ var authorimg_button = '';}
-										var authormce = jQuery('.mce-authormce').val();
-										var authorcolor = jQuery('.mce-authorcolor').val();
-										var authorbg = jQuery('.mce-authorbg').val();
-										
-		if(authorfb !==''){var authorfb = '<a href="'+jQuery('.mce-authorfb').val()+'"><i class="fa fa-facebook-square"></i></a>'; }else{ var authorfb = '';}
-		if(authortwt !==''){var authortwt = '<a href="'+jQuery('.mce-authortwt').val()+'"><i class="fa fa-twitter-square"></i></a>'; }else{ var authortwt = '';}
-		if(authorgoogle !==''){var authorgoogle = '<a href="'+jQuery('.mce-authorgoogle').val()+'"><i class="fa fa-google-plus-square"></i></a>'; }else{ var authorgoogle = '';}
-		if(authorlinkdin !==''){var authorlinkdin = '<a href="'+jQuery('.mce-authorlinkdin').val()+'"><i class="fa fa-linkedin-square"></i></a>'; }else{ var authorlinkdin = '';}
-		if(authorweb !==''){var authorweb = '<a href="'+jQuery('.mce-authorweb').val()+'"><i class="fa fa-globe"></i></a>'; }else{ var authorweb = '';}
-										
-										if(authorname ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_author" style="background:'+authorbg+'">'+authorimg_button+'<div class="author_content"><h5 style="color:'+authorcolor+'">'+authorname+'</h5><div class="lts_author_body">'+authormce+'<p class="athor_social">'+authorfb+' '+authortwt+' '+authorgoogle+' '+authorlinkdin+' '+authorweb+'</p></div></div></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".author_prev").remove();
-										jQuery(".author_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview author_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".author_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".author_prev").remove();
+									jQuery('.author_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var authorname = jQuery('.mce-authorname').val();
+                                 
+                                 if(authorimg_button !==''){var authorimg_button = '<div class="author_image"><img src="'+jQuery('.mce-authorimg_button button').val()+'" alt="'+authorname+'" title="'+authorname+'" /></div>'; }else{ var authorimg_button = '';}
+                                 var authormce = jQuery('.mce-authormce').val();
+                                 var authorcolor = jQuery('.mce-authorcolor').val();
+                                 var authorbg = jQuery('.mce-authorbg').val();
+                                 
+         if(authorfb !==''){var authorfb = '<a href="'+jQuery('.mce-authorfb').val()+'"><i class="fa fa-facebook-square"></i></a>'; }else{ var authorfb = '';}
+         if(authortwt !==''){var authortwt = '<a href="'+jQuery('.mce-authortwt').val()+'"><i class="fa fa-twitter-square"></i></a>'; }else{ var authortwt = '';}
+         if(authorgoogle !==''){var authorgoogle = '<a href="'+jQuery('.mce-authorgoogle').val()+'"><i class="fa fa-google-plus-square"></i></a>'; }else{ var authorgoogle = '';}
+         if(authorlinkdin !==''){var authorlinkdin = '<a href="'+jQuery('.mce-authorlinkdin').val()+'"><i class="fa fa-linkedin-square"></i></a>'; }else{ var authorlinkdin = '';}
+         if(authorweb !==''){var authorweb = '<a href="'+jQuery('.mce-authorweb').val()+'"><i class="fa fa-globe"></i></a>'; }else{ var authorweb = '';}
+                                 
+                                 if(authorname ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_author" style="background:'+authorbg+'">'+authorimg_button+'<div class="author_content"><h5 style="color:'+authorcolor+'">'+authorname+'</h5><div class="lts_author_body">'+authormce+'<p class="athor_social">'+authorfb+' '+authortwt+' '+authorgoogle+' '+authorlinkdin+' '+authorweb+'</p></div></div></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".author_prev").remove();
+                                 jQuery(".author_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview author_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".author_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".author_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -4519,7 +4585,7 @@
 								optimMedia('.mce-lightboxmedia','.mce-lightboxmce');
 								
 								//Author IMAGE UPLOAD
-								jQuery(document).ready(function($){
+								jQuery(function($) {
 									 var custom_uploader;
 									 var row_id 
 								
@@ -4571,42 +4637,44 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Lightbox Content"]').addClass('lightbox_window');
 									jQuery(".lightbox_window .mce-foot>div").prepend("<a class='short_preview_btn lightbox_prevbtn'><span></span>Preview</a>");
-									jQuery('.lightbox_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var lightbtntxt = jQuery('.mce-lightbtntxt').val();
-										var lightboxmce = jQuery('.mce-lightboxmce').val();
-										var lightbtntxtcolor = jQuery('.mce-lightbtntxtcolor').val();
-										var lightbtnbg = jQuery('.mce-lightbtnbg').val();
-										var lightbtnsize = jQuery('.mce-lightbtnsize').val();
-										var lightbtn_style = jQuery('.mce-btn_style button').text().toLowerCase();
-										var lightbtn_size = jQuery('.mce-btn_style button').text().toLowerCase();
-										var lightbtncornerval = jQuery('.mce-lightbtncorner').attr("aria-checked");
-										var lightbtncorner ='0';
-										var lightbximg = jQuery('.mce-lightboxImg').val();
-										
-										if(lightbtncornerval =='true'){var lightbtncorner = "lt_rounded";}
-										//If Selected Image Instead of Button
-										if(lightbximg !==''){var lightbtntxt = '<img src="'+lightbximg+'" />';}
-										
-										
-										if(lightbtntxt =='' && lightboxmce ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<span style="color:'+lightbtntxtcolor+';background:'+lightbtnbg+';font-size:'+lightbtnsize+'" class="lts_lightbox_bttn lt_animate '+lightbtncorner+' '+lightbtn_style+' '+lightbtn_size+'">'+lightbtntxt+'</span>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".lightbox_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
-										jQuery(".lightbox_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview lightbox_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".lightbox_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-										
-										jQuery('.lts_lightbox_bttn').on("click",function(){  jQuery('<div class="lts_lightbox_content"><span onclick="closeclick();" class="ltsclose">×</span>'+lightboxmce+'</div><div class="lts_lightbox_blank"></div>').appendTo('body');  });
-										
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".lightbox_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+									jQuery('.lightbox_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var lightbtntxt = jQuery('.mce-lightbtntxt').val();
+                                 var lightboxmce = jQuery('.mce-lightboxmce').val();
+                                 var lightbtntxtcolor = jQuery('.mce-lightbtntxtcolor').val();
+                                 var lightbtnbg = jQuery('.mce-lightbtnbg').val();
+                                 var lightbtnsize = jQuery('.mce-lightbtnsize').val();
+                                 var lightbtn_style = jQuery('.mce-btn_style button').text().toLowerCase();
+                                 var lightbtn_size = jQuery('.mce-btn_style button').text().toLowerCase();
+                                 var lightbtncornerval = jQuery('.mce-lightbtncorner').attr("aria-checked");
+                                 var lightbtncorner ='0';
+                                 var lightbximg = jQuery('.mce-lightboxImg').val();
+                                 
+                                 if(lightbtncornerval =='true'){var lightbtncorner = "lt_rounded";}
+                                 //If Selected Image Instead of Button
+                                 if(lightbximg !==''){var lightbtntxt = '<img src="'+lightbximg+'" />';}
+                                 
+                                 
+                                 if(lightbtntxt =='' && lightboxmce ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<span style="color:'+lightbtntxtcolor+';background:'+lightbtnbg+';font-size:'+lightbtnsize+'" class="lts_lightbox_bttn lt_animate '+lightbtncorner+' '+lightbtn_style+' '+lightbtn_size+'">'+lightbtntxt+'</span>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".lightbox_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                                 jQuery(".lightbox_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview lightbox_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".lightbox_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                                 
+                                 jQuery('.lts_lightbox_bttn').on("click",function(){  jQuery('<div class="lts_lightbox_content"><span onclick="closeclick();" class="ltsclose">×</span>'+lightboxmce+'</div><div class="lts_lightbox_blank"></div>').appendTo('body');  });
+                                 
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".lightbox_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -4676,70 +4744,72 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Map"]').addClass('map_window');
 									jQuery(".map_window .mce-foot>div").prepend("<a class='short_preview_btn map_prevbtn'><span></span>Preview</a>");
-									jQuery('.map_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var maplat = jQuery('.mce-maplat').val()
-										var maplong = jQuery('.mce-maplong').val();
-										var maptxt = jQuery('.mce-maptxt').val();
-										var mapheight = jQuery('.mce-mapheight').val();
-										
-										if(maplat =='' && maplong =='' ){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<div class="lts_map_wrap" id="map_1" style="height:'+mapheight+'"><div data-map-lat="'+maplat+'" data-map-long="'+maplong+'" data-map-text="'+maptxt+'" class="lts_map"></div></div>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".map_prev").remove();
-										jQuery(".map_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview map_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".map_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+									jQuery('.map_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var maplat = jQuery('.mce-maplat').val()
+                                 var maplong = jQuery('.mce-maplong').val();
+                                 var maptxt = jQuery('.mce-maptxt').val();
+                                 var mapheight = jQuery('.mce-mapheight').val();
+                                 
+                                 if(maplat =='' && maplong =='' ){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<div class="lts_map_wrap" id="map_1" style="height:'+mapheight+'"><div data-map-lat="'+maplat+'" data-map-long="'+maplong+'" data-map-text="'+maptxt+'" class="lts_map"></div></div>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".map_prev").remove();
+                                 jQuery(".map_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview map_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".map_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
 
-										jQuery(".lts_map_wrap").each(function(){
-											var lat = jQuery(this).find('.lts_map').attr('data-map-lat');
-											var long = jQuery(this).find('.lts_map').attr('data-map-long');
-											var text = jQuery(this).find('.lts_map').attr('data-map-text');
-											var mapid = jQuery(this).attr('id');
+                                 jQuery(".lts_map_wrap").each(function(){
+                                    var lat = jQuery(this).find('.lts_map').attr('data-map-lat');
+                                    var long = jQuery(this).find('.lts_map').attr('data-map-long');
+                                    var text = jQuery(this).find('.lts_map').attr('data-map-text');
+                                    var mapid = jQuery(this).attr('id');
 
-										function initialize() {
+                                 function initialize() {
 
-										  var myLatlng = new google.maps.LatLng(lat,long);
-										  var mapOptions = {
-											zoom: 16,
-											center: myLatlng
-										  }
-										  var map = new google.maps.Map(document.getElementById(mapid), mapOptions);
-										
-										  var marker = new google.maps.Marker({
-											  position: myLatlng,
-											  map: map,
-										  });
-										  var infowindow = new google.maps.InfoWindow();
-													google.maps.event.addListener(marker, 'click', (function (marker, i) {
-														return function () {
-															infowindow.setContent(text);
-															infowindow.open(map, marker);
-														}
-													})(marker));
+                                 var myLatlng = new google.maps.LatLng(lat,long);
+                                 var mapOptions = {
+                                    zoom: 16,
+                                    center: myLatlng
+                                 }
+                                 var map = new google.maps.Map(document.getElementById(mapid), mapOptions);
+                                 
+                                 var marker = new google.maps.Marker({
+                                    position: myLatlng,
+                                    map: map,
+                                 });
+                                 var infowindow = new google.maps.InfoWindow();
+                                          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                             return function () {
+                                                infowindow.setContent(text);
+                                                infowindow.open(map, marker);
+                                             }
+                                          })(marker));
 
-										}
-										
-										function loadScript() {
-										  var script = document.createElement('script');
-										  script.type = 'text/javascript';
-										  script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
-										  document.body.appendChild(script);
-										}
-										
-										window.onload = loadScript;
-										});
+                                 }
+                                 
+                                 function loadScript() {
+                                 var script = document.createElement('script');
+                                 script.type = 'text/javascript';
+                                 script.src = 'https://maps.googleapis.com/maps/api/js?v=3.exp&callback=initialize';
+                                 document.body.appendChild(script);
+                                 }
+                                 
+                                 window.onload = loadScript;
+                                 });
 
 
 
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".map_prev").remove();
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".map_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -4834,7 +4904,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Progress Bar"]').addClass('progress_window');
 									jQuery(".progress_window .mce-foot>div").prepend("<a class='short_preview_btn progress_prevbtn'><span></span>Preview</a>");
-									jQuery('.progress_prevbtn').toggle(function(){
+									jQuery('.progress_prevbtn').on('click',function(){
+                           if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -4860,7 +4931,7 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".progress_prev").remove();
-										jQuery(".progress_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview progress_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".progress_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview progress_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".progress_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
 										
 										if(prgrsstyle == 'circular'){
@@ -4871,9 +4942,10 @@
 										}
 										
 										
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".progress_prev").remove();
+                              jQuery(".progress_prev").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -5410,7 +5482,8 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Pricing Box"]').addClass('pricing_window');
 									jQuery(".pricing_window .mce-foot>div").prepend("<a class='short_preview_btn pricing_prevbtn'><span></span>Preview</a>");
-									jQuery('.pricing_prevbtn').toggle(function(){
+									jQuery('.pricing_prevbtn').on('click',function(){
+                           if(!jQuery(this).hasClass("short_prev_on")){
 										//Save TinyMce fields
 										tinyMCE.triggerSave();
 										//GET PREVIEW CONTENT	[EDIT]
@@ -5455,22 +5528,22 @@
 										var prc4_btntxt = jQuery('.mce-prc4_btntxt').val();
 										var prc4_btnlink = jQuery('.mce-prc4_btnlink').val();
 										var prc4_btnribon = jQuery('.mce-prc4_btnribon').val();
-										
-			if(prc1_label !==''){prc1_label = '<span class="price_label">/'+prc1_label+'</span>';}else{prc1_label = '';}
-			if(prc2_label !==''){prc2_label = '<span class="price_label">/'+prc2_label+'</span>';}else{prc2_label = '';}
-			if(prc3_label !==''){prc3_label = '<span class="price_label">/'+prc3_label+'</span>';}else{prc3_label = '';}
-			if(prc4_label !==''){prc4_label = '<span class="price_label">/'+prc4_label+'</span>';}else{prc4_label = '';}
-		
-	if(prc1_btnribon !==''){prc1_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc1_btnribon+'</span></span>';}else{prc1_btnribon = '';}
-	if(prc2_btnribon !==''){prc2_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc2_btnribon+'</span></span>';}else{prc2_btnribon = '';}
-	if(prc3_btnribon !==''){prc3_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc3_btnribon+'</span></span>';}else{prc3_btnribon = '';}
-	if(prc4_btnribon !==''){prc4_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc4_btnribon+'</span></span>';}else{prc4_btnribon = '';}
-		
-		if(prc1_name !==''){prc1 = '<div class="pricebox"><div class="pricebox_inner">'+prc1_btnribon+'<div class="price_head"><h3>'+prc1_name+'</h3><span class="price_ammount">'+prc1_price+'</span>'+prc1_label+'<p class="price_desc">'+prc1_desc+'</p></div><div class="price_body">'+prc1_feat+'</div><div class="price_footer"><a href="'+prc1_btnlink+'" class="price_button">'+prc1_btntxt+'</a></div></div></div>';}else{prc1 = '';}
-		if(prc2_name !==''){prc2 = '<div class="pricebox"><div class="pricebox_inner">'+prc2_btnribon+'<div class="price_head"><h3>'+prc2_name+'</h3><span class="price_ammount">'+prc2_price+'</span>'+prc2_label+'<p class="price_desc">'+prc2_desc+'</p></div><div class="price_body">'+prc2_feat+'</div><div class="price_footer"><a href="'+prc2_btnlink+'" class="price_button">'+prc2_btntxt+'</a></div></div></div>';}else{prc2 = '';}
-		if(prc3_name !==''){prc3 = '<div class="pricebox"><div class="pricebox_inner">'+prc3_btnribon+'<div class="price_head"><h3>'+prc3_name+'</h3><span class="price_ammount">'+prc3_price+'</span>'+prc3_label+'<p class="price_desc">'+prc3_desc+'</p></div><div class="price_body">'+prc3_feat+'</div><div class="price_footer"><a href="'+prc3_btnlink+'" class="price_button">'+prc3_btntxt+'</a></div></div></div>';}else{prc3 = '';}
-		if(prc4_name !==''){prc4 = '<div class="pricebox"><div class="pricebox_inner">'+prc4_btnribon+'<div class="price_head"><h3>'+prc4_name+'</h3><span class="price_ammount">'+prc4_price+'</span>'+prc4_label+'<p class="price_desc">'+prc4_desc+'</p></div><div class="price_body">'+prc4_feat+'</div><div class="price_footer"><a href="'+prc4_btnlink+'" class="price_button">'+prc4_btntxt+'</a></div></div></div>';}else{prc4 = '';}
-										
+                                                   
+                              if(prc1_label !==''){prc1_label = '<span class="price_label">/'+prc1_label+'</span>';}else{prc1_label = '';}
+                              if(prc2_label !==''){prc2_label = '<span class="price_label">/'+prc2_label+'</span>';}else{prc2_label = '';}
+                              if(prc3_label !==''){prc3_label = '<span class="price_label">/'+prc3_label+'</span>';}else{prc3_label = '';}
+                              if(prc4_label !==''){prc4_label = '<span class="price_label">/'+prc4_label+'</span>';}else{prc4_label = '';}
+                           
+                              if(prc1_btnribon !==''){prc1_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc1_btnribon+'</span></span>';}else{prc1_btnribon = '';}
+                              if(prc2_btnribon !==''){prc2_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc2_btnribon+'</span></span>';}else{prc2_btnribon = '';}
+                              if(prc3_btnribon !==''){prc3_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc3_btnribon+'</span></span>';}else{prc3_btnribon = '';}
+                              if(prc4_btnribon !==''){prc4_btnribon = '<span class="feat_wrap"><span class="pricebox_featured">'+prc4_btnribon+'</span></span>';}else{prc4_btnribon = '';}
+                                 
+                              if(prc1_name !==''){prc1 = '<div class="pricebox"><div class="pricebox_inner">'+prc1_btnribon+'<div class="price_head"><h3>'+prc1_name+'</h3><span class="price_ammount">'+prc1_price+'</span>'+prc1_label+'<p class="price_desc">'+prc1_desc+'</p></div><div class="price_body">'+prc1_feat+'</div><div class="price_footer"><a href="'+prc1_btnlink+'" class="price_button">'+prc1_btntxt+'</a></div></div></div>';}else{prc1 = '';}
+                              if(prc2_name !==''){prc2 = '<div class="pricebox"><div class="pricebox_inner">'+prc2_btnribon+'<div class="price_head"><h3>'+prc2_name+'</h3><span class="price_ammount">'+prc2_price+'</span>'+prc2_label+'<p class="price_desc">'+prc2_desc+'</p></div><div class="price_body">'+prc2_feat+'</div><div class="price_footer"><a href="'+prc2_btnlink+'" class="price_button">'+prc2_btntxt+'</a></div></div></div>';}else{prc2 = '';}
+                              if(prc3_name !==''){prc3 = '<div class="pricebox"><div class="pricebox_inner">'+prc3_btnribon+'<div class="price_head"><h3>'+prc3_name+'</h3><span class="price_ammount">'+prc3_price+'</span>'+prc3_label+'<p class="price_desc">'+prc3_desc+'</p></div><div class="price_body">'+prc3_feat+'</div><div class="price_footer"><a href="'+prc3_btnlink+'" class="price_button">'+prc3_btntxt+'</a></div></div></div>';}else{prc3 = '';}
+                              if(prc4_name !==''){prc4 = '<div class="pricebox"><div class="pricebox_inner">'+prc4_btnribon+'<div class="price_head"><h3>'+prc4_name+'</h3><span class="price_ammount">'+prc4_price+'</span>'+prc4_label+'<p class="price_desc">'+prc4_desc+'</p></div><div class="price_body">'+prc4_feat+'</div><div class="price_footer"><a href="'+prc4_btnlink+'" class="price_button">'+prc4_btntxt+'</a></div></div></div>';}else{prc4 = '';}
+                                                      
 										if(prc1_name =='' && prc2_name ==''){
 											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
 										}else{
@@ -5480,53 +5553,54 @@
 										//GET PREVIEW CONTENT END
 										jQuery(this).addClass("short_prev_on");
 										jQuery(".pricing_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
-										jQuery(".pricing_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview pricing_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+										jQuery(".pricing_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview pricing_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
 										jQuery(".pricing_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
 										
-	jQuery('.pricebox').has('.pricebox_featured').addClass('feat_price');
-	
-	jQuery(".lts_pricing").each(function(){
-		var button_bg = jQuery(this).attr('data-button-bg');
-		var button_color = jQuery(this).attr('data-button-txt');
-		var pricebox_bg = jQuery(this).attr('data-price-bg');
-		var pricebox_txt = jQuery(this).attr('data-price-txt');
-		//Convert Background Color to RGBA
-		var rgbaCol = 'rgba(' + parseInt(button_bg.slice(-6,-4),16)
-			+ ',' + parseInt(button_bg.slice(-4,-2),16)
-			+ ',' + parseInt(button_bg.slice(-2),16)
-			+',0.3)';
-		
-		jQuery(this).find('.price_button, .pricebox_featured').attr('style', 'color:'+button_color+'!important;background:'+button_bg+';');
-		jQuery(this).find('.price_button').css({"borderColor":button_bg});
-		jQuery(this).find('.pricebox').css({"background":pricebox_bg});
-		
-		jQuery('.pricing_style1 .pricebox_inner').hover(function(){
-			jQuery(this).stop().animate({"borderColor": rgbaCol});
-			jQuery(this).find('.price_head h3').stop().animate({"backgroundColor": rgbaCol, "color":button_color});
-		}, function(){
-			jQuery(this).stop().animate({"borderColor": "rgba(0, 0, 0, 0.04)"});
-			jQuery(this).find('.price_head h3').stop().animate({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt});
-		});
-	});
-	
-	jQuery(".lts_pricing.pricing_style5").each(function(){
-		var button_bg = jQuery(this).attr('data-button-bg');
-		var button_color = jQuery(this).attr('data-button-txt');
-		var rgbaCol = 'rgba(' + parseInt(button_bg.slice(-6,-4),16)
-			+ ',' + parseInt(button_bg.slice(-4,-2),16)
-			+ ',' + parseInt(button_bg.slice(-2),16)
-			+',0.5)';
-		jQuery(this).find('.price_head h3').css({"backgroundColor":rgbaCol});
-		jQuery(this).find('.pricebox').each(function(){
-			jQuery(this).find('.price_ammount, .price_label').insertAfter(jQuery(this).find('.price_body'));
-		});
-	});
+                              jQuery('.pricebox').has('.pricebox_featured').addClass('feat_price');
+                              
+                              jQuery(".lts_pricing").each(function(){
+                                 var button_bg = jQuery(this).attr('data-button-bg');
+                                 var button_color = jQuery(this).attr('data-button-txt');
+                                 var pricebox_bg = jQuery(this).attr('data-price-bg');
+                                 var pricebox_txt = jQuery(this).attr('data-price-txt');
+                                 //Convert Background Color to RGBA
+                                 var rgbaCol = 'rgba(' + parseInt(button_bg.slice(-6,-4),16)
+                                    + ',' + parseInt(button_bg.slice(-4,-2),16)
+                                    + ',' + parseInt(button_bg.slice(-2),16)
+                                    +',0.3)';
+                                 
+                                 jQuery(this).find('.price_button, .pricebox_featured').attr('style', 'color:'+button_color+'!important;background:'+button_bg+';');
+                                 jQuery(this).find('.price_button').css({"borderColor":button_bg});
+                                 jQuery(this).find('.pricebox').css({"background":pricebox_bg});
+                                 
+                                 jQuery('.pricing_style1 .pricebox_inner').hover(function(){
+                                    jQuery(this).stop().animate({"borderColor": rgbaCol});
+                                    jQuery(this).find('.price_head h3').stop().animate({"backgroundColor": rgbaCol, "color":button_color});
+                                 }, function(){
+                                    jQuery(this).stop().animate({"borderColor": "rgba(0, 0, 0, 0.04)"});
+                                    jQuery(this).find('.price_head h3').stop().animate({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt});
+                                 });
+                              });
+                              
+                              jQuery(".lts_pricing.pricing_style5").each(function(){
+                                 var button_bg = jQuery(this).attr('data-button-bg');
+                                 var button_color = jQuery(this).attr('data-button-txt');
+                                 var rgbaCol = 'rgba(' + parseInt(button_bg.slice(-6,-4),16)
+                                    + ',' + parseInt(button_bg.slice(-4,-2),16)
+                                    + ',' + parseInt(button_bg.slice(-2),16)
+                                    +',0.5)';
+                                 jQuery(this).find('.price_head h3').css({"backgroundColor":rgbaCol});
+                                 jQuery(this).find('.pricebox').each(function(){
+                                    jQuery(this).find('.price_ammount, .price_label').insertAfter(jQuery(this).find('.price_body'));
+                                 });
+                              });
 										
 										
 										
-									},function(){
+									}else{
 										jQuery(this).removeClass("short_prev_on");
-										jQuery(".pricing_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                              jQuery(".pricing_prev, .lts_lightbox_blank, .lts_lightbox_content").remove();
+                           }
 									});
 									}, 500);
 									//PREVIEW END
@@ -5586,27 +5660,29 @@
 									setTimeout(function(){ 	
 									jQuery('[aria-label="Search Form"]').addClass('search_window');
 									jQuery(".search_window .mce-foot>div").prepend("<a class='short_preview_btn search_prevbtn'><span></span>Preview</a>");
-									jQuery('.search_prevbtn').toggle(function(){
-										//Save TinyMce fields
-										tinyMCE.triggerSave();
-										//GET PREVIEW CONTENT	[EDIT]
-										var searchlabel = jQuery('.mce-searchlabel').val()
-										var searchtxtcolor = jQuery('.mce-searchtxtcolor').val();
-										var searchbgcolor = jQuery('.mce-searchbgcolor').val();
-										
-										if(searchlabel ==''){
-											var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
-										}else{
-											var shortcontent = '<form role="search" method="get" class="lts_search-form" action=""><input type="search" class="search-field" placeholder="'+searchlabel+'" value="" name="s" /><input type="submit" class="search-submit" value="'+searchlabel+'" style="color:'+searchtxtcolor+';background:'+searchbgcolor+';"/></form>';
-										}
-										//GET PREVIEW CONTENT END
-										jQuery(this).addClass("short_prev_on");
-										jQuery(".search_prev").remove();
-										jQuery(".search_window .mce-window-head").next('.mce-container-body').find('.mce-container:first').prepend("<div class='short_preview search_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
-										jQuery(".search_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
-									},function(){
-										jQuery(this).removeClass("short_prev_on");
-										jQuery(".search_prev").remove();
+									jQuery('.search_prevbtn').on('click',function(){
+                              if(!jQuery(this).hasClass("short_prev_on")){
+                                 //Save TinyMce fields
+                                 tinyMCE.triggerSave();
+                                 //GET PREVIEW CONTENT	[EDIT]
+                                 var searchlabel = jQuery('.mce-searchlabel').val()
+                                 var searchtxtcolor = jQuery('.mce-searchtxtcolor').val();
+                                 var searchbgcolor = jQuery('.mce-searchbgcolor').val();
+                                 
+                                 if(searchlabel ==''){
+                                    var shortcontent = '<h3 class="no_shortcode">No Content Found!</h3>';
+                                 }else{
+                                    var shortcontent = '<form role="search" method="get" class="lts_search-form" action=""><input type="search" class="search-field" placeholder="'+searchlabel+'" value="" name="s" /><input type="submit" class="search-submit" value="'+searchlabel+'" style="color:'+searchtxtcolor+';background:'+searchbgcolor+';"/></form>';
+                                 }
+                                 //GET PREVIEW CONTENT END
+                                 jQuery(this).addClass("short_prev_on");
+                                 jQuery(".search_prev").remove();
+                                 jQuery(".search_window .mce-window-head").next('.mce-container-body').find('.mce-container').first().prepend("<div class='short_preview search_prev'><div class='short_preview_inner'>"+shortcontent+"</div></div>");
+                                 jQuery(".search_prev").css({"height":jQuery(".mce-window-head").next('.mce-container-body').height()});
+                              }else{
+                                 jQuery(this).removeClass("short_prev_on");
+                                 jQuery(".search_prev").remove();
+                              }
 									});
 									}, 500);
 									//PREVIEW END
@@ -5670,7 +5746,7 @@
 //MCE WINDOW STYLE FUNCTION
 function optimMceWindow(){
 	//WINDOW Styles
-	jQuery(".mce-window .mce-foot button:first").text("Insert");
+	jQuery(".mce-window .mce-foot button").first().text("Insert");
 	jQuery(".mce-window-head").next('.mce-container-body').css({"position":"relative", "top":"30px", "overflowY":"hidden", "overflowX":"hidden"});	
 	//jQuery(".mce-window-head").next('.mce-container-body').perfectScrollbar();
 }
@@ -5843,4 +5919,4 @@ Author: Rostyslav Bryzgunov <kottenator@gmail.com>
 Version: 1.1.3
 License: MIT
 */
-!function(i){function t(i){this.init(i)}t.prototype={value:0,size:100,startAngle:-Math.PI,thickness:"auto",fill:{gradient:["#3aeabb","#fdd250"]},emptyFill:"rgba(0, 0, 0, .1)",animation:{duration:1200,easing:"circleProgressEasing"},animationStartValue:0,reverse:!1,lineCap:"butt",constructor:t,el:null,canvas:null,ctx:null,radius:0,arcFill:null,lastFrameValue:0,init:function(t){i.extend(this,t),this.radius=this.size/2,this.initWidget(),this.initFill(),this.draw()},initWidget:function(){var t=this.canvas=this.canvas||i("<canvas>").prependTo(this.el)[0];t.width=this.size,t.height=this.size,this.ctx=t.getContext("2d")},initFill:function(){function t(){var t=i("<canvas>")[0];t.width=e.size,t.height=e.size,t.getContext("2d").drawImage(g,0,0,r,r),e.arcFill=e.ctx.createPattern(t,"no-repeat"),e.drawFrame(e.lastFrameValue)}var e=this,a=this.fill,n=this.ctx,r=this.size;if(!a)throw Error("The fill is not specified!");if(a.color&&(this.arcFill=a.color),a.gradient){var s=a.gradient;if(1==s.length)this.arcFill=s[0];else if(s.length>1){for(var l=a.gradientAngle||0,h=a.gradientDirection||[r/2*(1-Math.cos(l)),r/2*(1+Math.sin(l)),r/2*(1+Math.cos(l)),r/2*(1-Math.sin(l))],o=n.createLinearGradient.apply(n,h),c=0;c<s.length;c++){var d=s[c],u=c/(s.length-1);i.isArray(d)&&(u=d[1],d=d[0]),o.addColorStop(u,d)}this.arcFill=o}}if(a.image){var g;a.image instanceof Image?g=a.image:(g=new Image,g.src=a.image),g.complete?t():g.onload=t}},draw:function(){this.animation?this.drawAnimated(this.value):this.drawFrame(this.value)},drawFrame:function(i){this.lastFrameValue=i,this.ctx.clearRect(0,0,this.size,this.size),this.drawEmptyArc(i),this.drawArc(i)},drawArc:function(i){var t=this.ctx,e=this.radius,a=this.getThickness(),n=this.startAngle;t.save(),t.beginPath(),this.reverse?t.arc(e,e,e-a/2,n-2*Math.PI*i,n):t.arc(e,e,e-a/2,n,n+2*Math.PI*i),t.lineWidth=a,t.lineCap=this.lineCap,t.strokeStyle=this.arcFill,t.stroke(),t.restore()},drawEmptyArc:function(i){var t=this.ctx,e=this.radius,a=this.getThickness(),n=this.startAngle;1>i&&(t.save(),t.beginPath(),0>=i?t.arc(e,e,e-a/2,0,2*Math.PI):this.reverse?t.arc(e,e,e-a/2,n,n-2*Math.PI*i):t.arc(e,e,e-a/2,n+2*Math.PI*i,n),t.lineWidth=a,t.strokeStyle=this.emptyFill,t.stroke(),t.restore())},drawAnimated:function(t){var e=this,a=this.el,n=i(this.canvas);n.stop(!0,!1),a.trigger("circle-animation-start"),n.css({animationProgress:0}).animate({animationProgress:1},i.extend({},this.animation,{step:function(i){var n=e.animationStartValue*(1-i)+t*i;e.drawFrame(n),a.trigger("circle-animation-progress",[i,n])}})).promise().always(function(){a.trigger("circle-animation-end")})},getThickness:function(){return i.isNumeric(this.thickness)?this.thickness:this.size/14},getValue:function(){return this.value},setValue:function(i){this.animation&&(this.animationStartValue=this.lastFrameValue),this.value=i,this.draw()}},i.circleProgress={defaults:t.prototype},i.easing.circleProgressEasing=function(i,t,e,a,n){return(t/=n/2)<1?a/2*t*t*t+e:a/2*((t-=2)*t*t+2)+e},i.fn.circleProgress=function(e,a){var n="circle-progress",r=this.data(n);if("widget"==e){if(!r)throw Error('Calling "widget" method on not initialized instance is forbidden');return r.canvas}if("value"==e){if(!r)throw Error('Calling "value" method on not initialized instance is forbidden');if("undefined"==typeof a)return r.getValue();var s=arguments[1];return this.each(function(){i(this).data(n).setValue(s)})}return this.each(function(){var a=i(this),r=a.data(n),s=i.isPlainObject(e)?e:{};if(r)r.init(s);else{var l=i.extend({},a.data());"string"==typeof l.fill&&(l.fill=JSON.parse(l.fill)),"string"==typeof l.animation&&(l.animation=JSON.parse(l.animation)),s=i.extend(l,s),s.el=a,r=new t(s),a.data(n,r)}})}}(jQuery);
+!function(i){function t(i){this.init(i)}t.prototype={value:0,size:100,startAngle:-Math.PI,thickness:"auto",fill:{gradient:["#3aeabb","#fdd250"]},emptyFill:"rgba(0, 0, 0, .1)",animation:{duration:1200,easing:"circleProgressEasing"},animationStartValue:0,reverse:!1,lineCap:"butt",constructor:t,el:null,canvas:null,ctx:null,radius:0,arcFill:null,lastFrameValue:0,init:function(t){i.extend(this,t),this.radius=this.size/2,this.initWidget(),this.initFill(),this.draw()},initWidget:function(){var t=this.canvas=this.canvas||i("<canvas>").prependTo(this.el)[0];t.width=this.size,t.height=this.size,this.ctx=t.getContext("2d")},initFill:function(){function t(){var t=i("<canvas>")[0];t.width=e.size,t.height=e.size,t.getContext("2d").drawImage(g,0,0,r,r),e.arcFill=e.ctx.createPattern(t,"no-repeat"),e.drawFrame(e.lastFrameValue)}var e=this,a=this.fill,n=this.ctx,r=this.size;if(!a)throw Error("The fill is not specified!");if(a.color&&(this.arcFill=a.color),a.gradient){var s=a.gradient;if(1==s.length)this.arcFill=s[0];else if(s.length>1){for(var l=a.gradientAngle||0,h=a.gradientDirection||[r/2*(1-Math.cos(l)),r/2*(1+Math.sin(l)),r/2*(1+Math.cos(l)),r/2*(1-Math.sin(l))],o=n.createLinearGradient.apply(n,h),c=0;c<s.length;c++){var d=s[c],u=c/(s.length-1);Array.isArray(d)&&(u=d[1],d=d[0]),o.addColorStop(u,d)}this.arcFill=o}}if(a.image){var g;a.image instanceof Image?g=a.image:(g=new Image,g.src=a.image),g.complete?t():g.onload=t}},draw:function(){this.animation?this.drawAnimated(this.value):this.drawFrame(this.value)},drawFrame:function(i){this.lastFrameValue=i,this.ctx.clearRect(0,0,this.size,this.size),this.drawEmptyArc(i),this.drawArc(i)},drawArc:function(i){var t=this.ctx,e=this.radius,a=this.getThickness(),n=this.startAngle;t.save(),t.beginPath(),this.reverse?t.arc(e,e,e-a/2,n-2*Math.PI*i,n):t.arc(e,e,e-a/2,n,n+2*Math.PI*i),t.lineWidth=a,t.lineCap=this.lineCap,t.strokeStyle=this.arcFill,t.stroke(),t.restore()},drawEmptyArc:function(i){var t=this.ctx,e=this.radius,a=this.getThickness(),n=this.startAngle;1>i&&(t.save(),t.beginPath(),0>=i?t.arc(e,e,e-a/2,0,2*Math.PI):this.reverse?t.arc(e,e,e-a/2,n,n-2*Math.PI*i):t.arc(e,e,e-a/2,n+2*Math.PI*i,n),t.lineWidth=a,t.strokeStyle=this.emptyFill,t.stroke(),t.restore())},drawAnimated:function(t){var e=this,a=this.el,n=i(this.canvas);n.stop(!0,!1),a.trigger("circle-animation-start"),n.css({animationProgress:0}).animate({animationProgress:1},i.extend({},this.animation,{step:function(i){var n=e.animationStartValue*(1-i)+t*i;e.drawFrame(n),a.trigger("circle-animation-progress",[i,n])}})).promise().always(function(){a.trigger("circle-animation-end")})},getThickness:function(){return this.thickness?this.thickness:this.size/14},getValue:function(){return this.value},setValue:function(i){this.animation&&(this.animationStartValue=this.lastFrameValue),this.value=i,this.draw()}},i.circleProgress={defaults:t.prototype},i.easing.circleProgressEasing=function(i,t,e,a,n){return(t/=n/2)<1?a/2*t*t*t+e:a/2*((t-=2)*t*t+2)+e},i.fn.circleProgress=function(e,a){var n="circle-progress",r=this.data(n);if("widget"==e){if(!r)throw Error('Calling "widget" method on not initialized instance is forbidden');return r.canvas}if("value"==e){if(!r)throw Error('Calling "value" method on not initialized instance is forbidden');if("undefined"==typeof a)return r.getValue();var s=arguments[1];return this.each(function(){i(this).data(n).setValue(s)})}return this.each(function(){var a=i(this),r=a.data(n),s=i.isPlainObject(e)?e:{};if(r)r.init(s);else{var l=i.extend({},a.data());"string"==typeof l.fill&&(l.fill=JSON.parse(l.fill)),"string"==typeof l.animation&&(l.animation=JSON.parse(l.animation)),s=i.extend(l,s),s.el=a,r=new t(s),a.data(n,r)}})}}(jQuery);

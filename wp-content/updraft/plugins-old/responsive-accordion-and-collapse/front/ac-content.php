@@ -1,8 +1,6 @@
 <?php 
-	
-    $ac_post_type = "responsive_accordion";
-	
-    $AllAccordion = array(  'p' => $WPSM_AC_ID, 'post_type' => $ac_post_type, 'orderby' => 'ASC');
+	$ac_post_type = "responsive_accordion";
+	$AllAccordion = array(  'p' => $WPSM_AC_ID, 'post_type' => $ac_post_type, 'orderby' => 'ASC');
     $loop = new WP_Query( $AllAccordion );
 	
 	while ( $loop->have_posts() ) : $loop->the_post();
@@ -61,22 +59,19 @@
 					 $accordion_title_icon = $accordion_single_data['accordion_title_icon'];
 					 $enable_single_icon = $accordion_single_data['enable_single_icon'];
 					 $accordion_desc = $accordion_single_data['accordion_desc'];
-					 $i;
-					
+					 $i;					
 					 switch($expand_option){
 					    case "1":
-						$j=1;
+							$j=1;
 						break;
 						case "2":
-						 $j=$i;
+							$j=$i;
 						break;
 						case "3":
-						 $j=0;
+							$j=0;
 						break;
-					 }
-					 
-					?>
-				
+					 }					 
+					?>				
 					<!-- Inner panel Start -->
 					<div class="wpsm_panel wpsm_panel-default">
 						<div class="wpsm_panel-heading" role="tab" >

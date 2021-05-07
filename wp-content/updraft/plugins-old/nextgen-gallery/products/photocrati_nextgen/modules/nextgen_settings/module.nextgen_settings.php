@@ -18,7 +18,7 @@ class M_NextGen_Settings extends C_Base_Module
 			'photocrati-nextgen_settings',
 			'NextGEN Gallery Settings',
 			'Provides central management for NextGEN Gallery settings',
-			'3.1.9',
+			'3.3.7',
 			'https://www.imagely.com/wordpress-gallery-plugin/nextgen-gallery/',
 			'Imagely',
 			'https://www.imagely.com'
@@ -40,13 +40,16 @@ class C_NextGen_Settings_Installer
 	private $_global_settings = array();
 	private $_local_settings  = array();
 
+	public $blog_settings = NULL;
+	public $site_settings = NULL;
+
 	function __construct()
 	{
 		$this->blog_settings = C_NextGen_Settings::get_instance();
 		$this->site_settings = C_NextGen_Global_Settings::get_instance();
 
-		$this->_global_settings = array(
-			'gallerypath'   => implode(DIRECTORY_SEPARATOR, array('wp-content', 'uploads', 'sites', '%BLOG_ID%', 'nggallery')).DIRECTORY_SEPARATOR,
+		$this->_global_settings = apply_filters('ngg_default_global_settings', [
+            'gallerypath' => implode(DIRECTORY_SEPARATOR, array('wp-content', 'uploads', 'sites', '%BLOG_ID%', 'nggallery')) . DIRECTORY_SEPARATOR,
 			'wpmuCSSfile' => 'nggallery.css',
 			'wpmuStyle'   => FALSE,
 			'wpmuRoles'   => FALSE,
@@ -56,15 +59,14 @@ class C_NextGen_Settings_Installer
 			'datamapper_driver'    => 'custom_table_datamapper',
 			'maximum_entity_count' => 500,
 			'router_param_slug'    => 'nggallery'
-		);
+        ]);
 
-		$this->_local_settings = array(
-			'gallerypath'	 => 'wp-content'.DIRECTORY_SEPARATOR.'gallery'.DIRECTORY_SEPARATOR,
+		$this->_local_settings = apply_filters('ngg_default_settings', [
+            'gallerypath'	 => 'wp-content' . DIRECTORY_SEPARATOR . 'gallery' . DIRECTORY_SEPARATOR,
 			'deleteImg'      => TRUE,              // delete Images
 			'usePermalinks'  => FALSE,             // use permalinks for parameters
 			'permalinkSlug'  => 'nggallery',       // the default slug for permalinks
 			'graphicLibrary' => 'gd',              // default graphic library
-			'imageMagickDir' => '/usr/local/bin/', // default path to ImageMagick
 			'useMediaRSS'    => FALSE,             // activate the global Media RSS file
 			'galleries_in_feeds' => FALSE,         // enables rendered gallery output in rss/atom feeds
 
@@ -108,6 +110,7 @@ class C_NextGen_Settings_Installer
 			'thumbEffectContext'  => 'nextgen_images', // select effect
 
 			// Watermark settings
+            'watermark_automatically_at_upload' => 0,
 			'wmPos'    => 'midCenter',            // Postion
 			'wmXpos'   => 15,                     // X Pos
 			'wmYpos'   => 5,                      // Y Pos
@@ -137,7 +140,15 @@ class C_NextGen_Settings_Installer
 
             // Duration of caching of 'random' widgets image IDs
             'random_widget_cache_ttl' => 30
-		);
+        ]);
+
+		if (is_multisite()) {
+			if ($options = get_site_option('ngg_options'))
+				$gallerypath = $options['gallerypath'];
+			else
+				$gallerypath = $this->_global_settings['gallerypath'];
+			$this->_local_settings['gallerypath'] = $this->gallerypath_replace($gallerypath);
+		}
 	}
 
 	function install_global_settings($reset=FALSE)
@@ -169,7 +180,7 @@ class C_NextGen_Settings_Installer
 
 			// a gallerypath setting has already been set, so we explicitly set a default AND set a new value
 			$this->blog_settings->set_default_value('gallerypath', $gallerypath);
-			$this->blog_settings->set('gallerypath', $gallerypath);
+			if ($reset) $this->blog_settings->set('gallerypath', $gallerypath);
 		}
 	}
 
@@ -193,6 +204,7 @@ class C_NextGen_Settings_Installer
 	{
 		$gallerypath = str_replace('%BLOG_NAME%', get_bloginfo('name'),  $gallerypath);
 		$gallerypath = str_replace('%BLOG_ID%',   get_current_blog_id(), $gallerypath);
+		$gallerypath = str_replace('%SITE_ID%',   get_current_blog_id(), $gallerypath);
 		return $gallerypath;
 	}
 }

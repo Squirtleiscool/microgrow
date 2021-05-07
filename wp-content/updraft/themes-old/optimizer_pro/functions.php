@@ -32,6 +32,10 @@ require(get_template_directory() . '/lib/functions/preset_importer.php');
 require(get_template_directory() . '/lib/functions/portfolio.php');
 require(get_template_directory() . '/lib/functions/widget_backup.php');
 
+//Optimizer BLOCKS
+// require(get_template_directory() . '/blocks/init.php');
+// require(get_template_directory() . '/blocks/frontend/init.php');
+
 include_once(get_template_directory() . '/customizer/customizer.php');
 include_once(get_template_directory() . '/lib/functions/converter.php');
 include_once(get_template_directory() . '/lib/functions/inlinedit.php');
@@ -87,6 +91,13 @@ function optimizer_setup() {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' ); 
 	//add_theme_support( 'wc-product-gallery-zoom' );
+	
+	//GutenBerg
+	// add_theme_support( 'align-wide' );
+   // add_theme_support('editor-styles');
+
+   //Remove WP 5.6 the Gutenberg based Widgets System
+   remove_theme_support( 'widgets-block-editor' );
 
 }
 add_action( 'after_setup_theme', 'optimizer_setup' );

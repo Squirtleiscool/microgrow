@@ -1,12 +1,12 @@
 // JavaScript Document
 
-jQuery(document).ready(function(){
+jQuery(function() {
 
 	//Customize Page-------------
 	jQuery('body.post-type-page .wp-editor-tabs').append('<a id="customize_page_btn">Customize</a>');
 
 	//console.log(objectL10n.pageid);
-	jQuery('body.post-type-page .wp-editor-tabs a, body.post-type-page .wp-editor-tabs button').click(function(){ 
+	jQuery('body.post-type-page .wp-editor-tabs a, body.post-type-page .wp-editor-tabs button').on('click',function(){ 
 			if(jQuery(this).attr('id') == 'customize_page_btn'){
 				jQuery('#post-body-content').addClass('active_customize');	
 			}else{
@@ -20,9 +20,88 @@ jQuery(document).ready(function(){
 	}
 	
 	//-----------------------------------		
-
-
+   if(window.optimizer_widgetized_pages && window.optimizer_widgetized_pages.length > 0){
+      jQuery("#widgets-right .widgets-holder-wrap div[id^='optimizer_']").each(function(){
+            var sidebarID = jQuery(this).attr('id');
+            var sidebarPageURL = ''; var pageTitle = '';
+            if(sidebarID){
+               optimizer_widgetized_pages.forEach( function(page) {
+                  if(page.sidebar === sidebarID){
+                     sidebarPageURL = page.url;
+                     pageTitle = page.title;
+                  }
+               });
+            }
+            if(sidebarPageURL){
+               jQuery(this).find('.sidebar-name h2').append('<a class="optimizer_sidebar_page_link" target="_blank" href="'+sidebarPageURL+'" title="Open Page \''+pageTitle+'\'"><i class="fa fa-external-link" /></a>');
+            }
+      })
+   }
 });
+
+
+// Duplicate Widgets
+jQuery(window).on( 'load widget-updated widget-added', function(widget) {
+   //Append The duplicate button
+   jQuery('#wpbody-content .widget-control-actions').each(function(index, element) {
+         if(jQuery(this).find('.optimizer_duplicate_backend_widget').length == 0){
+            jQuery(this).find('.alignleft').after('<a class="optimizer_duplicate_backend_widget">Duplicate</a>');
+         }
+   });
+});
+//Duplicate Function
+jQuery(document).on('click','.optimizer_duplicate_backend_widget', function(event) {
+   let widget = jQuery(this).closest('.widget');
+   let newwidget = optimizer_duplicate_backend_widget(widget);
+   console.log(newwidget);
+   widget.after(newwidget);
+   wpWidgets.save(newwidget, 0, 1, 1);
+});
+
+function optimizer_duplicate_backend_widget(widget){
+
+   let $widget = widget.clone();
+
+   /// Copy widget hidden id & number values.
+   let idBase = $widget.find('input[name="id_base"]').val();
+   let wNumber = $widget.find('input[name="widget_number"]').val();
+   let mNumber = $widget.find('input[name="multi_number"]').val();
+   var highest = 0;
+
+
+   jQuery('input.widget-id[value|="' + idBase + '"]').each(function() {
+     let match = this.value.match(/-(\d+)$/);
+     if(match && parseInt(match[1]) > highest)
+       highest = parseInt(match[1]);
+   });
+
+   let newNum = highest + 1;
+
+   $widget.find('.widget-content').find('input,select,textarea').each(function() {
+     let thisAttrName = jQuery(this).attr('name');
+     if(thisAttrName)
+       jQuery(this).attr('name', thisAttrName.replace(wNumber, newNum));
+   });
+
+   // ID creation
+   var highest = 0;
+   jQuery('.widget').each(function() {
+     let match = this.id.match(/^widget-(\d+)/);
+
+     if(match && parseInt(match[1]) > highest)
+       highest = parseInt(match[1]);
+   });
+
+   let newID = highest + 1;
+
+   // Set widget hidden values.
+   $widget[0].id = 'widget-' + newID + '_' + idBase + '-' + newNum;
+   $widget.find('input.widget-id').val(idBase +'-'+ newNum);
+   $widget.find('input.widget_number').val(newNum);
+   $widget.find('.multi_number').val(newNum);
+
+   return $widget;
+ }
 
 jQuery(document).on('panelsopen', function(e) {
 	jQuery('.so-panels-dialog-wrapper .so-content .color-picker').wpColorPicker();
@@ -45,7 +124,7 @@ jQuery(document).on('panelsopen', function(e) {
 	
 					$( document ).on( 'widget-added widget-updated', onFormUpdate );
 	
-					$( document ).ready( function() {
+					$(function() {
 						$( '#widgets-right .widget:has(.color-picker), .so-panels-dialog-wrapper .so-content .color-picker' ).each( function () {
 							initColorPicker( $( this ) );
 						} );
@@ -56,34 +135,34 @@ jQuery(document).on('panelsopen', function(e) {
 			//REPEATER FIELD OPEN/CLOSE
 			function repeatOpen(repeatparent){
 				//console.log(repeatparent);
-				var hidden = jQuery('#'+repeatparent).parent().find('input:eq(0)').is(":hidden");
-				var visible = jQuery('#'+repeatparent).parent().find('input:eq(0)').is(":visible");
+				var hidden = jQuery('#'+repeatparent).parent().find('input').eq(0).is(":hidden");
+				var visible = jQuery('#'+repeatparent).parent().find('input').eq(0).is(":visible");
 				if(hidden){
 					jQuery('#'+repeatparent).parent().addClass('repeatopen');	
 				}
 				if(visible){
 					jQuery('#'+repeatparent).parent().removeClass('repeatopen');	
 				}
-			}
+         }
+
 
 			
 			//BLOCK WIDGET ACCORDION
-			jQuery(document).on( 'ready widget-updated widget-added', function() {
-					jQuery('.block_accordion h4').toggle(function() {
-						jQuery(this).parent().addClass('acc_active');
-						jQuery(this).next().slideDown();
-					},function(){
-						jQuery(this).parent().removeClass('acc_active');
-						jQuery(this).next().slideUp();
-					});
-				
-			});
+         jQuery(window).on( 'load', function() {
+            jQuery(document).on('click', '.block_accordion h4', function() {
+               if(!jQuery(this).parent().hasClass('acc_active')){
+                  jQuery(this).parent().addClass('acc_active');
+                  jQuery(this).next().slideDown();
+               }else{
+                  jQuery(this).parent().removeClass('acc_active');
+                  jQuery(this).next().slideUp();
+               }
+            });
+         });
 
 
-
-
-jQuery(document).ready(function($) {
-    $(".meta_nav a").click(function(event) {
+jQuery(function($) {
+    $(".meta_nav a").on('click',function(event) {
         event.preventDefault();
         $(this).parent().addClass("tabcurrent");
         $(this).parent().siblings().removeClass("tabcurrent");
@@ -93,55 +172,34 @@ jQuery(document).ready(function($) {
     });
 });
 
-jQuery( document ).on( 'load ready widget-added widget-updated', function () {
+jQuery( window ).on( 'load widget-added widget-updated', function () {
 
-	jQuery(document).on("click", ".remove-field", function(e) {
-		jQuery(this).parent().remove();
-	});
-	
-	//Sldier Widget additional fields
-/*	jQuery('.slider_type_field').each(function(index, element) {
-		if(jQuery('.slider_type_field').find(":selected").val() == 'accordion' || jQuery(this).find(":selected").val() == 'carousel'){
-				jQuery(this).parent().parent().find('.slider_height_field').fadeIn();
-		}
-		jQuery(this).on('ready change', function() {
-			if(jQuery(this).find(":selected").val() == 'accordion' || jQuery(this).find(":selected").val() == 'carousel'){
-					jQuery(this).parent().parent().find('.slider_height_field').fadeIn();
-			}else{
-					jQuery(this).parent().parent().find('.slider_height_field').fadeOut();
-			}
-		});
+   //Show Clients Widget Auto Navigation Option
+   jQuery('.clients_nav_opt').each(function() {
+      jQuery(this).on('change', function () {
+         if(jQuery(this).is( ":checked" )){
+            jQuery(this).parent().parent().find('.clients_navauto_opt').fadeIn();
+         }else{
+            jQuery(this).parent().parent().find('.clients_navauto_opt').fadeOut();
+         }
+      })
+   });
 
-
-		if(jQuery('.slider_type_field').find(":selected").val() == 'nivo' || jQuery(this).find(":selected").val() == 'gallery'){
-				jQuery(this).parent().parent().find('.slider_pause_field').fadeIn(); 
-		}
-		jQuery(this).on('ready change', function() {
-			if(jQuery(this).find(":selected").val() == 'nivo' || jQuery(this).find(":selected").val() == 'gallery'){
-					jQuery(this).parent().parent().find('.slider_pause_field').fadeIn();
-			}else{
-					jQuery(this).parent().parent().find('.slider_pause_field').fadeOut();
-			}
-		});
-		
-    });*/
-	
 	//Posts Widget Category Select
 	jQuery('.widget_post_type_select').each(function(index, element) {
-			jQuery(this).find('select').change(function () {
+			jQuery(this).find('select').on('change', function () {
 				if (jQuery(this).val() == 'post') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.post_cat_select').addClass('post_type_selected');		}
 				if (jQuery(this).val() == 'page') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.post_page_select').addClass('post_type_selected');		}
 				if (jQuery(this).val() == 'product') {	jQuery(this).parent().parent().find('.post_cat_select, .post_page_select , .product_cat_select').removeClass('post_type_selected');	jQuery(this).parent().parent().find('.product_cat_select').addClass('post_type_selected');	}
 			});
 	});
 	
-	
 	//Sldier Widget additional fields
 	jQuery('.dynamic_type_field').each(function(index, element) {
 		if(jQuery(this).find(":selected").val() == 'carousel'){
 				jQuery(this).parent().parent().find('.cars_pausetime').fadeIn();
 		}
-		jQuery(this).on('ready change', function() {
+		jQuery(this).on('change', function() {
 			if( jQuery(this).find(":selected").val() == 'carousel'){
 					jQuery(this).parent().parent().find('.cars_pausetime').fadeIn();
 			}else{
@@ -151,18 +209,40 @@ jQuery( document ).on( 'load ready widget-added widget-updated', function () {
 		
 	 });
 	
-	//Map Widget Tabs
-	jQuery(".widget_contact_title").on('click', function() {
+});
+
+jQuery( window ).on( 'load', function () {
+
+	jQuery(document).on("click", ".remove-field", function(e) {
+		jQuery(this).parent().remove();
+	});
+   
+   //Widget Navigation
+   jQuery(document).on('click', '.optimizer_widget_navItem', function(){
+      var navType = jQuery(this).attr('data-type');
+      var widgetContent = jQuery(this).closest('.widget-content');
+      widgetContent.find('.optimizer_widget_navItem').removeClass('optimizer_widget_nav--active');
+      jQuery(this).addClass('optimizer_widget_nav--active');
+      widgetContent.find('.optimizer_widget_tab').hide();
+      widgetContent.find('.optimizer_widget_tab--'+navType).fadeIn();
+   });
+
+   //Map Widget Tabs
+	jQuery(document).on('click', ".widget_contact_title", function() {
 		jQuery(this).addClass('widget_active_contact');jQuery('.widget_contact_fields').show();
 		jQuery('.widget_map_title').removeClass('widget_active_contact');jQuery('.widget_map_fields').hide();
 	});
-	jQuery(".widget_map_title").on('click', function() {
+	jQuery(document).on('click', ".widget_map_title", function() {
 		jQuery(this).addClass('widget_active_contact');jQuery('.widget_map_fields').show();
 		jQuery('.widget_contact_title').removeClass('widget_active_contact');jQuery('.widget_contact_fields').hide();
 	});
-	
+
 });
 
+//Range Input Text Update
+function updateRangeInput(val, elmID, type) {
+   document.getElementById(elmID).innerHTML = val+type; 
+ }
 	
 //Custom Font Upload
 	 function customFontUpload(pickerid){
@@ -227,7 +307,7 @@ jQuery( document ).on( 'load ready widget-added widget-updated', function () {
 				jQuery('#' + row_id).val(""+attachment.url+"").trigger('change');
 					//APPEND THE PREVIEW IMAGE
 					jQuery('#' + row_id).parent().find('.media-picker-preview, .media-picker-remove').remove();
-					if(attachment.sizes.medium){
+					if(attachment.sizes && attachment.sizes.medium){
 						jQuery('#' + row_id).parent().prepend('<img class="media-picker-preview" src="'+attachment.sizes.medium.url+'" /><i class="fa fa-times media-picker-remove"></i>');
 					}else{
 						jQuery('#' + row_id).parent().prepend('<img class="media-picker-preview" src="'+attachment.url+'" /><i class="fa fa-times media-picker-remove"></i>');
@@ -305,10 +385,9 @@ jQuery( document ).on( 'load ready widget-added widget-updated', function () {
 
 	 }
 
-jQuery(document).on( 'ready widget-updated widget-added', function() {
-	
-	//jQuery(".media-picker-remove").unbind( "click" );
-	jQuery(".media-picker-remove").on('click',function(e) {
+jQuery(window).on( 'load', function() {
+
+	jQuery(document).on('click', ".media-picker-remove" ,function(e) {
 		jQuery(this).parent().find('.media-picker').val('').trigger('change');
 		jQuery(this).parent().find('.media-picker-preview, .media-picker-remove').remove();
 	});
@@ -316,7 +395,7 @@ jQuery(document).on( 'ready widget-updated widget-added', function() {
 
 });
 
-jQuery(document).ready(function() {
+jQuery(function() {
 	//CountDown Widget
     function runDatepicker() {
         var found = jQuery( '#widgets-right .ast_date' );
@@ -455,7 +534,7 @@ WPEditorWidget = {
 };
 
 /*-----------------------------------------------------FONTAWESOME----------------------------------------------------------*/
-jQuery(document).ready(function() {
+jQuery(function() {
 	//jQuery(".layer-menu-icon .icon_added").after("");
 	jQuery(document).on("click", ".layer-icon-select>i", function(e) {
 	  jQuery(this).parent().find('.package').remove();

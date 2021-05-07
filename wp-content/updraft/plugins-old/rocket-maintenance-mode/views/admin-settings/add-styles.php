@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 <?php endif; ?>
 
-<?php echo get_option('mmp_custom_css') ?>
+<?php get_option('mmp_custom_css') ?>
 </style>
 
 <?php if ( get_option('mmp_custom_footrt_script') !== '' ): ?>

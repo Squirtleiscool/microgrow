@@ -130,7 +130,7 @@ global $optimizer;
                                     <?php do_action('optimizer_after_content'); ?>
                                     
                                   <!--The Contact Form-->
-                                      <div class="entry-content">
+                                 <div class="optimizer_contact_wrap">
                                   <?php echo $response; ?>
                                   <form id="layer_contact_form" action="<?php the_permalink(); ?>" method="post">
                                     <p><input id="layer_cntct_name" placeholder="<?php _e('Name*', 'optimizer'); ?>" type="text" name="message_name" class="cont_inpt" value="<?php if (isset($_POST['message_name'])){ echo esc_attr($_POST['message_name']); } ?>"></label></p>

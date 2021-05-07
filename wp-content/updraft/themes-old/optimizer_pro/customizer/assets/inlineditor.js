@@ -192,8 +192,8 @@ function inline_button_editor(event){
 function wrap_columns(){
 	
 	jQuery(".col2").each(function(index) {  if(jQuery(this).next().is('.col2')){	jQuery(this).next(".col2").andSelf().wrapAll("<div class='col2wrap' />");	}   });
-	jQuery(".col3").each(function(index) {  if(jQuery(this).prev().is('.col3') && jQuery(this).next().is('.col3')){	jQuery(this).prev('.col3').nextAll('.col3:lt(2)').andSelf().wrapAll("<div class='col3wrap' />");	}   });
-	jQuery(".col4").each(function(index) {  if(jQuery(this).next().is('.col4') && jQuery(this).next().next().is('.col4') && jQuery(this).next().next().next().is('.col4')){	jQuery(this).nextAll('.col4:lt(3)').andSelf().wrapAll("<div class='col4wrap' />");	}   });
+	jQuery(".col3").each(function(index) {  if(jQuery(this).prev().is('.col3') && jQuery(this).next().is('.col3')){	jQuery(this).prev('.col3').nextAll('.col3').slice( 0, 2 ).andSelf().wrapAll("<div class='col3wrap' />");	}   });
+	jQuery(".col4").each(function(index) {  if(jQuery(this).next().is('.col4') && jQuery(this).next().next().is('.col4') && jQuery(this).next().next().next().is('.col4')){	jQuery(this).nextAll('.col4').slice( 0, 3 ).andSelf().wrapAll("<div class='col4wrap' />");	}   });
 }
 
 
@@ -213,11 +213,11 @@ function inline_col2_editor(event){
 	jQuery(document).on('click','#col2_opt1', function(event) {    jQuery('.editing_col_shortcode .col2').css('width','50%').attr('data-width', '50%');    });
 	
 	jQuery(document).on('click','#col2_opt2', function(event) {    
-			jQuery('.editing_col_shortcode .col2:eq(0)').css('width','70%').attr('data-width', '70%'); jQuery('.editing_col_shortcode .col2:eq(1)').css('width','30%').attr('data-width', '30%');
+			jQuery('.editing_col_shortcode .col2').eq(0).css('width','70%').attr('data-width', '70%'); jQuery('.editing_col_shortcode .col2').eq(1).css('width','30%').attr('data-width', '30%');
 	});
 	
 	jQuery(document).on('click','#col2_opt3', function(event) {    
-			jQuery('.editing_col_shortcode .col2:eq(0)').css('width','30%').attr('data-width', '30%'); jQuery('.editing_col_shortcode .col2:eq(1)').css('width','70%').attr('data-width', '70%');
+			jQuery('.editing_col_shortcode .col2').eq(0).css('width','30%').attr('data-width', '30%'); jQuery('.editing_col_shortcode .col2').eq(1).css('width','70%').attr('data-width', '70%');
 	});
 	
 	
@@ -241,27 +241,27 @@ function inline_col3_editor(event){
 	jQuery(document).on('click','#col3_opt1', function(event) {    jQuery('.editing_col_shortcode .col3').css('width','33%').attr('data-width', '33%');    });
 	
 	jQuery(document).on('click','#col3_opt2', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3:eq(2)').css('width','25%').attr('data-width', '25%');    
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3').eq(2).css('width','25%').attr('data-width', '25%');    
 	});
 	
 	jQuery(document).on('click','#col3_opt3', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3:eq(2)').css('width','50%').attr('data-width', '50%');     
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3').eq(2).css('width','50%').attr('data-width', '50%');     
 	});
 	
 	jQuery(document).on('click','#col3_opt4', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col3:eq(2)').css('width','25%').attr('data-width', '25%');    
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','25%').attr('data-width', '25%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col3').eq(2).css('width','25%').attr('data-width', '25%');    
 	});
 	
 	jQuery(document).on('click','#col3_opt5', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','70%').attr('data-width', '70%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','15%').attr('data-width', '15%');  jQuery('.editing_col_shortcode .col3:eq(2)').css('width','15%').attr('data-width', '15%');     
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','70%').attr('data-width', '70%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','15%').attr('data-width', '15%');  jQuery('.editing_col_shortcode .col3').eq(2).css('width','15%').attr('data-width', '15%');     
 	});
 	
 	jQuery(document).on('click','#col3_opt6', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3:eq(2)').css('width','70%').attr('data-width', '70%');    
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3').eq(2).css('width','70%').attr('data-width', '70%');    
 	});
 	
 	jQuery(document).on('click','#col3_opt7', function(event) {    
-			jQuery('.editing_col_shortcode .col3:eq(0)').css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3:eq(1)').css('width','70%').attr('data-width', '70%');  jQuery('.editing_col_shortcode .col3:eq(2)').css('width','15%').attr('data-width', '15%');     
+			jQuery('.editing_col_shortcode .col3').eq(0).css('width','15%').attr('data-width', '15%'); jQuery('.editing_col_shortcode .col3').eq(1).css('width','70%').attr('data-width', '70%');  jQuery('.editing_col_shortcode .col3').eq(2).css('width','15%').attr('data-width', '15%');     
 	});
 	
 	jQuery(document).on('click','#col3_remove', function(event) {    jQuery('.editing_col_shortcode').remove();    });
@@ -284,19 +284,19 @@ function inline_col4_editor(event){
 	
 	jQuery(document).on('click','#col4_opt1', function(event) {    jQuery('.editing_col_shortcode .col4').css('width','25%').attr('data-width', '25%');    });
 	jQuery(document).on('click','#col4_opt2', function(event) {    
-			jQuery('.editing_col_shortcode .col4:eq(0)').css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col4:eq(1)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(2)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(3)').css('width','16.666%').attr('data-width', '16.666%');    
+			jQuery('.editing_col_shortcode .col4').eq(0).css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col4').eq(1).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(2).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(3).css('width','16.666%').attr('data-width', '16.666%');    
 	
 	});
 	jQuery(document).on('click','#col4_opt3', function(event) {    
-			jQuery('.editing_col_shortcode .col4:eq(0)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(1)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(2)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(3)').css('width','50%').attr('data-width', '50%');    
+			jQuery('.editing_col_shortcode .col4').eq(0).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(1).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(2).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(3).css('width','50%').attr('data-width', '50%');    
 	
 	});
 	jQuery(document).on('click','#col4_opt4', function(event) {    
-			jQuery('.editing_col_shortcode .col4:eq(0)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(1)').css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col4:eq(2)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(3)').css('width','16.666%').attr('data-width', '16.666%');    
+			jQuery('.editing_col_shortcode .col4').eq(0).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(1).css('width','50%').attr('data-width', '50%'); jQuery('.editing_col_shortcode .col4').eq(2).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(3).css('width','16.666%').attr('data-width', '16.666%');    
 	
 	});
 	jQuery(document).on('click','#col4_opt5', function(event) {    
-			jQuery('.editing_col_shortcode .col4:eq(0)').css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4:eq(1)').css('width','16.666%').attr('data-width', '16.666%');  jQuery('.editing_col_shortcode .col4:eq(2)').css('width','50%').attr('data-width', '50%');   jQuery('.editing_col_shortcode .col4:eq(3)').css('width','16.666%').attr('data-width', '16.666%');    
+			jQuery('.editing_col_shortcode .col4').eq(0).css('width','16.666%').attr('data-width', '16.666%'); jQuery('.editing_col_shortcode .col4').eq(1).css('width','16.666%').attr('data-width', '16.666%');  jQuery('.editing_col_shortcode .col4').eq(2).css('width','50%').attr('data-width', '50%');   jQuery('.editing_col_shortcode .col4').eq(3).css('width','16.666%').attr('data-width', '16.666%');    
 	
 	});
 	
@@ -306,7 +306,7 @@ function inline_col4_editor(event){
 
 
 //INITIATE THE EDITOR FUNCTIONS
-jQuery(window).bind("load", function() {  
+jQuery(window).on("load", function() {  
 	//Title Editor
 	inline_textedit('.frontpage_sidebar .about_header span, .frontpage_sidebar .home_title span, .frontpage_sidebar .block_header span, .frontpage_sidebar .widgettitle', 'optimwidgett', 'titledit');
 	//SubTitle Editor

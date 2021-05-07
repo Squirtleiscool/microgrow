@@ -24,7 +24,18 @@ function optimizer_body_class( $classes ) {
 	if($optimizer['site_layout_id'] == 'site_boxed'){
 		$classes[] = 'is_boxed';
 	}
-	
+   // if(has_blocks()){
+	// 	$classes[] = 'has_blocks';
+	// }
+   // if(is_singular( )){
+   //    global $post;
+   //    $optimizer_post_layout = get_post_meta( $post->ID, 'optimizer_post_layout', true);
+   //    if(isset($optimizer_post_layout)){
+   //       $classes[] = 'optimizer_post_layout--'.$optimizer_post_layout;
+   //    }
+	// }
+   
+
 	if($optimizer['social_bookmark_pos']){
 		$classes[] = 'soc_pos_'.$optimizer['social_bookmark_pos'].'';
 	}
@@ -42,6 +53,10 @@ function optimizer_body_class( $classes ) {
 		if(!empty($optimizer['header_sidebar_style'])){
 			$classes[] = $optimizer['header_sidebar_style'];
 		}
+   }
+   
+   if(!empty($optimizer['disable_slider_parallax'])){
+		$classes[] = 'disable_slider_parallax';
 	}
 
 	if ( is_rtl() ) {
@@ -54,11 +69,19 @@ function optimizer_body_class( $classes ) {
 		$classes[] = 'customizer-prev';
 	}
 	if ( is_singular()){
-		global $post;
+      global $post; 
+      global $wp_query; $postid = $wp_query->post->ID; 
+      $custom_calsses = get_post_meta( $postid, 'custom_classes', true); 
+      $custom_calsses = $custom_calsses ? explode(',', $custom_calsses) : false;
 		if (optimizer_empty_content($post->post_content)) {
 			$classes[] = 'has_no_content';
 		}
 
+      if($custom_calsses && is_array($custom_calsses) && count($custom_calsses) > 0){
+         foreach ($custom_calsses as $key => $class) {
+            $classes[] = $class;
+         }
+      }
 	}
 	
 	if ( is_single()){
@@ -77,9 +100,13 @@ function optimizer_body_class( $classes ) {
 			$classes[] = 'page_header_transparent';
 		}
 		
-	$page_header_hide = get_post_meta( $postid, 'hide_header', true); 
+	   $page_header_menu_hide = get_post_meta( $postid, 'hide_header_menu', true); 
+      $page_header_hide = get_post_meta( $postid, 'hide_header', true); 
 		if(!empty($page_header_hide)){
 			$classes[] = 'hide_header';
+		}
+      if(!empty($page_header_menu_hide)){
+			$classes[] = 'hide_header_menu';
 		}
 	}
 	//Woocommerce Classes
@@ -265,6 +292,7 @@ add_filter( 'get_search_form', 'optimizer_search_form' );
 
 
 //**************Toptimizer COMMENTS******************//
+if(!function_exists( 'optimizer_comment' ) ){
 function optimizer_comment($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
    <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
@@ -295,6 +323,8 @@ function optimizer_comment($comment, $args, $depth) {
      </div>
 <?php
         }
+
+}
 		
 //**************TRACKBACKS & PINGS******************//
 function optimizer_ping($comment, $args, $depth) {
@@ -442,7 +472,7 @@ function optimizer_gallery_control() {
 
   <script>
 
-    jQuery(document).ready(function(){
+   jQuery(function() {
 
       // add your shortcode attribute and its default value to the
       // gallery settings list; $.extend should work as well...

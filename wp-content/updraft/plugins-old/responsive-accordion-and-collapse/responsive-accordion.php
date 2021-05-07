@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Responsive Accordion And Collapse
- * Version: 2.1.3
+ * Version: 2.2.6
  * Description: Responsive Accordion is the most easiest drag & drop accordion builder for WordPress. You can generate multiple accordion and collapse with multiple colour.
  * Author: wpshopmart
  * Author URI: https://www.wpshopmart.com
@@ -12,6 +12,7 @@
 /**
  * DEFINE PATHS
  */
+define('wpshopmart_accordion_directory_path', plugin_dir_path(__FILE__));
 define("wpshopmart_accordion_directory_url", plugin_dir_url(__FILE__));
 define("wpshopmart_accordion_text_domain", "wpsm_accordion");
 
@@ -19,9 +20,10 @@ define("wpshopmart_accordion_text_domain", "wpsm_accordion");
  * PLUGIN Install
  */
 require_once("lib/installation/installation.php");
+//require("responsive-accordion-addon.php");
 
 /**
- * Responsive Accordion backend call
+ * Responsive Accordion back end call
  */
 require_once("lib/admin/menu.php");
 

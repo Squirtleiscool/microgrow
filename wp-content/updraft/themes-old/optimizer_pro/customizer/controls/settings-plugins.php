@@ -162,7 +162,34 @@ $wp_customize->add_setting( 'optimizer[woo_sale_color]', array(
 				'section' => 'woo_section',
 				'settings' => 'optimizer[woo_sale_color]',
 			) ) );
+//Woocommerce Secondary COLOR FIELD
+$wp_customize->add_setting( 'optimizer[woo_title_color]', array(
+	'type' => 'option',
+	'default' => '#777777',
+	'sanitize_callback' => 'sanitize_hex_color',
+	'transport' => 'postMessage',
+) );
 
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'woo_title_color', array(
+				'label' => __('Archive Product Title Color','optimizer'),
+				'section' => 'woo_section',
+				'settings' => 'optimizer[woo_title_color]',
+         ) ) );
+         
+//Woocommerce Secondary COLOR FIELD
+$wp_customize->add_setting( 'optimizer[woo_button_color]', array(
+	'type' => 'option',
+	'default' => '#EAEAEA',
+	'sanitize_callback' => 'sanitize_hex_color',
+	'transport' => 'postMessage',
+) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'woo_button_color', array(
+				'label' => __('Archive Product Button Color','optimizer'),
+				'section' => 'woo_section',
+				'settings' => 'optimizer[woo_button_color]',
+         ) ) );
+         
 //Woocommerce Buttons Style
 $wp_customize->add_setting('optimizer[woo_button_style]', array(
 		'type' => 'option',

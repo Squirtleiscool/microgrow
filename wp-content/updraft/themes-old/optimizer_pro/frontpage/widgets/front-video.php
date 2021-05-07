@@ -33,7 +33,7 @@ class optimizer_front_Video extends WP_Widget {
 			'customize_selective_refresh' => true,
 		) );
 		$this->alt_option_name = 'optimizer_front_video';
-		add_action('wp_enqueue_scripts', array(&$this, 'front_video_enqueue_css'));
+		// add_action('wp_enqueue_scripts', array(&$this, 'front_video_enqueue_css'));
 	}
 
 	/* ---------------------------- */
@@ -124,7 +124,7 @@ class optimizer_front_Video extends WP_Widget {
 						}
 					}
 					
-					if($autoplay == ''){  echo '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i><img id="ytb_thumb_'.$this->id.'" class="ytb_thumb ytb_video_'.$id.'" src= "'.$thumbid.'" />';  }
+					if($autoplay == ''){  echo '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i><img id="ytb_thumb_'.$this->id.'" class="ytb_thumb ytb_video_'.$id.'" src="'.$thumbid.'" alt="'.__("Youtube Video","optimizer").'" />';  }
 					
 					echo '<div class="ast_vid"><div class="responsive-container"><div class="ytb_widget_iframe" data-video-id="'.$id .'" data-autoplay="'.$autoplay .'" data-position="'.$contentposition .'" id="ytb_'.$widgetid.'" '.$loop.'></div></div></div>';
 					
@@ -146,9 +146,15 @@ class optimizer_front_Video extends WP_Widget {
 					$autoplayClass = '';
 					if( $autoplay == '1' && $contentposition == 'on_video'){  $loop='&loop=1'; $mute= '&background=1';  }else{  $loop='';$mute= ''; }
 					
-					if(!empty($vdothumb )){$vimeothumb = '<img id="vim_thumb_'.$this->id.'" class="vim_thumb vim_video_'.$id.'" src= "'.$vdothumb.'" '.optimizer_image_attr( esc_url($vdothumb) ).' '.optimizer_image_alt(esc_url($vdothumb) ).' />';}else{$vimeothumb ='';}
+					if(!empty($vdothumb )){$vimeothumb = '<img id="vim_thumb_'.$this->id.'" class="vim_thumb vim_video_'.$id.'" src= "'.$vdothumb.'" '.optimizer_image_attr( esc_url($vdothumb) ).' alt="'.__("Youtube Video","optimizer").'" />';}else{$vimeothumb ='';}
 					
-					echo '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i>'.$vimeothumb.'';
+					if( $autoplay == '1'){
+						$vimbutton = '';
+					}else{ 
+						$vimbutton = '<i id="play-button_'.$widgetid.'" class="fa fa-play"></i>'.$vimeothumb.''; 
+					}
+					
+					echo $vimbutton;
 					
 					if($autoplay == '1'){ 
 						$autoplayClass = 'autoPlay_vim';
@@ -158,7 +164,7 @@ class optimizer_front_Video extends WP_Widget {
 						$return = str_replace( 'allowfullscreen>', 'allowfullscreen id="player_'.$widgetid.'">', $return );
 					}
 					
-					echo '<div class="ast_vid '.$autoplayClass.'"><div class="responsive-container" data-thumb="'.$vimeothumb.'">'.$return.'</div></div>';
+					echo '<div class="ast_vid '.$autoplayClass.'"><div class="responsive-container" data-thumb="'.$vdothumb.'">'.$return.'</div></div>';
 				}
 				
 			} //If Custom video ENDS
@@ -172,55 +178,8 @@ class optimizer_front_Video extends WP_Widget {
 		//Stylesheet-loaded in Customizer Only.
 		if(is_customize_preview()){
 			$id= $this->id;
-			
-				$content_bg =		'background-color:#eff9f9!important;';
-				$content_color =	'color:#00214c;';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-				
-				
-				if ( ! empty( $instance['content_bg'] ) ) {		$content_bg = 'background-color: ' . $instance['content_bg'] . '!important; ';}
-				if ( ! empty( $instance['content_color'] ) ) {	$content_color = 'color: ' . $instance['content_color'] . '!important; ';}
-				
-				echo '<style>#'.$id.'{ ' . $content_bg . '' . $content_color . '}  @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }</style>';
-		}
+         echo  '<style>'.$this->generate_css($id, $instance).'</style>';
+      }
 
 		/* After widget (defined by themes). */
 		echo $after_widget;
@@ -239,16 +198,17 @@ class optimizer_front_Video extends WP_Widget {
 		$instance = $old_instance;
 
 		/* Strip tags for title and name to remove HTML (important for text inputs). */
-        $instance['title'] = strip_tags( $new_instance['title'] );
+      $instance['title'] = strip_tags( $new_instance['title'] );
 		$instance['video_uri'] = esc_url_raw( $new_instance['video_uri']);
 		$instance['customvdo'] = esc_url_raw( $new_instance['customvdo']);
 		$instance['vdothumb'] = esc_url_raw( $new_instance['vdothumb']);
-		$instance['autoplay'] = absint( $new_instance['autoplay']);	
-		$instance['border'] = absint( $new_instance['border']);	
+		$instance['autoplay'] = isset( $new_instance['autoplay']) ? absint( $new_instance['autoplay']) : '';	
+		$instance['border'] = isset( $new_instance['border']) ? absint( $new_instance['border']) : '';		
 		$instance['content'] = wp_kses_post($new_instance['content']);
 		$instance['contentposition'] = strip_tags( $new_instance['contentposition']);	
 		$instance['content_color'] = optimizer_sanitize_hex($new_instance['content_color']);
 		$instance['content_bg'] = optimizer_sanitize_hex($new_instance['content_bg']);
+      $instance['content_bgimg'] = esc_url_raw($new_instance['content_bgimg']);
 
 		return $instance;
 	}
@@ -270,166 +230,161 @@ class optimizer_front_Video extends WP_Widget {
 		'content' => __('Sustainable messenger bag Thundercats mixtape typewriter, locavore synth Marfa Intelligentsia try-hard biodiesel four loko distillery. ','optimizer'),
 		'contentposition' => 'right',
 		'content_color' => '#00214c',
-		'content_bg' => '#eff9f9',
+      'content_bg' => '#eff9f9',
+      'content_bgimg' => '',
 		);
 		
-		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
+      $instance = wp_parse_args( (array) $instance, $defaults ); ?>
+      
+      <div class="optimizer_widget_tab optimizer_widget_tab--content">
+         <!-- Widget Title: Text Input -->
+         <p>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'optimizer'); ?></label>
+            <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo htmlspecialchars($instance['title'], ENT_QUOTES, "UTF-8"); ?>" class="widefat" />
+         </p>
 
-		<!-- Widget Title: Text Input -->
-        <p>
-          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title', 'optimizer'); ?></label>
-          <input type="text" name="<?php echo $this->get_field_name('title'); ?>" id="<?php echo $this->get_field_id('title'); ?>" value="<?php echo htmlspecialchars($instance['title'], ENT_QUOTES, "UTF-8"); ?>" class="widefat" />
-        </p>
+      
+         <!-- Youtube or Vimeo Video url Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id('video_uri'); ?>"><?php _e('Youtube or Vimeo Video url', 'optimizer'); ?></label>
+            <input type="text" name="<?php echo $this->get_field_name('video_uri'); ?>" id="<?php echo $this->get_field_id('video_uri'); ?>" value="<?php echo esc_url($instance['video_uri']); ?>" class="widefat" />
+         </p>
 
-    
-		<!-- Youtube or Vimeo Video url Field -->
-        <p>
-          <label for="<?php echo $this->get_field_id('video_uri'); ?>"><?php _e('Youtube or Vimeo Video url', 'optimizer'); ?></label>
-          <input type="text" name="<?php echo $this->get_field_name('video_uri'); ?>" id="<?php echo $this->get_field_id('video_uri'); ?>" value="<?php echo esc_url($instance['video_uri']); ?>" class="widefat" />
-        </p>
+         
+         <!-- Custom Video Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'customvdo' ); ?>"><?php _e('Custom Video (.mp4)', 'optimizer') ?></label>
+            <div class="media-picker-wrap video-picker-wrap">
+               <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'customvdo' ); ?>" name="<?php echo $this->get_field_name( 'customvdo' ); ?>" value="<?php echo esc_url($instance['customvdo']); ?>" type="text" />
+               <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'customvdo' ).'mpick'; ?>"><?php _e('Select', 'optimizer') ?></a>
+               </div>
+         </p>
 
-        
-		<!-- Custom Video Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'customvdo' ); ?>"><?php _e('Custom Video (.mp4)', 'optimizer') ?></label>
-			<div class="media-picker-wrap video-picker-wrap">
-            <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'customvdo' ); ?>" name="<?php echo $this->get_field_name( 'customvdo' ); ?>" value="<?php echo esc_url($instance['customvdo']); ?>" type="text" />
-            <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'customvdo' ).'mpick'; ?>"><?php _e('Select', 'optimizer') ?></a>
+         
+         <!-- Video Autoplay Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'autoplay' ); ?>"><?php _e('Autoplay Video', 'optimizer') ?>
+               </label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'autoplay' ); ?>" name="<?php echo $this->get_field_name( 'autoplay' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['autoplay'] ) echo 'checked'; ?> />
+         </p>
+         
+         <!-- Video Border Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'border' ); ?>"><?php _e('Display Border Around Video', 'optimizer') ?>
+               </label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'border' ); ?>" name="<?php echo $this->get_field_name( 'border' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['border'] ) echo 'checked'; ?> />
+         </p>
+         
+         
+         <!-- Video Thumbnail Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'vdothumb' ); ?>"><?php _e('Video Thumbnail', 'optimizer') ?></label>
+            <div class="media-picker-wrap">
+                  <?php if(!empty($instance['vdothumb'])) { ?>
+                     <img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['vdothumb']); ?>" />
+                     <i class="fa fa-times media-picker-remove"></i>
+                  <?php } ?>
+               <input class="widefat media-picker vdothumb-picker" id="<?php echo $this->get_field_id( 'vdothumb' ); ?>" name="<?php echo $this->get_field_name( 'vdothumb' ); ?>" value="<?php echo esc_url($instance['vdothumb']); ?>" type="text" />
+               <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'vdothumb' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
+               </div>
+         </p> 
+         
+         <!-- Video Content Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e('Content:', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" value="<?php echo esc_attr($instance['content']); ?>" type="hidden" />
+               <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'content' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
+         </p>
+         
+         
+         <!-- Video Content Position Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'contentposition' ); ?>"><?php _e('Content Position:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'contentposition' ); ?>" name="<?php echo $this->get_field_name( 'contentposition' ); ?>">
+               <option value="right" <?php if ( 'right' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Right','optimizer') ?></option>
+               <option value="left" <?php if ( 'left' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Left', 'optimizer') ?></option>
+                  <option value="top" <?php if ( 'top' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Top', 'optimizer') ?></option>
+               <option value="on_video" <?php if ( 'on_video' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('On Video', 'optimizer') ?></option>
+            </select>
+         </p>
+      </div>
+      
+
+      <div class="optimizer_widget_tab optimizer_widget_tab--style" style="display:none">
+         
+         <!-- Video Content Text Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_color' ); ?>"><?php _e('Text Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_color' ); ?>" name="<?php echo $this->get_field_name( 'content_color' ); ?>" value="<?php echo $instance['content_color']; ?>" type="text" />
+         </p>
+                  
+         <!-- Video Content Background Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_bg' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_bg' ); ?>" name="<?php echo $this->get_field_name( 'content_bg' ); ?>" value="<?php echo $instance['content_bg']; ?>" type="text" />
+         </p>  
+
+         <!-- Text Content Background Image Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_bgimg' ); ?>"><?php _e('Background Image', 'optimizer') ?></label>
+            <div class="media-picker-wrap">
+               <?php if(!empty($instance['content_bgimg'])) { ?>
+               <img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['content_bgimg']); ?>" />
+                  <i class="fa fa-times media-picker-remove"></i>
+               <?php } ?>
+               <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'content_bgimg' ); ?>" name="<?php echo $this->get_field_name( 'content_bgimg' ); ?>" value="<?php echo esc_url($instance['content_bgimg']); ?>" type="hidden" />
+               <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'content_bgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
             </div>
-		</p>
+         </p>
+      
 
-        
-        <!-- Video Autoplay Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'autoplay' ); ?>"><?php _e('Autoplay Video', 'optimizer') ?>
-            </label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'autoplay' ); ?>" name="<?php echo $this->get_field_name( 'autoplay' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['autoplay'] ) echo 'checked'; ?> />
-		</p>
-        
-        <!-- Video Border Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'border' ); ?>"><?php _e('Display Border Around Video', 'optimizer') ?>
-            </label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'border' ); ?>" name="<?php echo $this->get_field_name( 'border' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['border'] ) echo 'checked'; ?> />
-		</p>
-        
-        
-		<!-- Video Thumbnail Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'vdothumb' ); ?>"><?php _e('Video Thumbnail', 'optimizer') ?></label>
-			<div class="media-picker-wrap">
-                <?php if(!empty($instance['vdothumb'])) { ?>
-                    <img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['vdothumb']); ?>" />
-                    <i class="fa fa-times media-picker-remove"></i>
-                <?php } ?>
-            <input class="widefat media-picker vdothumb-picker" id="<?php echo $this->get_field_id( 'vdothumb' ); ?>" name="<?php echo $this->get_field_name( 'vdothumb' ); ?>" value="<?php echo esc_url($instance['vdothumb']); ?>" type="text" />
-            <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'vdothumb' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
-            </div>
-		</p> 
-        
-        <!-- Video Content Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e('Content:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" value="<?php echo esc_attr($instance['content']); ?>" type="hidden" />
-            <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'content' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
-		</p>
-        
-        
-        <!-- Video Content Position Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'contentposition' ); ?>"><?php _e('Content Position:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'contentposition' ); ?>" name="<?php echo $this->get_field_name( 'contentposition' ); ?>">
-				<option value="right" <?php if ( 'right' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Right','optimizer') ?></option>
-				<option value="left" <?php if ( 'left' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Left', 'optimizer') ?></option>
-                <option value="top" <?php if ( 'top' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('Top', 'optimizer') ?></option>
-				<option value="on_video" <?php if ( 'on_video' == $instance['contentposition'] ) echo 'selected="selected"'; ?>><?php _e('On Video', 'optimizer') ?></option>
-			</select>
-		</p>
-		
-		<!-- Video Content Text Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_color' ); ?>"><?php _e('Text Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_color' ); ?>" name="<?php echo $this->get_field_name( 'content_color' ); ?>" value="<?php echo $instance['content_color']; ?>" type="text" />
-		</p>
-                
-        <!-- Video Content Background Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_bg' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_bg' ); ?>" name="<?php echo $this->get_field_name( 'content_bg' ); ?>" value="<?php echo $instance['content_bg']; ?>" type="text" />
-		</p>  
+         <!-- Basic Widget Styles -->
+         <?php optimizer_widget_basic_styles($instance, $this, 'video');?>
+
+      </div>
    
    
 <?php
 	}
-		//ENQUEUE CSS
-        function front_video_enqueue_css() {
+	//ENQUEUE CSS
+   function front_video_enqueue_css() {
 		$settings = $this->get_settings();
 		if(!is_customize_preview()){
-		if ( empty( $settings ) ) {
-			return;
-		}
-
+         if ( empty( $settings ) ) {
+            return;
+         }
 			foreach ( $settings as $instance_id => $instance ) {
 				$id = $this->id_base . '-' . $instance_id;
 	
 				if ( ! is_active_widget( false, $id, $this->id_base ) ) {
 					continue;
 				}
-				$content_bg =		'background-color:#eff9f9!important;';
-				$content_color =	'color:#00214c;';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
+				wp_add_inline_style( 'optimizer-style', $this->generate_css($id, $instance) );
 			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-				
-				if ( ! empty( $instance['content_bg'] ) ) {
-					$content_bg = 'background-color: ' . $instance['content_bg'] . '!important; ';
-				}
-				if ( ! empty( $instance['content_color'] ) ) {
-					$content_color = 'color: ' . $instance['content_color'] . '!important; ';
-				}
-				
-				
-				$widget_style = '#'.$id.'{ ' . $content_bg . '' . $content_color . '}  @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }';
-				wp_add_inline_style( 'optimizer-style', $widget_style );
-			}
-		}
-	} //END FOREACH
+		}//END FOREACH
+   } 
+   
+   function generate_css($id, $instance){
+      $content_bg =		! empty( $instance['content_bg']) ? 'background-color: ' . $instance['content_bg'] . '; ' : 'background-color:#eff9f9;';
+      $content_bgimg =	!empty( $instance['content_bgimg'] ) ? 'background-image:url(' . $instance['content_bgimg'] . ');' : '';
+      $content_color =		! empty( $instance['content_color']) ? 'color: ' . $instance['content_color'] . '!important; ' : 'color:#00214c;';
+
+      //Basic Styles
+      $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
+      $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
+      $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
+      $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
+      $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
+
+      $widget_style = '#'.$id.'{ ' . $content_bg . $content_bgimg . $content_color. $font_size. $font_family.'}';
+      $widget_style .= ($title_size || $title_family) ? '#'.$id.' .widgettitle{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
+      $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
+      
+      return $widget_style;
+   }
+
 }
 		
 ?>

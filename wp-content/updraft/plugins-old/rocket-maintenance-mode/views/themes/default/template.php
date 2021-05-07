@@ -63,6 +63,7 @@
               <img src="<?php echo esc_url(get_option('mmp_logo')) ?>" />
             </div>
             <h1><?php esc_html_e(get_option('mmp_headline')) ?></h1>
+            <p><?php esc_html_e(get_option('mmp_subheading')) ?></p>
             <div id="content">
               <?php echo  $this->_content( get_option('mmp_message') )  ?>
             </div>
@@ -73,8 +74,8 @@
             <?php endif; ?>
 
             <?php if ( get_option('mmp_on_off_progress') === '1' ): ?>
-            <div class="progress">
-              <div class="bar" data-percentage="<?php esc_attr_e(get_option('mmp_set_progress')) ?>">
+              <div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <?php esc_attr_e(get_option('mmp_set_progress')) ?>%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
             <?php endif; ?>

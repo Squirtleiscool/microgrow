@@ -25,3 +25,7 @@
           </span>
 
       </span>
+      <!-- Custom Css  -->
+      <style>
+      <?php get_option('mmp_custom_css'); print_r(get_option('mmp_custom_css'));?> 
+      </style>

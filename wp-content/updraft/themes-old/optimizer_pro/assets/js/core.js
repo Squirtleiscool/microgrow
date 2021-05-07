@@ -1,4 +1,4 @@
-jQuery(window).ready(function() {
+jQuery(function() {
 
 	/*CAROUSEL SHORTCODE*/
 	jQuery(".looper-inner p, .looper-inner .item, .lts_pricing p, .lts_blocks p, .lts_blocks br, .lts_tab br, .lts_tabtitle").each(function(){
@@ -43,9 +43,9 @@ jQuery(window).ready(function() {
 
 	//ADD ID to Carousel and MAP
 	for (var i=0; i<20; i++){
-		jQuery('.lts_looper:eq('+i+')').attr('id', 'lts_looper'+i+'');
-		jQuery('.lts_list:eq('+i+')').attr('id', 'lts_list'+i+'');
-		jQuery('.lts_map_wrap:eq('+i+')').attr('id', 'map_'+i+'');
+		jQuery('.lts_looper').eq(i).attr('id', 'lts_looper'+i+'');
+		jQuery('.lts_list').eq(i).attr('id', 'lts_list'+i+'');
+		jQuery('.lts_map_wrap').eq(i).attr('id', 'map_'+i+'');
 	}
 	
 	jQuery('.lts_looper.lts_default, .lts_looper.lts_simple').each( function(){	
@@ -79,23 +79,22 @@ jQuery(window).ready(function() {
 		jQuery(this).find('.price_button').css({"borderColor":button_bg});
 		jQuery(this).find('.pricebox').css({"background":pricebox_bg});
 		
-		jQuery('.pricing_style1 .pricebox_inner').hover(function(){
-			jQuery(this).css({"borderColor": rgbaCol});
+      jQuery('.pricing_style1 .pricebox_inner').on('mouseenter', function(){ 
+         jQuery(this).css({"borderColor": rgbaCol});
 			jQuery(this).find('.price_head h3').css({"backgroundColor": rgbaCol, "color":button_color});
-		}, function(){
-			jQuery(this).css({"borderColor": "rgba(0, 0, 0, 0.04)"});
-			jQuery(this).find('.price_head h3').css({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt});
-		});
+      });
+		jQuery('.pricing_style1 .pricebox_inner').on('mouseleave', function(){ 
+         jQuery(this).css({"borderColor": "rgba(0, 0, 0, 0.04)"});
+			jQuery(this).find('.price_head h3').css({"backgroundColor": 'rgba(0, 0, 0, 0.02)', "color":pricebox_txt}); 
+      });
+
 	});
 	
 	jQuery(".lts_pricing.pricing_style2, .lts_pricing.pricing_style3").each(function(){
 		var button_bg = jQuery(this).attr('data-button-bg');
 		jQuery(this).find('.price_head h3').css({"color":button_bg});
-		jQuery(this).find('.pricebox_inner').hover(function(){
-			jQuery(this).css({"borderColor": button_bg});
-		}, function(){
-			jQuery(this).css({"borderColor": "transparent"});
-		});
+      jQuery(this).find('.pricebox_inner').on('mouseenter', function(){    jQuery(this).css({"borderColor": button_bg});  });
+      jQuery(this).find('.pricebox_inner').on('mouseleave', function(){    jQuery(this).css({"borderColor": "transparent"});  });
 	});	
 	jQuery(".lts_pricing.pricing_style5").each(function(){
 		var button_bg = jQuery(this).attr('data-button-bg');
@@ -129,13 +128,11 @@ jQuery(".lts_pricing").each(function(){
 
 /*Column Shortcode*/
 jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-	jQuery(this).find('.col2:eq(1), .col2:eq(3), .col2:eq(5), .col2:eq(7), .col2:eq(9), .col2:eq(11), .col2:eq(13), .col2:eq(15), .col2:eq(17), .col2:eq(19)').after('<div class="colclear" style="clear:both" />');
-});
-jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-	jQuery(this).find('.col3:eq(2), .col3:eq(5), .col3:eq(8), .col3:eq(11), .col3:eq(14), .col3:eq(17), .col3:eq(20), .col3:eq(23), .col3:eq(26), .col3:eq(29)').after('<div class="colclear" style="clear:both" />');
-});
-jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-	jQuery(this).find('.col4:eq(3), .col4:eq(7), .col4:eq(11), .col4:eq(15), .col4:eq(19), .col4:eq(23), .col4:eq(27), .col4:eq(31), .col4:eq(35), .col4:eq(29)').after('<div class="colclear" style="clear:both" />');
+   var colParent = jQuery(this);
+   var col2Selectors = [1,3,5,7,9,11,13,15,17,19]; var col3Selectors = [2,5,8,11,14,17,20,23,26,29]; var col4Selectors = [3,7,11,15,19,23,27,31,35,39];
+   col2Selectors.forEach(function(selectorIndex){  colParent.find('.col2').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
+   col3Selectors.forEach(function(selectorIndex){  colParent.find('.col3').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
+   col4Selectors.forEach(function(selectorIndex){  colParent.find('.col4').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
 });
 
 if (jQuery(window).width() >= 480) {	
@@ -179,66 +176,63 @@ jQuery(".lts_list").each(function(){
 	});
  });
  	
- var i = 1; 
- jQuery(".tabs-container").each(function (){
-	 jQuery(this).find(".lts_tab_child").not(':empty').each(function (){
-	 	jQuery(this).attr('id', 'tab-'+i+''); i++;
-	 });
- });
- 
- var i = 1; 
- jQuery(".tabs-container").each(function (){jQuery(this).attr('id', 'tabs-container_'+i+''); i++;});
+   var i = 1; 
+   jQuery(".tabs-container").each(function (){
+      jQuery(this).find(".lts_tab_child").not(':empty').each(function (){
+         jQuery(this).attr('id', 'tab-'+i+''); i++;
+      });
+   });
+   
+   var i = 1; 
+   jQuery(".tabs-container").each(function (){jQuery(this).attr('id', 'tabs-container_'+i+''); i++;});
  
   jQuery(".tabs-container.tabs_default").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
- });
+   if(active_color) jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
+   });
    jQuery(".tabs-container.tabs_circular").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+jQuery('body').css('background-color')+'!important;background:'+active_color+'}</style>').appendTo('head');
- });
+      if(active_color) jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+jQuery('body').css('background-color')+'!important;background:'+active_color+'}</style>').appendTo('head');
+   });
    jQuery(".tabs-container.tabs_minimal").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
- });
-    jQuery(".tabs-container.tabs_capsule").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
-	 jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+jQuery('body').css('background-color')+'!important;background:'+active_color+';border-color:'+active_color+'}</style>').appendTo('head');
- });
+      if(active_color) jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+active_color+'!important;border-color:'+active_color+'}</style>').appendTo('head');
+   });
+   jQuery(".tabs-container.tabs_capsule").each(function (){ var tabid = jQuery(this).attr('id'); var active_color = jQuery(this).data('active-color');
+      if(active_color) jQuery('<style>body #'+tabid+' ul.tabs li.active a{color:'+jQuery('body').css('background-color')+'!important;background:'+active_color+';border-color:'+active_color+'}</style>').appendTo('head');
+   });
 
-jQuery('.tabs-container').easytabs({updateHash: false});
-	
+   jQuery('.tabs-container').easytabs({updateHash: false});
+
 	//Toggle Shortcode
 	jQuery('.lts_toggle_content').hide(); // Hide even though it's already hidden
-	jQuery('.lts_toggle .trigger').click(function() {
+	jQuery('.lts_toggle .trigger').on('click',function() {
     jQuery(this).closest('.lts_toggle').find('.lts_toggle_content').slideToggle("fast"); // First click should toggle to 'show'
 	  return false;
    });
-   	jQuery('.lts_toggle a.trigger').toggle(function(){
-		jQuery(this).find('i').animateRotate(135);
-		jQuery(this).addClass('down');
-	}, function(){
-		jQuery(this).find('i').animateRotate(-90);
-		jQuery(this).removeClass('down');	
-	});
-	
+   jQuery('.lts_toggle a.trigger').on('click',function(){
+      if(!jQuery(this).hasClass('down')){
+         jQuery(this).find('i').animateRotate(135);
+         jQuery(this).addClass('down');
+      }else{
+         jQuery(this).find('i').animateRotate(-90);
+         jQuery(this).removeClass('down');	
+      }
+   });
+
 	 jQuery(".lts_toggle").each(function (){  if(jQuery(this).next('br')){ jQuery(this).next('br').addClass('tabsbr');  }   });
 	
 	//Widget image opacity animation
-	jQuery('.widget_wrap a img').hover(function(){
-		jQuery(this).stop().animate({ "opacity":"0.7" }, 300);
-		}, function(){
-		jQuery(this).stop().animate({ "opacity":"1" }, 300);	
-	});
+   jQuery('.widget_wrap a img').on('mouseenter', function(){  jQuery(this).stop().animate({ "opacity":"0.7" }, 300); });
+   jQuery('.widget_wrap a img').on('mouseleave', function(){  jQuery(this).stop().animate({ "opacity":"1" }, 300);	 });
 
 	
 	//add CLASS for Slider Widget 
 	for (var i=0; i<10; i++){  
-		jQuery('.ast_slider_widget .slide_wdgt:eq('+i+')').attr('id', 'lts_wdgt_nivo'+i+''); 
+		jQuery('.ast_slider_widget .slide_wdgt').eq(i).attr('id', 'lts_wdgt_nivo'+i+''); 
 		jQuery('.ast_slider_widget #lts_wdgt_nivo'+i+'').nivoSlider({effect: 'fade', directionNav: true, prevText: '<i class="fa fa-chevron-left"></i>', nextText: '<i class="fa fa-chevron-right"></i>',  controlNav: false}); 
-	}
+   }
+   
 	//Call to action shortcode animation
-	jQuery('.act_right a').hover(function(){
-		jQuery(this).addClass('animated pulse');
-		}, function(){
-		jQuery(this).removeClass('animated pulse');	
-	});
+   jQuery('.act_right a').on('mouseenter', function(){  jQuery(this).addClass('animated pulse');  });
+   jQuery('.act_right a').on('mouseleave', function(){  jQuery(this).removeClass('animated pulse');	 });
 	
 
 
@@ -290,19 +284,19 @@ jQuery('.tooltip').miniTip({ fadeIn: 100 });
 //post shortcode layout1 thumbnal resize
 	var laywidth = jQuery('.lts_layout1 .listing-item').width();
 	jQuery('.lts_layout1 .listing-item').height( (laywidth * 66)/100);
-	jQuery(window).resize(function() {
+	jQuery(window).on('resize',function() {
 		var laywidth = jQuery('.lts_layout1 .listing-item').width();
 		jQuery('.lts_layout1 .listing-item').height( (laywidth * 66)/100);
 	});
 	
 	var flaywidth = jQuery('.lay1 .hentry').width();
 		jQuery('.lay1 .ast_row').height( (flaywidth * 66)/100);
-	jQuery(window).resize(function() {
+	jQuery(window).on('resize',function() {
 		var flaywidth = jQuery('.lay1 .hentry').width();
 		jQuery('.lay1 .ast_row').height( (flaywidth * 66)/100);
 	});
 	
-jQuery(window).ready(function() {
+jQuery(function() {
 	
 if(jQuery('body .lts_layout3').length){
 	jQuery('.lts_layout3 .listing-item').wrapAll('<div class="lts3_inner" />');
@@ -364,8 +358,10 @@ if(jQuery('body .lts_layout3').length){
 	});
 	
 	//Clients Logo widget - Pagination
-	jQuery(window).bind('load', function(){
-		jQuery('.clients_nav_on').waitForImages(function() {
+	jQuery(window).on('load', function(){
+		jQuery('.clients_nav_on, .clients_nav_auto').waitForImages(function() {
+         //jQuery('.clients_nav_auto').tinycarousel({"infinite ":false, "animationTime": 400});
+      jQuery('.clients_nav_auto').tinycarousel({"infinite ":true, "animationTime": 400, "animate": true, "intervalTime": 3000, "interval": true});
 		jQuery('.clients_nav_on').tinycarousel({"infinite ":false, "animationTime": 400});
 		});
 	});
@@ -407,7 +403,7 @@ jQuery('div[data-gallery-style="5"]').each(function (){
 		var tn_array_src = jQuery(this).find(".gallery-item img").map(function() {
 		  return jQuery(this).attr("src");
 		});
-		var pageLimit= jQuery(this).find(".gallery-item img").size() - 1;
+		var pageLimit= jQuery(this).find(".gallery-item img").length - 1;
 		for (var i = 0; i <= pageLimit; i++) {
 			var article = jQuery(this).find(".gallery-item a");
 				jQuery(article[i]).addClass("" + i + "");
@@ -558,7 +554,7 @@ function optimizerContact(buttonid) {
 }
 
 /*VIDEO Widgets (Youtube)*/
-jQuery(window).bind('load', function(){
+jQuery(window).on('load', function(){
 	setTimeout(function () {
 		if ( jQuery( ".optimizer_front_video, .vid_iframe" ).length ) {
 			var tag = document.createElement("script");
@@ -572,7 +568,7 @@ jQuery(window).bind('load', function(){
 var players = {};
 function onYouTubePlayerAPIReady() {
         
-     jQuery(document).ready(function() { 
+      jQuery(function() {
          jQuery('.ytb_widget_iframe').each(function(event) {
                 
             var iframeID = jQuery(this).attr('id');
@@ -604,7 +600,7 @@ function playYouTubeVideo(iframeID) {
     players[iframeID].playVideo();
 }
 
-jQuery(document).ready(function() {
+jQuery(function() {
     jQuery('.astytb i.fa.fa-play').on('click', function() {
        var iframeID = jQuery(this).closest('.optimizer_video_wrap').find('iframe').attr('id');
        playYouTubeVideo(iframeID);
@@ -633,18 +629,21 @@ jQuery(window).on('load',function() {
 		});
 	
 		var playButton = document.getElementById(buttonid);
-		playButton.addEventListener("click", function() {
-			player.api("play");
-		});
-		
-		if(jQuery(this).has('.autoPlay_vim')){
-			player.api("play");
+		if(playButton){
+			playButton.addEventListener("click", function() {
+				player.api("play");
+			});
 		}
+
+		
+/*		if(jQuery(this).has('.autoPlay_vim')){
+			player.api("play");
+		}*/
  }); 
  
 //Custom Video
 	jQuery('.video_on_video .custom_vdo_wrap').each(function(index, element) {
-		jQuery(this).find('.mejs-overlay-button').click(function() {
+		jQuery(this).find('.mejs-overlay-button').on('click',function() {
 			jQuery(this).closest('.video_on_video').find('.widget_video_content').hide();
 			jQuery(this).next('.customvdo_thumb').hide();
 		});
@@ -654,39 +653,39 @@ jQuery(window).on('load',function() {
 
 
 //MAP SHORTCODE
-jQuery(document).ready(function() {
-				//MAP SHORTCODE
-				jQuery(".lts_map_wrap").each(function(){
-					var lat = jQuery(this).find('.lts_map').attr('data-map-lat');
-					var long = jQuery(this).find('.lts_map').attr('data-map-long');
-					var text = jQuery(this).find('.lts_map').attr('data-map-text');
-					var mapid = jQuery(this).attr('id');
-				
-				function initialize() {
-				  var myLatlng = new google.maps.LatLng(lat,long);
-				  var mapOptions = {
-					zoom: 16,
-					scrollwheel: false,
-					center: myLatlng
-				  }
-				  var map = new google.maps.Map(document.getElementById(mapid), mapOptions);
-				
-				  var marker = new google.maps.Marker({
-					  position: myLatlng,
-					  map: map,
-				  });
-				  var infowindow = new google.maps.InfoWindow();
-							google.maps.event.addListener(marker, 'click', (function (marker, i) {
-								return function () {
-									infowindow.setContent(text);
-									infowindow.open(map, marker);
-								}
-							})(marker));
-				}
-				
-				google.maps.event.addDomListener(window, 'load', initialize);
+jQuery(function() {
+   //MAP SHORTCODE
+   jQuery(".lts_map_wrap").each(function(){
+      var lat = jQuery(this).find('.lts_map').attr('data-map-lat');
+      var long = jQuery(this).find('.lts_map').attr('data-map-long');
+      var text = jQuery(this).find('.lts_map').attr('data-map-text');
+      var mapid = jQuery(this).attr('id');
+   
+   function initialize() {
+      var myLatlng = new google.maps.LatLng(lat,long);
+      var mapOptions = {
+      zoom: 16,
+      scrollwheel: false,
+      center: myLatlng
+      }
+      var map = new google.maps.Map(document.getElementById(mapid), mapOptions);
+   
+      var marker = new google.maps.Marker({
+         position: myLatlng,
+         map: map,
+      });
+      var infowindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+               return function () {
+                  infowindow.setContent(text);
+                  infowindow.open(map, marker);
+               }
+            })(marker));
+   }
+   
+   google.maps.event.addDomListener(window, 'load', initialize);
 
-				});
+   });
 });
 
 //Check If IOS
@@ -699,7 +698,7 @@ function getMobileOperatingSystem() {
 var isSafari = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/);
 
 
-jQuery(window).bind('load', function(){
+jQuery(window).on('load', function(){
 	jQuery('.toggle_style3').each(function(index, element) {
 		var first = jQuery('<div/>').addClass('first_toggles');
 		var mid = jQuery('<div/>').addClass('mid_toggles');
@@ -729,3 +728,13 @@ jQuery(window).bind('load', function(){
     });
 	
 });
+
+function optimizer_is_in_view(elem) {
+   var bounding = elem.getBoundingClientRect();
+   return (
+       bounding.top >= 0 &&
+       bounding.left >= 0 &&
+       bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+       bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+   );
+};

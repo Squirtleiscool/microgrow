@@ -43,10 +43,10 @@ jQuery(document).ready(function() {
 
 
  // Uploading files
+ jQuery(document).ready(function() {
   var file_frame;
 
-jQuery('.onetarek-upload-button').live('click', function( event ){
-
+jQuery('input.onetarek-upload-button').on('click', function( event ){
     event.preventDefault();
 
     var that = jQuery(this);
@@ -59,6 +59,7 @@ jQuery('.onetarek-upload-button').live('click', function( event ){
       },
       multiple: false  // Set to true to allow multiple files to be selected
     });
+    file_frame.open();
 
     // When an image is selected, run a callback.
     file_frame.on( 'select', function() {
@@ -71,6 +72,7 @@ jQuery('.onetarek-upload-button').live('click', function( event ){
     // Finally, open the modal
     file_frame.open();
   });
+});
 
 (function($){
 
@@ -603,6 +605,23 @@ $(document).ready(function() {
       });  
 
 });
+// Hide Set Progress Bar option when ENable progress bar is disabled
+jQuery("#myonoffswitch8").on("change", function() {
+  if(jQuery("#myonoffswitch8").is(":checked") == true){
+    jQuery("table.form-table tr").eq(2).show();
+  } else {
+    jQuery("table.form-table tr").eq(2).hide();
+  }
+});
+// Hide Set Date/Time For Counter option when ENable Enable Countdown Timer is disabled
+jQuery("#myonoffswitch7").on("change", function() {
+  if(jQuery("#myonoffswitch7").is(":checked") == true){
+    jQuery("table.form-table tr").eq(4).show();
+  } else {
+    jQuery("table.form-table tr").eq(4).hide();
+  }
+});
+
 
 //end
 });

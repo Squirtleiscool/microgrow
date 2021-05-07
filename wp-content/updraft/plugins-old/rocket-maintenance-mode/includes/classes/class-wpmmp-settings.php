@@ -80,6 +80,7 @@ class Wpmmp_Settings {
 		wp_enqueue_style( 'wpmp-settings',
 			plugins_url( 'css/admin-settings.css', WPMMP_PLUGIN_MAIN_FILE ) );
 
+
 		wp_enqueue_script( 'wpmp-settings',
 			plugins_url( 'js/admin-settings.js', WPMMP_PLUGIN_MAIN_FILE ), array( 'wp-color-picker' ) );
 
@@ -303,7 +304,7 @@ class Wpmmp_Settings {
 	    $tabs = array(
 	    		'general-settings' => __( 'General Settings', 'wpmmp' ),
 
-	    		'theme-settings' => __( 'Themes', 'wpmmp' ),
+	    		// 'theme-settings' => __( 'Themes', 'wpmmp' ),
 
 	    		'page-settings' => __( 'Page', 'wpmmp' ),
 
@@ -317,9 +318,9 @@ class Wpmmp_Settings {
 
 
 
-	    		'script-settings' => __( 'Scripts', 'wpmmp' ),
+	    		 // 'script-settings' => __( 'Scripts', 'wpmmp' ),
 
-	    		'advanced-settings' => __( 'Advanced', 'wpmmp' ),
+	    		// 'advanced-settings' => __( 'Advanced', 'wpmmp' ),
 	    	);
 
 	    echo '<div id="icon-themes" class="icon32"><br></div>';

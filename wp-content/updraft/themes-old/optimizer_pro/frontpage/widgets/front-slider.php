@@ -30,7 +30,7 @@ class optimizer_front_Slider extends WP_Widget {
 			'customize_selective_refresh' => true,
 		) );
 		$this->alt_option_name = 'optimizer_front_slider';
-		add_action('wp_enqueue_scripts', array(&$this, 'front_slider_enqueue_css'));
+		//add_action('wp_enqueue_scripts', array(&$this, 'front_slider_enqueue_css'));
 		add_action('wp_footer', array(&$this,  'optimizer_slider_widget_js'));
 	}
 
@@ -122,7 +122,7 @@ class optimizer_front_Slider extends WP_Widget {
 		if(is_customize_preview()){
 			$id= $this->id;
 			if($slider_type == 'nivo'){
-				echo '<script>jQuery(document).ready(function() {
+				echo '<script>jQuery(window).on("load",function() {
 					jQuery("#'.$id.' .slider_widget_nivo .the_slider_widget").nivoSlider({
 						 effect: "fade", 
 						 directionNav: true, 
@@ -136,7 +136,7 @@ class optimizer_front_Slider extends WP_Widget {
 			}
 			
 			if($slider_type == 'gallery'){
-				echo '<script>jQuery(document).ready(function() {
+				echo '<script>jQuery(window).on("load",function() {
 					jQuery("#'.$id.' .slider_widget_gallery .the_slider_widget").nivoSlider({
 						 effect: "fade", 
 						 directionNav: true, 
@@ -150,11 +150,9 @@ class optimizer_front_Slider extends WP_Widget {
 					});</script>';
 			}
 			
-
-		
 			if($slider_type == 'accordion'){
 				
-				echo '<script>jQuery(document).ready(function() {
+				echo '<script>jQuery(window).on("load",function() {
 						jQuery(".slider_widget_accordion .the_slider_widget").wrapInner(\'<div id="accordion"><ul class=" kwicks horizontal"></ul></div>\');
 						jQuery(".slider_widget_accordion .the_slider_widget img").wrap("<li></li>");
 						
@@ -181,7 +179,7 @@ class optimizer_front_Slider extends WP_Widget {
 			
 			if($slider_type == 'carousel'){
 				
-				echo '<script>jQuery(document).ready(function() {
+				echo '<script>jQuery(window).on("load",function() {
 						jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").waitForImages(function() {
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").wrapInner(\'<div id="opt_carousel_'.$id.'"><ul class="slidee"></ul><a class="carousel_left"><i></i></a><a class="carousel_right"><i></i></a></div>\');
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget img").wrap("<li></li>");
@@ -211,7 +209,7 @@ class optimizer_front_Slider extends WP_Widget {
 							};
 							jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly(options);
 							jQuery("#'.$id.' .slider_widget_carousel").css({"maxHeight":"none"});
-							jQuery(window).resize(function(e) {
+							jQuery(window).on("resize",function(e) {
 								jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly("reload");
 							});
 							
@@ -222,56 +220,8 @@ class optimizer_front_Slider extends WP_Widget {
 					</script>';
 			}
 			
-			
-			$content_color =	'color:#a8b4bf;';
-			$slider_height =	'';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-			
-			
-			if ( ! empty( $instance['content_color'] ) ) {  $content_color = 'color: ' . $instance['content_color'] . '!important; ';}
-			if ( ! empty( $instance['slider_height'] ) ) {  $slider_height = 'max-height: ' . $instance['slider_height'] . '; '; }
-			
-			echo '<style>#'.$id.' .widget_slider_content, #'.$id.' .nivo-html-caption{' . $content_color . '}#'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li, #'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li img, #'.$id.' #accordion, #'.$id.' #slide_acord, #'.$id.' .kwicks li, #'.$id.' .nivoSlider, #'.$id.' .slidee li{' . $slider_height . '}  @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }</style>';
-		}
+         echo  '<style>'.$this->generate_css($id, $instance).'</style>';
+      }
 
 		/* After widget (defined by themes). */
 		echo $after_widget;
@@ -297,7 +247,6 @@ class optimizer_front_Slider extends WP_Widget {
 		$instance['slider_nav'] = strip_tags($new_instance['slider_nav']);
 		$instance['content_color'] = optimizer_sanitize_hex($new_instance['content_color']);
 		$instance['slider_pausetime'] = strip_tags($new_instance['slider_pausetime']);
-
 
 		return $instance;
 	}
@@ -328,106 +277,111 @@ class optimizer_front_Slider extends WP_Widget {
 		
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
+      <div class="optimizer_widget_tab optimizer_widget_tab--content">
+        
+         <!-- SLIDER Content Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e('Content:', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" value="<?php echo esc_attr($instance['content']); ?>" type="hidden" />
+               <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'content' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
+         </p>
+         
+         <!-- SLIDER Images Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'slider_images' ); ?>"><?php _e('Slider Images:', 'optimizer') ?></label>
+            <div class="slider-picker-wrap">
+               
+                     <div id="<?php echo $this->get_field_id( 'slider_images' ); ?>_preview" class="widget_slider_preview">
+                  <a onclick="sliderRemove(this.id)" class="widget_slider_remove" id="<?php echo $this->get_field_id( 'slider_images' ); ?>_remove" <?php if(empty($instance['slider_images'])) { ?>style="display:none;"<?php } ?>><i class="fa fa-times"></i></a>
+                     <?php if(!empty($instance['slider_images'])) { ?>
+                           <?php 
+                                 $sliderimgs = $instance['slider_images'];
+                                 $args = array(
+                                       'post_type' => 'attachment',
+                                       'post__in' => explode(',', $sliderimgs), 
+                                       'posts_per_page' => 99,
+                              'order' => 'menu_order ID',
+                              'orderby' => 'post__in',
+                                       );
+                                 $attachments = get_posts( $args );
+                                          
+                                 foreach ( $attachments as $attachment ) {
+                                             
+                                       $imgsrc = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
+                                       echo '<img  class="slider_preview_thumb" src="'.$imgsrc[0].'" />';
+                                 }
+         
+                           ?>
+                           <?php } ?>
+                           
+                           <span class="slider_empty" <?php if(!empty($instance['slider_images'])) { ?>style="display:none;"<?php } ?>><?php _e('No Images Added','optimizer'); ?></span>
+                           
+                           </div>
+                           
+               <input class="widefat slider-picker" id="<?php echo $this->get_field_id( 'slider_images' ); ?>" name="<?php echo $this->get_field_name( 'slider_images' ); ?>" value="<?php echo esc_attr($instance['slider_images']); ?>" type="hidden" />
+               <a class="slider-picker-button button" onclick="sliderPicker(this.id)" id="<?php echo $this->get_field_id( 'slider_images' ).'mpick'; ?>"><?php _e('Select Images', 'optimizer') ?></a>
+               </div>
+         </p>
+         
+         
+         
+         <!-- SLIDER Caption Field -->
+         <p>
+            <label style="letter-spacing: -0.5px;" for="<?php echo $this->get_field_id( 'slider_caption' ); ?>"><?php _e('Display Image Caption as Content', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'slider_caption' ); ?>" name="<?php echo $this->get_field_name( 'slider_caption' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['slider_caption'] ) echo 'checked'; ?> />
+         </p>
+         
 
-        
-        <!-- SLIDER Content Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content' ); ?>"><?php _e('Content:', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'content' ); ?>" name="<?php echo $this->get_field_name( 'content' ); ?>" value="<?php echo esc_attr($instance['content']); ?>" type="hidden" />
-            <a href="javascript:WPEditorWidget.showEditor('<?php echo $this->get_field_id( 'content' ); ?>');" class="button edit-content-button"><?php _e( 'Edit content', 'optimizer' ) ?></a>
-		</p>
+         <!-- Slider Type Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'slider_type' ); ?>"><?php _e('Slider Type:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'slider_type' ); ?>" name="<?php echo $this->get_field_name( 'slider_type' ); ?>" class="widefat slider_type_field">
+               <option value="nivo" <?php if ( 'nivo' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Nivo', 'optimizer') ?></option>
+               <option value="accordion" <?php if ( 'accordion' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Accordion', 'optimizer') ?></option>
+                  <option value="carousel" <?php if ( 'carousel' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Carousel', 'optimizer') ?></option>
+                  <option value="gallery" <?php if ( 'gallery' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Gallery', 'optimizer') ?></option>
+            </select>
+         </p>
+         
+               
+         <!-- SLIDER Height Field -->
+         <p class="slider_height_field">
+            <label for="<?php echo $this->get_field_id( 'slider_height' ); ?>"><?php _e('Slider Height (in px)', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'slider_height' ); ?>" name="<?php echo $this->get_field_name( 'slider_height' ); ?>" value="<?php echo $instance['slider_height']; ?>" type="text" placeholder="700px" />
+         </p>
+         
+         <!-- SLIDER PauseTime Field -->
+         <p class="slider_pause_field">
+            <label for="<?php echo $this->get_field_id( 'slider_pausetime' ); ?>"><?php _e('Slider Pause Time', 'optimizer') ?></label>
+            <input class="widefat" id="<?php echo $this->get_field_id( 'slider_pausetime' ); ?>" name="<?php echo $this->get_field_name( 'slider_pausetime' ); ?>" value="<?php echo $instance['slider_pausetime']; ?>" type="text" placeholder="4000" />
+         </p>
+
+         <!-- SLIDER Navigation Type Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'slider_nav' ); ?>"><?php _e('Slider Navigation:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'slider_nav' ); ?>" name="<?php echo $this->get_field_name( 'slider_nav' ); ?>" class="widefat">
+               <option value="slider_nav_default" <?php if ( 'slider_nav_default' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Buttons + Navigation', 'optimizer') ?></option>
+               <option value="slider_nav_controls" <?php if ( 'slider_nav_controls' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Only Buttons', 'optimizer') ?></option>
+                  <option value="slider_nav_nav" <?php if ( 'slider_nav_nav' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Only Navigation', 'optimizer') ?></option>
+
+                  <option value="slider_nav_disable" <?php if ( 'slider_nav_disable' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Disabled', 'optimizer') ?></option>
+            </select>
+         </p> 
+
+      </div>
         
 
- 		<!-- SLIDER Images Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'slider_images' ); ?>"><?php _e('Slider Images:', 'optimizer') ?></label>
-			<div class="slider-picker-wrap">
-            
-                    <div id="<?php echo $this->get_field_id( 'slider_images' ); ?>_preview" class="widget_slider_preview">
-					<a onclick="sliderRemove(this.id)" class="widget_slider_remove" id="<?php echo $this->get_field_id( 'slider_images' ); ?>_remove" <?php if(empty($instance['slider_images'])) { ?>style="display:none;"<?php } ?>><i class="fa fa-times"></i></a>
-                    <?php if(!empty($instance['slider_images'])) { ?>
-                        <?php 
-                                $sliderimgs = $instance['slider_images'];
-                                $args = array(
-                                    'post_type' => 'attachment',
-                                    'post__in' => explode(',', $sliderimgs), 
-                                    'posts_per_page' => 99,
-									'order' => 'menu_order ID',
-									'orderby' => 'post__in',
-                                    );
-                                $attachments = get_posts( $args );
-                                        
-                                foreach ( $attachments as $attachment ) {
-                                           
-                                    $imgsrc = wp_get_attachment_image_src( $attachment->ID, 'thumbnail' );
-                                    echo '<img  class="slider_preview_thumb" src="'.$imgsrc[0].'" />';
-                                }
-        
-                        ?>
-                        <?php } ?>
-                        
-                        <span class="slider_empty" <?php if(!empty($instance['slider_images'])) { ?>style="display:none;"<?php } ?>><?php _e('No Images Added','optimizer'); ?></span>
-                        
-                        </div>
-                        
-            <input class="widefat slider-picker" id="<?php echo $this->get_field_id( 'slider_images' ); ?>" name="<?php echo $this->get_field_name( 'slider_images' ); ?>" value="<?php echo esc_attr($instance['slider_images']); ?>" type="hidden" />
-            <a class="slider-picker-button button" onclick="sliderPicker(this.id)" id="<?php echo $this->get_field_id( 'slider_images' ).'mpick'; ?>"><?php _e('Select Images', 'optimizer') ?></a>
-            </div>
-		</p>
-        
-        
-        
-        <!-- SLIDER Caption Field -->
-		<p>
-			<label style="letter-spacing: -0.5px;" for="<?php echo $this->get_field_id( 'slider_caption' ); ?>"><?php _e('Display Image Caption as Content', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'slider_caption' ); ?>" name="<?php echo $this->get_field_name( 'slider_caption' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['slider_caption'] ) echo 'checked'; ?> />
-		</p>
-        
+      <div class="optimizer_widget_tab optimizer_widget_tab--style" style="display:none">
+         <!-- SLIDER Content Text Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'content_color' ); ?>"><?php _e('Slider Text Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_color' ); ?>" name="<?php echo $this->get_field_name( 'content_color' ); ?>" value="<?php echo $instance['content_color']; ?>" type="text" />
+         </p>
 
-        <!-- Slider Type Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'slider_type' ); ?>"><?php _e('Slider Type:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'slider_type' ); ?>" name="<?php echo $this->get_field_name( 'slider_type' ); ?>" class="widefat slider_type_field">
-				<option value="nivo" <?php if ( 'nivo' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Nivo', 'optimizer') ?></option>
-				<option value="accordion" <?php if ( 'accordion' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Accordion', 'optimizer') ?></option>
-                <option value="carousel" <?php if ( 'carousel' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Carousel', 'optimizer') ?></option>
-                <option value="gallery" <?php if ( 'gallery' == $instance['slider_type'] ) echo 'selected="selected"'; ?>><?php _e('Gallery', 'optimizer') ?></option>
-			</select>
-		</p>
-        
-            
-		<!-- SLIDER Height Field -->
-		<p class="slider_height_field">
-			<label for="<?php echo $this->get_field_id( 'slider_height' ); ?>"><?php _e('Slider Height (in px)', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'slider_height' ); ?>" name="<?php echo $this->get_field_name( 'slider_height' ); ?>" value="<?php echo $instance['slider_height']; ?>" type="text" placeholder="700px" />
-		</p>
-        
-		<!-- SLIDER PauseTime Field -->
-		<p class="slider_pause_field">
-			<label for="<?php echo $this->get_field_id( 'slider_pausetime' ); ?>"><?php _e('Slider Pause Time', 'optimizer') ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'slider_pausetime' ); ?>" name="<?php echo $this->get_field_name( 'slider_pausetime' ); ?>" value="<?php echo $instance['slider_pausetime']; ?>" type="text" placeholder="4000" />
-		</p>
-
-        <!-- SLIDER Navigation Type Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'slider_nav' ); ?>"><?php _e('Slider Navigation:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'slider_nav' ); ?>" name="<?php echo $this->get_field_name( 'slider_nav' ); ?>" class="widefat">
-				<option value="slider_nav_default" <?php if ( 'slider_nav_default' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Buttons + Navigation', 'optimizer') ?></option>
-				<option value="slider_nav_controls" <?php if ( 'slider_nav_controls' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Only Buttons', 'optimizer') ?></option>
-                <option value="slider_nav_nav" <?php if ( 'slider_nav_nav' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Only Navigation', 'optimizer') ?></option>
-
-                <option value="slider_nav_disable" <?php if ( 'slider_nav_disable' == $instance['slider_nav'] ) echo 'selected="selected"'; ?>><?php _e('Disabled', 'optimizer') ?></option>
-			</select>
-		</p> 
-        
-
-		<!-- SLIDER Content Text Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'content_color' ); ?>"><?php _e('Slider Text Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'content_color' ); ?>" name="<?php echo $this->get_field_name( 'content_color' ); ?>" value="<?php echo $instance['content_color']; ?>" type="text" />
-		</p>
-                
-
+         <!-- Basic Widget Styles -->
+         <?php optimizer_widget_basic_styles($instance, $this);?>
+      
+      </div>
 
 <?php
 	}
@@ -452,7 +406,7 @@ class optimizer_front_Slider extends WP_Widget {
 		if ( ! empty( $instance['slider_type'] ) ) {$slider_type = $instance['slider_type'];  }else{$slider_type = 'nivo';}
 		
 		if($slider_type == 'accordion'){
-				echo '<script type="text/javascript">jQuery(document).ready(function() {
+				echo '<script type="text/javascript">jQuery(function() {
 						jQuery(".slider_widget_accordion .the_slider_widget").wrapInner(\'<div id="accordion"><ul class=" kwicks horizontal"></ul></div>\');
 						jQuery(".slider_widget_accordion .the_slider_widget img").wrap("<li></li>");
 						
@@ -485,7 +439,8 @@ class optimizer_front_Slider extends WP_Widget {
 				
 			if($slider_type == 'carousel'){
 				
-				echo '<script>jQuery(document).ready(function() {
+				echo '<script>jQuery(window).on("load",function() {
+                  if(jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").hasClass("the_slider_widget--carousel_prepared")){ return; }
 						jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").waitForImages(function() {
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").wrapInner(\'<div id="opt_carousel_'.$id.'"><ul class="slidee"></ul><a class="carousel_left"><i></i></a><a class="carousel_right"><i></i></a></div>\');
 							jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget img").wrap("<li></li>");
@@ -497,12 +452,13 @@ class optimizer_front_Slider extends WP_Widget {
 								
 								jQuery(this).before("<div class=\'acord_text\'><h3 class=\'entry-title\'><a>"+jQuery(this).attr(\'alt\')+"</a></h3>"+slidedesc+" "+slidebtn+"</div>");
 							});
-						
+                     jQuery("#'.$id.' .slider_widget_carousel .the_slider_widget").addClass("the_slider_widget--carousel_prepared");
 						var options = {	horizontal: true, itemNav: "centered", speed: 300, activateOn: "click", releaseSwing: 1, mouseDragging: false, touchDragging: 1, startAt: 1, prev:  "#'.$id.' .carousel_left", next: "#'.$id.' .carousel_right", smart: true, easing: "easeOutExpo"};
 						
 						jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly(options);
-						jQuery("#'.$id.' .slider_widget_carousel").css({"maxHeight":"none"});
-						jQuery(window).resize(function(e) {
+                  jQuery("#'.$id.' .slider_widget_carousel").css({"maxHeight":"none"});
+                  
+						jQuery(window).on("resize",function(e) {
 							jQuery("#'.$id.' .slider_widget_carousel #opt_carousel_'.$id.'").sly("reload");
 						});
 							
@@ -521,79 +477,41 @@ class optimizer_front_Slider extends WP_Widget {
 }
 }
 	
-		//ENQUEUE CSS
-        function front_slider_enqueue_css() {
+   //ENQUEUE CSS
+   function front_slider_enqueue_css() {
 		$settings = $this->get_settings();
-
 		if ( empty( $settings ) ) {
 			return;
 		}
-
 		foreach ( $settings as $instance_id => $instance ) {
 			$id = $this->id_base . '-' . $instance_id;
-
 			if ( ! is_active_widget( false, $id, $this->id_base ) ) {
 				continue;
 			}
-			
+			wp_add_inline_style( 'optimizer-style', $this->generate_css($id, $instance) );
+      }//END FOREACH
+   }
+   
+   function generate_css($id, $instance){
+      $content_color =		! empty( $instance['content_color']) ? 'color: ' . $instance['content_color'] . '!important; ' : 'color:#a8b4bf;';
+      $slider_height =		isset( $instance['slider_height'] ) ? 'max-height:'.$instance['slider_height'].';' : '';
+      
+      //Basic Styles
+      $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
+      $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
+      $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
+      $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
+      $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
 
-			$content_color =	'color:#a8b4bf;';
-			$slider_height = '';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-			
-
-			if ( ! empty( $instance['content_color'] ) ) {
-				$content_color = 'color: ' . $instance['content_color'] . '!important; ';
-			}
-			
-			if ( ! empty( $instance['slider_height'] ) ) {
-				$slider_height = 'max-height: ' . $instance['slider_height'] . '; ';
-			}
-			
-			
-			$widget_style = '#'.$id.' .widget_slider_content, #'.$id.' .nivo-html-caption, #'.$id.' .acord_text .slide_desc, #'.$id.' .acord_text .entry-title{' . $content_color . '}#'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li, #'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li img, #'.$id.' #accordion, #'.$id.' #slide_acord, #'.$id.' .kwicks li, #'.$id.' .nivoSlider, #'.$id.' .slidee li, #opt_carousel_optimizer_front_slider-'.$instance_id.'{' . $slider_height . '} @media screen and (min-width: 480px){#'.$id.' {'.$marginTop.$marginBottom.$marginLeft.$marginRight.$calcWidth. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight. $boxSizing.'} }';
-			wp_add_inline_style( 'optimizer-style', $widget_style );
-			
-        }
-	} //END FOREACH
+      $widget_style = '#'.$id.', #'.$id.' .slide_desc, #'.$id.' .slide_button_wrap a{ '. $font_size. $font_family.'}';
+      $widget_style .= '#'.$id.' .widget_slider_content, #'.$id.' .nivo-html-caption, #'.$id.' .acord_text .slide_desc, #'.$id.' .acord_text .entry-title{' . $content_color. '}';
+      $widget_style .= '#'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li, #'.$id.' .widget_slider_content, #'.$id.' #opt_carousel .slidee li img, #'.$id.' #accordion, #'.$id.' #slide_acord, #'.$id.' .kwicks li, #'.$id.' .nivoSlider, #'.$id.' .slidee li{' . $slider_height . '}';
+      $widget_style .= ($title_size || $title_family) ? '#'.$id.' .entry-title, #'.$id.' .entry-title a{' . $title_size . $title_family. '}' :'';
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
+      $widget_style .= '@media screen and (min-width: 480px){#'.$id.' {'.$marginPadding[0].$marginPadding[1].'} } ';
+      
+      return $widget_style;
+   }
 }
 ?>

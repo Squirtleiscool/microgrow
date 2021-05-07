@@ -12,7 +12,7 @@ global $optimizer;?>
 <?php function optimizer_pagination($navigation='numbered', $query='') { ?>
 		<?php if($navigation !== 'no_nav') { ?>
                 <?php if($navigation == 'numbered' || $navigation == 'numbered_ajax') { ?>
-                    <div class="ast_pagenav" data-query-count="1" data-query-max="<?php echo $query->max_num_pages; ?>">
+                    <div class="ast_pagenav <?php echo (int)$query->max_num_pages >= 10 ? 'ast_pagenav--dottedPagination': '' ; ?>" data-query-count="1" data-query-max="<?php echo $query->max_num_pages; ?>">
                         <?php
 							if($query == ''){
 								global $wp_query;

@@ -1,6 +1,6 @@
 <?php
 
-function optimizer_posts($layout='1', $type='post', $count='6', $category='', $product_category='', $pages='', $previewbtn='2' , $linkbtn='1', $navigation='numbered', $sidebar=''){
+function optimizer_posts($layout='1', $type='post', $count='6', $category=array(), $product_category='', $pages='', $previewbtn='2' , $linkbtn='1', $navigation='numbered', $sidebar=''){
 ?>
 	<?php  
 	if(!empty($category) && $type == 'post'){	$blogcat = $category;	$blogcats =implode(',', $blogcat);	}else{	$blogcats = '';	}
@@ -17,7 +17,15 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
 	if(isset($_REQUEST['nextpage'])){		$currentpage = absint($_REQUEST['nextpage']);	}else{	$currentpage = 1;	}
 	
 	if(isset($_REQUEST['sidebar'])){		$sidebar = strip_tags($_REQUEST['sidebar']);	}
-	
+   
+   //WPML for the Ajaxed Posts
+   if (isset($_REQUEST['layout']) && class_exists('SitePress')) {
+      global $sitepress;
+      $current_lang = $sitepress->get_current_language();
+      //$default_lang = $sitepress->get_default_language();
+      $sitepress->switch_lang($current_lang);
+   }
+
 	//PRODUCT CATEGORY
 	if(isset($_REQUEST['product_category'])){	
 		if(!empty($_REQUEST['product_category'])){
@@ -67,7 +75,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
     
 	<!-- - - - - - - - - - - - - - - - - - - - LAYOUT 1 - - - - - - - - - - - - - - - - - - - -->
 	<?php if($layout == '1') { ?>
-            <div class="lay1_wrap">
+            <div class="lay1_wrap <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
             	<div class="lay1_wrap_ajax">
             
 				  <?php if($widget_query->have_posts()): ?><?php while($widget_query->have_posts()): ?><?php $widget_query->the_post(); ?>
@@ -76,7 +84,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                  
        
                   <!--POST THUMBNAIL START-->
-                      <div class="post_image <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
+                      <div class="post_image">
                       
                       		<!--Woocommerce Stuff-->
                           	<?php if ( class_exists( 'WooCommerce' ) ) { ?>
@@ -115,7 +123,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                               </div>            
-                          <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a>		
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a>		
                           </div>
                           
                           <?php elseif(!optimizer_first_image() == ''): ?>
@@ -128,7 +136,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                               </div>            
-                          <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a>		
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a>		
                           </div>
                           
                           <?php else : ?>
@@ -138,7 +146,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                               		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                             </div>
-                          <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                          <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                                    
                           <?php endif; ?>
                           
@@ -149,7 +157,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                           <!--Woocommerce Stuff-->
                           	<?php if ( class_exists( 'WooCommerce' ) ) { ?>
                             	<?php if($type == 'product') { ?>
-                                	<?php do_action( 'optimizer_after_front_post' ); ?>
+                                	<?php do_action( 'optimizer_after_front_post'); ?>
                                 <?php } ?>
                       		<?php } ?>
                             <!--Woocommerce Stuff END-->
@@ -182,7 +190,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
  	<!-- - - - - - - - - - - - - - - - - - - - LAYOUT 2 - - - - - - - - - - - - - - - - - - - -->
 	<?php if($layout == '2') { ?>
       
-		<div class="lay2_wrap <?php if($sidebar =='no_sidebar' || empty($sidebar)){ echo 'widgt_no_sidebar'; }else{ echo 'widgt_has_sidebar'; } ?> ">
+		<div class="lay2_wrap <?php if($sidebar =='no_sidebar' || empty($sidebar)){ echo 'widgt_no_sidebar'; }else{ echo 'widgt_has_sidebar'; } ?>  <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
             	<div class="lay2_wrap_ajax">
             
 				<?php if($widget_query->have_posts()): ?><?php while($widget_query->have_posts()): ?><?php $widget_query->the_post(); ?>
@@ -190,7 +198,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
             
  
             <!--POST THUMBNAIL START-->
-                <div class="post_image <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
+                <div class="post_image">
                 
                       		<!--Woocommerce Stuff-->
                           	<?php if ( class_exists( 'WooCommerce' ) ) { ?>
@@ -228,7 +236,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                     
                     <?php elseif(!optimizer_first_image() == ''): ?>
                     <div class="imgwrap"> 
@@ -242,7 +250,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                     <?php else : ?>
                     
                     <div class="imgwrap">
@@ -253,7 +261,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>
-                    <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                              
                     <?php endif; ?>
                     <div class="post_content">
@@ -264,7 +272,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                           <!--Woocommerce Stuff-->
                           	<?php if ( class_exists( 'WooCommerce' ) ) { ?>
                             	<?php if($type == 'product') { ?>
-                                	<?php do_action( 'optimizer_after_front_post' ); ?>
+                                	<?php do_action( 'optimizer_after_front_post'); ?>
                                 <?php } ?>
                       		<?php } ?>
                             <!--Woocommerce Stuff END-->
@@ -296,14 +304,14 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
  	<!-- - - - - - - - - - - - - - - - - - - - LAYOUT 3 - - - - - - - - - - - - - - - - - - - -->
 	<?php if($layout == '3') { ?> 
 
-		<div class="lay3_wrap <?php if($sidebar =='no_sidebar' || empty($sidebar)){ echo 'widgt_no_sidebar'; }else{ echo 'widgt_has_sidebar'; } ?> ">
+		<div class="lay3_wrap <?php if($sidebar =='no_sidebar' || empty($sidebar)){ echo 'widgt_no_sidebar'; }else{ echo 'widgt_has_sidebar'; } ?> <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
 			<div class="lay3_wrap_ajax">
 				  <?php if($widget_query->have_posts()): ?><?php while($widget_query->have_posts()): ?><?php $widget_query->the_post(); ?>
                   <div <?php post_class(); ?> id="post-<?php the_ID(); ?>"> 
                             
    
               <!--POST THUMBNAIL START-->
-                  <div class="post_image <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?>">
+                  <div class="post_image">
                   
                       		<!--Woocommerce Stuff-->
                           	<?php if ( class_exists( 'WooCommerce' ) ) { ?>
@@ -343,7 +351,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                     
                     
                     <?php elseif(!optimizer_first_image() == ''): ?>
@@ -358,7 +366,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>                     
-                    <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                     <?php else : ?>
                     
                     <div class="imgwrap">
@@ -369,7 +377,7 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                                 <?php } ?>
                         </div>
                     </div>
-                    <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
+                    <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="thn_thumbnail" width="500" height="350" /></a></div>   
                              
                     <?php endif; ?>
                 </div>
@@ -442,18 +450,18 @@ function optimizer_posts($layout='1', $type='post', $count='6', $category='', $p
                             <?php elseif(!optimizer_gallery_thumb() == ''): ?>
             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_gallery_thumb('optimizer_thumb'); ?>" /></a></div>
                             
                             
                             <?php elseif(!optimizer_first_image() == ''): ?>
             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img alt="<?php the_title(); ?>" src="<?php echo optimizer_first_image('optimizer_thumb'); ?>" /></a></div>
                         
                             <?php else : ?>
                             
                             <div class="imgwrap">
-                            <a href="<?php the_permalink();?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="optimizer_thumbnail" width="500" height="350" /></a></div>   
+                            <a href="<?php the_permalink();?>" aria-label="<?php echo _e('Read More','optimizer'); ?>"><img src="<?php echo optimizer_placeholder_image();?>" alt="<?php the_title_attribute(); ?>" class="optimizer_thumbnail" width="500" height="350" /></a></div>   
                                      
                             <?php endif; ?>
                         </div>

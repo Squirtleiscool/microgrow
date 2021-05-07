@@ -30,7 +30,7 @@ class optimizer_front_Blocks extends WP_Widget {
 			'customize_selective_refresh' => true,
 		) );
 		$this->alt_option_name = 'optimizer_front_blocks';
-		add_action('wp_enqueue_scripts', array(&$this, 'front_blocks_enqueue_css'));
+		//add_action('wp_enqueue_scripts', array(&$this, 'front_blocks_enqueue_css'));
 	}
 
 	/* ---------------------------- */
@@ -123,7 +123,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block1img) ){
 											if(!empty($block1link)){ $link1start = '<a href="'.esc_url($block1link).'">'; $link1end ='</a>';}else{ $link1start = ''; $link1end ='';}
-											echo '<div class="block_img">'.$link1start.'<img '.optimizer_image_alt( $block1img ).' src="'.$block1img.'" '.optimizer_image_attr( esc_url($block1img) ).' />'.$link1end.'</div>';
+											echo '<div class="block_img">'.$link1start.'<img alt="'.($block1title ? esc_attr($block1title) : 'Block 1').'" src="'.$block1img.'" '.optimizer_image_attr( esc_url($block1img) ).' />'.$link1end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -151,7 +151,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block2img) ){
 											if(!empty($block2link)){ $link2start = '<a href="'.esc_url($block2link).'">'; $link2end ='</a>';}else{ $link2start = ''; $link2end ='';}
-											echo '<div class="block_img">'.$link2start.'<img '.optimizer_image_alt( $block2img ).' src="'.$block2img.'" '.optimizer_image_attr( esc_url($block2img) ).' />'.$link2end.'</div>';
+											echo '<div class="block_img">'.$link2start.'<img alt="'.($block2title ? esc_attr($block1title) : 'Block 2').'" src="'.$block2img.'" '.optimizer_image_attr( esc_url($block2img) ).' />'.$link2end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -179,7 +179,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block3img) ){
 											if(!empty($block3link)){ $link3start = '<a href="'.esc_url($block3link).'">'; $link3end ='</a>';}else{ $link3start = ''; $link3end ='';}
-											echo '<div class="block_img">'.$link3start.'<img '.optimizer_image_alt( $block3img ).' src="'.$block3img.'" '.optimizer_image_attr( esc_url($block3img) ).' />'.$link3end.'</div>';
+											echo '<div class="block_img">'.$link3start.'<img alt="'.($block3title ? esc_attr($block3title) : 'Block 3').'"  src="'.$block3img.'" '.optimizer_image_attr( esc_url($block3img) ).' />'.$link3end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -207,7 +207,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block4img) ){
 											if(!empty($block4link)){ $link4start = '<a href="'.esc_url($block4link).'">'; $link4end ='</a>';}else{ $link4start = ''; $link4end ='';}
-											echo '<div class="block_img">'.$link4start.'<img '.optimizer_image_alt( $block4img ).' src="'.$block4img.'" '.optimizer_image_attr( esc_url($block4img) ).' />'.$link4end.'</div>';
+											echo '<div class="block_img">'.$link4start.'<img alt="'.($block4title ? esc_attr($block4title) : 'Block 4').'"  src="'.$block4img.'" '.optimizer_image_attr( esc_url($block4img) ).' />'.$link4end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -235,7 +235,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block5img) || is_customize_preview() ){
 											if(!empty($block5link)){ $link5start = '<a href="'.esc_url($block5link).'">'; $link5end ='</a>';}else{ $link5start = ''; $link5end ='';}
-											echo '<div class="block_img">'.$link5start.'<img '.optimizer_image_alt( $block5img ).' src="'.$block5img.'" '.optimizer_image_attr( esc_url($block5img) ).' />'.$link5end.'</div>';
+											echo '<div class="block_img">'.$link5start.'<img alt="'.($block5title ? esc_attr($block5title) : 'Block 1').'"  src="'.$block5img.'" '.optimizer_image_attr( esc_url($block5img) ).' />'.$link5end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -263,7 +263,7 @@ class optimizer_front_Blocks extends WP_Widget {
 										//DISPLAY BLOCK IMAGE
 										if ( !empty($block6img) ){
 											if(!empty($block6link)){ $link6start = '<a href="'.esc_url($block6link).'">'; $link6end ='</a>';}else{ $link6start = ''; $link6end ='';}
-											echo '<div class="block_img">'.$link6start.'<img '.optimizer_image_alt( $block6img ).' src="'.$block6img.'" '.optimizer_image_attr( esc_url($block6img) ).' />'.$link6end.'</div>';
+											echo '<div class="block_img">'.$link6start.'<img alt="'.($block6title ? esc_attr($block6title) : 'Block 1').'"  src="'.$block6img.'" '.optimizer_image_attr( esc_url($block6img) ).' />'.$link6end.'</div>';
 										}
 										
 										echo '<div class="block_content">';
@@ -287,84 +287,9 @@ class optimizer_front_Blocks extends WP_Widget {
 
 		//Stylesheet-loaded in Customizer Only.
 		if(is_customize_preview()){
-				$id= $this->id;
-				$blocksbgcolor =		'background-color:#f5f5f5;';
-				$blocksbgimg =			'';
-				$blockstitlecolor =		'#555555';
-				$blockstxtcolor =		'color:#999999;';
-				$widgetitlecolor =		'#555555;';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {
-							if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}  
-							if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
+            $id= $this->id;
+            echo  '<style>'.$this->generate_css($id, $instance).'</style>';
 			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-				
-				
-			if ( ! empty( $instance['blocksbgcolor'] ) ) {	$blocksbgcolor = 'background-color: ' . $instance['blocksbgcolor'] . '; ';}
-			if ( ! empty( $instance['blocksbgimg'] ) ) {	$blocksbgimg = 'background-image: url(' . $instance['blocksbgimg'] . '); ';}
-			if ( ! empty( $instance['blockstitlecolor'] )){ $blockstitlecolor = '' . $instance['blockstitlecolor'] . '; ';}
-			if ( ! empty( $instance['blockstxtcolor'] ) ) {	$blockstxtcolor = 'color: ' . $instance['blockstxtcolor'] . '; ';}	
-			if ( ! empty( $instance['widgetitlecolor'] ) ) {$widgetitlecolor = '' . $instance['widgetitlecolor'] . '';}	
-			
-			//Block Image as Background 
-			$block1img = ''; $block2img = ''; $block3img = ''; $block4img = ''; $block5img = ''; $block6img = '';
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block1img'] )) {$block1img = 'background-image: url(' . $instance['block1img'] . '); ';}	
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block2img'] )) {$block2img = 'background-image: url(' . $instance['block2img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block3img'] )) {$block3img = 'background-image: url(' . $instance['block3img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block4img'] )) {$block4img = 'background-image: url(' . $instance['block4img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block5img'] )) {$block5img = 'background-image: url(' . $instance['block5img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block6img'] )) {$block6img = 'background-image: url(' . $instance['block6img'] . '); ';}
-			
-			
-			echo '<style>#'.$id.' .midrow{ ' . $blocksbgcolor . '' . $blocksbgimg . '}#'.$id.' .midrow h3{color: ' . $blockstitlecolor . '}#'.$id.' .midrow, #'.$id.' .midrow a{' . $blockstxtcolor . '}
-			#'.$id.' .blockimage .midrow_block.axn_block1{'.$block1img.'}
-			#'.$id.' .blockimage .midrow_block.axn_block2{'.$block2img.'}
-			#'.$id.' .blockimage .midrow_block.axn_block3{'.$block3img.'}
-			#'.$id.' .blockimage .midrow_block.axn_block4{'.$block4img.'}
-			#'.$id.' .blockimage .midrow_block.axn_block5{'.$block5img.'}
-			#'.$id.' .blockimage .midrow_block.axn_block6{'.$block6img.'}
-			#'.$id.' .block_header, #'.$id.' .div_middle{color:'.$widgetitlecolor.';}
-			#'.$id.' span.div_left, #'.$id.' span.div_right{background-color: ' . $widgetitlecolor . '}
-			@media screen and (min-width: 480px){#'.$id.' .midrow{'.$marginTop.$marginBottom.$marginLeft.$marginRight. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight.'}.frontpage_sidebar  #'.$id.' {'.$calcWidth. $boxSizing.'}}
-			</style>';
-			
-			echo "<script type='text/javascript'>jQuery(window).bind('load', function(){ jQuery('#".$id." .midrow_block').matchHeight({ property: 'min-height'}); });</script>";
-		}
 
 		/* After widget (defined by themes). */
 		echo $after_widget;
@@ -415,11 +340,11 @@ class optimizer_front_Blocks extends WP_Widget {
 		$instance['block6content'] = wp_kses_post($new_instance['block6content']);
 		$instance['block6link'] = esc_url_raw($new_instance['block6link']);
 		
-		$instance['blockscenter'] = strip_tags($new_instance['blockscenter']);
-		$instance['blocksfull'] = strip_tags($new_instance['blocksfull']);
-		$instance['blockimgbg'] = strip_tags($new_instance['blockimgbg']);
-		$instance['blocksmargin'] = strip_tags($new_instance['blocksmargin']);
-		$instance['blockshover'] = strip_tags($new_instance['blockshover']);
+		$instance['blockscenter'] = isset($new_instance['blockscenter']) ? strip_tags($new_instance['blockscenter']) : '';
+		$instance['blocksfull'] = isset($new_instance['blocksfull']) ? strip_tags($new_instance['blocksfull']) : '';
+		$instance['blockimgbg'] = isset($new_instance['blockimgbg']) ? strip_tags($new_instance['blockimgbg']) : '';
+		$instance['blocksmargin'] = isset($new_instance['blocksmargin']) ? strip_tags($new_instance['blocksmargin']) : '';
+		$instance['blockshover'] = isset($new_instance['blockshover']) ? strip_tags($new_instance['blockshover']) : '';
 		$instance['blockstitlecolor'] = optimizer_sanitize_hex($new_instance['blockstitlecolor']);
 		$instance['widgetitlecolor'] = optimizer_sanitize_hex($new_instance['widgetitlecolor']);
 		$instance['blockstxtcolor'] = optimizer_sanitize_hex($new_instance['blockstxtcolor']);
@@ -483,45 +408,14 @@ class optimizer_front_Blocks extends WP_Widget {
 		$instance = wp_parse_args( (array) $instance, $defaults ); ?>
 
 
+      <div class="optimizer_widget_tab optimizer_widget_tab--content">
 
 		<!-- About Heading Field -->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title:', 'optimizer') ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo htmlspecialchars($instance['title'], ENT_QUOTES, "UTF-8"); ?>" type="text" />
 		</p>
-        
-        <!-- About Content TITLE DIVIDER Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'divider' ); ?>"><?php _e('Title Divider:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'divider' ); ?>" name="<?php echo $this->get_field_name( 'divider' ); ?>" class="widefat">
-                <option value="underline" <?php if ( 'underline' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Underline', 'optimizer') ?></option>
-                <option value="border-center" <?php if ( 'border-center' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Center)', 'optimizer') ?></option>
-                <option value="border-left" <?php if ( 'border-left' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Left)', 'optimizer') ?></option>
-                <option value="border-right" <?php if ( 'border-right' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Right)', 'optimizer') ?></option>
-                <option value="fa-stop" <?php if ( 'fa-stop' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rhombus', 'optimizer') ?></option>
-				<option value="fa-star" <?php if ( 'fa-star' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Star', 'optimizer') ?></option>
-                <option value="fa-times" <?php if ( 'fa-times' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cross', 'optimizer') ?></option>
-				<option value="fa-bolt" <?php if ( 'fa-bolt' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bolt', 'optimizer') ?></option>
-				<option value="fa-asterisk" <?php if ( 'fa-asterisk' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Asterisk', 'optimizer') ?></option>
-                <option value="fa-chevron-down" <?php if ( 'fa-chevron-down' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Chevron', 'optimizer') ?></option>
-				<option value="fa-heart" <?php if ( 'fa-heart' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Heart', 'optimizer') ?></option>
-				<option value="fa-plus" <?php if ( 'fa-plus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Plus', 'optimizer') ?></option>
-                <option value="fa-bookmark" <?php if ( 'fa-bookmark' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bookmark', 'optimizer') ?></option>
-				<option value="fa-circle-o" <?php if ( 'fa-circle-o' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Circle', 'optimizer') ?></option>
-                <option value="fa-th-large" <?php if ( 'fa-th-large' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blocks', 'optimizer') ?></option>
-				<option value="fa-minus" <?php if ( 'fa-minus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Sides', 'optimizer') ?></option>
-				<option value="fa-cog" <?php if ( 'fa-cog' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cog', 'optimizer') ?></option>
-                <option value="fa-reorder" <?php if ( 'fa-reorder' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blinds', 'optimizer') ?></option>
-                <option value="fa-diamond" <?php if ( 'fa-diamond' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Diamond', 'optimizer') ?></option>
-                <option value="fa-gg" <?php if ( 'fa-gg' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Tetris', 'optimizer') ?></option>
-                <option value="fa-houzz" <?php if ( 'fa-houzz' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Digital', 'optimizer') ?></option>
-                <option value="fa-rocket" <?php if ( 'fa-rocket' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rocket', 'optimizer') ?></option>
-                <option value="no_divider" <?php if ( 'no_divider' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Hide Divider', 'optimizer') ?></option>
-			</select>
-		</p>
-        
-        
-        
+
         
         <!-- BLOCK 1 FIELDS -->
         <div class="block_accordion">
@@ -787,150 +681,172 @@ class optimizer_front_Blocks extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'blockimgbg' ); ?>" name="<?php echo $this->get_field_name( 'blockimgbg' ); ?>" value="1" type="checkbox" <?php if ( '1' == $instance['blockimgbg'] ) echo 'checked'; ?> />
 		</p>
         
-        
-        <!-- Block Hover Effect Field -->
-        <p>
-			<label for="<?php echo $this->get_field_id( 'blockshover' ); ?>"><?php _e('Blocks Hover Effect:', 'optimizer') ?></label>
-			<select id="<?php echo $this->get_field_id( 'blockshover' ); ?>" name="<?php echo $this->get_field_name( 'blockshover' ); ?>" class="widefat">
-            	<option value="none" <?php if ( 'none' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('None', 'optimizer') ?></option>
-				<option value="zoomin" <?php if ( 'zoomin' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Zoom In', 'optimizer') ?></option>
-                <option value="zoomout" <?php if ( 'zoomout' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Zoom Out', 'optimizer') ?></option>
-				<option value="fade" <?php if ( 'fade' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Fade', 'optimizer') ?></option>
-				<option value="topborder" <?php if ( 'topborder' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Top Border', 'optimizer') ?></option>
-                <option value="blackwhite" <?php if ( 'blackwhite' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Grayscale', 'optimizer') ?></option>
-                <option value="darkbg" <?php if ( 'darkbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Darkened', 'optimizer') ?></option>
-                <option value="lightbg" <?php if ( 'lightbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Lightened', 'optimizer') ?></option>
-				<option value="colorbg" <?php if ( 'colorbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Colored', 'optimizer') ?></option>
-                <option value="content_fade" <?php if ( 'content_fade' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Content: Fade In', 'optimizer') ?></option>
-			</select>
-		</p>
+      </div>
 
 
-		<!-- Blocks Title Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'blockstitlecolor' ); ?>"><?php _e('Blocks Title Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blockstitlecolor' ); ?>" name="<?php echo $this->get_field_name( 'blockstitlecolor' ); ?>" value="<?php echo $instance['blockstitlecolor']; ?>" type="text" />
-		</p>
-        
-		
-		<!-- Blocks Text Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'blockstxtcolor' ); ?>"><?php _e('Blocks Text Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blockstxtcolor' ); ?>" name="<?php echo $this->get_field_name( 'blockstxtcolor' ); ?>" value="<?php echo $instance['blockstxtcolor']; ?>" type="text" />
-		</p>
-        
-        <!-- Blocks Widget Title Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'widgetitlecolor' ); ?>"><?php _e('Widget Title Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'widgetitlecolor' ); ?>" name="<?php echo $this->get_field_name( 'widgetitlecolor' ); ?>" value="<?php echo $instance['widgetitlecolor']; ?>" type="text" />
-		</p>
-                
-        <!-- Blocks Background Color Field -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'blocksbgcolor' ); ?>"><?php _e('Blocks Background Color', 'optimizer') ?></label>
-			<input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blocksbgcolor' ); ?>" name="<?php echo $this->get_field_name( 'blocksbgcolor' ); ?>" value="<?php echo $instance['blocksbgcolor']; ?>" type="text" />
-		</p>
-		
-		<!-- About Content Background Image Field -->
-		<div class="widget_input_wrap">
-			<label for="<?php echo $this->get_field_id( 'blocksbgimg' ); ?>"><?php _e('Blocks Background Image', 'optimizer') ?></label>
-			<div class="media-picker-wrap">
-            <?php if(!empty($instance['blocksbgimg'])) { ?>
-				<img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['blocksbgimg']); ?>" />
-                <i class="fa fa-times media-picker-remove"></i>
-            <?php } ?>
-            <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'blocksbgimg' ); ?>" name="<?php echo $this->get_field_name( 'blocksbgimg' ); ?>" value="<?php echo esc_url($instance['blocksbgimg']); ?>" type="hidden" />
-            <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'blocksbgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
-            </div>
-		</div>
+      <div class="optimizer_widget_tab optimizer_widget_tab--style" style="display:none">
+         <!-- About Content TITLE DIVIDER Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'divider' ); ?>"><?php _e('Title Divider:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'divider' ); ?>" name="<?php echo $this->get_field_name( 'divider' ); ?>" class="widefat">
+                  <option value="underline" <?php if ( 'underline' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Underline', 'optimizer') ?></option>
+                  <option value="border-center" <?php if ( 'border-center' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Center)', 'optimizer') ?></option>
+                  <option value="border-left" <?php if ( 'border-left' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Left)', 'optimizer') ?></option>
+                  <option value="border-right" <?php if ( 'border-right' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bordered (Right)', 'optimizer') ?></option>
+                  <option value="fa-stop" <?php if ( 'fa-stop' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rhombus', 'optimizer') ?></option>
+               <option value="fa-star" <?php if ( 'fa-star' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Star', 'optimizer') ?></option>
+                  <option value="fa-times" <?php if ( 'fa-times' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cross', 'optimizer') ?></option>
+               <option value="fa-bolt" <?php if ( 'fa-bolt' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bolt', 'optimizer') ?></option>
+               <option value="fa-asterisk" <?php if ( 'fa-asterisk' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Asterisk', 'optimizer') ?></option>
+                  <option value="fa-chevron-down" <?php if ( 'fa-chevron-down' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Chevron', 'optimizer') ?></option>
+               <option value="fa-heart" <?php if ( 'fa-heart' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Heart', 'optimizer') ?></option>
+               <option value="fa-plus" <?php if ( 'fa-plus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Plus', 'optimizer') ?></option>
+                  <option value="fa-bookmark" <?php if ( 'fa-bookmark' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Bookmark', 'optimizer') ?></option>
+               <option value="fa-circle-o" <?php if ( 'fa-circle-o' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Circle', 'optimizer') ?></option>
+                  <option value="fa-th-large" <?php if ( 'fa-th-large' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blocks', 'optimizer') ?></option>
+               <option value="fa-minus" <?php if ( 'fa-minus' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Sides', 'optimizer') ?></option>
+               <option value="fa-cog" <?php if ( 'fa-cog' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Cog', 'optimizer') ?></option>
+                  <option value="fa-reorder" <?php if ( 'fa-reorder' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Blinds', 'optimizer') ?></option>
+                  <option value="fa-diamond" <?php if ( 'fa-diamond' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Diamond', 'optimizer') ?></option>
+                  <option value="fa-gg" <?php if ( 'fa-gg' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Tetris', 'optimizer') ?></option>
+                  <option value="fa-houzz" <?php if ( 'fa-houzz' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Digital', 'optimizer') ?></option>
+                  <option value="fa-rocket" <?php if ( 'fa-rocket' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Rocket', 'optimizer') ?></option>
+                  <option value="no_divider" <?php if ( 'no_divider' == $instance['divider'] ) echo 'selected="selected"'; ?>><?php _e('Hide Divider', 'optimizer') ?></option>
+            </select>
+         </p>
+         <!-- Block Hover Effect Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'blockshover' ); ?>"><?php _e('Blocks Hover Effect:', 'optimizer') ?></label>
+            <select id="<?php echo $this->get_field_id( 'blockshover' ); ?>" name="<?php echo $this->get_field_name( 'blockshover' ); ?>" class="widefat">
+                  <option value="none" <?php if ( 'none' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('None', 'optimizer') ?></option>
+               <option value="zoomin" <?php if ( 'zoomin' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Zoom In', 'optimizer') ?></option>
+                  <option value="zoomout" <?php if ( 'zoomout' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Zoom Out', 'optimizer') ?></option>
+               <option value="fade" <?php if ( 'fade' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Fade', 'optimizer') ?></option>
+               <option value="topborder" <?php if ( 'topborder' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Top Border', 'optimizer') ?></option>
+                  <option value="blackwhite" <?php if ( 'blackwhite' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Grayscale', 'optimizer') ?></option>
+                  <option value="darkbg" <?php if ( 'darkbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Darkened', 'optimizer') ?></option>
+                  <option value="lightbg" <?php if ( 'lightbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Lightened', 'optimizer') ?></option>
+               <option value="colorbg" <?php if ( 'colorbg' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Background: Colored', 'optimizer') ?></option>
+                  <option value="content_fade" <?php if ( 'content_fade' == $instance['blockshover'] ) echo 'selected="selected"'; ?>><?php _e('Content: Fade In', 'optimizer') ?></option>
+            </select>
+         </p>
+
+
+         <!-- Blocks Title Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'blockstitlecolor' ); ?>"><?php _e('Blocks Title Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blockstitlecolor' ); ?>" name="<?php echo $this->get_field_name( 'blockstitlecolor' ); ?>" value="<?php echo $instance['blockstitlecolor']; ?>" type="text" />
+         </p>
+         
+         
+         <!-- Blocks Text Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'blockstxtcolor' ); ?>"><?php _e('Blocks Text Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blockstxtcolor' ); ?>" name="<?php echo $this->get_field_name( 'blockstxtcolor' ); ?>" value="<?php echo $instance['blockstxtcolor']; ?>" type="text" />
+         </p>
+         
+         <!-- Blocks Widget Title Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'widgetitlecolor' ); ?>"><?php _e('Widget Title Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'widgetitlecolor' ); ?>" name="<?php echo $this->get_field_name( 'widgetitlecolor' ); ?>" value="<?php echo $instance['widgetitlecolor']; ?>" type="text" />
+         </p>
+                  
+         <!-- Blocks Background Color Field -->
+         <p>
+            <label for="<?php echo $this->get_field_id( 'blocksbgcolor' ); ?>"><?php _e('Background Color', 'optimizer') ?></label>
+            <input class="widefat color-picker" id="<?php echo $this->get_field_id( 'blocksbgcolor' ); ?>" name="<?php echo $this->get_field_name( 'blocksbgcolor' ); ?>" value="<?php echo $instance['blocksbgcolor']; ?>" type="text" />
+         </p>
+         
+         <!-- About Content Background Image Field -->
+         <div class="widget_input_wrap">
+            <label for="<?php echo $this->get_field_id( 'blocksbgimg' ); ?>"><?php _e('Background Image', 'optimizer') ?></label>
+            <div class="media-picker-wrap">
+               <?php if(!empty($instance['blocksbgimg'])) { ?>
+               <img style="max-width:100%; height:auto;" class="media-picker-preview" src="<?php echo esc_url($instance['blocksbgimg']); ?>" />
+                  <i class="fa fa-times media-picker-remove"></i>
+               <?php } ?>
+               <input class="widefat media-picker" id="<?php echo $this->get_field_id( 'blocksbgimg' ); ?>" name="<?php echo $this->get_field_name( 'blocksbgimg' ); ?>" value="<?php echo esc_url($instance['blocksbgimg']); ?>" type="hidden" />
+               <a class="media-picker-button button" onclick="mediaPicker(this.id)" id="<?php echo $this->get_field_id( 'blocksbgimg' ).'mpick'; ?>"><?php _e('Select Image', 'optimizer') ?></a>
+               </div>
+         </div>
+
+         <!-- Basic Widget Styles -->
+         <?php optimizer_widget_basic_styles($instance, $this);?>
+
+      </div>
+      
+
+
 <?php
 	}
-		//ENQUEUE CSS
-        function front_blocks_enqueue_css() {
+   //ENQUEUE CSS
+   function front_blocks_enqueue_css() {
 		$settings = $this->get_settings();
 		if(!is_customize_preview()){
-
 			if ( empty( $settings ) ) {
 				return;
 			}
-	
 			foreach ( $settings as $instance_id => $instance ) {
 				$id = $this->id_base . '-' . $instance_id;
 	
 				if ( ! is_active_widget( false, $id, $this->id_base ) ) {
 					continue;
 				}
-
-				$blocksbgcolor =		'background-color:#f5f5f5;';
-				$blocksbgimg =			'';
-				$blockstitlecolor =		'#555555';
-				$blockstxtcolor =		'color:#999999;';
-				$widgetitlecolor =		'#555555;';
-			$marginTop =''; $marginBottom =''; $marginLeft =''; $marginRight ='';$calcWidth =''; 
-			$paddingTop =''; $paddingBottom =''; $paddingLeft =''; $paddingRight =''; $boxSizing='';
-			
-			//Margin
-			if ( ! empty( $instance['margin'] ) ) {
-				if(!empty($instance['margin'][0])){ $marginTop ='margin-top:'.$instance['margin'][0].';';}
-				if(!empty($instance['margin'][1])){ $marginBottom ='margin-bottom:'.$instance['margin'][1].';';}
-				if(!empty($instance['margin'][2])){ $marginLeft ='margin-left:'.$instance['margin'][2].';';}
-				if(!empty($instance['margin'][3])){ $marginRight ='margin-right:'.$instance['margin'][3].';';}
-				
-					//Width
-					$thewidth ='100';
-					$leftrightmargin ='0px';
-					
-					if ( ! empty( $instance['width']) ) {	
-						if($instance['width'] == 2){ $thewidth = '50';} if($instance['width'] == 3){ $thewidth = '33.33';} if($instance['width'] == 4){ $thewidth = '66.67';}   
-						if($instance['width'] == 5){ $thewidth = '25';}  if($instance['width'] == 6){ $thewidth = '75';}   
-					}
-					
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][2]  ) ) {	$leftrightmargin = $instance['margin'][2];   }
-					if ( ! empty( $instance['width']) && !empty($instance['margin'][3]  ) ) {	$leftrightmargin = $instance['margin'][3];	}
-					
-					if ( ! empty( $instance['width']) ) {
-						if(!empty($instance['margin'][2]) && !empty($instance['margin'][3]) ){
-								$leftrightmargin = '('.$instance['margin'][2].' + '.$instance['margin'][3].')';
-						}
-					}
-					$calcWidth ='width: calc('.$thewidth.'% - '.$leftrightmargin.')!important;';
-					
-			}
-			
-			//Padding
-			if ( ! empty( $instance['padding'] ) ) {
-				if(!empty($instance['padding'][0])){ $paddingTop ='padding-top:'.$instance['padding'][0].';';}
-				if(!empty($instance['padding'][1])){ $paddingBottom ='padding-bottom:'.$instance['padding'][1].';';}
-				if(!empty($instance['padding'][2])){ $paddingLeft ='padding-left:'.$instance['padding'][2].';';}
-				if(!empty($instance['padding'][3])){ $paddingRight ='padding-right:'.$instance['padding'][3].';';}
-				
-				$boxSizing='box-sizing:border-box;';
-				
-			}
-				
-				
-			if ( ! empty( $instance['blocksbgcolor'] ) ) {	$blocksbgcolor = 'background-color: ' . $instance['blocksbgcolor'] . '; ';}
-			if ( ! empty( $instance['blocksbgimg'] ) ) {	$blocksbgimg = 'background-image: url(' . $instance['blocksbgimg'] . '); ';}
-			if ( ! empty( $instance['blockstitlecolor'] )){ $blockstitlecolor = '' . $instance['blockstitlecolor'] . '; ';}
-			if ( ! empty( $instance['blockstxtcolor'] ) ) {	$blockstxtcolor = 'color: ' . $instance['blockstxtcolor'] . '; ';}	
-			if ( ! empty( $instance['widgetitlecolor'] ) ) {$widgetitlecolor = '' . $instance['widgetitlecolor'] . '';}		
-			
-			//Block Image as Background 
-			$block1img = ''; $block2img = ''; $block3img = ''; $block4img = ''; $block5img = ''; $block6img = '';
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block1img'] )) {$block1img = 'background-image: url(' . $instance['block1img'] . '); ';}	
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block2img'] )) {$block2img = 'background-image: url(' . $instance['block2img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block3img'] )) {$block3img = 'background-image: url(' . $instance['block3img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block4img'] )) {$block4img = 'background-image: url(' . $instance['block4img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block5img'] )) {$block5img = 'background-image: url(' . $instance['block5img'] . '); ';}
-			if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block6img'] )) {$block6img = 'background-image: url(' . $instance['block6img'] . '); ';}
-			
-			
-				$widget_style = '#'.$id.' .midrow{ ' . $blocksbgcolor . '' . $blocksbgimg . '}#'.$id.' .midrow h3{color: ' . $blockstitlecolor . '}#'.$id.' .midrow, #'.$id.' .midrow a{' . $blockstxtcolor . '}#'.$id.' .blockimage .midrow_block.axn_block1{'.$block1img.'}#'.$id.' .blockimage .midrow_block.axn_block2{'.$block2img.'}#'.$id.' .blockimage .midrow_block.axn_block3{'.$block3img.'}#'.$id.' .blockimage .midrow_block.axn_block4{'.$block4img.'}#'.$id.' .blockimage .midrow_block.axn_block5{'.$block5img.'}#'.$id.' .blockimage .midrow_block.axn_block6{'.$block6img.'}#'.$id.' .block_header, #'.$id.' .div_middle{color:'.$widgetitlecolor.';}#'.$id.' span.div_left, #'.$id.' span.div_right{background-color: ' . $widgetitlecolor . '}  @media screen and (min-width: 480px){#'.$id.' .midrow{'.$marginTop.$marginBottom.$marginLeft.$marginRight. $paddingTop.$paddingBottom.$paddingLeft.$paddingRight.'} .frontpage_sidebar  #'.$id.' {'.$calcWidth. $boxSizing.'} }';
-
-				wp_add_inline_style( 'optimizer-style', $widget_style );
+				wp_add_inline_style( 'optimizer-style', $this->generate_css($id, $instance) );
 				
 			}
 		}
-	}
+   }
+   
+   function generate_css($id, $instance){
+      $blocksbgcolor =		'background-color:#f5f5f5;';
+      $blocksbgimg =			'';
+      $blockstitlecolor =		'#555555';
+      $blockstxtcolor =		'color:#999999;';
+      $widgetitlecolor =		'#555555;';
+      //Basic Styles
+      $title_size = ! empty( $instance['title_size']) ? 'font-size:'.$instance['title_size'].'px;' : '';
+      $font_size = ! empty( $instance['font_size']) ? 'font-size:'.$instance['font_size'].'px;' : '';
+      $title_family = ! empty( $instance['title_family']) ? 'font-family:'.$instance['title_family'].';' : '';
+      $max_inner_width = ! empty( $instance['max_inner_width']) ? 'max-width:'.$instance['max_inner_width'].';' : '';
+      $font_family = ! empty( $instance['font_family']) ? 'font-family:'.$instance['font_family'].';' : '';
+
+      if ( ! empty( $instance['blocksbgcolor'] ) ) {	$blocksbgcolor = 'background-color: ' . $instance['blocksbgcolor'] . '; ';}
+      if ( ! empty( $instance['blocksbgimg'] ) ) {	$blocksbgimg = 'background-image: url(' . $instance['blocksbgimg'] . '); ';}
+      if ( ! empty( $instance['blockstitlecolor'] )){ $blockstitlecolor = '' . $instance['blockstitlecolor'] . '; ';}
+      if ( ! empty( $instance['blockstxtcolor'] ) ) {	$blockstxtcolor = 'color: ' . $instance['blockstxtcolor'] . '; ';}	
+      if ( ! empty( $instance['widgetitlecolor'] ) ) {$widgetitlecolor = '' . $instance['widgetitlecolor'] . '';}		
+      
+      //Block Image as Background 
+      $block1img = ''; $block2img = ''; $block3img = ''; $block4img = ''; $block5img = ''; $block6img = '';
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block1img'] )) {$block1img = 'background-image: url(' . $instance['block1img'] . '); ';}	
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block2img'] )) {$block2img = 'background-image: url(' . $instance['block2img'] . '); ';}
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block3img'] )) {$block3img = 'background-image: url(' . $instance['block3img'] . '); ';}
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block4img'] )) {$block4img = 'background-image: url(' . $instance['block4img'] . '); ';}
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block5img'] )) {$block5img = 'background-image: url(' . $instance['block5img'] . '); ';}
+      if ( !empty( $instance['blockimgbg'] ) && !empty($instance['block6img'] )) {$block6img = 'background-image: url(' . $instance['block6img'] . '); ';}
+      
+
+      $widget_style = '#'.$id.'{ ' . $font_size. $font_family.'}';
+      $widget_style .= ($title_size || $title_family) ? '#'.$id.' .block_header{' . $title_size . $title_family. '}' :'';
+      $marginPadding = optimizer_widget_paddingMargin($id, $instance);
+      $widget_style .= $max_inner_width ?'#'.$id.' .widget_wrap .center{ ' . $max_inner_width.'}' : '';
+
+      $widget_style .= '#'.$id.' .midrow{ ' . $blocksbgcolor . '' . $blocksbgimg . '}';
+      $widget_style .= '#'.$id.' .midrow h3{color: ' . $blockstitlecolor . '}';
+      $widget_style .= '#'.$id.' .midrow, #'.$id.' .midrow a{' . $blockstxtcolor . '}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block1{'.$block1img.'}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block2{'.$block2img.'}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block3{'.$block3img.'}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block4{'.$block4img.'}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block5{'.$block5img.'}';
+      $widget_style .= '#'.$id.' .blockimage .midrow_block.axn_block6{'.$block6img.'}';
+      $widget_style .= '#'.$id.' .block_header, #'.$id.' .div_middle{color:'.$widgetitlecolor.';}';
+      $widget_style .= '#'.$id.' .mid_block_content .tiny_content_editable, #'.$id.' .mid_block_content .midrow_block h3{ ' . $font_size. $font_family.'}';
+      $widget_style .= '#'.$id.' span.div_left, #'.$id.' span.div_right{background-color: ' . $widgetitlecolor . '}';  
+      $widget_style .= '@media screen and (min-width: 480px){#'.$id.' .midrow{'.$marginPadding[0].'} .frontpage_sidebar  #'.$id.' {'.$marginPadding[1].'} } ';
+      
+      return $widget_style;
+   }
 }
 ?>

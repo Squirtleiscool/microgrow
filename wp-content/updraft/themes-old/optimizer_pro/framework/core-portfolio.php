@@ -53,7 +53,7 @@ function optimizer_portfolio_layouts($layout='1', $count='6', $hover='1', $categ
                 </ul>
             <?php } ?>
     <div class="<?php if($layout =='3' || $layout=='4'){ echo 'lay3'; }else{ echo 'portlay1'; }?> portfolio_wrap port_layout_<?php echo $layout; ?>">
-            <div class="lay1_wrap hover_style_<?php echo $hover; ?>">
+            <div class="lay1_wrap hover_style_<?php echo $hover; ?> <?php if(empty($linkbtn)) { ?>hide_portfolio_link<?php } ?> <?php if(empty($previewbtn)) { ?>hide_portfolio_preview<?php } ?>">
 
             	<div class="lay1_wrap_ajax">
             
@@ -63,7 +63,7 @@ function optimizer_portfolio_layouts($layout='1', $count='6', $hover='1', $categ
          
        
                   <!--POST THUMBNAIL START-->
-                      <div class="post_image <?php if(empty($linkbtn)) { ?>hide_img_hover<?php } ?> hoverxx_style_<?php echo $hover; ?>">
+                      <div class="post_image hoverxx_style_<?php echo $hover; ?>">
 
                           <!--CALL POST IMAGE-->
                           <?php if ( has_post_thumbnail() ) : ?>
@@ -74,7 +74,7 @@ function optimizer_portfolio_layouts($layout='1', $count='6', $hover='1', $categ
                                 	<a class="port_preview" title="<?php echo _e('Preview','optimizer'); ?>"><i class="fa fa-search"></i></a>
                                 <?php } ?>
                                 <?php if(!empty($linkbtn) ) { ?>
-                              		<a href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
+                              		<a class="port_link" href="<?php the_permalink();?>" title="<?php echo _e('Read More','optimizer'); ?>"><i class="fa fa-plus"></i></a>
                                 <?php } ?>
                               </div>                 
                           <a href="<?php the_permalink();?>">

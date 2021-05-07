@@ -2,9 +2,9 @@
 Contributors: wpshopmart
 Donate link: https://www.wpshopmart.com
 Tags: Accordion, accordions, accordion plugin, FAQ,  collapse, accordion plugin jquery, accordions plugin wordpress, accordions shortcode, accordion shortcode, accordions Widget, accordion Widget, jQuery accordions, Responsive accordion, Responsive accordions, collapsable content,  collapsible, display, expand, expandable, expandable content, hidden, hide, javascript, jquery, toggle, css accordion, css3 , bootstrap, bootstrap accordion, bootstrap collapse, wordpress accordion, widget, shortcode, responsive, plugin, wordpress accordion plugin  
-Requires at least: 4.0
-Tested up to: 5.3
-Stable tag: 2.1.3
+Requires at least: 4.9
+Tested up to: 5.7
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,14 @@ Accordion And Collapse is the most easiest drag & drop accordion builder for Wor
 == Description ==
 
 Thanks for visit our plugin. Need an awesome accordion FAq plugin then this is it.  Responsive Accordion is has buildup with excellent accordion FAq builder for wordpress. You can add unlimited accordion and collapse with unlimited color.You can easy sort your accordion position using backend. Responsive Accordion is built-in bootstrap. 
+
+
+* [Accordion Pro - Live Demo](http://demo.wpshopmart.com/accordion-pro/)
+* [Upgrade To Accordion Pro](https://wpshopmart.com/plugins/accordion-pro/)
+
+
+https://www.youtube.com/watch?v=iu2Wj7qZo_g
+
 
 = Responsive Accordion Shortcode =
 
@@ -132,7 +140,32 @@ Please contribute to translate our plugin.  Contact at `wpshopmart(at)gmail(dot)
 
 == Frequently Asked Questions ==
 
-Please use WordPress support forum to ask any query regarding any issue.
+= How do i displayed my Accordion FAQ on page?  =
+
+Just copy your FAQ accordion shortcode [WPSM_AC id=xx] and then paste it on your page. 
+
+= Doesn't work on my website ?  =
+
+May be possible it's conflict with other plugin so try to deactivate other plugin one by one and then check which one is conflict after then contact us here [our support forum](https://wordpress.org/support/plugin/responsive-accordion-and-collapse/). 
+
+= Is this plugin responsive ?  =
+
+yes, it's based on bootstrap.  Accordion FAQ content are compatible with all media devices.  
+
+= Can i add accordion in widget ?  =
+
+Just open your widget menu then add “Text widget” , now paste your accordion shortcode [WPSM_AC id=xx] (here xx your shortcode id) in text widget.
+
+= Can i add my own custom css on faq ?  =
+
+Yes you can add your own custom css, there custom css field is available so you can add css code there.
+
+= I Really lIke your effort on this plugin and now i want to rate it ! =
+
+We love your feedback please submit your review here [pluign review](https://wordpress.org/support/plugin/responsive-accordion-and-collapse/reviews/) 
+
+
+
 
 == Screenshots ==
 
@@ -150,7 +183,42 @@ Please use WordPress support forum to ask any query regarding any issue.
 
 == Changelog ==
 
-= 2.1.3 =
+= 2.2.6 =
+* minor bug resolved
+
+= 2.2.5 =
+* Elementor addon bug resolved 
+
+= 2.2.4 =
+* Add Elementor Addon 
+
+= 2.2.2 =
+* minor issue resolved 
+
+= 2.2.1 =
+* Compatible with WordPress 5.6 version.
+
+= 2.2 =
+* Compatible with WordPress 5.5 version.
+
+= 2.1.9 =
+
+* minor issue resolved
+* Compatible with WordPress 5.4.2 version.
+
+= 2.1.8 =
+
+* Compatible with WordPress 5.4 version.
+
+= 2.1.7 =
+
+* minor issue resolved
+
+= 2.1.6 =
+
+* div conflict issue resolved
+
+= 2.1.5 =
 
 * Compatible with WordPress 5.3 version.
 

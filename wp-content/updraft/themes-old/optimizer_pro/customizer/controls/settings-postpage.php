@@ -2,6 +2,25 @@
 
 //----------------------SINGLE POST SECTION----------------------------------
 
+//Single Post Page Style
+$wp_customize->add_setting( 'optimizer[single_post_layout]', array(
+   'type' => 'option',
+     'default' => 'center',
+   'sanitize_callback' => 'optimizer_sanitize_choices',
+) );
+
+      $wp_customize->add_control('single_post_layout', array(
+            'type' => 'select',
+            'label' => __('Single Post Layout','optimizer'),
+            'section' => 'singlepost_section',
+            'choices' => array(
+                 'default' => __('Default', 'optimizer'), 
+                 'header' => __('Post with Header', 'optimizer'),
+                 'narrow' => __('Narrow Layout', 'optimizer'), 
+            ),
+            'settings'    => 'optimizer[single_post_layout]'
+      ) );
+
 
 //Single Featured Image
 $wp_customize->add_setting('optimizer[single_featured]', array(
@@ -22,7 +41,7 @@ $wp_customize->add_setting('optimizer[post_info_id]', array(
 	'type' => 'option',
 	'default' => '1',
 	'sanitize_callback' => 'optimizer_sanitize_checkbox',
-	'transport' => 'postMessage',
+	//'transport' => 'postMessage',
 ) );
  
 			$wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'post_info_id', array(
@@ -30,7 +49,60 @@ $wp_customize->add_setting('optimizer[post_info_id]', array(
 				'section' => 'singlepost_section',
 				'settings' => 'optimizer[post_info_id]',
 			)) );
-			
+
+         //Hide Post Date 
+         $wp_customize->add_setting('optimizer[hide_post_info_date]', array(
+            'type' => 'option',
+            'default' => '1',
+            'sanitize_callback' => 'optimizer_sanitize_checkbox',
+         ) );
+         
+            $wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'hide_post_info_date', array(
+               'label' => __('Hide Post Date','optimizer'),
+               'section' => 'singlepost_section',
+               'settings' => 'optimizer[hide_post_info_date]',
+               'active_callback' => 'optimizer_post_info_callback',
+            )) );
+         //Hide Post Author
+         $wp_customize->add_setting('optimizer[hide_post_info_author]', array(
+            'type' => 'option',
+            'default' => '1',
+            'sanitize_callback' => 'optimizer_sanitize_checkbox',
+         ) );
+         
+            $wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'hide_post_info_author', array(
+               'label' => __('Hide Post Author','optimizer'),
+               'section' => 'singlepost_section',
+               'settings' => 'optimizer[hide_post_info_author]',
+               'active_callback' => 'optimizer_post_info_callback',
+            )) );
+         //Hide Post Comment Count
+         $wp_customize->add_setting('optimizer[hide_post_info_comment]', array(
+            'type' => 'option',
+            'default' => '1',
+            'sanitize_callback' => 'optimizer_sanitize_checkbox',
+         ) );
+         
+            $wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'hide_post_info_comment', array(
+               'label' => __('Hide Post Comment Count','optimizer'),
+               'section' => 'singlepost_section',
+               'settings' => 'optimizer[hide_post_info_comment]',
+               'active_callback' => 'optimizer_post_info_callback',
+            )) );
+         //Hide Post Category
+         $wp_customize->add_setting('optimizer[hide_post_info_cats]', array(
+            'type' => 'option',
+            'default' => '1',
+            'sanitize_callback' => 'optimizer_sanitize_checkbox',
+         ) );
+         
+            $wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'hide_post_info_cats', array(
+               'label' => __('Hide Post Category','optimizer'),
+               'section' => 'singlepost_section',
+               'settings' => 'optimizer[hide_post_info_cats]',
+               'active_callback' => 'optimizer_post_info_callback',
+            )) );
+
 //Social Share Icons
 $wp_customize->add_setting('optimizer[social_single_id]', array(
 	'type' => 'option',
@@ -124,24 +196,21 @@ $wp_customize->add_setting('optimizer[leave_reply_title]', array(
 							)
 			) );
 			
-			
-//Single Post Page Style
-$wp_customize->add_setting( 'optimizer[single_post_layout]', array(
-		'type' => 'option',
-        'default' => 'center',
-		'sanitize_callback' => 'optimizer_sanitize_choices',
+//Leave a Reply Text
+$wp_customize->add_setting('optimizer[blog_layout_width]', array(
+	'type' => 'option',
+	'default' => '',
+	'sanitize_callback' => 'sanitize_text_field',
 ) );
- 
-			$wp_customize->add_control('single_post_layout', array(
-					'type' => 'select',
-					'label' => __('Single Post Layout','optimizer'),
-					'section' => 'singlepost_section',
-					'choices' => array(
-						  'default' => __('Default', 'optimizer'), 
-						  'header' => __('Post with Header', 'optimizer'),
-						  'narrow' => __('Narrow Layout', 'optimizer'), 
-					),
-					'settings'    => 'optimizer[single_post_layout]'
+			$wp_customize->add_control('blog_layout_width', array(
+				'type' => 'text',
+				'label' => __('Max Width','optimizer'),
+            'description'  => __('in px, eg: 1000px. Keep empty to remove width restriction.', 'optimizer' ),
+				'section' => 'singlepost_section',
+				'settings' => 'optimizer[blog_layout_width]',
+							'input_attrs'	=> array(
+								'class'	=> 'mini_control',
+							)
 			) );
 
 //----------------------PAGE HEADER SECTION----------------------------------
@@ -237,7 +306,8 @@ $wp_customize->add_setting( 'optimizer[page_header_align]', array(
 					'choices' => array(
 						  'left' => __('Left', 'optimizer'), 
 						  'right' => __('Right', 'optimizer'),
-						  'center' => __('Center', 'optimizer'), 
+                    'center' => __('Center', 'optimizer'), 
+                    'middle' => __('Center Middle', 'optimizer'), 
 					),
 					'settings'    => 'optimizer[page_header_align]'
 			) );
@@ -677,3 +747,54 @@ $wp_customize->add_setting('optimizer[cat_layout_id]', array(
 						'5' => array( 'url' => get_template_directory_uri().'/assets/images/layout5.png', 'label' => 'Layout 5' ),
 					),
 			) ));
+
+//Search LAYOUT SELECT
+$wp_customize->add_setting('optimizer[search_layout_id]', array(
+   'type' => 'option',
+     'default' => '1',
+   'sanitize_callback' => 'optimizer_sanitize_choices',
+) );
+
+      $wp_customize->add_control( new Optimizer_Control_Radio_Image( $wp_customize, 'search_layout_id', array(
+            'type' => 'radio-image',
+            'label' => __('Search Page layout *','optimizer'),
+            'section' => 'search_section',
+            'settings' => 'optimizer[search_layout_id]',
+            'choices' => array(
+               '1' => array( 'url' => get_template_directory_uri().'/assets/images/layout1.png', 'label' => 'Layout 1' ),
+               '2' => array( 'url' => get_template_directory_uri().'/assets/images/layout2.png', 'label' => 'Layout 2' ),
+               '3' => array( 'url' => get_template_directory_uri().'/assets/images/layout3.png', 'label' => 'Layout 3' ),
+               '4' => array( 'url' => get_template_directory_uri().'/assets/images/layout4.png', 'label' => 'Layout 4' ),
+               //'5' => array( 'url' => get_template_directory_uri().'/assets/images/layout5.png', 'label' => 'Layout 5' ),
+            ),
+      ) ));
+      //Hide Post Thumbnail
+      $wp_customize->add_setting('optimizer[hide_search_thumbnail]', array(
+         'type' => 'option',
+         'default' => '',
+         'sanitize_callback' => 'optimizer_sanitize_checkbox',
+      ) );
+      
+         $wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'hide_search_thumbnail', array(
+            'label' => __('Hide Post Thumbnail','optimizer'),
+            'section' => 'search_section',
+            'settings' => 'optimizer[hide_search_thumbnail]',
+            'active_callback' => 'optimizer_search_layout_callback',
+         )) );
+
+
+function optimizer_post_info_callback( $control ) {
+   $layout_setting = $control->manager->get_setting('optimizer[post_info_id]')->value();
+      
+   if ( $layout_setting == '1' ) return true;
+      
+   return false;
+}
+
+function optimizer_search_layout_callback( $control ) {
+   $layout_setting = $control->manager->get_setting('optimizer[search_layout_id]')->value();
+      
+   if ( $layout_setting == '2' || $layout_setting == '3' || $layout_setting == '4' ) return true;
+      
+   return false;
+}

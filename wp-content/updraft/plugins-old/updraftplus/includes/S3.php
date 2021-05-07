@@ -55,7 +55,7 @@ class UpdraftPlus_S3 {
 	public $proxy = null;
 
 	// Added to cope with a particular situation where the user had no permission to check the bucket location, which necessitated using DNS-based endpoints.
-	public $use_dns_bucket_name = true;
+	public $use_dns_bucket_name = false;
 
 	public $useSSL = false;
 	public $useSSLValidation = true;
@@ -2313,7 +2313,7 @@ final class UpdraftPlus_S3Request {
 
 		// Parse body into XML
 		// The case in which there is not application/xml content-type header is to support a DreamObjects case seen, April 2018
-		if (false === $this->response->error && isset($this->response->body) && ((isset($this->response->headers['type']) && 'application/xml' == $this->response->headers['type']) || (!isset($this->response->headers['type']) && 0 === strpos($this->response->body, '<?xml')))) {
+		if (false === $this->response->error && isset($this->response->body) && ((isset($this->response->headers['type']) && false  !== strpos($this->response->headers['type'], 'application/xml')) || (!isset($this->response->headers['type']) && 0 === strpos($this->response->body, '<?xml')))) {
 			$this->response->body = simplexml_load_string($this->response->body);
 
 			// Grab S3 errors

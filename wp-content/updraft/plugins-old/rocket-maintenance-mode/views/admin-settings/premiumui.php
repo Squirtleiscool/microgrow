@@ -5,7 +5,6 @@ if (@$_GET['settings-updated'] == true) {
 ?>
 
 <div class='wrap'>
-
        <?php settings_errors(); ?>
 
        <form method="post" action="options.php" >
@@ -53,11 +52,6 @@ if (@$_GET['settings-updated'] == true) {
                     </div>
            </td>
           </tr>
-
-
-
-
-
           <tr>
         <th scope='row'><?php _e('Set Progress bar %');?></th>
         <td><label for='mmp_set_progress'>
@@ -88,21 +82,6 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-      <tr valign='top'>
-            <th scope='row'><?php _e('Show Subscribe Form ');?></th>
-            <td>
-               <div class="onoffswitch">
-                     <input type="checkbox" name="mmp_on_off_subscribe" class="onoffswitch-checkbox"  id="myonoffswitch9" value='1'<?php checked(1, get_option('mmp_on_off_subscribe')); ?> />
-                     <label class="onoffswitch-label" for="myonoffswitch9">
-                     <span class="onoffswitch-inner"></span>
-                     <span class="onoffswitch-switch"></span>
-                     </label>
-                    </div>
-
-           </td>
-          </tr>
-
  </table>
 
 </div>
@@ -172,15 +151,7 @@ if (@$_GET['settings-updated'] == true) {
 
 
 
-       <tr valign="top">
-             <th scope="row"><?php _e( 'Analytics Code') ?></th>
-             <td><label for="mmp_analytics">
-             <textarea disabled cols="50" rows="2" id="mmp_analytics"  name="mmp_analytics"  ><?php echo get_option( 'mmp_analytics' ); ?></textarea>
-             <p class='description'> <?php _e('Google Analytics or similar tracking code.' );?></p>
-             <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('analytics', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-          </label>
-        </td>
-      </tr>
+
 
 
 </table>
@@ -193,6 +164,20 @@ if (@$_GET['settings-updated'] == true) {
          <div id="hed3"><h3><?php _e('Email Form ')?></h3><span class="heading_save_btn">
           <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ); ?>" />
           </span></div>
+          <tr valign='top'>
+            <th scope='row'><?php _e('Show Subscribe Form ');?></th>
+            <td>
+               <div class="onoffswitch">
+                     <input type="checkbox" name="mmp_on_off_subscribe" class="onoffswitch-checkbox"  id="myonoffswitch9" value='1'<?php checked(1, get_option('mmp_on_off_subscribe')); ?> />
+                     <label class="onoffswitch-label" for="myonoffswitch9">
+                     <span class="onoffswitch-inner"></span>
+                     <span class="onoffswitch-switch"></span>
+                     </label>
+                    </div>
+
+           </td>
+          </tr>
+
       <tr>
         <th scope='row'><?php _e('MailChimp API');?></th>
         <td><label for='mmp_fb_page'>
@@ -374,8 +359,6 @@ if (@$_GET['settings-updated'] == true) {
             <div id="hed3"><h3><?php _e('Design')?></h3><span class="heading_save_btn">
           <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ); ?>" />
           </span></div>
-
-
          <tr>
         <th scope='row'><?php _e('Background Color');?></th>
         <td><label for='mmp_bgcolor'>
@@ -384,8 +367,6 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-
       <tr>
         <th scope='row'><?php _e('Headline Color');?></th>
         <td><label for='mmp_headline_color'>
@@ -394,8 +375,6 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-
       <tr>
         <th scope='row'><?php _e('Text Color');?></th>
         <td><label for='mmp_text_color'>
@@ -404,8 +383,6 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-
       <tr>
         <th scope='row'><?php _e('Links Color');?></th>
         <td><label for='mmp_links_color'>
@@ -414,8 +391,6 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-
       <tr>
         <th scope='row'><?php _e('Links Hover Color');?></th>
         <td><label for='mmp_links_hover_color'>
@@ -424,60 +399,17 @@ if (@$_GET['settings-updated'] == true) {
         </label>
         </td>
       </tr>
-
-      <tr valign="top">
-        <th scope="row"><?php _e('Background Video URL'); ?></th>
-        <td><label for="mmp_background_video">
-          <input id="video_location" type="text" name="mmp_background_video" value="" size="50" disabled />
-          <p class='description'><?php _e('Select Background Video from YouTube or any other video hosting service.') ;?></p>
-          <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('bg-video', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-         </label>
-       </td>
-        </tr>
-
-      <tr valign="top">
-        <th scope="row"><?php _e('Background Image'); ?></th>
-        <td><label for="mmp_background_image">
-          <input id="image_location" type="text" name="mmp_background_image" value="<?php echo get_option('mmp_background_image') ?>" size="50" disabled />
-                    <input class="onetarek-upload-button button" type="button" value="Upload Image" disabled />
-          <p class='description'><?php _e('Upload or Select Site Background Image') ;?></p>
-          <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('bg-image', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-         </label>
-       </td>
-        </tr>
-
-
-        <tr valign='top'>
-            <th scope='row'><?php _e('Responsive Background ');?></th>
-            <td>
-               <div class="onoffswitch">
-                     <input type="checkbox" name="mmp_res_bg" class="onoffswitch-checkbox"  id="myonoffswitch1" value='1'<?php checked(1, get_option('mmp_res_bg')); ?> disabled />
-                     <label class="onoffswitch-label" for="myonoffswitch1">
-                     <span class="onoffswitch-inner"></span>
-                     <span class="onoffswitch-switch"></span>
-                     </label>
-                    </div>
-                    <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('responsive-bg', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-
-           </td>
-          </tr>
-
-
-
-          <th scope='row'><?php _e('Font Family For Text');?></th>
+      <th scope='row'><?php _e('Font Family For Text');?></th>
         <td><label for='mmp_fft'>
-            <input id="font" type="text" name="" value="<?php echo get_option( 'mmp_fft' ); ?>" />
+            <input id="font" type="text" name="mmp_fft" value="<?php echo get_option( 'mmp_fft' ); ?>" />
 
           </label>
         </td>
       </tr>
-
-
-
       <tr>
         <th scope='row'><?php _e('Font Family For Header Text');?></th>
         <td><label for='mmp_ffht'>
-          <input id="font1" name="" type="text" value="<?php echo get_option( 'mmp_ffht' ); ?>" />
+          <input id="font1" name="mmp_ffht" type="text" value="<?php echo get_option( 'mmp_ffht' ); ?>" />
 
         </label>
         </td>
@@ -486,50 +418,13 @@ if (@$_GET['settings-updated'] == true) {
       <tr valign="top">
              <th scope="row"><?php _e( 'Custom CSS') ?></th>
              <td><label for="mmp_custom_css">
-             <textarea cols="80" rows="7" id="mmp_custom_css"  name="mmp_custom_css"  disabled ><?php echo get_option( 'mmp_custom_css' ); ?></textarea>
-             <p class='description'> <?php _e('Add styling inside this text area.' );?></p>
-             <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('custom-css', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
+             <textarea cols="80" rows="7" id="mmp_custom_css"  name="mmp_custom_css" ><?php echo get_option( 'mmp_custom_css' ); ?></textarea>
           </label>
         </td>
       </tr>
 
 </table>
 </div>
-
-
-<div id="accordion-7" class="accordion tab-script-settings">
-        <table class="form-table">
-
-            <div id="hed3"><h3><?php _e('Scripts')?></h3><span class="heading_save_btn">
-          <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ); ?>" />
-          </span></div>
-
-
-          <tr valign="top">
-             <th scope="row"><?php _e( 'Header Script') ?></th>
-             <td><label for="mmp_custom_header_script">
-             <textarea disabled cols="50" rows="2" id="mmp_custom_header_script"  name="mmp_custom_header_script"  ><?php echo get_option( 'mmp_custom_header_script' ); ?></textarea>
-             <p class='description'> <?php _e('Add header script in this text area.' );?></p>
-             <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('header-script', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-          </label>
-        </td>
-      </tr>
-
-
-       <tr valign="top">
-             <th scope="row"><?php _e( 'Footer Script') ?></th>
-             <td><label for="mmp_custom_footrt_script">
-             <textarea disabled cols="50" rows="2" id="mmp_custom_footrt_script"  name="mmp_custom_footrt_script"  ><?php echo get_option( 'mmp_custom_footrt_script' ); ?></textarea>
-             <p class='description'> <?php _e('Add footer script in this text area.' );?></p>
-             <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('footer-script', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-          </label>
-        </td>
-      </tr>
-
-
-      </table>
-</div>
-
 <div id="accordion-8" class="accordion tab-social-settings">
      <table class="form-table">
 
@@ -655,88 +550,11 @@ if (@$_GET['settings-updated'] == true) {
     </table>
 </div>
 
-<div id="accordion-9" class="accordion tab-advanced-settings">
-    <table class="form-table">
-
-            <div id="hed3"><h3><?php _e('Advanced Settings')?></h3></div>
-
-
-             </tr><tr valign='top'>
-            <th scope='row'>Tell Google Site is Under Maintenance</th>
-            <td>
-               <div class="onoffswitch">
-                     <input disabled type="checkbox"  class="onoffswitch-checkbox"  id="myonoffswitch10" value='1'<?php checked(1, get_option('mmp_http_503')); ?> />
-                     <label class="onoffswitch-label" for="myonoffswitch10">
-                     <span class="onoffswitch-inner"></span>
-                     <span class="onoffswitch-switch"></span>
-                     </label>
-                    </div>
-                    <p class="description">In order not to lose your ranking Google has to know the site is under maintenance via a 503 header.</p>
-                    <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('503-header', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-           </td>
-          </tr>
-
-
-           </tr><tr valign='top'>
-            <th scope='row'>Enable Secret Access Link</th>
-            <td>
-               <div class="onoffswitch">
-                     <input disabled type="checkbox"  class="onoffswitch-checkbox"  id="myonoffswitch11" value='1' />
-                     <label class="onoffswitch-label" for="myonoffswitch11">
-                     <span class="onoffswitch-inner"></span>
-                     <span class="onoffswitch-switch"></span>
-                     </label>
-                </div>
-                <p class="description">Get a secret link so clients &amp; friends can preview the site while maintenance mode is enabled.</p>
-                <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('secret-link', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-           </td>
-          </tr>
-
-          <tr valign='top'>
-
-            <th scope='row'>Disable Maintenance Mode for User Roles</th>
-
-            <td>
-
-              <?php
-
-              $activeroles = get_option('mmp_userroles' );
-
-              if ( ! is_array( $activeroles )  )
-                $activeroles = array('administrator');
-
-
-              global $wp_roles;
-
-              if ( ! isset( $wp_roles ) )
-                $wp_roles = new WP_Roles();
-                $roles = $wp_roles->get_names();
-
-                foreach ($roles as $role_value => $role_name) {
-
-                    if ( in_array( $role_value, $activeroles) )
-                      echo '<p><input disabled checked  type="checkbox" value="' . $role_value . '">'.$role_name.'</p>';
-                    else
-                      echo '<p><input disabled  type="checkbox" value="' . $role_value . '">'.$role_name.'</p>';
-
-
-                  }
-
-              ?>
-              <p class="description">This is a PRO feature. See <a href="<?php echo wpmmp_generate_web_link('user-roles', '/', array('coupon' => 'welcome')); ?>" target="_blank">everything PRO offers &amp; get 25% OFF</a>.</p>
-            </td>
-
-          </tr>
-
-
-
-    </table>
-</div>
 
 
       <p class="submit">
       <input type="submit" class="button-primary" value="<?php _e( 'Save Changes' ); ?>" />
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button button-secondary big" href="<?php echo get_home_url() ?>?wpmmp-mode=enabled&nonce=<?php echo wp_create_nonce( 'wpmmp-preview-nonce' ); ?>" target="_blank">Preview Page (please save first)</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button button-secondary big" href="<?php echo get_home_url() ?>?wpmmp-mode=enabled&nonce=<?php echo wp_create_nonce( 'wpmmp-preview-nonce' ); ?>" target="_blank" data-toggle="tooltip" data-placement="right" title="Please Save First!">Preview Page</a>
       </p>
 
       <div id="notificationx-upsell-dialog" style="display: none;" title="NotificationX"><span class="ui-helper-hidden-accessible"><input type="text"/></span>
@@ -752,26 +570,16 @@ if (@$_GET['settings-updated'] == true) {
       </div>
       </div>
 
-    <?php if (!wpmmp_is_notificationx_really_setup_and_active()) { ?>
-        <div id="notificationx-popup" style="display: none;">
-            <div class="notificationx-popup-icon"><img alt="Notification X" src="<?php echo WPMMP_PLUGIN_URL; ?>'/images/nx-icon.png' . '"></div>
-            <div class="notificationx-popup-text">435 people rated <br />
-                <div class="notificationx-popup-title">Notification X</div>
-                <div class="notificationx-popup-stars"><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span><span class="dashicons dashicons-star-filled"></span></div>
-            </div>
-            <div class="notitificationx-popup-desc">Put a notification like this on your page to instantly influence your visitors</div>
-            <div class="notificationx-popup-close"><span title="Close" class="dashicons dashicons-no"></span></div>
-        </div>
-    <?php } ?>
+   
 
 </form>
 
 <form id="reset" method="post" action="">
- <p class="submit">
- <input name="reset" class="button button-secondary" type="submit" value="Reset to default settings">&nbsp;&nbsp;&nbsp;&nbsp;
- <a href="https://wordpress.org/support/plugin/rocket-maintenance-mode/reviews/#new-post" target="_blank" class="button-secondary button">Like the plugin? Rate it ★★★★★</a>
- <input type="hidden" value="reset" />
- </p>
+  <p class="submit">
+  <input name="reset" class="button button-secondary" type="submit" value="Reset to default settings">&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://wordpress.org/support/plugin/rocket-maintenance-mode/reviews/#new-post" target="_blank" class="button-secondary button">Like the plugin? Rate it ★★★★★</a>
+  <input type="hidden" value="reset" />
+  </p>
 </form>
 
 </div> <!-- wraper-->

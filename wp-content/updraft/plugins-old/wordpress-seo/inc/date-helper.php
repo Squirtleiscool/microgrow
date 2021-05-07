@@ -21,13 +21,19 @@ class WPSEO_Date_Helper {
 	 * @return string The formatted date.
 	 */
 	public function format( $date, $format = DATE_W3C ) {
-		$immutable_date = date_create_immutable_from_format( 'Y-m-d H:i:s', $date, new DateTimeZone( 'UTC' ) );
+		return YoastSEO()->helpers->date->format( $date, $format );
+	}
 
-		if ( ! $immutable_date ) {
-			return $date;
-		}
-
-		return $immutable_date->format( $format );
+	/**
+	 * Formats the given timestamp to the needed format.
+	 *
+	 * @param int    $timestamp The timestamp to use for the formatting.
+	 * @param string $format    The format that the passed date should be in.
+	 *
+	 * @return string The formatted date.
+	 */
+	public function format_timestamp( $timestamp, $format = DATE_W3C ) {
+		return YoastSEO()->helpers->date->format_timestamp( $timestamp, $format );
 	}
 
 	/**
@@ -39,6 +45,17 @@ class WPSEO_Date_Helper {
 	 * @return string The formatted and translated date.
 	 */
 	public function format_translated( $date, $format = DATE_W3C ) {
-		return date_i18n( $format, $this->format( $date, 'U' ) );
+		return YoastSEO()->helpers->date->format_translated( $date, $format );
+	}
+
+	/**
+	 * Check if a string is a valid datetime.
+	 *
+	 * @param string $datetime String input to check as valid input for DateTime class.
+	 *
+	 * @return bool True when datatime is valid.
+	 */
+	public function is_valid_datetime( $datetime ) {
+		return YoastSEO()->helpers->date->is_valid_datetime( $datetime );
 	}
 }

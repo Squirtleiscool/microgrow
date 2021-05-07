@@ -127,5 +127,10 @@ global $optimizer;?>
         <!--PAGINATION END-->
         
         <?php wp_reset_postdata(); ?>
+
+         <!--SIDEBAR START-->    
+                 <?php //get_sidebar();?>
+         <!--SIDEBAR END--> 
+         
        </div><!--center class end-->
     </div><!--lay1 class end-->

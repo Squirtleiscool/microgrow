@@ -30,11 +30,14 @@ global $optimizer;?>
                 'ignore_sticky_posts'=>1
             );
         
-        $my_query = new wp_query($args);
-            if( $my_query->have_posts() ) {
+        $related_query = new wp_query($args);
+        $totalpost = $related_query->found_posts; 
+
+        echo '<div class="ast_related__wrap ast_related__wrap--total-'.$totalpost.'">';
+            if( $related_query->have_posts() ) {
                 echo '<div class="panel-container rel_eq">';
-                while ($my_query->have_posts()) {
-                    $my_query->the_post();
+                while ($related_query->have_posts()) {
+                    $related_query->the_post();
         
                 ?>
         <div id="rel_<?php the_id(); ?>" class="rel_tab">
@@ -77,6 +80,7 @@ global $optimizer;?>
                 }
             echo '</div>';
             }
+            echo '</div>';
         }
         $post = $backup;
         wp_reset_postdata(); 

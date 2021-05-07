@@ -48,7 +48,7 @@ class Optimizer_Controls_Gallery_Control extends WP_Customize_Control {
             <input <?php $this->link(); ?> type="hidden" id="<?php echo $id; ?>" value="<?php $this->value(); ?>" />
         </label>
         <script type="text/javascript">
-			jQuery(document).ready(function($){
+			jQuery(function($) {
 				 var custom_uploader;
 				 $("#<?php echo $id; ?>_add_slides").click(function(e) {
 					e.preventDefault();
@@ -165,13 +165,13 @@ class Optimizer_Controls_Gallery_Control extends WP_Customize_Control {
 		.gallery-window .media-frame-title h1 { width: 0px; overflow: hidden; color: transparent;}
 		.gallery-window .media-frame-title h1:before {  content: "<?php _e('Slider Settings','optimizer'); ?>";  color: #333;  width: 170px;  position: absolute;}
 		.gallery-window .media-frame:not(.hide-menu) .media-frame-title .dashicons {  color: #21759b;  position: absolute;top: 4px; left: 125px;}
-		.gallery-window .media-frame-menu .media-menu-item, .gallery-window .media-frame-menu .media-menu-item.active, .gallery-window .media-frame-menu .media-menu-item:hover { color: transparent!important;}
-		.gallery-window .media-frame-menu .media-menu a.active {background-color: #E7E7ED;}
+		/* .gallery-window .media-frame-menu .media-menu-item, .gallery-window .media-frame-menu .media-menu-item.active, .gallery-window .media-frame-menu .media-menu-item:hover { color: transparent!important;} */
+		/* .gallery-window .media-frame-menu .media-menu a.active {background-color: #E7E7ED;}
 		.gallery-window .media-frame-menu .media-menu a:nth-child(1):before { content: "<?php _e('< Cancel Slider','optimizer'); ?>"; color: #888; width: 120px;}
 		.gallery-window .media-frame-menu .media-menu a:nth-child(3):before { content: "<?php _e('Edit Slider','optimizer'); ?>"; color: #888; width: 120px;}
-		.gallery-window .media-frame-menu .media-menu a:nth-child(4):before { content: "<?php _e('Add to Slider','optimizer'); ?>"; color: #888; width: 120px;}
-		.gallery-window .media-button-insert{  text-indent: -9999px;  line-height: 0; overflow: hidden;}
-		.gallery-window .media-button-insert:before { content: "<?php _e('Update','optimizer'); ?>";  text-indent: 0; line-height: 27px; display: block;}
+		.gallery-window .media-frame-menu .media-menu a:nth-child(4):before { content: "<?php _e('Add to Slider','optimizer'); ?>"; color: #888; width: 120px;} */
+		/* .gallery-window .media-button-insert{  text-indent: -9999px;  line-height: 0; overflow: hidden;} */
+		/* .gallery-window .media-button-insert:before { content: "<?php _e('Update','optimizer'); ?>";  text-indent: 0; line-height: 27px; display: block;} */
         </style>
     <?php }
 }

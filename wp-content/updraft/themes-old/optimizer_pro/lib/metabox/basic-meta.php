@@ -1,16 +1,21 @@
 <?php
 /*IMPORTANT: get_post_meta is used instead of wp-alchemy $meta through-out this file because of redux conversion.*/ 
 $optimizer = optimizer_option_defaults();
+$widgetized = get_post_meta( $post->ID, 'widgetized', true );
+$screen = get_current_screen(); 
 ?>
 <div id="metatabs-container">
         <ul class="meta_nav">
-        	<?php  $screen = get_current_screen();
+        	<?php  
 			if ( $screen->parent_base == 'edit' && $screen->id == 'page' ){ ?>
-			<li class="tabcurrent"><a href="#meta_pageheader"><?php _e('Custom Page Header', 'optimizer'); ?></a></li>
-            <?php } ?>
+			   <li class="tabcurrent"><a href="#meta_pageheader"><?php _e('Custom Page Header', 'optimizer'); ?></a></li>
+         <?php } ?>
 			<li<?php if( $screen->parent_base == 'edit' && $screen->id == 'post' ){ ?> class="tabcurrent"<?php } ?>><a href="#meta_singlebg"><?php _e('Custom Background', 'optimizer'); ?></a></li>
 			<li><a href="#meta_seo"><?php _e('SEO Settings', 'optimizer'); ?></a></li>
-            <li><a href="#meta_misc"><?php _e('Miscellaneous', 'optimizer'); ?></a></li>
+         <li><a href="#meta_misc"><?php _e('Miscellaneous', 'optimizer'); ?></a></li>
+         <?php if ( $widgetized && ( $screen->parent_base == 'edit' && $screen->id == 'page') ){ ?>
+			   <li><a href="#widget_content_meta"><?php _e('Widget Content', 'optimizer'); ?></a></li>
+         <?php } ?>
         </ul>
 
 
@@ -71,10 +76,11 @@ $optimizer = optimizer_option_defaults();
                             <label><?php _e( 'Page Header Text Alignment', 'optimizer' ); ?></label>
                             <?php $mb->the_field('page_head_align'); ?>
                             <select name="<?php $mb->the_name(); ?>">
-                                <option value="center"<?php if ($mb->get_the_value() == '_parent') echo ' selected="selected"'; ?>><?php _e('Center', 'optimizer'); ?></option>
+                                 <option value=""<?php if ($mb->get_the_value() == '') echo ' selected="selected"'; ?>><?php _e('Default', 'optimizer'); ?></option>
                                 <option value="left"<?php if ($mb->get_the_value() == 'left') echo ' selected="selected"'; ?>><?php _e('Left', 'optimizer'); ?></option>
-                                <option value="right"<?php if ($mb->get_the_value() == '_blank') echo ' selected="selected"'; ?>><?php _e('Right', 'optimizer'); ?></option>
-                                
+                                <option value="right"<?php if ($mb->get_the_value() == 'right') echo ' selected="selected"'; ?>><?php _e('Right', 'optimizer'); ?></option>
+                                <option value="center"<?php if ($mb->get_the_value() == 'center') echo ' selected="selected"'; ?>><?php _e('Center', 'optimizer'); ?></option>
+                                <option value="middle"<?php if ($mb->get_the_value() == 'middle') echo ' selected="selected"'; ?>><?php _e('Center Middle', 'optimizer'); ?></option>
                             </select>
                         </p>
                             
@@ -177,7 +183,12 @@ $optimizer = optimizer_option_defaults();
                      <input type="checkbox" name="<?php $mb->the_name(); ?>" value="1"<?php if ($mb->get_the_value()) echo ' checked="checked"'; ?>/>
                      <span><?php _e( 'Force Hide Header for this page', 'optimizer' ); ?></span>
                     </p>
-                    
+                    <p>
+                     <label><?php _e( 'Hide Header Menu', 'optimizer' ); ?></label>
+                     <?php $mb->the_field('hide_header_menu'); ?>
+                     <input type="checkbox" name="<?php $mb->the_name(); ?>" value="1"<?php if ($mb->get_the_value()) echo ' checked="checked"'; ?>/>
+                     <span><?php _e( 'Force Hide Header Menu for this page', 'optimizer' ); ?></span>
+                    </p>
                  <?php } ?>
                 
                     <p>
@@ -187,10 +198,28 @@ $optimizer = optimizer_option_defaults();
                      <span><?php _e( 'Force Hide Share buttons for this post', 'optimizer' ); ?></span>
                     </p>
                  
-                
+                    <p>
+                        <label><?php _e( 'Custom CSS Body Classes', 'optimizer' ); ?></label>
+                        <?php $mb->the_field('custom_classes'); ?>
+                        <input type="text" name="<?php $mb->the_name(); ?>" value="<?php $mb->the_value(); ?>" placeholder=" class1, class2, class3" />
+                        <span><?php _e( 'Limit: 55 characters', 'optimizer' ); ?></span>
+                    </p>
                 </div>
-                
-                
+
+
+         <?php if( $screen->parent_base == 'edit' && $screen->id == 'page' ){ ?>
+               <?php if($widgetized){  ?>
+                  <div class="optimizer_meta_control" id="widget_content_meta">
+                     <h4><?php _e('Optimizer Widget Content', 'optimizer'); ?></h4>
+                     <p><?php _e('This is a text representation of your Widgetized Page. The widget text content is displyed here so you can have quick view of your page content. If you are using Yoast SEO or RankMath, focus keyword is automatically highlighted.', 'optimizer'); ?></p>
+                     <div id="widget_content_meta_html"></div>
+                  </div>
+               <?php } ?>
+         <?php } ?>    
+
+
         </div>
+
+
 
 </div><!--metatabs_container END-->

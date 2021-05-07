@@ -19,6 +19,7 @@ function optimizer_customizer_editor() {
 }
 add_action( 'widgets_admin_page', 'optimizer_customizer_editor', 100 );
 add_action( 'customize_controls_print_footer_scripts', 'optimizer_customizer_editor', 1 );
+//add_action( 'edit_form_after_editor', 'optimizer_customizer_editor' );
 
 //SiteOrigin Builder
 if( function_exists('siteorigin_panels_render') ) {
@@ -117,25 +118,23 @@ function optimizer_customizer_stuff() {
 
 		<!--Preset Template Window-->
 			<?php 
-				$preloader =  get_template_directory_uri().'/assets/images/preloader.png';
-                $presets = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27');
-                foreach ($presets as $preset) { ?>
-                
-                    <form action="" method="post" enctype="multipart/form-data"  onsubmit="return confirm('<?php _e('Are you sure you want to Import this Preset? Your current theme settings will be replaced with this preset and new widgets will be added below your current widgets.', 'optimizer'); ?>');">
-                    <div class="preset_p">
-                    
-                 <img class="preset_thumb" src="<?php echo $preloader; ?>" data-src="<?php echo get_template_directory_uri(); ?>/assets/images/presets/preset<?php echo $preset;?>.jpg" title="Preset <?php echo $preset;?>" />
-                    <div class="preset_buttons_wrap">
-                    	<?php if($preset < 13){ $demourl = 'optimizer.layerthemes.com'; }else{$demourl = 'demo.optimizerwp.com';}?>
-                        <a href="http://<?php echo $demourl; ?>/demo<?php echo $preset;?>/" target="_blank" class="preset_demo"><i class="fa-eye"></i> <?php _e('Demo','optimizer'); ?></a>
-                        <input type="submit" name="import_preset<?php echo $preset; ?>" class="import_preset" value="<?php _e('+ Import Preset', 'optimizer'); ?> <?php echo $preset; ?>" />
-                    </div>
-                    </div>
-                    <?php wp_nonce_field('optimizer_restorePreset'.$preset, 'optimizer_restorePreset'.$preset); ?>
-                    </form> 
-                
-                
-            <?php } ?>
+            $preloader =  get_template_directory_uri().'/assets/images/preloader.png';
+            $presets = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27');
+            foreach ($presets as $preset) { ?>
+               
+                  <form action="" method="post" enctype="multipart/form-data"  onsubmit="return confirm('<?php _e('Are you sure you want to Import this Preset? Your current theme settings will be replaced with this preset and new widgets will be added below your current widgets.', 'optimizer'); ?>');">
+                  <div class="preset_p">
+                  
+               <img class="preset_thumb" src="<?php echo $preloader; ?>" data-src="<?php echo get_template_directory_uri(); ?>/assets/images/presets/preset<?php echo $preset;?>.jpg" title="Preset <?php echo $preset;?>" />
+                  <div class="preset_buttons_wrap">
+                  <?php if($preset < 13){ $demourl = 'optimizer.layerthemes.com'; }else{$demourl = 'demo.optimizerwp.com';}?>
+                     <a href="http://<?php echo $demourl; ?>/demo<?php echo $preset;?>/" target="_blank" class="preset_demo"><i class="fa-eye"></i> <?php _e('Demo','optimizer'); ?></a>
+                     <input type="submit" name="import_preset<?php echo $preset; ?>" class="import_preset" value="<?php _e('+ Import Preset', 'optimizer'); ?> <?php echo $preset; ?>" />
+                  </div>
+                  </div>
+                  <?php wp_nonce_field('optimizer_restorePreset'.$preset, 'optimizer_restorePreset'.$preset); ?>
+                  </form> 
+         <?php } ?>
         <!--Preset Template Window END-->
         
         
@@ -263,23 +262,62 @@ function optimizer_customizer_footer() {
                                 
                                 <!--Custom Preset Window-->
                                 <div class="custom_preset_window" style="display:none;" data-pageid="<?php echo get_the_ID(); ?>">
-                                    <?php 
-                                        $optimizerpresets = get_option('optimizer_presets');
-										if(!empty($optimizerpresets)){ 
-                                        	$cpresets = array_keys($optimizerpresets);
-                                        	foreach ($cpresets as $cpreset) { ?>
-                                                <div class="cpreset_p" data-presetname="<?php echo $cpreset;?>">
-                                                    <div class="preset_holder" title="Preset <?php echo $cpreset;?>"><i class="fa fa-star"></i> <?php echo $cpreset;?></div>
-                                                    <span class="cpreset_import"><i class="fa-arrow-down"></i> <?php _e('Import Preset', 'optimizer'); ?></span>
-                                                    <span class="cpreset_remove"><i class="fa-trash"></i> <?php _e('Remove','optimizer'); ?></span>
+                                 
+                                 <div class="custom_preset_window__navs">
+                                       <ul>
+                                          <li data-tab="custom" class="preset_nav_active"><?php _e('Your Presets','optimizer'); ?></li>
+                                          <li data-tab="presets"><?php _e('Optimizer Presets','optimizer'); ?></li>
+                                          <li data-tab="import"><?php _e('Import','optimizer'); ?></li>
+                                       </ul>
+                                    </div>
+
+                                    <div class="custom_preset_window__tab custom_preset_window__tab--custom">
+                                       <div class="cpreset_p" data-presetname="optimizer_front_sidebar">
+                                             <div class="preset_holder" title="Current Frontpage Widgets"><i class="fa fa-star"></i> <?php _e('Your Frontpage Widgets','optimizer');?></div>
+                                             <span class="cpreset_import"><i class="fa-arrow-down"></i> <?php _e('Import Preset', 'optimizer'); ?></span>
+                                       </div>
+                                       <?php 
+                                             $optimizerpresets = get_option('optimizer_presets');
+                                             if(!empty($optimizerpresets)){ 
+                                                $cpresets = array_keys($optimizerpresets);
+                                                foreach ($cpresets as $cpreset) { ?>
+                                                      <div class="cpreset_p" data-presetname="<?php echo $cpreset;?>">
+                                                         <div class="preset_holder" title="Preset <?php echo $cpreset;?>"><i class="fa fa-star"></i> <?php echo $cpreset;?></div>
+                                                         <span class="cpreset_import"><i class="fa-arrow-down"></i> <?php _e('Import Preset', 'optimizer'); ?></span>
+                                                         <span class="cpreset_remove"><i class="fa-trash"></i> <?php _e('Remove','optimizer'); ?></span>
+                                                      </div>
+                                             <?php } ?>
+                                          <?php }else{ ?>
+                                             <p><?php _e('No Page Presets Found! Please add widgets to this page and save the widget settings as preset to use it on other page.','optimizer'); ?></p>
+                                          <?php } ?>
+                                    </div>
+                                    <div class="custom_preset_window__tab custom_preset_window__tab--presets" style="display:none;">
+                                       <?php 
+                                          $preloader =  get_template_directory_uri().'/assets/images/preloader.png';
+                                          $presets = array('1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27');
+                                          foreach ($presets as $preset) { ?>
+                                             <div class="preset_p">
+                                                <img class="preset_thumb" src="<?php echo $preloader; ?>" data-src="<?php echo get_template_directory_uri(); ?>/assets/images/presets/preset<?php echo $preset;?>.jpg" title="Preset <?php echo $preset;?>" />
+                                                <div class="preset_buttons_wrap" data-presetype="preset" data-presetid="<?php echo $preset;?>">
+                                                <?php if($preset < 13){ $demourl = 'optimizer.layerthemes.com'; }else{$demourl = 'demo.optimizerwp.com';}?>
+                                                   <a href="http://<?php echo $demourl; ?>/demo<?php echo $preset;?>/" target="_blank" class="preset_demo"><i class="fa-eye"></i> <?php _e('Demo','optimizer'); ?></a>
+                                                   <span class="cpreset_import"><i class="fa-arrow-down"></i> <?php _e('Import Preset', 'optimizer'); ?></span>
                                                 </div>
-                                        <?php } ?>
-                                    <?php }else{ ?>
-                                    	<p><?php _e('No Page Presets Found! Please add widgets to this page and save the widget settings as preset to use it on other page.','optimizer'); ?></p>
-                                    <?php } ?>
-                                    
+                                             </div>
+                                       <?php } ?>
+                                    </div>
+                                    <div class="custom_preset_window__tab custom_preset_window__tab--import" style="display:none;">
+                                          <form id="import_custom_widgets" method="post" enctype="multipart/form-data">
+                                             <?php _e('Select a .wie to upload:', 'optimizer'); ?>
+                                             <input type="file" name="customwiedata" id="customwiedata" accept=".wie">
+                                             <input type="submit" value="Import Widgets" name="submitwie" id="submitWie">
+                                          </form>
+                                       </div>
                                 </div>
                                 <!--Custom Preset Window END-->
+                            </div>
+                            <div class="preset_export">
+                                <a class="preset_export_trigger"><i class="fa-download"></i> <?php _e('Export Widgets','optimizer'); ?></a>
                             </div>
                         <!--Preset Controls END-->
                 
@@ -469,16 +507,23 @@ function optimizer_addSidebar() {
 //REMOVE SIDEBAR THROUGH CUSTOMIZER
 add_action( 'init', 'optimizer_removeSidebar' );
 function optimizer_removeSidebar() {
-	global $optimizer;
-	$currentsidebars = explode(',',$optimizer['custom_sidebar']);
-	$active_widgets = get_option( 'sidebars_widgets' );
+   global $optimizer;
 
     if(isset($_POST['remove_sidebar_name']) && isset($_POST['remove_sidebar_id']) && isset($_POST['delcustoms']) ) {
-		$sidebarname = rtrim($_POST['remove_sidebar_name']);
-		$sidebarid = $_POST['remove_sidebar_id'];
+
+      $currentsidebars = array();
+      $currentsidebarsRaw = explode(',',$optimizer['custom_sidebar']);
+   
+      foreach ($currentsidebarsRaw as $key => $value) {
+         $currentsidebars[] = html_entity_decode($value);
+      }
+   
+      $active_widgets = get_option( 'sidebars_widgets' );
+      
+		$sidebarname = rtrim(html_entity_decode($_POST['remove_sidebar_name']));
+      $sidebarid = $_POST['remove_sidebar_id'];
 		
 			if(!empty($optimizer['custom_sidebar']) && in_array($sidebarname, $currentsidebars)){  
-					error_log($optimizer['custom_sidebar']);
 					//REMOVE The sidebar from the Optimizer Option
 					$key = array_search ($sidebarname, $currentsidebars);
 					unset( $currentsidebars[$key] );
@@ -489,14 +534,12 @@ function optimizer_removeSidebar() {
 					//REMOVE The sidebar from the WordPress Sidebar List
 					unset($active_widgets[$sidebarid]);
 					update_option( 'sidebars_widgets', $active_widgets );
-			}
-			
-		
+         }
+         
 			$redirect = admin_url('/customize.php'); 
 			wp_redirect( $redirect);
     }
-}	
-
+}
 
 
 //IMPORT THEME OPTIONS

@@ -184,6 +184,12 @@ require(get_template_directory() . '/customizer/includes/helpers.php');
 			'description' => __( 'To view the live changes you make in this section, select "Category or Tag Page" from the Top bar dropdown list located at the top right corner of the screen.', 'optimizer' ),
         ) );
 
+        $wp_customize->add_section( 'search_section', array(
+         'title'       => __( 'Search Page', 'optimizer' ),
+         'priority'    => 10,
+         'panel'       => 'singlepages_panel',
+         'description' => __( 'To view the live changes you make in this section, select "Search Page" from the Top bar dropdown list located at the top right corner of the screen.', 'optimizer' ),
+     ) );
 		
         $wp_customize->add_section( 'footercolors_section', array(
             'title'       => __( 'Footer Style', 'optimizer' ),
@@ -320,7 +326,7 @@ function enqueue_customizer_scripts(){
 	wp_enqueue_script( 'jquery-ui-tooltip' );
 	wp_enqueue_script( 'hoverIntent' );
     wp_enqueue_style( 'optimizer-customizer-css', get_template_directory_uri().'/customizer/assets/customizer.css', 'customizer-css');
-	wp_enqueue_script('optimizer-customizer-js',get_template_directory_uri().'/customizer/assets/customizer.js', array('customize-controls'), true);
+	wp_enqueue_script('optimizer-customizer-js',get_template_directory_uri().'/customizer/assets/customizer.js', array('jquery','customize-controls'), true);
 	if(is_customize_preview()){
 		wp_enqueue_script('optimizer-widgetpresets-js',get_template_directory_uri().'/customizer/assets/widget_presets.js', array('customize-controls'), true);
 	}

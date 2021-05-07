@@ -702,7 +702,7 @@ tb_remove();
  
  
      // activate upload button
-    $('.magee-upload-button').live('click', function(e) {
+    $('.magee-upload-button').on('click', function(e) {
 	    e.preventDefault();
 
         upid = $(this).attr('data-upid');

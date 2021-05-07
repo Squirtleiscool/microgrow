@@ -52,12 +52,21 @@ class C_NextGen_Shortcode_Manager
 	 * Adds a shortcode
 	 * @param $name
 	 * @param $callback
+     * @param callable|null Parameters transformer
 	 */
-	static function add($name, $callback)
+	static function add($name, $callback, $transformer = NULL)
 	{
 		$manager = self::get_instance();
-		$manager->add_shortcode($name, $callback);
+		$manager->add_shortcode($name, $callback, $transformer);
 	}
+
+    /**
+     * @return string[]
+     */
+	public function get_shortcodes()
+    {
+        return $this->_shortcodes;
+    }
 
 	/**
 	 * Removes a previously added shortcode
@@ -92,7 +101,7 @@ class C_NextGen_Shortcode_Manager
 	function fix_nested_shortcodes($content)
 	{
 		// Try to find each registered shortcode in the content
-		foreach ($this->_shortcodes as $tag => $callback) {
+		foreach ($this->_shortcodes as $tag => $tag_details) {
 			$shortcode_start_tag = "[{$tag}";
 			$offset = 0;
 
@@ -185,32 +194,45 @@ class C_NextGen_Shortcode_Manager
 			}
 		}
 
-		if ($this->is_rest_request()) ob_end_clean();
+		if ($this->is_rest_request())
+        {
+            // Pre-generating displayed gallery cache by executing shortcodes in the REST API can prevent users
+            // from being able to add and save blocks with lots of images and no pagination (for example a very large
+            // basic slideshow or pro masonry / mosaic / tile display)
+            if (apply_filters('ngg_disable_shortcodes_in_request_api', FALSE))
+                return $content;
+            ob_start();
+        }
 
         return $content;
 	}
 
+    function render_legacy_shortcode($params, $inner_content)
+    {
+        return C_Displayed_Gallery_Renderer::get_instance()->display_images($params, $inner_content);
+    }
+
 	function execute_found_shortcode($found_id)
 	{
-		$retval = '';
-		$details 	= $this->_found[$found_id];
-		if (isset($this->_shortcodes[$details['shortcode']])) {
-			$retval = call_user_func($this->_shortcodes[$details['shortcode']], $details['params'], $details['inner_content']);
-		}
-		else $retval =  "Invalid shortcode";
-
-		return $retval;
+		return isset($this->_found[$found_id])
+			? $this->render_shortcode(
+				$this->_found[$found_id]['shortcode'],
+				$this->_found[$found_id]['params'],
+				$this->_found[$found_id]['inner_content']
+			)
+			: "Invalid shortcode";
 	}
 
 	/**
 	 * Adds a shortcode
 	 * @param $name
 	 * @param $callback
+     * @param callable|null $transformer
 	 */
-	function add_shortcode($name, $callback)
+	function add_shortcode($name, $callback, $transformer = NULL)
 	{
-		$this->_shortcodes[$name] = $callback;
-		add_shortcode($name, array(&$this, $name.'____wrapper'));
+		$this->_shortcodes[$name] = ['callback' => $callback, 'transformer' => $transformer];
+		add_shortcode($name, array($this, $name . '____wrapper'));
 	}
 
 	/**
@@ -240,23 +262,42 @@ class C_NextGen_Shortcode_Manager
 
 	function __call($method, $args)
 	{
-		$retval = '';
 		$params = array_shift($args);
-		$retval = $inner_content = array_shift($args);
+		$inner_content = array_shift($args);
 		$parts = explode('____', $method);
 		$shortcode = array_shift($parts);
-		if (doing_filter('the_content') && !doing_filter('widget_text')) {
+
+		if (doing_filter('the_content') && !doing_filter('widget_text'))
+		{
 			$retval =  $this->replace_with_placeholder($shortcode, $params, $inner_content);
 		}
-
-		// For widgets, don't use placeholders
 		else {
-			$callback = $this->_shortcodes[$shortcode];
-			$retval = call_user_func($callback, $params, $inner_content);
+            // For widgets, don't use placeholders
+			return $this->render_shortcode($shortcode, $params, $inner_content);
 		}
 
 		return $retval;
 
+	}
+
+	function render_shortcode($shortcode, $params=[], $inner_content='')
+	{
+		if (isset($this->_shortcodes[$shortcode]))
+		{
+		    $shortcode = $this->_shortcodes[$shortcode];
+
+		    if (is_callable($shortcode['transformer']))
+		        $params = call_user_func($shortcode['transformer'], $params);
+
+		    $method = (is_null($shortcode['callback']) && is_callable($shortcode['transformer'])) ? [$this, 'render_legacy_shortcode'] : $shortcode['callback'];
+
+			$retval = call_user_func($method, $params, $inner_content);
+		}
+		else {
+		    $retval = "Invalid shortcode";
+        }
+
+		return $retval;
 	}
 
 	function replace_with_placeholder($shortcode, $params=array(), $inner_content='')

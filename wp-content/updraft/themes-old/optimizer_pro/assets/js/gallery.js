@@ -1,13 +1,8 @@
 // Gallery plugin by Layerthemes
-jQuery(window).ready(function() {
+jQuery(function() {
 //======================Gallery=================================//
-jQuery('.gallery').each(function() {
-	if(jQuery(this).attr('data-gallery-style') == ''){
-		jQuery(this).attr('data-gallery-style', '0');
-	}
-});
 //Check if image links to attachment
-jQuery(".gallery[data-gallery-style='0'] .gallery-item a[href$='.jpg'], .gallery[data-gallery-style='0'] .gallery-item a[href$='.jpeg'], .gallery[data-gallery-style='0'] .gallery-item a[href$='.png'], .gallery[data-gallery-style='0'] .gallery-item a[href$='.gif']").each(function() {
+jQuery(".optimizergallery .blocks-gallery-item a[href$='.jpg'], .optimizergallery .blocks-gallery-item a[href$='.jpeg'], .optimizergallery .blocks-gallery-item a[href$='.png'], .optimizergallery .blocks-gallery-item a[href$='.gif']").each(function() {
     jQuery(this).addClass('gallery_linked_file');
 });
 jQuery('.gallery[data-gallery-style="0"]').each(function() {
@@ -15,11 +10,11 @@ jQuery('.gallery[data-gallery-style="0"]').each(function() {
 });
 
 //remove any <br> inside the gallery markup
-jQuery(".gallery[data-gallery-style='0'] br").remove();
+jQuery(".optimizergallery br").remove();
 //Empty Caption FIX
-jQuery('.gallery[data-gallery-style="0"] .gallery-item:not(:has(.gallery-caption))').prepend('<dd class="wp-caption-text gallery-caption"></dd>');
-//wrap all .gallery-item with .gall_dash /  For making the thumbnail navigation area
-jQuery(".gallery[data-gallery-style='0']").each(function (){jQuery(this).find(".gallery-item").wrapAll('<div class="gall_dash" />');});
+jQuery('.optimizergallery .blocks-gallery-item:not(:has(.gallery-caption))').prepend('<dd class="wp-caption-text gallery-caption"></dd>');
+//wrap all .blocks-gallery-item with .gall_dash /  For making the thumbnail navigation area
+jQuery(".optimizergallery").each(function (){jQuery(this).find(".blocks-gallery-item").wrapAll('<div class="gall_dash" />');});
 
 jQuery('.gall_dash .hasimg').removeClass('hasimg');
 
@@ -32,22 +27,22 @@ jQuery('.gall_dash .hasimg').removeClass('hasimg');
     nav: 'thumbs'
   }
 //Prepend the big image area. and load the src image of the first thumbnail. The.ast_full is for fancybox integration.
-jQuery(".single_post .gallery[data-gallery-style='0']").prepend("<div class='ast_gall'><div class='fotorama' data-nav='thumbs' data-keyboard='true' data-allowfullscreen='true'></div></div>");
+jQuery(".single_post .optimizergallery").prepend("<div class='ast_gall'><div class='fotorama' data-nav='thumbs' data-keyboard='true' data-allowfullscreen='true'></div></div>");
 
 //==============REMAP AND APPEND THE MAIN IMAGES================
-jQuery('.gallery[data-gallery-style="0"]').each(function (){
-		var tn_array = jQuery(this).find(".gallery-item a").map(function() {
+jQuery('.optimizergallery').each(function (){
+		var tn_array = jQuery(this).find(".blocks-gallery-item a").map(function() {
 		  return jQuery(this).attr("href");
 		});
 		var tn_array_cap = jQuery(this).find(".gallery-caption").map(function() {
 				return jQuery(this).text();	
 		});
-		var tn_array_src = jQuery(this).find(".gallery-item img").map(function() {
+		var tn_array_src = jQuery(this).find(".blocks-gallery-item img").map(function() {
 		  return jQuery(this).attr("src");
 		});
-		var pageLimit= jQuery(this).find(".gall_dash img").size() - 1;
+		var pageLimit= jQuery(this).find(".gall_dash img").length - 1;
 		for (var i = 0; i <= pageLimit; i++) {
-			var article = jQuery(this).find(".gallery-item a");
+			var article = jQuery(this).find(".blocks-gallery-item a");
 				jQuery(article[i]).addClass("" + i + "");
 				jQuery(article[i]).attr('id' , "vis" + i + "");
 				jQuery(this).find('.fotorama').append("<img data-caption='"+tn_array_cap[i]+"' id='mainImage" + i + "' src='"+tn_array[i]+"'/>");

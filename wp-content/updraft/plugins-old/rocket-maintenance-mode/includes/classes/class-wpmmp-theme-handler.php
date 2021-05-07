@@ -22,8 +22,6 @@ class Wpmmp_Theme_Handler {
 
 	function __construct() {
 
-		$this->_hooks();
-
 		$this->_filters();
 
 		$this->hooks();
@@ -56,13 +54,6 @@ class Wpmmp_Theme_Handler {
             
             $this->theme_change();
         }
-
-	}
-
-	private function _hooks() {
-
-		add_action( 'wp_ajax_nopriv_wpmmp_c_soon_store_email', array( $this, 'store_email' ) );
-		add_action( 'wp_ajax_wpmmp_c_soon_store_email', array( $this, 'store_email' ) );
 
 	}
 
@@ -342,77 +333,6 @@ class Wpmmp_Theme_Handler {
 	function hook_to_head() {
 
 		include wpmmp_settings_part( 'add-hooktohead' );
-
-	}
-
-	function store_email() {
-
-		usleep( 500 );
-
-		error_reporting(0);
-
-		if ( ! wp_verify_nonce( $_POST['wpmmp_email_manager_nonce'],
-			'wpmmp_email_manager_nonce' ) ) {
-			$response = array(
-					'valid' => 0,
-					'message' => 'Error ' . ' - ' .  'Invalid Nonce'
-				);
-
-			exit( json_encode( $response ) );
-		}
-
-		if ( ! isset( $_POST['name'] ) )
-			$_POST['name'] = '';
-
-		$email = $_POST['email'];
-
-		$name = $_POST['name'];
-
-		if ( ! is_email( $email ) ) {
-
-			$response = array(
-					'valid' => 0,
-					'message' => 'Error ' . ' - ' .  'Invalid email address'
-				);
-
-			exit( json_encode( $response ) );
-
-		}
-
-		wpmmp_include( '/libs/MCAPI.class.php' );
-
-		$api_key = get_option( 'mmp_mc_api' );
-
-		$list_id = get_option( 'mmp_mc_listid' );
-
-		$api = new Wpmmp_MCAPI( $api_key );
-
-		list($fname,$lname) = preg_split('/\s+(?=[^\s]+$)/', $name, 2);
-
-		$merge_vars = array(
-			'FNAME' => $fname,
-			'LNAME' => $lname
-		);
-
-		$retval = $api->listSubscribe( $list_id, $email, $merge_vars, 'html' );
-
-		if( $api->errorCode ) {
-
-			$response = array(
-					'valid' => 0,
-					'message' => 'Error ' . ' - ' .  $api->errorMessage
-				);
-
-			exit( json_encode( $response ) );
-
-		}
-
-		$response = array(
-					'valid' => 1,
-					'message' => 'Email submitted successfully!'
-				);
-
-		exit( json_encode( $response ) );
 
 	}
 

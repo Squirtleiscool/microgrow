@@ -36,35 +36,14 @@ require(get_template_directory() . '/framework/core-portfolio.php');
 	}
 
 
-function optimizer_portfolio_excerp_length( $length ) {
-	global $post;
-	if ( $post->post_type == 'portfolio' ||  $post->post_type == 'jetpack-portfolio' ) {
-		return 35;
-	}
-}
-add_filter( 'excerpt_length', 'optimizer_portfolio_excerp_length' );
-
-
-
-function optimizer_portfolio_excerpt_more( $more ) {
-		global $post;
-		if ( $post->post_type == 'portfolio' ||  $post->post_type == 'jetpack-portfolio' ) {
-			return '..';
-		}
-
-}
-add_filter('excerpt_more', 'optimizer_portfolio_excerpt_more');
-
-
-
 
 function optimizer_portfolio_assets() { 
 	if ( !is_admin() ) {
 		
 			wp_enqueue_style( 'portfolio-style', get_template_directory_uri().'/assets/css/portfolio.css');
-			wp_enqueue_script( 'portfolio-js', get_template_directory_uri().'/assets/js/portfolio.js');
+			wp_enqueue_script( 'portfolio-js', get_template_directory_uri().'/assets/js/portfolio.js', array('jquery'), '', true);
 			if (is_archive() ){
-				wp_enqueue_script('optimizer_masonry',get_template_directory_uri().'/assets/js/masonry.js');
+				wp_enqueue_script('optimizer_masonry',get_template_directory_uri().'/assets/js/masonry.js', array('jquery'), '', true);
 			}	
 
 	}

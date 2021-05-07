@@ -14,7 +14,7 @@
 		$('#content_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var contentsubset = wp.customize.instance('optimizer[content_font_id][subsets]').get();
-		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+contentsubset, }).appendTo("head");
+		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+contentsubset, }).appendTo("head");
 		$('#content_font_css').text('html body{font-family:'+newval+'}')
 		} );
 	} );
@@ -24,7 +24,7 @@
 		var contentfont = wp.customize.instance('optimizer[content_font_id][font-family]').get();
 		var contentfontclean  =contentfont.replace(" ", "+");
 		
-		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+contentfontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "content_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+contentfontclean+"&subset="+newval, }).appendTo("head");
 		$('#content_font_css').text('html body{font-family:'+contentfont+'}');
 		} );
 	} );
@@ -43,7 +43,7 @@
 		$('#ptitle_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var ptitlesubset = wp.customize.instance('optimizer[ptitle_font_id][subsets]').get();
-		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+ptitlesubset, }).appendTo("head");
+		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+ptitlesubset, }).appendTo("head");
 		$('#ptitle_font_css').text('h1, h2, h3, h4, h5, h6, #topmenu ul li a, .postitle, .product_title{font-family:'+newval+'!important}');
 		} );
 	} );
@@ -53,7 +53,7 @@
 		var ptitlefont = wp.customize.instance('optimizer[ptitle_font_id][font-family]').get();
 		var ptitlefontclean  =ptitlefont.replace(" ", "+");
 		
-		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+ptitlefontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "ptitle_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+ptitlefontclean+"&subset="+newval, }).appendTo("head");
 		$('#ptitle_font_css').text('h1, h2, h3, h4, h5, h6, #topmenu ul li a, .postitle, .product_title{font-family:'+ptitlefont+'!important}');
 		} );
 	} );
@@ -73,7 +73,7 @@
 		$('#logo_font_google').remove();
 		var updatedval = newval.replace(" ", "+");
 		var logosubset = wp.customize.instance('optimizer[logo_font_id][subsets]').get();
-		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+updatedval+"&subset="+logosubset, }).appendTo("head");
+		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+updatedval+"&subset="+logosubset, }).appendTo("head");
 		$('#logo_font_css').text('.logo h2, .logo h1, .logo h2 a, .logo h1 a{font-family:'+newval+'!important}')
 		} );
 	} );
@@ -83,7 +83,7 @@
 		var logofont = wp.customize.instance('optimizer[logo_font_id][font-family]').get();
 		var logofontclean  =logofont.replace(" ", "+");
 		
-		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "http://fonts.googleapis.com/css?family="+logofontclean+"&subset="+newval, }).appendTo("head");
+		$("<link />", {id: "logo_font_google", rel: "stylesheet", type: "text/css", href: "https://fonts.googleapis.com/css?family="+logofontclean+"&subset="+newval, }).appendTo("head");
 		$('#logo_font_css').text('.logo h2, .logo h1, .logo h2 a, .logo h1 a{font-family:'+logofont+'!important}');
 		} );
 	} );
@@ -116,7 +116,7 @@
 				var logopos = Math.round(menunum/2);
 				$('.logo_middle #topmenu ul.menu>li:nth-child('+logopos+'), .logo_middle #topmenu .menu ul>li:nth-child('+logopos+')').after('<div class="logo">'+jQuery('.logo_middle .logo').html()+'</div>');
 				$('.logo_middle, .logo_middle #topmenu .logo').animate({"opacity": "1"});
-				$('.logo_middle #topmenu ul.menu>li:lt('+logopos+')').wrapAll('<div class="logobefore"></div>');
+				$('.logo_middle #topmenu ul.menu>li').slice( 0, logopos ).wrapAll('<div class="logobefore"></div>');
 				$('.logo_middle #topmenu .logo').each(function () { jQuery(this).nextAll('li').wrapAll('<div class="logoafter"/>'); });
 				$('.logo_middle #topmenu .menu-item, #topmenu .head_soc').not('.logo_middle #topmenu .menu-item .menu-item').css({ "bottom":(jQuery(".logo_middle #topmenu").height() / 2) /2});
 
@@ -422,7 +422,6 @@
 	
 	//Menu Text Color Active
 	wp.customize( 'optimizer[menutxt_color_active]', function( value ) { value.bind( function( newval ) {  $('#topmenu ul li.current-menu-item>a').css({"color":newval});  } );   } );	
-	
 	//Menu Text Color Hover
 	$("head").append("<style id='menutxt_css_hover'></style>");  
 	wp.customize( 'optimizer[menutxt_color_hover]', function( value ) { value.bind( function( newval ) {  
@@ -496,7 +495,7 @@
 	wp.customize( 'optimizer[link_color_hover]', function( value ) { value.bind( function( newval ) {  
 		$("#optimlink_hover").text(".org_comment a:hover, .thn_post_wrap a:link:hover, .lts_lightbox_content a:link:hover, .lts_lightbox_content a:visited:hover, .athor_desc a:link:hover, .athor_desc a:visited:hover{color:"+newval+"!important}");  } );    
 	} );
-	
+ 
 	//Turn Menu Text &amp; All Headings to Uppercase
 	$("head").append("<style id='txt_upcase_css'></style>"); 
 	wp.customize( 'optimizer[txt_upcase_id]', function( value ) {
@@ -561,7 +560,8 @@
 	wp.customize( 'optimizer[facebook_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_fb' ).attr( 'href', newval );  } );  } );
 	wp.customize( 'optimizer[twitter_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_twt' ).attr( 'href', newval );  } );  } );
 	wp.customize( 'optimizer[gplus_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_gplus' ).attr( 'href', newval );  } );  } );
-	wp.customize( 'optimizer[youtube_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_ytb' ).attr( 'href', newval );  } );  } );
+   wp.customize( 'optimizer[youtube_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_ytb' ).attr( 'href', newval );  } );  } );
+   wp.customize( 'optimizer[vimeo_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_vimeo' ).attr( 'href', newval );  } );  } );
 	wp.customize( 'optimizer[flickr_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_flckr' ).attr( 'href', newval );  } );  } );
 	wp.customize( 'optimizer[linkedin_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_lnkdin' ).attr( 'href', newval );  } );  } );
 	wp.customize( 'optimizer[pinterest_field_id]', function( value ) { value.bind( function( newval ) {   $( '.ast_pin' ).attr( 'href', newval );  } );  } );
@@ -600,33 +600,29 @@
 
 
 /*Customizer----------------------------------------------------------*/
-jQuery(window).ready(function() {
+jQuery(function() {
 if (! jQuery( "body" ).hasClass( "customizer-prev" ) ) { return; }
-jQuery('label.current_edit a').toggle(function() {
-	jQuery('#customizer_nav').addClass('customizer_nav_open');
-  }, function(){  
-  	jQuery('#customizer_nav').removeClass('customizer_nav_open');
+jQuery('label.current_edit a').on('click',function() {
+   if(!jQuery('#customizer_nav').hasClass('customizer_nav_open')){
+      jQuery('#customizer_nav').addClass('customizer_nav_open');
+   }else{
+      jQuery('#customizer_nav').removeClass('customizer_nav_open');
+   }
 });
 jQuery('#customizer_nav ul li a').click(function() {
     jQuery('#customizer_nav').removeClass('customizer_nav_open');
 });
 
-jQuery('.customize_page_setting').toggle(function() {
-	jQuery('.customize_pagemeta_inner').fadeIn('customizer_nav_open');
-	jQuery(this).addClass('cogactive');
-  }, function(){  
-  	jQuery('.customize_pagemeta_inner').fadeOut('customizer_nav_open');
-	jQuery(this).removeClass('cogactive');
+jQuery('.customize_page_setting').on('click',function() {
+   if(!jQuery('#customizer_nav').hasClass('cogactive')){
+      jQuery('.customize_pagemeta_inner').fadeIn('customizer_nav_open');
+      jQuery(this).addClass('cogactive');
+   }else{
+      jQuery('.customize_pagemeta_inner').fadeOut('customizer_nav_open');
+      jQuery(this).removeClass('cogactive');
+   }
 });
 
-	jQuery('#widgetize_btn').toggle(function() {
-		jQuery('#choose_custom_sidebar').slideDown(300);
-		jQuery(this).animate({"opacity":"1"});
-	  }, function(){  
-		jQuery('#choose_custom_sidebar').slideUp(300);
-		jQuery(this).animate({"opacity":"0.6"});
-	});
-	
 	jQuery('.page_sidebar_position label').each(function(index, element) {
 		jQuery(this).find('img').removeClass('active_pos');
 
@@ -660,7 +656,7 @@ jQuery('.customize_page_setting').toggle(function() {
 			var body_size = jQuery('.stat_has_img .stat_bg_img').height();
 			jQuery('.stat_bg, .stat_bg_overlay').height(body_size + 50);
 		var resizeTimer;
-		jQuery(window).resize(function() {
+		jQuery(window).on('resize',function() {
 		  clearTimeout(resizeTimer);
 		  resizeTimer = setTimeout(function() {
 			var body_size = jQuery('.stat_has_img .stat_bg_img').height();
@@ -670,26 +666,26 @@ jQuery('.customize_page_setting').toggle(function() {
 	});
 
 //CUSTOMIZER TOPBAR
-if(jQuery.cookie('customizer_topbar') == 1){
+if(Cookies.get('customizer_topbar') == 1){
 	jQuery('body').addClass('body_tophide');
 	jQuery('#customizer_topbar').addClass('tophide');
 	jQuery('.hidetop').css({"opacity":"0.5"}).find('i').removeClass('fa-arrow-up').addClass('fa-arrow-down');
 }
 		
-jQuery('.hidetop').toggle(function() {
-	jQuery('.customizer-prev .header_wrap.layer_wrapper').animate({"marginTop":"0px"}, 200);
-	jQuery('#customizer_topbar').addClass('tophide').animate({"top":"-50px", "height":"0px"}, 200);
-	jQuery('body').addClass('body_tophide');
-	jQuery(this).css({"opacity":"0.5"}).find('i').removeClass('fa-arrow-up').addClass('fa-arrow-down');
-	jQuery.cookie('customizer_topbar', 1, { expires: 30, path: '/'});
-	
-  }, function(){  
-  	jQuery('.customizer-prev .header_wrap.layer_wrapper').animate({"marginTop":"50px"}, 200);
-	jQuery('#customizer_topbar').removeClass('tophide').animate({"top":"0px", "height":"30px"}, 200);
-	jQuery('body').removeClass('body_tophide');
-	jQuery(this).css({"opacity":"1"}).find('i').removeClass('fa-arrow-down').addClass('fa-arrow-up');
-	jQuery.cookie('customizer_topbar', null, { expires: 30, path: '/'});
-	
+jQuery('.hidetop').on('click',function() {
+   if(!jQuery('body').hasClass('body_tophide')){
+      jQuery('.customizer-prev .header_wrap.layer_wrapper').animate({"marginTop":"0px"}, 200);
+      jQuery('#customizer_topbar').addClass('tophide').animate({"top":"-50px", "height":"0px"}, 200);
+      jQuery('body').addClass('body_tophide');
+      jQuery(this).css({"opacity":"0.5"}).find('i').removeClass('fa-arrow-up').addClass('fa-arrow-down');
+      Cookies.set('customizer_topbar', 1, { expires: 30, path: '/'});
+   }else{
+      jQuery('.customizer-prev .header_wrap.layer_wrapper').animate({"marginTop":"50px"}, 200);
+      jQuery('#customizer_topbar').removeClass('tophide').animate({"top":"0px", "height":"30px"}, 200);
+      jQuery('body').removeClass('body_tophide');
+      jQuery(this).css({"opacity":"1"}).find('i').removeClass('fa-arrow-down').addClass('fa-arrow-up');
+      Cookies.set('customizer_topbar', null, { expires: 30, path: '/'});
+   }
 });
 
 	//Remove the "Shift Click to Edit the Widget" Message
@@ -735,8 +731,19 @@ jQuery('.hidetop').toggle(function() {
 	jQuery('.add_widget_home').on( 'click', function ( e ) {
 		e.preventDefault();
 		wp.customize.preview.send( 'focus-frontsidebar');
-	});
-
+   });
+   
+   jQuery('.custom_preset_window__navs li').on( "click", function(e) {
+      var currentTab = jQuery(this).attr('data-tab');
+      jQuery('.custom_preset_window__navs li').removeClass('preset_nav_active');
+      jQuery(this).addClass('preset_nav_active');
+      jQuery('.custom_preset_window__tab').hide();
+      jQuery('.custom_preset_window__tab--'+currentTab).show();
+      if(currentTab === 'presets'){
+         jQuery(".preset_p img").unveil();
+      }
+      
+   });
 
 		//SAVE PAGE PRESET
 		var ajaxurl = optim.ajaxurl;
@@ -745,10 +752,9 @@ jQuery('.hidetop').toggle(function() {
 			e.preventDefault();
 			var getsidebarid = jQuery("#pagesidebar, #frontsidebar").attr('data-sidebarid');
 			console.log('getsidebarid- ', getsidebarid); 
-			var presetnameval = jQuery('.preset_save input[name="preset_name"]').val();
+         var presetnameval = jQuery('.preset_save input[name="preset_name"]').val();
+         
 			if(presetnameval !==''){
-				
-				
 					var value = jQuery.ajax({
 						type: "POST",
 						url: ajaxurl,
@@ -780,7 +786,7 @@ jQuery('.hidetop').toggle(function() {
 											//console.log(result);
 											jQuery('.preset_exist').remove();
 											jQuery('.save_preset').slideUp();
-											jQuery('.custom_preset_window').append('<div class="cpreset_p cpreset_appended" data-presetname="'+presetnameval+'"><div class="preset_holder" title="Preset '+presetnameval+'"><i class="fa fa-star"></i>'+presetnameval+'</div><span class="cpreset_import"><i class="fa-arrow-down"></i> Import Preset</span><span class="cpreset_remove"><i class="fa-trash"></i> Remove </span></div>');
+											jQuery('.custom_preset_window__tab--custom').append('<div class="cpreset_p cpreset_appended" data-presetname="'+presetnameval+'"><div class="preset_holder" title="Preset '+presetnameval+'"><i class="fa fa-star"></i>'+presetnameval+'</div><span class="cpreset_import"><i class="fa-arrow-down"></i> Import Preset</span><span class="cpreset_remove"><i class="fa-trash"></i> Remove </span></div>');
 									});
 								});
 								jQuery( '.preset_exist_cancel' ).on( "click", function(e) {
@@ -804,7 +810,7 @@ jQuery('.hidetop').toggle(function() {
 										console.log('success', jQuery('.preset_save input[name="preset_name"]').val());
 										console.log(result);
 										jQuery('.save_preset').slideUp();
-										jQuery('.custom_preset_window').append('<div class="cpreset_p cpreset_appended" data-presetname="'+presetnameval+'"><div class="preset_holder" title="Preset '+presetnameval+'"><i class="fa fa-star"></i> '+presetnameval+'</div><span class="cpreset_import"><i class="fa-arrow-down"></i> Import Preset</span><span class="cpreset_remove"><i class="fa-trash"></i> Remove </span></div>');
+										jQuery('.custom_preset_window__tab--custom').append('<div class="cpreset_p cpreset_appended" data-presetname="'+presetnameval+'"><div class="preset_holder" title="Preset '+presetnameval+'"><i class="fa fa-star"></i> '+presetnameval+'</div><span class="cpreset_import"><i class="fa-arrow-down"></i> Import Preset</span><span class="cpreset_remove"><i class="fa-trash"></i> Remove </span></div>');
 								});
 						
 							}
@@ -822,25 +828,26 @@ jQuery('.hidetop').toggle(function() {
 				jQuery('.save_preset').slideToggle();
 		});
 		jQuery( '.preset_import_trigger' ).on( "click", function(e) {
-				jQuery('.custom_preset_window').slideToggle();
+				jQuery('.custom_preset_window').fadeToggle();
 		});
 
 	
 	//Page Preset IMPORT
 	jQuery('.cpreset_import').on( "click", function(e) {
+      var presetID = jQuery(this).parent().attr('data-presetid') || '';
 		var presetname = jQuery(this).parent().attr('data-presetname');
 		var currentsidebar = jQuery("#pagesidebar, #frontsidebar").attr('data-sidebarid');
-		var currentpageid = jQuery(this).parent().parent().attr('data-pageid');
+		//var currentpageid = jQuery(this).parent().parent().attr('data-pageid');
 		
-		if(presetname && currentsidebar && currentpageid){
-			
+		if((presetname || presetID) && currentsidebar){
+         console.log(presetID);
 			jQuery.ajax({
 				type: "POST",
 				url: ajaxurl,
 				data:{
+               "getpresetid": presetID,
 					"getpresetname": presetname,
 					"getsidebarid": currentsidebar,
-					"getcurrentpage": currentpageid,
 					action: 'optimizer_import_custom_preset'
 					}
 				})
@@ -855,7 +862,50 @@ jQuery('.hidetop').toggle(function() {
 			});
 		}
 	});
-	
+   
+   //Custom Wie file IMPORT
+	jQuery('#import_custom_widgets').on( "submit", function(event) {
+      event.preventDefault();
+		var currentsidebar = jQuery("#pagesidebar, #frontsidebar").attr('data-sidebarid');
+		var customdata = '';
+      
+      var fileToLoad = document.getElementById("customwiedata").files[0];
+      
+      if(!fileToLoad){
+         return alert("Please Insert a valid .wie file!");
+      }
+
+      var fileReader = new FileReader();
+      fileReader.onload = function(fileLoadedEvent){
+         customdata = fileLoadedEvent.target.result;
+          console.log(customdata);
+            if(customdata && customdata.includes('page_x9x9x') && currentsidebar){
+               jQuery.ajax({
+                  type: "POST",
+                  url: ajaxurl,
+                  data:{
+                     "customdata": customdata,
+                     "getsidebarid": currentsidebar,
+                     action: 'optimizer_import_custom_preset'
+                     }
+                  })
+                  .fail(function(r,status,jqXHR) {
+                     console.log('failed');
+                  })
+                  .done(function(result,status,jqXHR) {
+                     console.log('success');
+                     jQuery('.custom_preset_window').slideUp();
+                     wp.customize.preview.send( 'refreshafterpreset' );
+               });
+            }else{
+               alert("Not a Valid .wie File! Make sure you have exported the .wie file by clicking the 'Save as Page Preset' button.");
+            }
+
+      };
+    
+      fileReader.readAsText(fileToLoad, "UTF-8");
+
+	});
 	
 	//Page Preset REMOVE
 	jQuery('.cpreset_remove').on( "click", function(e) {
@@ -881,7 +931,34 @@ jQuery('.hidetop').toggle(function() {
 					jQuery(this).parent().hide();
 			});
 		}
-	});		
+   });
+   
+   //Page Preset Export
+   jQuery( '.preset_export_trigger' ).on( "click", function(e) {
+      console.log('clicked');
+      e.preventDefault();
+      var getsidebarid = jQuery("#pagesidebar, #frontsidebar").attr('data-sidebarid');
+      console.log('getsidebarid- ', getsidebarid); 
+         
+         jQuery.ajax({
+            type: "POST",
+            url: ajaxurl,
+            data:{
+               "sidebarid": getsidebarid,
+               "export": true,
+               action: 'optimizer_wie_save_preset'
+               }
+         })
+         .fail(function(r,status,jqXHR) {
+            console.log('failed');
+         })
+         .done(function(result,status,jqXHR) {
+            console.log('success');
+            var filename = jQuery('#pagesidebar') && jQuery('#pagesidebar').attr('data-sidebarid') ? jQuery('#pagesidebar').attr('data-sidebarid') : 'page';
+            wp.customize.preview.send( 'widgetized-widgets-export', {filename: filename+"-widgets.wie", widgets: result} );
+         });
+   });
+
 
 //Customizer Tooltips
 jQuery('.edit_widget, .edit_slider').miniTip();
@@ -894,13 +971,11 @@ jQuery('.page_sidebar_position label, .add_widget_topage').miniTip();
 		jQuery('.frontpage_sidebar, #pagesidebar').each(function (){   jQuery(this).waitForImages(function() { jQuery(this).find('.widget_col_4, .widget_col_3').matchHeight({ property: 'min-height'});  });  });
 		jQuery('.frontpage_sidebar, #pagesidebar').each(function (){   jQuery(this).waitForImages(function() { jQuery(this).find('.widget_col_5, .widget_col_6').matchHeight({ property: 'min-height'});  });  });
 		jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-			jQuery(this).find('.col2:eq(1), .col2:eq(3), .col2:eq(5), .col2:eq(7), .col2:eq(9), .col2:eq(11), .col2:eq(13), .col2:eq(15), .col2:eq(17), .col2:eq(19)').after('<div style="clear:both" />');
-		});
-		jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-			jQuery(this).find('.col3:eq(2), .col3:eq(5), .col3:eq(8), .col3:eq(11), .col3:eq(14), .col3:eq(17), .col3:eq(20), .col3:eq(23), .col3:eq(26), .col3:eq(29)').after('<div style="clear:both" />');
-		});
-		jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){
-			jQuery(this).find('.col4:eq(3), .col4:eq(7), .col4:eq(11), .col4:eq(15), .col4:eq(19), .col4:eq(23), .col4:eq(27), .col4:eq(31), .col4:eq(35), .col4:eq(29)').after('<div style="clear:both" />');
+         var colParent = jQuery(this);
+         var col2Selectors = [1,3,5,7,9,11,13,15,17,19]; var col3Selectors = [2,5,8,11,14,17,20,23,26,29]; var col4Selectors = [3,7,11,15,19,23,27,31,35,29];
+         col2Selectors.forEach(function(selectorIndex){  colParent.find('.col2').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
+         col3Selectors.forEach(function(selectorIndex){  colParent.find('.col3').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
+         col4Selectors.forEach(function(selectorIndex){  colParent.find('.col4').eq(selectorIndex).after('<div class="colclear" style="clear:both" />');  })
 		});
 		jQuery(".text_block_content, .thn_post_wrap, #slidera, .about_inner, .block_content").each(function(){jQuery(this).find('.col2').matchHeight({ byRow: false, property: 'min-height'});});
 		
@@ -923,7 +998,30 @@ jQuery('.page_sidebar_position label, .add_widget_topage').miniTip();
 			
 	});
 });
-jQuery(window).bind("load", function() { 
+
+wp.customize.bind( 'preview-ready', function() {
+   //console.log('PREVIEW READY!!!!');
+   wp.customize.preview.bind( 'OPTIMIZER_CUSTOMIZER_LOAD_URL', function( URL ) {
+      console.info( 'OPTIMIZER_CUSTOMIZER_LOAD_URL:', URL );
+      if(URL){
+         window.location = URL;
+         jQuery('body').append('<a id="optimizer_new_preview_link" href="'+URL+'" style="display:none"></a>');
+         jQuery('#optimizer_new_preview_link').trigger('click');
+      }
+   } );
+   setTimeout(() => {
+      var optim_focus_sidebar = jQuery('#pagesidebar').attr('data-sidebarid')
+      //console.log(optim_focus_sidebar);
+      if(optim_focus_sidebar){
+         wp.customize.preview.send( 'focus-page-sidebar', optim_focus_sidebar );
+      }
+   }, 1000);
+
+
+});
+
+
+jQuery(window).on("load", function() { 
 	jQuery(".short_colpick").colpick({layout:'hex',submit:0,colorScheme:'dark',onChange:function(hsb,hex,rgb,el,bySetColor) {
 	jQuery(el).css('border-color','#'+hex);
 	if(!bySetColor) jQuery(el).val('#'+hex);}}).keyup(function(){jQuery(this).colpickSetColor(this.value);});
@@ -936,3 +1034,6 @@ jQuery(window).bind("load", function() {
 		jQuery('.mce-col3_shorty').miniTip({ fadeIn: 100, content: '3 Columns Shortcode'}); jQuery('.mce-col4_shorty').miniTip({ fadeIn: 100, content: '4 Columns Shortcode'});
 	}, 12000);	
 });
+
+/*! js-cookie v3.0.0-rc.0 | MIT */
+!function(e,t){"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):(e=e||self,function(){var r=e.Cookies,n=e.Cookies=t();n.noConflict=function(){return e.Cookies=r,n}}())}(this,function(){"use strict";function e(e){for(var t=1;t<arguments.length;t++){var r=arguments[t];for(var n in r)e[n]=r[n]}return e}var t={read:function(e){return e.replace(/%3B/g,";")},write:function(e){return e.replace(/;/g,"%3B")}};return function r(n,i){function o(r,o,u){if("undefined"!=typeof document){"number"==typeof(u=e({},i,u)).expires&&(u.expires=new Date(Date.now()+864e5*u.expires)),u.expires&&(u.expires=u.expires.toUTCString()),r=t.write(r).replace(/=/g,"%3D"),o=n.write(String(o),r);var c="";for(var f in u)u[f]&&(c+="; "+f,!0!==u[f]&&(c+="="+u[f].split(";")[0]));return document.cookie=r+"="+o+c}}return Object.create({set:o,get:function(e){if("undefined"!=typeof document&&(!arguments.length||e)){for(var r=document.cookie?document.cookie.split("; "):[],i={},o=0;o<r.length;o++){var u=r[o].split("="),c=u.slice(1).join("="),f=t.read(u[0]).replace(/%3D/g,"=");if(i[f]=n.read(c,f),e===f)break}return e?i[e]:i}},remove:function(t,r){o(t,"",e({},r,{expires:-1}))},withAttributes:function(t){return r(this.converter,e({},this.attributes,t))},withConverter:function(t){return r(e({},this.converter,t),this.attributes)}},{attributes:{value:Object.freeze(i)},converter:{value:Object.freeze(n)}})}(t,{path:"/"})});

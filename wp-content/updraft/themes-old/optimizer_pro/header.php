@@ -32,6 +32,7 @@ $optimizer = optimizer_option_defaults();
 </head>
 
 <body <?php body_class();?>>
+<?php if(function_exists('wp_body_open')){ wp_body_open(); } ?>
 
 <?php do_action('optimizer_body_top'); ?>
 

@@ -1,7 +1,7 @@
 === WebP Converter for Media ===
 Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=readme-donate
-Tags: convert webp, webp, optimize images, images, webp converter, performance, optimisation
+Tags: convert webp, webp, optimize images, compress images, webp converter
 Requires at least: 4.9
 Tested up to: 5.7
 Requires PHP: 7.0
@@ -15,22 +15,21 @@ Speed up your website by serving WebP images instead of standard formats JPEG, P
 
 Speed up your website by serving WebP images. By replacing files in standard JPEG, PNG and GIF formats with WebP format, you can save over a half of the page weight without losing quality.
 
-When installing a plugin you do not have to do anything more. Your current images will be converted into a new format. Users will automatically receive new, much lighter images than the original ones.
+After installing the plugin you do not have to do anything more. Your current images will be converted into a new format. When compress images is finished, users will automatically receive new, much lighter images than the original ones.
 
-As of today, nearly 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Now you can speed up it in a few seconds without much effort!
+As of today, over 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Now you can speed up it in a few seconds without much effort!
 
 This will be a profit both for your users who will not have to download so much data, but also for a server that will be less loaded. Remember that a better optimized website also affects your Google ranking.
 
 #### Support for additional directories
 
-Now you can also convert files not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
+Now you can optimize images not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
 
 #### How does this work?
 
 - By adding images to your Media Library, they are automatically converted and saved in a separate directory.
-- If you have just installed the plugin, you can convert all existing images with one click.
-- Converting to WebP format works for all image sizes. As WebP you will see all the images added to the Media Library.
-- Images are converted using PHP `GD` or `Imagick` extension *(you can modify the compression level)*.
+- If you have just installed the plugin, you can optimize images with one click.
+- As WebP you will see all the images added to the Media Library and other selected directories.
 - When the browser tries to download an image file, the server verifies if it supports `image/webp` files and if the file exists.
 - If everything is OK, instead of the original image, the browser will receive its equivalent in WebP format.
 - In default loading mode **the plugin does not change image URLs, so there are no problems with saving the HTML code of website to the cache and time of its generation does not increase.** It does not matter if the image display as an `img` HTML tag or you use `background-image`. It works always!
@@ -41,7 +40,7 @@ Now you can also convert files not only from `/uploads` directory but also from 
 
 #### WebP images are the future!
 
-Raise your website to a new level now! Install the plugin and enjoy the website that loads faster. Surely you and your users will appreciate it.
+Optimize images and raise your website to a new level now! Install the plugin and enjoy the website that loads faster by image optimization. Surely you and your users will appreciate it.
 
 #### Support to the development of plugin
 
@@ -69,7 +68,7 @@ Please always adding your thread, **read all other questions in the FAQ of plugi
 
 When adding a thread, follow these steps and reply to each of them:
 
-**1.** Do you have any error on the plugin settings page? Enter error codes. Have you consulted your server administrator or developer? 
+**1.** Do you have any error on the plugin settings page? Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) if you have any errors.
 
 **2.** URL of your website. If your site is not publicly available, add it to test environment.
 
@@ -77,31 +76,32 @@ When adding a thread, follow these steps and reply to each of them:
 
 **4.** Settings of plugin - please take a screenshot of the ENTIRE page and send it to me.
 
-**5.** Do you use CDN? If so, please see the question **"Does the plugin support CDN?"** in plugin FAQ.
+**5.** Please do the test, which is described in the FAQ in question `How to check if plugin works?`. Please send a screenshot of Devtools with test results.
 
-**6.** Please do the test, which is described in the FAQ in question `How to check if plugin works?`. Please send a screenshot of Devtools with test results.
+**6.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
 
-**7.** Content of your `.htaccess` files from directories `/wp-content`, `/wp-content/uploads` and `/wp-content/uploads-webpc` *(pasting the code using the `CODE` shortcode in the editor)*.
+**7.** What plugin version are you using? If it is not the latest then update and check everything again.
 
-**8.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
+**8.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
 
-**9.** What plugin version are you using? If it is not the latest then update and check everything again.
-
-**10.** Used Wordpress version.
-
-**11.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
-
-Please remember to include the answers for all 11 questions by adding a thread. It is much easier and accelerate the solution of your problem.
+Please remember to include the answers for all questions by adding a thread. It is much easier and accelerate the solution of your problem.
 
 = Error on plugin settings screen? =
 
 If you have an error on the plugin settings screen, first of all please read it carefully. They are displayed when there is a problem with the configuration of your server or website.
 
-The messages are designed to reduce the number of support requests that are repeated. It saves your and our time. If you have information in the message that you should contact the administrator of your server, please do so.
+The messages are designed to reduce the number of support requests that are repeated. It saves your and our time. Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) for more information.
 
-When contacting the administrator, give him all the information available in the message. If you still cannot solve the problem, please contact us.
+= Server configuration error on Cloudflare =
 
-We want to solve as many similar problems as possible automatically. This eliminates the need to wait for our response and you can try to solve the problem alone. This is very important for us.
+For Cloudflare servers, a recurring problem is the error code **rewrites_cached**. To solve this problem, you need to disable the cache for the website from the server.
+
+Please follow the steps below:
+- Enter Cloudflare management panel and then to **Page Rules** Tab.
+- Click **Create page rule** button.
+- Enter your domain name.
+- Choose **Cache Level** option, set **Bypass** value and click **Save** button.
+- Click **Save and Deploy** button.
 
 = Error while converting? =
 
@@ -132,38 +132,6 @@ An example of the correct server configuration can be found [here](https://gbior
 In a situation where your server does not meet the technical requirements, please contact your server Administrator. We are not able to help you. Please do not contact us about this matter, because this is a server configuration problem, not a plugin.
 
 Also REST API must be enabled and work without additional restrictions. If you have a problem with it, please contact the Developer who created your website. He should easily find the issue with the REST API not working.
-
-= What are restrictions? =
-
-The size of the image is a limited. Its resolution cannot be bigger than `8192 x 8192px`. This is due to the limitations of the PHP library.
-
-Please remember that **Safari *(version 13 or earlier)* and Internet Explorer do not support the WebP format**. Therefore, using these browsers you will receive original images.
-
-You can find more about WebP support by browsers [here](https://caniuse.com/#feat=webp).
-
-= Damaged images on iOS or other browsers =
-
-The plugin in default loading mode *(via .htaccess)* uses rules in the .htaccess file to redirect from the original image to an image in WebP format. Verifies whether the WebP file exists and whether your browser supports the WebP format. It does this every time you try to load an image.
-
-When you enter from a WebP supporting device, it will redirect. However, when someone uses a browser that does not support WebP, the redirection will not work and you get the original file.
-
-However, if you see corrupted images on browsers that do not support WebP, it means that your server uses cache for rewrites from the .htaccess file. Then the plugin will not work properly because the server instead of reading the rules from the .htaccess file every time uses its cache and does the redirection automatically.
-
-How can you check it? When you turn off the plugin, the rewrites from the .htaccess file are removed, which means you should see the original images on every browser. If this is not the case and you see forced redirects to WebP files, it means that your server remembers the redirects you made earlier and uses cache.
-
-In this situation, please contact your server administrator. Each configuration is different. It can be e.g. module `mod_pagespeed` or other similar. This functionality must be turned off so that the server reads and executes the rules from the .htaccess file each time the images are loaded. This cannot be ignored because it will cause problems.
-
-= What to do after installing plugin? =
-
-After installing the plugin, you should convert all existing images.
-
-In the WordPress admin panel, on the `Settings -> WebP Converter` subpage there is a module that allows you to process all your images.
-
-It uses the WordPress REST API by downloading addresses of all images and converting all files gradually.
-
-This process may take few or more than ten minutes depending on the number of files.
-
-**It should be done once after installing the plugin.** New images from the Media Library will be converted automatically. For other images, e.g. from the /themes directory, you must start manual conversion after adding new images.
 
 = How to check if plugin works? =
 
@@ -200,85 +168,75 @@ Remember that this plugin supports images from the `/wp-content` directory, e.g.
 
 When checking the operation of the plugin, e.g. in Dev Tools, pay attention to the path from which the files are downloaded and which directories you have enabled in the settings of plugin.
 
-= Where are converted images stored? =
-
-All WebP images are stored in the `/wp-content/uploads-webpc/` directory. Inside the directory there is the same structure as in the original `/wp-content` directory. The files have original extensions in the name along with the new `.webp`.
-
-In case the location of the original file is as follows: `/wp-content/uploads/2019/06/example.jpg` then its converted version will be in the following location: `/wp-content/uploads-webpc/uploads/2019/06/example.jpg.webp`.
-
-In case the location of the original file is as follows: `/wp-content/themes/my-theme/public/img/example.jpg` then its converted version will be in the following location: `/wp-content/uploads-webpc/themes/my-theme/public/img/example.jpg.webp`.
-
-Original images are not changed. If you remove plugins, only WebP files will be deleted. Your images are not changed in any way.
-
 = How to change path to uploads? =
 
 This is possible using the following types of filters to change default paths. It is a solution for advanced users. If you are not, please skip this question.
 
 Path to the root installation directory of WordPress *(`ABSPATH` by default)*:
 
-`add_filter('webpc_site_root', function($path) {
-  return ABSPATH;
-});`
+`add_filter( 'webpc_site_root', function( $path ) {
+	return ABSPATH;
+} );`
 
 Path to `/uploads` directory *(relative to the root directory)*:
 
-`add_filter('webpc_dir_name', function($path, $directory) {
-  if ($directory !== 'uploads') {
-    return $path;
-  }
-  return 'wp-content/uploads';
-}, 10, 2);`
+`add_filter( 'webpc_dir_name', function( $path, $directory ) {
+	if ( $directory !== 'uploads' ) {
+		return $path;
+	}
+	return 'wp-content/uploads';
+}, 10, 2 );`
 
 Directory path with converted WebP files *(relative to the root directory)*:
 
-`add_filter('webpc_dir_name', function($path, $directory) {
-  if ($directory !== 'webp') {
-    return $path;
-  }
-  return 'wp-content/uploads-webpc';
-}, 10, 2);`
+`add_filter( 'webpc_dir_name', function( $path, $directory ) {
+	if ( $directory !== 'webp' ) {
+		return $path;
+	}
+	return 'wp-content/uploads-webpc';
+}, 10, 2 );`
 
 **Note that the `/uploads-webpc` directory must be at the same nesting level as the `/uploads`, `/plugins` and `/themes` directories.**
 
 Prefix in URL of `/wp-content/` directory or equivalent *(used in .htaccess)*:
 
-`add_filter('webpc_uploads_prefix', function($prefix) {
-  return '/';
-});`
+`add_filter( 'webpc_uploads_prefix', function( $prefix ) {
+	return '/';
+} );`
 
 For the following sample custom WordPress structure:
 
 `...
 ├── web
-    ...
-    ├── app
-    │   ├── mu-plugins
-    │   ├── plugins
-    │   ├── themes
-    │   └── uploads
-    ├── wp-config.php
-    ...`
+	...
+	├── app
+	│	├── mu-plugins
+	│	├── plugins
+	│	├── themes
+	│	└── uploads
+	├── wp-config.php
+	...`
 
 Use the following filters:
 
-`add_filter('webpc_site_root', function($path) {
-  return 'C:/WAMP/www/project/webp'; // your valid path to root
-});
-add_filter('webpc_dir_name', function($path, $directory) {
-  if ($directory !== 'uploads') {
-    return $path;
-  }
-  return 'app/uploads';
-}, 10, 2);
-add_filter('webpc_dir_name', function($path, $directory) {
-  if ($directory !== 'webp') {
-    return $path;
-  }
-  return 'app/uploads-webpc';
-}, 10, 2);`
-`add_filter('webpc_uploads_prefix', function($prefix) {
-  return '/';
-});`
+`add_filter( 'webpc_site_root', function( $path ) {
+	return 'C:/WAMP/www/project/webp'; // your valid path to root
+} );
+add_filter( 'webpc_dir_name', function( $path, $directory ) {
+	if ( $directory !== 'uploads' ) {
+		return $path;
+	}
+	return 'app/uploads';
+}, 10, 2 );
+add_filter( 'webpc_dir_name', function( $path, $directory ) {
+	if ( $directory !== 'webp' ) {
+		return $path;
+	}
+	return 'app/uploads-webpc';
+}, 10, 2 );`
+`add_filter( 'webpc_uploads_prefix', function( $prefix ) {
+	return '/';
+} );`
 
 After setting the filters go to `Settings -> WebP Converter` in the admin panel and click the `Save Changes` button. `.htaccess` files with appropriate rules should be created in the directories `/uploads` and `/uploads-webpc`.
 
@@ -294,42 +252,41 @@ It is a solution for advanced users. If you would like to integrate with another
 
 You can automatically run the option to regenerate all new images. This is useful when you use external plugins that generate images themselves. To do this, use the following code:
 
-`do_action('webpc_regenerate_all', $paths);`
+`do_action( 'webpc_regenerate_all', $paths );`
 
 Below is an example of how to use this action to automatically regenerate images after changing the theme:
 
-`add_action('init', function()
-{
-  do_action('webpc_regenerate_all');
+`add_action('init', function() {
+	do_action( 'webpc_regenerate_all' );
 });`
 
 To manually start converting selected files, you can use the action to which you will pass an array with a list of paths *(they must be absolute server paths)*:
 
-`do_action('webpc_convert_paths', $paths);`
+`do_action( 'webpc_convert_paths', $paths );`
 
 An alternative method is to manually start converting the selected attachment by passing the post ID from the Media Library. Remember to run this action after registering all image sizes *(i.e. after running the `add_image_size` function)*:
 
-`do_action('webpc_convert_attachment', $postId);`
+`do_action( 'webpc_convert_attachment', $post_id );`
 
 In addition, you can edit the list of files that will be converted. For example, to add some to the exceptions. To do this, use the following filter, which by default returns a list of all paths:
 
-`add_filter('webpc_files_paths', function($paths, $skipExists) {
-  return $paths;
-}, 10, 2);`
+`add_filter( 'webpc_files_paths', function( $paths, $skip_exists ) {
+	return $paths;
+}, 10, 2 );`
 
-Argument `$paths` is array of absolute server paths and `$skipExists` means whether to skip converted images.
+Argument `$paths` is array of absolute server paths and `$skip_exists` means whether to skip converted images.
 
 You can also modify the list of image paths for an attachment, e.g. to exclude one image size. To do this, use the following filter:
 
-`add_filter('webpc_attachment_paths', function($paths, $attachmentId) {
-  return $paths;
-}, 10, 2);`
+`add_filter( 'webpc_attachment_paths', function( $paths, $attachment_id ) {
+	return $paths;
+}, 10, 2 );`
 
-Argument `$paths` is array of absolute server paths and `$attachmentId` is the post ID of attachment, added to the Media Library.
+Argument `$paths` is array of absolute server paths and `$attachment_id` is the post ID of attachment, added to the Media Library.
 
 To delete manually converted files, use the following action, providing as an argument an array of absolute server paths to the files *(this will delete manually converted files)*:
 
-`do_action('webpc_delete_paths', $paths);`
+`do_action( 'webpc_delete_paths', $paths );`
 
 = How to change .htaccess rules? =
 
@@ -341,37 +298,31 @@ Returning an empty string will delete these rules the next time you save the plu
 
 Rules for redirects: *(returns rules for `mod_rewrite` module)*:
 
-`add_filter('webpc_htaccess_mod_rewrite', function($rules, $path) {
-  return '';
-}, 10, 2);`
+`add_filter( 'webpc_htaccess_mod_rewrite', function( $rules, $path ) {
+	return '';
+}, 10, 2 );`
 
 Argument `$path` is absolute server path for `.htaccess` file *(`/wp-content/.htaccess` or `/wp-content/uploads/.htaccess`)*.
 
 Rules for `image/webp` MIME type: *(returns rules for `mod_mime` module)*:
 
-`add_filter('webpc_htaccess_mod_mime', function($rules) {
-  return '';
-});`
+`add_filter( 'webpc_htaccess_mod_mime', function( $rules ) {
+	return '';
+} );`
 
 Rules for Browser Caching: *(returns rules for `mod_expires` module)*:
 
-`add_filter('webpc_htaccess_mod_expires', function($rules) {
-  return '';
-});`
+`add_filter( 'webpc_htaccess_mod_expires', function( $rules ) {
+	return '';
+} );`
 
 All rules from the files `/wp-content/.htaccess`, `/wp-content/uploads/.htaccess` and `/wp-content/uploads-webpc/.htaccess`: *(returns rules for modules: `mod_rewrite`, `mod_mime` and `mod_expires`)*:
 
-`add_filter('webpc_htaccess_rules', function($rules, $path) {
-  return '';
-}, 10, 2);`
+`add_filter( 'webpc_htaccess_rules', function( $rules, $path ) {
+	return '';
+}, 10, 2 );`
 
 Argument `$path` is absolute server path for `.htaccess` file.
-
-= What is Browser Caching? =
-
-This option allows you to speed up page loading time for returning users because they do not need to re-download files from the server. The plugin allows this by using the module `mod_expires`. 
-
-It is enabled by default. If you do not want to use this functionality, you can turn it off at any time.
 
 = Does plugin support CDN? =
 
@@ -404,8 +355,8 @@ Please edit the configuration file:
 and add this code line:
 
 `types {`
-`    # ...`
-`    image/webp webp;`
+`	# ...`
+`	image/webp webp;`
 `}`
 
 Then find the configuration file in one of the paths *(remember to select configuration file used by your vhost)*:
@@ -415,15 +366,15 @@ Then find the configuration file in one of the paths *(remember to select config
 and add below code in this file *(add these lines to very beginning of file if possible - if they will be at the bottom, other rules may block the rules for WebP from working)*:
 
 `server {`
-`    location ~ /wp-content/(?<path>.+)\.(?<ext>jpe?g|png|gif)$ {`
-`        if ($http_accept !~* "image/webp") {`
-`            break;`
-`        }`
-`        add_header Vary Accept;`
-`        expires 365d;`
-`        try_files /wp-content/uploads-webpc/$path.$ext.webp $uri =404;`
-`    }`
-`    # ...`
+`	location ~ /wp-content/(?<path>.+)\.(?<ext>jpe?g|png|gif)$ {`
+`		if ($http_accept !~* "image/webp") {`
+`			break;`
+`		}`
+`		add_header Vary Accept;`
+`		expires 365d;`
+`		try_files /wp-content/uploads-webpc/$path.$ext.webp $uri =404;`
+`	}`
+`	# ...`
 `}`
 
 After making changes, remember to restart the machine: `systemctl restart nginx`.
@@ -437,16 +388,16 @@ Please manually paste the following code **at the beginning of .htaccess file** 
 `# BEGIN WebP Converter`
 `# ! --- DO NOT EDIT PREVIOUS LINE --- !`
 `<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteCond %{HTTP_ACCEPT} image/webp
-  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpg.webp -f
-  RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
-  RewriteCond %{HTTP_ACCEPT} image/webp
-  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
-  RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
-  RewriteCond %{HTTP_ACCEPT} image/webp
-  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.webp -f
-  RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteEngine On
+	RewriteCond %{HTTP_ACCEPT} image/webp
+	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpg.webp -f
+	RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteCond %{HTTP_ACCEPT} image/webp
+	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
+	RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteCond %{HTTP_ACCEPT} image/webp
+	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.webp -f
+	RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,E=cache-control:no-cache,L]
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -456,11 +407,11 @@ And the following code **at the beginning of .htaccess file** in the `/wp-conten
 `# BEGIN WebP Converter`
 `# ! --- DO NOT EDIT PREVIOUS LINE --- !`
 `<IfModule mod_mime.c>
-  AddType image/webp .webp
+	AddType image/webp .webp
 </IfModule>
 <IfModule mod_expires.c>
-  ExpiresActive On
-  ExpiresByType image/webp "access plus 1 year"
+	ExpiresActive On
+	ExpiresByType image/webp "access plus 1 year"
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -484,6 +435,17 @@ This is all very important to us and allows us to do even better things for you!
 3. Screenshot when regenerating images
 
 == Changelog ==
+
+= 3.0.0 (2021-05-02) =
+* `[Removed]` Filter `webpc_get_values`
+* `[Removed]` Filter `webpc_get_options`
+* `[Removed]` Filter `webpc_get_methods`
+* `[Changed]` Error messages on plugin settings page
+* `[Added]` Conversion of images to multiple output formats
+* `[Added]` Compatibility with NextGEN Gallery plugin
+* `[Added]` Data displayed on "Server configuration" tab on plugin settings page
+* `[Added]` Changes to improve performance of plugin
+* `[Added]` Changes to improve security of plugin
 
 = 2.4.0 (2021-02-28) =
 * `[Fixed]` Error detection of redirects without .png as supported file extension

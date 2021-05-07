@@ -1,7 +1,7 @@
 <?php
 
 /**
- * YOAST SEO PLUGIN SUPPORT
+ * SEO PLUGIN SUPPORT
  *
  * Count the words in pages that are made with Optimizer Widgets 
  *
@@ -9,134 +9,80 @@
  * 
  * @since  Optimizer 0.4.1
  */
-if (!defined('WPSEO_VERSION') ) {
-	return;
+
+
+function optimizer_rankmath_widget_analysis() {
+	if ( class_exists( 'RankMath' ) && function_exists('optimizer_get_widget_data')){
+		$screen = get_current_screen();
+      if ( $screen->parent_base == 'edit' && $screen->id == 'page' ){ 
+
+			 global $post;
+			 $widgetized = get_post_meta( $post->ID, 'widgetized', true );
+          $sidebarid = get_post_meta( $post->ID, 'page_sidebar', true );
+          $widgetdata = optimizer_get_widget_data($sidebarid);
+          $widgetdata = str_replace('"',"'",$widgetdata);
+          $widgetdata = optimizer_highlight_focus_keywords('rankmath', $widgetdata);
+
+            if($widgetized == '1' && $sidebarid !=='null' ){
+               echo '<script>console.warn("RankMath!!!")</script>';
+               echo '<script>
+                     wp.hooks.addFilter( "rank_math_content", "optimizer", function(){
+                        console.warn("RankMath Content Set!!!");
+                        return `'.$widgetdata.'`;
+                     } );
+                     if(document.getElementById("widget_content_meta_html")){
+                        document.getElementById("widget_content_meta_html").innerHTML = `'.$widgetdata.'`;
+                     }
+                  </script>';
+            }
+		}
+   }
 }
- 
-function optimizer_get_widget_data($sidebar_id) {
-	global $wp_registered_sidebars, $wp_registered_widgets;
-	
-	// Holds the final data to return
-	$output = array();
-	
-	if( !$sidebar_id ) {
-		// There is no sidebar registered with the name provided.
-		return $output;
-	} 
-	
-	// A nested array in the format $sidebar_id => array( 'widget_id-1', 'widget_id-2' ... );
-	$sidebars_widgets = wp_get_sidebars_widgets();
-	$widget_ids = $sidebars_widgets[$sidebar_id];
-	
-	if( !$widget_ids ) {
-		// Without proper widget_ids we can't continue. 
-		return array();
-	}
-	
-	// Loop over each widget_id so we can fetch the data out of the wp_options table.
-	foreach( $widget_ids as $id ) {
-		// The name of the option in the database is the name of the widget class.  
-		$option_name = $wp_registered_widgets[$id]['callback'][0]->option_name;
-		
-		// Widget data is stored as an associative array. To get the right data we need to get the right key which is stored in $wp_registered_widgets
-		$key = $wp_registered_widgets[$id]['params'][0]['number'];
-		
-		$widget_data = get_option($option_name);
-		
-		// Add the widget data on to the end of the output array.
-		$output[] = $widget_data[$key];
-	}
-	
-	function optimizer_check_widget_content($ar) {  if(isset($ar['content'])) return $ar['content'];  }
-	function optimizer_check_widget_desc($ar) {  if(isset($ar['desc'])) return $ar['desc'];  }
-	function optimizer_check_widget_title($ar) {  if(isset($ar['title'])) return $ar['title'];  }
-	function optimizer_check_widget_subtitle($ar) {  if(isset($ar['subtitle'])) return $ar['subtitle'];  }
-	function optimizer_check_widget_block1title($ar) {  if(isset($ar['block1title'])) return $ar['block1title'];  }
-	function optimizer_check_widget_block2title($ar) {  if(isset($ar['block2title'])) return $ar['block2title'];  }
-	function optimizer_check_widget_block3title($ar) {  if(isset($ar['block3title'])) return $ar['block3title'];  }
-	function optimizer_check_widget_block4title($ar) {  if(isset($ar['block4title'])) return $ar['block4title'];  }
-	function optimizer_check_widget_block5title($ar) {  if(isset($ar['block5title'])) return $ar['block5title'];  }
-	function optimizer_check_widget_block6title($ar) {  if(isset($ar['block6title'])) return $ar['block6title'];  }
-	function optimizer_check_widget_block1content($ar) {  if(isset($ar['block1content'])) return $ar['block1content'];  }
-	function optimizer_check_widget_block2content($ar) {  if(isset($ar['block2content'])) return $ar['block2content'];  }
-	function optimizer_check_widget_block3content($ar) {  if(isset($ar['block3content'])) return $ar['block3content'];  }
-	function optimizer_check_widget_block4content($ar) {  if(isset($ar['block4content'])) return $ar['block4content'];  }
-	function optimizer_check_widget_block5content($ar) {  if(isset($ar['block5content'])) return $ar['block5content'];  }
-	function optimizer_check_widget_block6content($ar) {  if(isset($ar['block6content'])) return $ar['block6content'];  }
+add_action('in_admin_footer', 'optimizer_rankmath_widget_analysis');
 
 
-	$content = array_map('optimizer_check_widget_content', $output);
-	$desc = array_map('optimizer_check_widget_desc', $output);
-	$title = array_map('optimizer_check_widget_title', $output);
-	$subtitle = array_map('optimizer_check_widget_subtitle', $output);
-	$block1title = array_map('optimizer_check_widget_block1title', $output);
-	$block2title = array_map('optimizer_check_widget_block2title', $output);
-	$block3title = array_map('optimizer_check_widget_block3title', $output);
-	$block4title = array_map('optimizer_check_widget_block4title', $output);
-	$block5title = array_map('optimizer_check_widget_block5title', $output);
-	$block6title = array_map('optimizer_check_widget_block6title', $output);
-	$block1content = array_map('optimizer_check_widget_block1content', $output);
-	$block2content = array_map('optimizer_check_widget_block2content', $output);
-	$block3content = array_map('optimizer_check_widget_block3content', $output);
-	$block4content = array_map('optimizer_check_widget_block4content', $output);
-	$block5content = array_map('optimizer_check_widget_block5content', $output);
-	$block6content = array_map('optimizer_check_widget_block6content', $output);
+//_yoast_wpseo_focuskw
 
-	
-	$widgetcontent = array_merge($content, $desc, $title, $subtitle, $block1title, $block1content, $block2title, $block2content, $block3title, $block3content, $block4title, $block4content, $block5title, $block5content, $block6title, $block6content);
-
-	function widget_content_output($item, $key) {
-		 echo $item;
-	}
-	$widgetcontent = array_walk($widgetcontent, 'widget_content_output');
-
-	
-	return $widgetcontent;
+function optimizer_highlight_focus_keywords($service='yoast', $widgetdata) {
+   if ( class_exists( 'RankMath' ) || class_exists( 'WPSEO_Recalculate' )){
+      $metaKey = 'rank_math_focus_keyword';
+      if($service === 'yoast'){
+         $metaKey = '_yoast_wpseo_focuskw';
+      }
+      global $post;
+      $focus_keyword = get_post_meta( $post->ID, $metaKey, true );
+      if($focus_keyword){ 
+         $focus_keywords = explode(',', $focus_keyword);  
+         if(isset($focus_keywords[0])){
+           $widgetdata = str_replace($focus_keywords[0],'<i class="optimizer_focus_key">'.$focus_keywords[0].'</i>',$widgetdata);
+         }
+         if(isset($focus_keywords[1])){
+           $widgetdata = str_replace($focus_keywords[1],'<i class="optimizer_focus_other">'.$focus_keywords[1].'</i>',$widgetdata);
+         }
+         if(isset($focus_keywords[2])){
+           $widgetdata = str_replace($focus_keywords[2],'<i class="optimizer_focus_other">'.$focus_keywords[2].'</i>',$widgetdata);
+         }
+      }
+   }
+   return $widgetdata;
 }
-
-
-/*Widget Content in CUSTOMIZER*/
-function optimizer_yoast_widget_content() {
-	if ( defined('WPSEO_VERSION') ) {
-		?>
-				<?php 
-					$screen = get_current_screen();
-					if ( $screen->parent_base == 'edit' && $screen->id == 'page' ){ 
-						global $post;
-						$widgetized = get_post_meta( $post->ID, 'widgetized', true );
-						$sidebarid = get_post_meta( $post->ID, 'page_sidebar', true );
-		
-							if($widgetized == '1' && $sidebarid !=='null' ){
-								echo '<div id="yoast_widget_content" contenteditable="true" style="display:none;">';
-								echo optimizer_get_widget_data($sidebarid);
-								echo '</div>';
-							}
-                } ?>
-            
-            
-		<?php
-		
-	} // END output_wp_editor_widget_html*/
-	
-}
-	
-add_action( 'edit_form_after_editor', 'optimizer_yoast_widget_content', 100 );
-
 
 function optimizer_yoast_widget_analysis() {
-	if ( class_exists( 'WPSEO_Recalculate' )){
+	if ( class_exists( 'WPSEO_Recalculate' ) && function_exists('optimizer_get_widget_data')){
 			$screen = get_current_screen();
 		 ?>
 		<?php if ( $screen->parent_base == 'edit' && $screen->id == 'page' ){ 
 		
 			 global $post;
 			 $widgetized = get_post_meta( $post->ID, 'widgetized', true );
-			 $sidebarid = get_post_meta( $post->ID, 'page_sidebar', true );
+          $sidebarid = get_post_meta( $post->ID, 'page_sidebar', true );
+          $widgetdata = optimizer_get_widget_data($sidebarid);
+          $widgetdata = optimizer_highlight_focus_keywords('yoast', $widgetdata);
 
 					if($widgetized == '1' && $sidebarid !=='null' ){
 						echo '<script>
 							(function($) {
-								$(window).bind("load", function(){
+								$(window).on("load", function(){
 									/**
 									 * Set up the Yoast Optimizer WIDGET Analysis 
 									 */
@@ -149,7 +95,7 @@ function optimizer_yoast_widget_analysis() {
 									YoastWidgetFAnalysis.prototype.addAcfFieldsToContent = function(data) {
 										var optim_widget_content = "";
 										
-											optim_widget_content += " "+ $("#yoast_widget_content").html();
+											optim_widget_content += `'.str_replace('"',"'",$widgetdata).'`;
 							
 										return data + optim_widget_content;
 									};
@@ -157,6 +103,9 @@ function optimizer_yoast_widget_analysis() {
 									new YoastWidgetFAnalysis();
 								});
 							}(jQuery));
+                     if(document.getElementById("widget_content_meta_html")){
+                        document.getElementById("widget_content_meta_html").innerHTML = `'.$widgetdata.'`;
+                     }
 							</script>';
 						}
 				} ?>

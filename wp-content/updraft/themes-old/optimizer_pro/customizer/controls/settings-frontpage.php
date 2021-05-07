@@ -408,7 +408,20 @@ $wp_customize->add_setting( 'optimizer[static_textbox_bottom]', array(
 					'settings'    => 'optimizer[static_textbox_bottom]'
 			) );
 
-		
+         
+//Disable Static Slider Parallax Effect
+$wp_customize->add_setting('optimizer[disable_slider_parallax]', array(
+	'type' => 'option',
+	'default' => '',
+	'sanitize_callback' => 'optimizer_sanitize_checkbox',
+	'transport' => 'refresh',
+) );
+			$wp_customize->add_control( new Optimizer_Controls_Toggle_Control( $wp_customize, 'disable_slider_parallax', array(
+				'label' => __('Disable Parallax Effect','optimizer'),
+				'section' => 'slider_section',
+				'settings' => 'optimizer[disable_slider_parallax]',
+			)) );
+
 
 //================================NIVO / ACCORDION SLIDER=============================
 //Create Slider

@@ -150,7 +150,7 @@ class EDD_Theme_Updater_Admin {
 								<?php echo $strings['license-key']; ?>
 							</th>
 							<td>
-								<input id="<?php echo $this->theme_slug; ?>_license_key" name="<?php echo $this->theme_slug; ?>_license_key" type="text" class="regular-text" value="<?php echo esc_attr( $license ); ?>" />
+								<input id="<?php echo $this->theme_slug; ?>_license_key" name="<?php echo $this->theme_slug; ?>_license_key" type="password" class="regular-text" value="<?php echo esc_attr( $license ); ?>" />
 								<p class="description">
 									<?php echo $message; ?>
 								</p>

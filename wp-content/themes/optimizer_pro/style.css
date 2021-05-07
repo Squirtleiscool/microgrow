@@ -1819,7 +1819,7 @@ span.widget_border {width: 35px;height: 2px;display: block;margin-bottom: 20px;}
 #footer_menu ul {margin: 0;padding: 0;}
 #footer_menu ul li {display: inline-block; margin:0 10px;padding: 15px 5px;}
 #footer_menu.hide_footmenu{ display:none;}
-.foot_right_wrap {float: right;width: auto;}
+.foot_right_wrap {float: right;width: auto;padding-right: 5%;}
 .foot_soc{display: inline-block;float:none;}
 
 
@@ -2404,3 +2404,9 @@ body .lay4 .post_image, .lay4 .post_content{ width:100%;}
 @media screen and (max-width: 760px) {
 	.frontpageimage {width: 100%; padding-top: 10px;}
 }
+
+p:empty:before {
+	content:none!important;
+}
+
+.foot_right_wrap {padding: 0 5% 0 0;}

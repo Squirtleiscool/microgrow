@@ -15,10 +15,10 @@ $updater = new EDD_Theme_Updater_Admin(
 
 	// Config settings
 	$config = array(
-		'remote_api_url' => 'https://www.optimizerwp.com', // Site where EDD is hosted
+		'remote_api_url' => 'https://optimizerwp.com', // Site where EDD is hosted
 		'item_name' => 'Optimizer PRO', // Name of theme
 		'theme_slug' => 'optimizer', // Theme slug
-		'version' => '0.6.1', // The current version of this theme
+		'version' => '0.8.0', // The current version of this theme
 		'author' => 'OptimizerWP', // The author of this theme
 		'download_id' => '', // Optional, used for generating a license renewal link
 		'renew_url' => '' // Optional, allows for a custom license renewal link

@@ -69,6 +69,6 @@ add_filter('siteorigin_panels_widgets', 'optimizer_add_widget_icons');
 
 
 function optimizer_so_scripts() {
-   wp_add_inline_script( 'jquery-migrate', 'jQuery(document).ready(function(){   jQuery(".so-panel.widget").each(function (){   jQuery(this).attr("id", jQuery(this).find(".so_widget_id").attr("data-panel-id"))  });  });' );
+   wp_add_inline_script( 'jquery-migrate', 'jQuery(function() {  jQuery(".so-panel.widget").each(function (){   jQuery(this).attr("id", jQuery(this).find(".so_widget_id").attr("data-panel-id"))  });  });' );
 }
 add_action( 'wp_enqueue_scripts', 'optimizer_so_scripts' );

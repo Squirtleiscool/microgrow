@@ -15,7 +15,7 @@ body.wp-customizer-unloading .customizer_spinner{display:block;width: 100%;text-
 .customizer_spinner svg path, .customizer_spinner svg rect{  fill: #ffffff;}
 
 /*Customizer Menu Navigation*/
-#customizer_topbar { width: 100%; background-color: #282B32;position: fixed;top: 0px; left:0;z-index: 9999;height: 30px;padding: 10px 0; font-family: sans-serif;}
+#customizer_topbar { width: 100%; background-color: #282B32; color: #696d71; position: fixed;top: 0px; left:0;z-index: 9999;height: 30px;padding: 10px 0; font-family: sans-serif;}
 .admin-bar #customizer_topbar{top: 32px; }
 .customizer-prev .header_wrap.layer_wrapper {margin-top: 50px;}
 #customizer_topbar.tophide{ top: -50px; height: 0px;}
@@ -158,7 +158,7 @@ a.add_widget_home {border: 1px solid;padding: 3px 10px;border-radius: 20px;font-
 {content: "";width: 50px;height: 50px;display: block;position: absolute;z-index: 9;background-image:url(../images/widget_hover.png);bottom: 0;right:0;background-position:bottom right;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
 
 /*Widget Name*/
-span.widgetname {display:none;background: linear-gradient(45deg, rgba(104,169,255,0) 19%,rgb(87, 130, 236) 20%,rgb(87, 130, 236) 20%,rgb(87, 130, 236) 120%);
+span.widgetname {display:none; line-height:normal;background: linear-gradient(45deg, rgba(104,169,255,0) 19%,rgb(87, 130, 236) 20%,rgb(87, 130, 236) 20%,rgb(87, 130, 236) 120%);
 background-position: 0px 0px;color: #fff;font-family: arial;font-weight: bold;text-transform: uppercase;font-size: 11px;position: absolute;z-index: 9;right: 0;top:0;padding: 3px 6px;text-indent: 35px;padding-right: 10px;-webkit-transition:all 0.2s ease-out;-moz-transition:all 0.2s ease-out;transition:all 0.2s ease-out;}
 .customizer-prev .frontpage_sidebar .widget:hover span.widgetname,
 body.sidebar_bottom.customizer-prev #sidebar .widget:hover span.widgetname,
@@ -170,7 +170,7 @@ body.sidebar_top.customizer-prev #sidebar .widget:hover span.widgetname
 
 /*Page Preset*/
 form.save_preset {display: none;    position: absolute;background: #fff;padding: 20px;margin-top: 20px;box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);}
-.preset_save, .preset_import {display: inline-block;margin-right: 15px;}
+.preset_save, .preset_import, .preset_export {display: inline-block;margin-right: 15px;}
 #page_preset_bar {float: left;margin-left: 20px;padding-top: 5px;font-size: 13px;font-weight: bold;}
 a.preset_save_trigger:hover, a.preset_import_trigger:hover {color: #fff;}
 #page_preset_bar a {cursor: pointer;}
@@ -183,7 +183,7 @@ a.preset_save_trigger:hover, a.preset_import_trigger:hover {color: #fff;}
 .preset_save_btn {background: #5782ec;padding: 7px;border: none;top: -1px;position: relative;color: #fff;border-radius: 2px;cursor: pointer;}
 .preset_save_btn:hover {background: #2972C5;}
 
-.custom_preset_window {position: absolute;padding: 20px;background: #fff;margin-top: 20px;box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); width: 300px;}
+.custom_preset_window {position: absolute; ;background: #fff;margin-top: 20px;box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); width: 300px;}
 .custom_preset_window .cpreset_p {border-bottom: 1px solid #eee;padding: 10px 0;}
 .custom_preset_window .preset_holder {display: inline-block;width: 300px;margin-bottom: 10px;color: #555;}
 .custom_preset_window .preset_holder i { color: #e9bb24;}
@@ -191,7 +191,20 @@ a.preset_save_trigger:hover, a.preset_import_trigger:hover {color: #fff;}
 .cpreset_p span{ cursor:pointer;}
 .cpreset_import:hover {color: #5782ec;}
 .cpreset_remove:hover { color: #DC8484;}
-
+.custom_preset_window__navs ul { margin: 0; padding: 0; list-style-type: none; background: #eee; }
+.custom_preset_window__navs ul li { display: inline-block; padding: 12px 10px; cursor: pointer; }
+.custom_preset_window__tab { padding: 20px;}
+.custom_preset_window__navs ul li.preset_nav_active { background: #fff;}
+.custom_preset_window .preset_p { text-align: center; margin-bottom: 15px; }
+.custom_preset_window__tab--presets { overflow: auto; height: 500px; }
+.custom_preset_window .preset_p .preset_buttons_wrap { width: 200px; float: left; margin-bottom: 25px; font-size: 12px; background-color: #5782ec; color: #fff; margin-left: 21px; }
+.custom_preset_window .preset_p .preset_buttons_wrap a { color: #fff;  margin-right: 15px; }
+.custom_preset_window .preset_p .preset_buttons_wrap a, .custom_preset_window .preset_p .preset_buttons_wrap span { padding: 10px 0; display: inline-block; cursor: pointer; }
+.custom_preset_window .preset_p .preset_buttons_wrap a, .custom_preset_window .preset_p .preset_buttons_wrap span:hover { color: #fff; }
+.custom_preset_window .preset_p img.preset_thumb { vertical-align: bottom; border: 1px solid #ddd; border-bottom: none; }
+.custom_preset_window .preset_p .preset_buttons_wrap span {  margin-right: 0;}
+.custom_preset_window #customwiedata { margin-top: 8px; font-size: 12px; }
+.custom_preset_window input#submitWie {margin-top: 15px;border: none;background: #222;color: #fff!important;cursor: pointer!important;font-size: 13px;padding: 10px 12px;border-radius: 30px;width: 100%;}
 
 
 /*tinyMce inline*/

@@ -141,7 +141,7 @@ function layersc_slider( $atts, $content = null ) {
 		if(is_customize_preview()){ $nonedit = 'mceNonEditable blockshortcode';}else{$nonedit = '';}
 	
 	$content= preg_replace('<<br />>', '', $content);
-		return '<div class="ast_slide_wrap '.$class.' '.$nonedit.'"><div class="ast_slider">'.$content.'</div></div><script>jQuery(window).bind("load", function(){jQuery(".ast_slider").nivoSlider({ effect :"'.$effect.'", pauseTime: '.$pausetime.', directionNav: '.$navigation.', '.$autoplayd.'});   });</script>';
+		return '<div class="ast_slide_wrap '.$class.' '.$nonedit.'"><div class="ast_slider">'.$content.'</div></div><script>jQuery(window).on("load", function(){jQuery(".ast_slider").nivoSlider({ effect :"'.$effect.'", pauseTime: '.$pausetime.', directionNav: '.$navigation.', '.$autoplayd.'});   });</script>';
 }
 add_shortcode( 'slider', 'layersc_slider' );
 
@@ -152,7 +152,8 @@ add_shortcode( 'slider', 'layersc_slider' );
 function layersc_facelike( $atts, $content = null) {
 		extract(shortcode_atts(array(
 		'layout' => 'standard', //standard, box_count, button_count
-		'action' => 'like', //like, recommend
+		'action' => 'like', //like, recommend,
+		'url' => urlencode(get_permalink()),
 		'share' => 'true',
 	), $atts));
 	
@@ -167,7 +168,7 @@ return '<div id="fb-root"></div>
 				  fjs.parentNode.insertBefore(js, fjs);
 				}(document, "script", "facebook-jssdk"));</script>
 				
-<div class="fb-like '.$nonedit.'" data-href="'.urlencode(get_permalink()).'" data-layout="'.$layout.'" data-action="'.$action.'" data-show-faces="false" data-share="'.$share.'"></div>
+<div class="fb-like '.$nonedit.'" data-href="'.$url.'" data-layout="'.$layout.'" data-action="'.$action.'" data-show-faces="false" data-share="'.$share.'"></div>
 				';
 
 }
@@ -474,8 +475,8 @@ function layersc_col2_func( $atts, $content = null ) {
 		
 		if(is_customize_preview()){ 
 			$nonedit = 'inline_shortcode';
-			$short = 'contenteditable="true" data-shortcode="[col2 width=&quot;'.$width.'&quot;]'.str_replace('"', '&quot;', do_shortcode($content)).'[/col2]"';
-
+			//$short = 'contenteditable="true" data-shortcode="[col2 width=&quot;'.$width.'&quot;]'.str_replace('"', '&quot;', do_shortcode($content)).'[/col2]"';
+         $short = '';
 		}else{
 			$nonedit = ''; $short = '';
 		}

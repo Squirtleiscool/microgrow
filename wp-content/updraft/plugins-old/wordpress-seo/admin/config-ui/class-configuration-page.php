@@ -49,7 +49,7 @@ class WPSEO_Configuration_Page {
 		$this->remove_notification();
 		$this->remove_notification_option();
 
-		wp_redirect( admin_url( 'admin.php?page=' . WPSEO_Admin::PAGE_IDENTIFIER ) );
+		wp_safe_redirect( admin_url( 'admin.php?page=' . WPSEO_Admin::PAGE_IDENTIFIER ) );
 		exit;
 	}
 
@@ -84,17 +84,16 @@ class WPSEO_Configuration_Page {
 		 */
 		wp_enqueue_style( 'forms' );
 		$asset_manager = new WPSEO_Admin_Asset_Manager();
-		$asset_manager->register_wp_assets();
 		$asset_manager->register_assets();
 		$asset_manager->enqueue_script( 'configuration-wizard' );
 		$asset_manager->enqueue_style( 'yoast-components' );
 
 		$config = $this->get_config();
 
-		wp_localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'configuration-wizard', 'yoastWizardConfig', $config );
+		$asset_manager->localize_script( 'configuration-wizard', 'yoastWizardConfig', $config );
 
 		$yoast_components_l10n = new WPSEO_Admin_Asset_Yoast_Components_L10n();
-		$yoast_components_l10n->localize_script( WPSEO_Admin_Asset_Manager::PREFIX . 'configuration-wizard' );
+		$yoast_components_l10n->localize_script( 'configuration-wizard' );
 	}
 
 	/**

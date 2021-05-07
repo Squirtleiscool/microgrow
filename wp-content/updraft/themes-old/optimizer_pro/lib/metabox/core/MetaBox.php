@@ -735,7 +735,7 @@ class WPAlchemy_MetaBox
                 <?php elseif (WPALCHEMY_VIEW_ALWAYS_OPENED == $this->view): ?>
                 /* todo: need to find a way to add this script block below, load-scripts.php?... */
                 var h3 = mb.children('h3');
-                setTimeout(function(){ h3.unbind('click'); }, 1000);
+                setTimeout(function(){ h3.off('click'); }, 1000);
                 $('.handlediv', mb).remove();
                 mb.removeClass('closed'); /* start opened */
                 $('.hndle', mb).css('cursor','auto');

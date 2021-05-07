@@ -30,7 +30,7 @@ class Optimizer_Sidebar_Control extends WP_Customize_Control
 				}
 				$custom_sidebar = explode(',', $optimizer['custom_sidebar']);  
 					foreach((array)$custom_sidebar as $key => $value){
-						echo '<div class="sidebar_name"><span>'.$value.'</span><form method="post" action=""><input name="remove_sidebar_name" type="hidden" value="'.$value.'" ><input name="remove_sidebar_id" type="hidden" value="optimizer_'.trim(preg_replace('/ +/', '-', preg_replace('/[^A-Za-z0-9 ]/', '-', urldecode(html_entity_decode(strip_tags(strtolower($value))))))).'" ><button title="'.__('Delete Sidebar','optimizer').'" name="delcustoms" type="submit"><i class="fa fa-times"></i></button></form></div>';
+						echo '<div class="sidebar_name"><span>'.$value.'</span><form method="post" action=""><input name="remove_sidebar_name" type="hidden" value="'.htmlspecialchars($value).'" ><input name="remove_sidebar_id" type="hidden" value="optimizer_'.trim(preg_replace('/ +/', '-', preg_replace('/[^A-Za-z0-9 ]/', '-', urldecode(html_entity_decode(strip_tags(strtolower($value))))))).'" ><button title="'.__('Delete Sidebar','optimizer').'" name="delcustoms" type="submit"><i class="fa fa-times"></i></button></form></div>';
 					}
             
              }else{ ?>

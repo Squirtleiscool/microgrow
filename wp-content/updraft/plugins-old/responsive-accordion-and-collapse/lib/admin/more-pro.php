@@ -122,12 +122,12 @@
 							<div class="wpsm-theme-container" style="">
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/ac.png'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="Colorbox and panels pro plugin">
 								<div class="wpsm_product_wrapper">
-									<h3  style="width:70%">Accordion Pro<span>wordpress</span></h3>
-									<span class="price"><span class="amount">$9</span></span>
+									<h3  style="width:70%">Team Pro<span>wordpress</span></h3>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 																		
-										<a title="Check Detail" target="_blank" href="http://wpshopmart.com/plugins/accordion-pro/" class="portfolio_read_more_btn pull-left">Check Detail</a>
-										<a title="View Demo" target="_blank" href="http://demo.wpshopmart.com/accordion-pro/" class="portfolio_demo_btn pull-right">View Demo</a>
+										<a title="Check Detail" target="_blank" href="https://wpshopmart.com/plugins/team-pro/" class="portfolio_read_more_btn pull-left">Check Detail</a>
+										<a title="View Demo" target="_blank" href="http://demo.wpshopmart.com/team-pro-demo/" class="portfolio_demo_btn pull-right">View Demo</a>
 									</div>
 								</div>
 							</div>
@@ -140,7 +140,7 @@
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/tabs-pro-screesnhot.png'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="tabs pro plugin">
 								<div class="wpsm_product_wrapper">
 									<h3 style="width:70%">Tabs Pro <span>wordpress</span></h3>
-									<span class="price"><span class="amount">$9</span></span>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 																		
 										<a title="Check Detail" target="_blank" href="https://wpshopmart.com/plugins/tabs-pro-plugin/" class="portfolio_read_more_btn pull-left">Check Detail</a>
@@ -157,7 +157,7 @@
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/csp.png'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="Colorbox and panels pro plugin">
 								<div class="wpsm_product_wrapper">
 									<h3 style="width:70%">Coming Soon Pro <span>wordpress</span></h3>
-									<span class="price"><span class="amount">$19</span></span>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 										<a title="Check Detail" target="_blank" href="http://wpshopmart.com/plugins/coming-soon-pro/" class="portfolio_read_more_btn pull-left">Check Detail</a>
 										<a title="View Demo" target="_blank" href="http://wpshopmart.com/coming-soon-pro-demo-page/" class="portfolio_demo_btn pull-right">View Demo</a>
@@ -176,7 +176,7 @@
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/counters.jpg'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="Colorbox and panels pro plugin">
 								<div class="wpsm_product_wrapper">
 									<h3  style="width:70%">Counter Number Pro<span>wordpress</span></h3>
-									<span class="price"><span class="amount">$12</span></span>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 																		
 										<a title="Check Detail" target="_blank" href="https://wpshopmart.com/plugins/counter-numbers-pro/" class="portfolio_read_more_btn pull-left">Check Detail</a>
@@ -194,7 +194,7 @@
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/service-showcase-pro-preview.jpg'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="Colorbox and panels pro plugin">
 								<div class="wpsm_product_wrapper">
 									<h3  style="width:70%">Service Showcase<span>wordpress</span></h3>
-									<span class="price"><span class="amount">$9</span></span>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 																		
 										<a title="Check Detail" target="_blank" href="https://wpshopmart.com/plugins/service-showcase-pro-plugin-wordpress/" class="portfolio_read_more_btn pull-left">Check Detail</a>
@@ -212,7 +212,7 @@
 								<img width="700" height="394" src="<?php echo wpshopmart_accordion_directory_url.'img/cb.png'; ?>" class="wpsm_site-img-responsive wp-post-image" alt="Colorbox and panels pro plugin">
 								<div class="wpsm_product_wrapper">
 									<h3  style="width:70%">Colorbox Pro<span>wordpress</span></h3>
-									<span class="price"><span class="amount">$5</span></span>
+									<span class="price"><span class="amount"></span></span>
 									<div class="wpsm-btn-block" style="">
 																		
 										<a title="Check Detail" target="_blank" href="https://wpshopmart.com/plugins/colorbox-pro/" class="portfolio_read_more_btn pull-left">Check Detail</a>

@@ -27,8 +27,9 @@ global $optimizer;?>
             <div class="center">
 				<?php 
 				//NO SIDEBAR LOGIC
-                $nosidebar ='';
-                $hidesidebar = get_post_meta($post->ID, 'hide_sidebar', true);
+            $nosidebar ='';
+            $hidesidebar = get_post_meta($post->ID, 'hide_sidebar', true);
+            //$post_layout = get_post_meta($post->ID, 'optimizer_post_layout', true) === 'full' && true;
 				$sidebar = get_post_meta($post->ID, 'sidebar', true);
 
                 if (!empty( $hidesidebar )){
@@ -36,11 +37,11 @@ global $optimizer;?>
                 }else{
                         if(!empty( $sidebar ) && is_active_sidebar( $sidebar )){
                             $nosidebar = ''; 
-						}elseif(!empty( $sidebar ) && !is_active_sidebar( $sidebar )){
-							$nosidebar = 'no_sidebar'; 
+						      }elseif(!empty( $sidebar ) && !is_active_sidebar( $sidebar )){
+							      $nosidebar = 'no_sidebar'; 
                         }elseif(!is_active_sidebar( 'sidebar' ) ){ 
                             $nosidebar = 'no_sidebar'; 
-                 		}    
+                 		   }    
                 } ?>
                 <div class="single_wrap <?php echo $nosidebar; ?>">
                     <div class="single_post">
@@ -96,7 +97,7 @@ global $optimizer;?>
                     
                     
                   <!--COMMENT START: Calling the Comment Section. If you want to hide comments from your posts, remove the line below-->     
-                  <?php if (!empty ($optimizer['post_comments_id'])) { ?>
+                  <?php if (!empty ($optimizer['post_comments_id']) && comments_open()) { ?>
                       <div class="comments_template">
                           <?php comments_template('',true); ?>
                       </div>
@@ -112,9 +113,11 @@ global $optimizer;?>
             
                 <!--SIDEBAR LEFT OR RIGHT--> 
                 	<?php /* Sidebar Variables */?>
-					<?php $hide_sidebar = get_post_meta( $post->ID, 'hide_sidebar', true);  
-						if(empty($hide_sidebar)){	get_sidebar(); 	}
-					?>
+                  <?php $hide_sidebar = get_post_meta( $post->ID, 'hide_sidebar', true);  
+                        //$hide_sidebar = get_post_meta($post->ID, 'optimizer_post_layout', true) === 'full' && true;
+                        //error_log();
+                     if(empty($hide_sidebar)){	get_sidebar(); 	}
+                  ?>
                 <!--SIDEBAR LEFT OR RIGHT END--> 
             
                     </div>

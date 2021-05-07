@@ -1,16 +1,13 @@
 === Magee Shortcodes ===
 Contributors: magictheme
-Donate link: http://www.mageewp.com/
 Tags: shortcodes, shortcode, accordion, alert, button, column, custom box, countdowns, counter, divider, dropcap, feature box, flip box, highlight, list, modal, popover, tooltip, person, promo box, scocial, tab, testimonial, progress, piechart, timeline, panel, section, slider
-Requires at least: 4.0
-Tested up to: 4.9
-Stable tag: 4.9
+Requires at least: 5.0
+Tested up to: 5.7
+Stable tag: 2.0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-
-### Overview 
 
 Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. It is based on Bootstrap and coded with HTML5 and CSS3 language, fully responsive in desktops and mobile devices With enriched settings in options, you could easily create column, section, feature box, person, testimonial and much more.You can also customize post & page layouts using shortcode generator with one simple click, see how your inserted shortcode effects before it goes live with shortcode preview function. Still, more shortcodes coming soon.
 
@@ -30,14 +27,14 @@ Magee Shortcodes is WordPress plugin that provides a pack of shortcodes. It is b
 
 ### Relevant Links
 
-* [Examples](https://demo.mageewp.com/magee-shortcodes-demo/)
-* [Beginner Guide](http://www.mageewp.com/magee-shortcode-guide.html)
-* [Tech Support](http://www.mageewp.com/forums/magee-shortcode/)
+* [Examples](hhttps://www.hoosoft.com/plugins/magee-shortcodes/)
+* [Beginner Guide](https://www.hoosoft.com/plugins/magee-shortcodes/)
+* [Tech Support](https://www.hoosoft.com/plugins/magee-shortcodes/)
 
 
 ### Shortcode List 
 
-Accordion, Alert, Audio, Button, Column, Custom Box, Countdowns, Counter, Divider, Dropcap, Document, Dummy Text, Dummy Image, Dailymotion, Expand, Feature Box, Flip Box, Highlight, Heading, Icon, Image Frame, Image Compare, List, Label, Modal, Menu, Popover, Person, Promo Box, Piechart, Panel, Progress, Pullquote, QR Code, Quote, Slider, RSS Feed, Social, Section, Scheduled, Tooltip, Tab, Testimonial, Timeline, Targeted, Video, Vimeo, Youtube
+Accordion, Alert, Audio, Button, Column, Custom Box, Countdowns, Counter, Divider, Dropcap, Document Viewer, Dummy Text, Dummy Image, Dailymotion, Expand, Feature Box, Flip Box, Highlight, Heading, Icon, Image Frame, Image Compare, List, Label, Modal, Menu, Popover, Person, Promo Box, Piechart, Panel, Progress, Pullquote, QR Code, Quote, Slider, RSS Feed, Social, Section, Scheduled, Tooltip, Tab, Testimonial, Timeline, Targeted, Video, Vimeo, Youtube
 
 
 == Installation ==
@@ -51,7 +48,7 @@ Activate plugin at "Plugins" administration page.
 
 == Frequently Asked Questions ==
 
-* [Tech Support](https://www.mageewp.com/forums/magee-shortcode/)
+* [Tech Support](https://www.hoosoft.com/plugins/magee-shortcodes/)
 
 
 == Screenshots ==
@@ -65,8 +62,53 @@ Activate plugin at "Plugins" administration page.
 7. Featurebox shortcode examples.
 8. Progress Bar shortcode examples.
 
-
 == Changelog ==
+
+= 2.0.4 =
+* Tweak: update Tabs shortcode
+* Fix: Testimonial shortcode issue
+* Fix: Video shortcode poster option issue
+* Fix: Vimeo shortcode height option
+* Fix: Youtube shortcode height option
+
+= 2.0.3 =
+* Fix: Heading shortcode issue
+* Fix: Target option issue
+* Fix: Popover shortcode issue
+* Fix: Portfolio shortcode issue
+* Fix: Pricing shortcode column option issue
+* Fix: Promo Box shortcode issue
+* Tweak: add "Before Label" & "After Label" options for Image Compare shortcode
+* Tweak: add "Text Color" options for Label shortcode
+
+= 2.0.2 =
+* Tweak: update Countdowns shortcode
+* Tweak: update Custom Box Shortcode
+* Fix: Divider shortcode color issue
+* Fix: Dailymotion shortcode height issue
+* Fix: Google Map shortcode issue
+
+= 2.0.1 =
+* Tweak: Add 'Open Multiple' option for Accordion shortcode
+
+= 2.0.0 =
+* Fix: Accordion shortcode issue
+* Fix: Animation shortcode issue
+* Fix: Chart shortcodes issue
+* Fix: Countdowns shortcode issue
+* Fix: Counter shortcode issue
+* Tweak: Removed Audio shortcode autoplay option
+* Tweak: Improved JS & CSS load
+* Tweak: Added compatibility with WordPress v5.7
+* Added: New shortcode -- Animation
+* Added: New shortcode -- Blog
+* Added: New shortcode -- Carousel
+* Added: New shortcode -- Google Map
+* Added: New shortcode -- Image Banner
+* Added: New shortcode -- Portfolio
+* Added: New shortcode -- Pricing
+* Added: New shortcode -- Process Steps
+* Added: New shortcode -- Table
 
 = 1.6.3 - 25/04/2018 =
 * Fix - Fixed shortcode - modal issue

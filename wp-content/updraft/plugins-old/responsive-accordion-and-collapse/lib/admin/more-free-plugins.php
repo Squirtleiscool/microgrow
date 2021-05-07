@@ -114,7 +114,7 @@
 	}
 </style>
 <h1>Recommended Free WordPress Plugins From Wpshopmart</h1>
-<div style="overflow:hidden;display:block;width:100%;padding-top:20px;padding-bottom:20px;height: 450px; overflow: auto;">
+<div style="overflow:hidden;display:block;width:100%;padding-top:20px;padding-bottom:20px;">
 	<div class="col-md-12">
 		
 	<div class="panel  content-panel">

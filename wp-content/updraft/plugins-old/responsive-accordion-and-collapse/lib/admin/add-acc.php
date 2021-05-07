@@ -154,10 +154,6 @@
 	<span style="display:block"><?php _e('Delete All',wpshopmart_accordion_text_domain); ?></span>
 </a>
 <div style="clear:left;"></div>
-<h1>Get Support Help Here</h1>
-<h3>If You have any issue then please ask us any time</h3>
-<a href="https://wordpress.org/support/plugin/responsive-accordion-and-collapse" target="_blank" class="button button-primary button-hero ">Get Support</a>
-<br> <br>
 
 
 <?php require('add-ac-js-footer.php'); ?>

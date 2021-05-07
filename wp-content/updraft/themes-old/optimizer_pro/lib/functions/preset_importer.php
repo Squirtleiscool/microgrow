@@ -100,12 +100,13 @@ function optimizer_wie_import_data( $data ) {
 	// Loop import data's sidebars
 	foreach ( $data as $sidebar_id => $widgets ) {
 		// Skip inactive widgets
-		// (should not be in export file)
+      // (should not be in export file)
+      
 		if ( 'wp_inactive_widgets' == $sidebar_id ) {
 			continue;
 		}
 		// Check if sidebar is available on this site
-		// Otherwise add widgets to inactive, and say so
+      // Otherwise add widgets to inactive, and say so
 		if ( isset( $wp_registered_sidebars[$sidebar_id] ) ) {
 			$sidebar_available = true;
 			$use_sidebar_id = $sidebar_id;
@@ -116,12 +117,14 @@ function optimizer_wie_import_data( $data ) {
 			$use_sidebar_id = 'wp_inactive_widgets'; // add to inactive if sidebar does not exist in theme
 			$sidebar_message_type = 'error';
 			$sidebar_message = __( 'Sidebar does not exist in theme (using Inactive)', 'optimizer' );
-		}
+      }
 		// Result for sidebar
 		$results[$sidebar_id]['name'] = ! empty( $wp_registered_sidebars[$sidebar_id]['name'] ) ? $wp_registered_sidebars[$sidebar_id]['name'] : $sidebar_id; // sidebar name if theme supports it; otherwise ID
 		$results[$sidebar_id]['message_type'] = $sidebar_message_type;
 		$results[$sidebar_id]['message'] = $sidebar_message;
-		$results[$sidebar_id]['widgets'] = array();
+      $results[$sidebar_id]['widgets'] = array();
+
+      $sidebars_widgets = get_option( 'sidebars_widgets' ); 
 		// Loop widgets
 		foreach ( $widgets as $widget_instance_id => $widget ) {
 			$fail = false;
@@ -133,7 +136,7 @@ function optimizer_wie_import_data( $data ) {
 				$fail = true;
 				$widget_message_type = 'error';
 				$widget_message = __( 'Site does not support widget', 'optimizer' ); // explain why widget not imported
-			}
+         }
 			// Filter to modify settings object before conversion to array and import
 			// Leave this filter here for backwards compatibility with manipulating objects (before conversion to array below)
 			// Ideally the newer optimizer_wie_widget_settings_array below will be used instead of this
@@ -148,10 +151,10 @@ function optimizer_wie_import_data( $data ) {
 			// This is preferred over the older optimizer_wie_widget_settings filter above
 			// Do before identical check because changes may make it identical to end result (such as URL replacements)
 			$widget = apply_filters( 'optimizer_wie_widget_settings_array', $widget );
-			// Does widget with identical settings already exist in same sidebar?
+         // Does widget with identical settings already exist in same sidebar?
 			if ( ! $fail && isset( $widget_instances[$id_base] ) ) {
 				// Get existing widgets in this sidebar
-				$sidebars_widgets = get_option( 'sidebars_widgets' );
+				//$sidebars_widgets = get_option( 'sidebars_widgets' );
 				$sidebar_widgets = isset( $sidebars_widgets[$use_sidebar_id] ) ? $sidebars_widgets[$use_sidebar_id] : array(); // check Inactive if that's where will go
 				// Loop widgets with ID base
 				$single_widget_instances = ! empty( $widget_instances[$id_base] ) ? $widget_instances[$id_base] : array();
@@ -190,10 +193,11 @@ function optimizer_wie_import_data( $data ) {
 					// Update option with new widget
 					update_option( 'widget_' . $id_base, $single_widget_instances );
 				// Assign widget instance to sidebar
-				$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
+				//$sidebars_widgets = get_option( 'sidebars_widgets' ); // which sidebars have which widgets, get fresh every time
 				$new_instance_id = $id_base . '-' . $new_instance_id_number; // use ID number from new widget instance
-				$sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
-				update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+            $sidebars_widgets[$use_sidebar_id][] = $new_instance_id; // add new instance to sidebar
+
+            //error_log(json_encode(get_option( 'sidebars_widgets' )["optimizer_frontpage-test"]));
 				// Success message
 				if ( $sidebar_available ) {
 					$widget_message_type = 'success';
@@ -208,8 +212,14 @@ function optimizer_wie_import_data( $data ) {
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['title'] = ! empty( $widget['title'] ) ? $widget['title'] : __( 'No Title', 'optimizer' ); // show "No Title" if widget instance is untitled
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['message_type'] = $widget_message_type;
 			$results[$sidebar_id]['widgets'][$widget_instance_id]['message'] = $widget_message;
-		}
-	}
+      }
+
+      if(count($sidebars_widgets) > 0){
+         update_option( 'sidebars_widgets', $sidebars_widgets ); // save the amended data
+      }
+      
+   }
+
 	// Hook after import
 	do_action( 'optimizer_wie_after_import' );
 	// Return results

@@ -59,7 +59,7 @@ global $optimizer;?>
               <!--TOPBAR SEARCH-->
                 <div class="head_search">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" >
-                        <input placeholder="<?php _e( 'Search...', 'optimizer' ); ?>" type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" />
+                        <input placeholder="<?php _e( 'Search...', 'optimizer' ); ?>" type="text" value="<?php echo get_search_query(); ?>" name="s" id="topbar_s" />
                     </form>
                     <i class="fa fa-search"></i>
                 </div>
@@ -114,7 +114,7 @@ global $optimizer;?>
                 <!--MOBILE MENU START-->
                 <?php if(!empty($optimizer['hide_head_menu'])){ ?>
                 <?php }else{ ?>
-                	<?php if( $optimizer['head_menu_type'] == '7' || $optimizer['mobile_menu_type'] == 'hamburger'){ ?><a id="simple-menu" class="<?php if($optimizer['head_menu_type'] == '7' ){ echo 'desktop_hamburger';} ?>" href="#sidr"><i class="fa fa-bars"></i></a><?php } ?>
+                	<?php if( $optimizer['head_menu_type'] == '7' || $optimizer['mobile_menu_type'] == 'hamburger'){ ?><a id="simple-menu" class="<?php if($optimizer['head_menu_type'] == '7' ){ echo 'desktop_hamburger';} ?>" href="#sidr" aria-label="<?php echo _e('Menu','optimizer'); ?>"><i class="fa fa-bars"></i></a><?php } ?>
                 	<?php if( $optimizer['mobile_menu_type'] == 'dropdown'){ ?><a id="dropdown-menu"><?php echo _e('Menu','optimizer'); ?> <i class="fa fa-chevron-down"></i></a><?php } ?>
                 <?php } ?>
                 <!--MOBILE MENU END--> 
@@ -141,7 +141,7 @@ global $optimizer;?>
               <!--Header SEARCH-->
                 <div class="header_s head_search<?php if (empty ($optimizer['headsearch_id'])) { ?> headrsearch_off<?php } ?>">
                     <form role="search" method="get" action="<?php echo home_url( '/' ); ?>" >
-                        <input placeholder="<?php _e( 'Search...', 'optimizer' ); ?>" type="text" value="<?php echo get_search_query(); ?>" name="s" id="s" />
+                        <input placeholder="<?php _e( 'Search...', 'optimizer' ); ?>" type="text" value="<?php echo get_search_query(); ?>" name="s" id="head_s" />
                     </form>
                     <i class="fa fa-search"></i>
                 </div>

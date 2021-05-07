@@ -241,7 +241,23 @@ $wp_customize->add_setting( 'optimizer[home_logo_id][url]',array(
 						)
 					)
 			);
-
+//Restrict Slider Height
+$wp_customize->add_setting('optimizer[logo_max_width]', array(
+	'type' => 'option',
+	'default' => '',
+	'sanitize_callback' => 'optimizer_kses_html',
+	//'transport' => 'postMessage',
+) );
+			$wp_customize->add_control('logo_max_width', array(
+				'type' => 'text',
+				'label' => __('Logo Max Width (px)','optimizer'),
+				'description' => __('in pixel (px). eg: 180px. Keep empty to disable the option.', 'optimizer'),	
+				'section' => 'headlogo_section',
+				'settings' => 'optimizer[logo_max_width]',
+						'input_attrs'	=> array(
+							'class'	=> 'mini_control',
+						),
+			) );
 
 //LOGO ALIGN FIELD
 $wp_customize->add_setting( 'optimizer[logo_position]', array(
@@ -377,8 +393,59 @@ $wp_customize->add_setting( 'optimizer[menutxt_color_active]', array(
 				'label' => __('Menu Active Text Color','optimizer'),
 				'section' => 'headmenu_section',
 				'settings' => 'optimizer[menutxt_color_active]',
+         ) ) );
+         
+//SUBMENU TEXT COLOR
+$wp_customize->add_setting( 'optimizer[submenu_text_color]', array(
+	'type' => 'option',
+	'default' => '#ffffff',
+	'sanitize_callback' => 'sanitize_hex_color',
+	//'transport' => 'postMessage',
+) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'submenu_text_color', array(
+				'label' => __('Submenu Text Color','optimizer'),
+				'section' => 'headmenu_section',
+				'settings' => 'optimizer[submenu_text_color]',
 			) ) );
 
+//SUBMENU BG COLOR
+$wp_customize->add_setting( 'optimizer[submenu_bg_color]', array(
+	'type' => 'option',
+	'default' => '#000000',
+	'sanitize_callback' => 'sanitize_hex_color',
+	//'transport' => 'postMessage',
+) );
+
+			$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'submenu_bg_color', array(
+				'label' => __('Submenu Background','optimizer'),
+				'section' => 'headmenu_section',
+				'settings' => 'optimizer[submenu_bg_color]',
+			) ) );
+
+//SUBMENU BG OPACITY
+$wp_customize->add_setting( 'optimizer[submenu_bg_opacity]', array(
+   'type' => 'option',
+     'default' => '50',
+   'sanitize_callback' => 'optimizer_sanitize_number',
+   //'transport' => 'postMessage',
+) );
+
+      $wp_customize->add_control('submenu_bg_opacity', array(
+            'type' => 'range',
+            'label' => __('Submenu Background Opacity','optimizer'),
+            'section' => 'headmenu_section',
+            'input_attrs' => array(
+               'min' => 0,
+               'max' => 100,
+               'step' => 1,
+               'class' => 'range-textbox_bottom',
+               'style' => 'color: #0a0',
+            ),
+            'settings'    => 'optimizer[submenu_bg_opacity]'
+      ) );
+
+      
 
 //MENU TEXT SIZE
 $wp_customize->add_setting('optimizer[menu_size_id]', array(

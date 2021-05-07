@@ -324,7 +324,10 @@ function optimizer_woo_single_cats( ) {
 	
 	if(is_single()){ 
 		if($optimizer['woo_single_layout'] == 'layout2' || $optimizer['woo_single_layout'] == 'layout3'){
-			echo $product->get_categories( ' / ', '<span class="woo_cats_in"> ', '</span>' );
+         if(function_exists('wc_get_product_category_list')){
+            echo wc_get_product_category_list( $product->get_id(), ' / ', '<span class="woo_cats_in"> ', '</span>' );
+         }
+
 		}
 		
 	}

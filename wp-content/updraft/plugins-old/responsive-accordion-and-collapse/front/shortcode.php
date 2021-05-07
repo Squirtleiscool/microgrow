@@ -1,4 +1,5 @@
 <?php
+// accordion shortcode 
 add_shortcode( 'WPSM_AC', 'AccordionShortCode' );
 function AccordionShortCode( $Id ) {
 	ob_start();	
