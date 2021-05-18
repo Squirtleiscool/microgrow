@@ -32,6 +32,28 @@ class ConvertPaths extends PluginAccessAbstract implements PluginAccessInterface
 	public function convert_files_by_paths( array $paths ) {
 		$method_integrator = new MethodIntegrator();
 		$method_integrator->set_plugin( $this->get_plugin() );
-		$method_integrator->init_conversion( $paths );
+		$method_integrator->init_conversion( $this->remove_paths_of_excluded_dirs( $paths ) );
+	}
+
+	/**
+	 * Removes paths of source images in excluded directories.
+	 *
+	 * @param string[] $paths Server paths of images.
+	 *
+	 * @return string[] Server paths of images.
+	 */
+	private function remove_paths_of_excluded_dirs( array $paths ): array {
+		$excluded_dirs = apply_filters( 'webpc_dir_excluded', [] );
+		foreach ( $paths as $path_index => $path ) {
+			foreach ( $excluded_dirs as $excluded_dir ) {
+				$dir_pattern = str_replace( '.', '\.', $excluded_dir );
+				if ( ! preg_match( '/(\\\\|\/)(' . $dir_pattern . ')(\\\\|\/)/', $path ) ) {
+					continue;
+				}
+				unset( $paths[ $path_index ] );
+				break;
+			}
+		}
+		return $paths;
 	}
 }

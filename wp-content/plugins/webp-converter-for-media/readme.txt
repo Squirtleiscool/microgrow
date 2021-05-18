@@ -436,6 +436,10 @@ This is all very important to us and allows us to do even better things for you!
 
 == Changelog ==
 
+= 3.0.1 (2021-05-09) =
+* `[Fixed]` Filters using for change server paths
+* `[Added]` Excluding directories when uploading images to Media Library
+
 = 3.0.0 (2021-05-02) =
 * `[Removed]` Filter `webpc_get_values`
 * `[Removed]` Filter `webpc_get_options`

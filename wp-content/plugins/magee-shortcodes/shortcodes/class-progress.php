@@ -23,7 +23,7 @@ class Magee_Progress {
 	 */
 	function render( $args, $content = '') {
 
-		Helper::get_style_depends(['magee-shortcodes']);
+		Helper::get_style_depends(['bootstrap', 'magee-shortcodes']);
 		Helper::get_script_depends(['magee-shortcodes']);
 
 		$defaults =	Helper::set_shortcode_defaults(
