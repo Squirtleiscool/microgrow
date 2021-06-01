@@ -23,6 +23,15 @@ class UploadsDirectory extends DirectoryAbstract implements DirectoryInterface {
 	}
 
 	/**
+	 * Returns status if directory is available.
+	 *
+	 * @return bool Directory is available?
+	 */
+	public function is_available(): bool {
+		return true;
+	}
+
+	/**
 	 * Returns label of directory.
 	 *
 	 * @return string Directory label.

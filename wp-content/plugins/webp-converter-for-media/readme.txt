@@ -92,17 +92,6 @@ If you have an error on the plugin settings screen, first of all please read it 
 
 The messages are designed to reduce the number of support requests that are repeated. It saves your and our time. Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) for more information.
 
-= Server configuration error on Cloudflare =
-
-For Cloudflare servers, a recurring problem is the error code **rewrites_cached**. To solve this problem, you need to disable the cache for the website from the server.
-
-Please follow the steps below:
-- Enter Cloudflare management panel and then to **Page Rules** Tab.
-- Click **Create page rule** button.
-- Enter your domain name.
-- Choose **Cache Level** option, set **Bypass** value and click **Save** button.
-- Click **Save and Deploy** button.
-
 = Error while converting? =
 
 You can get several types of errors when converting. First of all, carefully read their content. For the most part, you can solve this problem yourself. Try to do this or contact the server administrator.
@@ -349,6 +338,8 @@ If your server is a combination of Apache and Nginx, remember that the image fil
 
 = Configuration for Nginx =
 
+This configuration is only required for the image loading mode set to via .htaccess in the plugin settings.
+
 Please edit the configuration file:
 - `/etc/nginx/mime.types`
 
@@ -371,6 +362,7 @@ and add below code in this file *(add these lines to very beginning of file if p
 `			break;`
 `		}`
 `		add_header Vary Accept;`
+`		add_header Cache-Control "private";
 `		expires 365d;`
 `		try_files /wp-content/uploads-webpc/$path.$ext.webp $uri =404;`
 `	}`
@@ -391,13 +383,16 @@ Please manually paste the following code **at the beginning of .htaccess file** 
 	RewriteEngine On
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpg.webp -f
-	RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.jpg$ /wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,L]
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
-	RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.jpeg$ /wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,L]
 	RewriteCond %{HTTP_ACCEPT} image/webp
 	RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.webp -f
-	RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,E=cache-control:no-cache,L]
+	RewriteRule (.+)\.png$ /wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,L]
+</IfModule>
+<IfModule mod_headers.c>
+  Header Set Cache-Control "private"
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -412,6 +407,9 @@ And the following code **at the beginning of .htaccess file** in the `/wp-conten
 <IfModule mod_expires.c>
 	ExpiresActive On
 	ExpiresByType image/webp "access plus 1 year"
+</IfModule>
+<IfModule mod_headers.c>
+  Header Set Cache-Control "private"
 </IfModule>`
 `# ! --- DO NOT EDIT NEXT LINE --- !`
 `# END WebP Converter`
@@ -435,6 +433,15 @@ This is all very important to us and allows us to do even better things for you!
 3. Screenshot when regenerating images
 
 == Changelog ==
+
+= 3.0.4 (2021-05-28) =
+* `[Fixed]` Caching rewrites on CDN and Proxy servers
+
+= 3.0.3 (2021-05-22) =
+* `[Fixed]` Rewrite rules for via .htaccess loading mode
+
+= 3.0.2 (2021-05-22) =
+* `[Fixed]` Rewrite rules for servers where DOCUMENT_ROOT is different from ABSPATH
 
 = 3.0.1 (2021-05-09) =
 * `[Fixed]` Filters using for change server paths

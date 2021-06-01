@@ -3,8 +3,8 @@
 * Donate link: https://www.shift8web.ca
 * Tags: cdn, free cdn, speed, performance, wordpress cache, content delivery network, free, free content delivery, free content delivery network
 * Requires at least: 3.0.1
-* Tested up to: 5.6
-* Stable tag: 1.55
+* Tested up to: 5.7
+* Stable tag: 1.57
 * License: GPLv3
 * License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -272,3 +272,9 @@ This is a known issue with how lazy loading is implemented in some scenarios. Cu
 
 = 1.55 =
 * New dash icon for WP Dashboard
+
+= 1.56 =
+* Improvements for PHP 8 compatibility
+
+= 1.57 =
+* Wordpress 5.7 compatibility

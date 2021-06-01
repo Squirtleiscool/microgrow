@@ -7,7 +7,8 @@
  */
 
 ?>
-<div class="notice notice-success is-dismissible" data-notice="webp-converter"
+<div class="notice notice-success is-dismissible"
+	data-notice="webp-converter-for-media"
 	data-url="<?php echo esc_url( $ajax_url ); ?>"
 >
 	<div class="webpContent webpContent--notice">
@@ -44,11 +45,11 @@
 			>
 				<?php echo esc_html( __( 'Provide us a coffee', 'webp-converter-for-media' ) ); ?>
 			</a>
-			<a href="#" target="_blank" data-permanently
+			<button type="button" data-permanently
 				class="webpContent__button webpButton webpButton--blue"
 			>
 				<?php echo esc_html( __( 'I added review, do not show again', 'webp-converter-for-media' ) ); ?>
-			</a>
+			</button>
 		</div>
 	</div>
 </div>

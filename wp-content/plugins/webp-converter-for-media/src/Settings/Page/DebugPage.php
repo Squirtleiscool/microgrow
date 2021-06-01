@@ -37,6 +37,7 @@ class DebugPage extends PageAbstract implements PageInterface {
 		$plugin       = $this->get_plugin();
 		$uploads_url  = apply_filters( 'webpc_dir_url', '', 'uploads' );
 		$uploads_path = apply_filters( 'webpc_dir_path', '', 'uploads' );
+		$ver_param    = sprintf( '?ver=%s', time() );
 
 		do_action( LoaderAbstract::ACTION_NAME, true, true );
 
@@ -60,21 +61,21 @@ class DebugPage extends PageAbstract implements PageInterface {
 					$uploads_path . RewritesError::PATH_OUTPUT_FILE_PNG2
 				),
 				'size_png_url'          => FileLoader::get_file_size_by_url(
-					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG,
+					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG . $ver_param,
 					$plugin,
 					false
 				),
 				'size_png2_url'         => FileLoader::get_file_size_by_url(
-					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2,
+					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2 . $ver_param,
 					$plugin,
 					false
 				),
 				'size_png_as_webp_url'  => FileLoader::get_file_size_by_url(
-					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG,
+					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG . $ver_param,
 					$plugin
 				),
 				'size_png2_as_webp_url' => FileLoader::get_file_size_by_url(
-					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2,
+					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2 . $ver_param,
 					$plugin
 				),
 			]
