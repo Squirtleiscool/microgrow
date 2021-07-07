@@ -2,7 +2,6 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeInterface;
 use WebpConverter\HookableInterface;
 use WebpConverter\Settings\AdminAssets;
 use WebpConverter\Helper\ViewLoader;

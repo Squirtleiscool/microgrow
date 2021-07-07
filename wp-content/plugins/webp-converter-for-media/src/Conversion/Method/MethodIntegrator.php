@@ -4,10 +4,6 @@ namespace WebpConverter\Conversion\Method;
 
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
-use WebpConverter\Conversion\Methods;
-use WebpConverter\Conversion\Method\GdMethod;
-use WebpConverter\Conversion\Method\ImagickMethod;
-use WebpConverter\Conversion\Method\RemoteMethod;
 
 /**
  * Initializes image conversion using active image conversion method.
@@ -47,7 +43,7 @@ class MethodIntegrator extends PluginAccessAbstract implements PluginAccessInter
 		}
 
 		$method_key = $this->get_plugin()->get_settings()['method'] ?? '';
-		$methods    = ( new Methods() )->get_methods_objects();
+		$methods    = ( new MethodFactory() )->get_methods_objects();
 		foreach ( $methods as $method_name => $method ) {
 			if ( $method_key === $method_name ) {
 				$method->set_plugin( $this->get_plugin() );

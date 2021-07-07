@@ -6,8 +6,6 @@ use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
 use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Plugin\Uninstall\WebpFiles;
-use WebpConverter\Settings\SettingsSave;
 use WebpConverter\Notice\WelcomeNotice;
 
 /**

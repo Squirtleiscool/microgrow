@@ -2,12 +2,10 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
 use WebpConverter\Conversion\Method\GdMethod;
 use WebpConverter\Conversion\Method\ImagickMethod;
 use WebpConverter\Conversion\Format\WebpFormat;
-use WebpConverter\Conversion\Formats;
+use WebpConverter\Conversion\Format\FormatFactory;
 
 /**
  * Checks for configuration errors about image conversion methods that do not support WebP output format.

@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Abstract class for class that supports exception when converting images.
  */

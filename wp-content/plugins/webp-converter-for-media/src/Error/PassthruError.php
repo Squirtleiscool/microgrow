@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
 use WebpConverter\Loader\LoaderAbstract;
 use WebpConverter\Loader\PassthruLoader;
 

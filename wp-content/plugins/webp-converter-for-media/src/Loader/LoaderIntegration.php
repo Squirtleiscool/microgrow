@@ -5,8 +5,6 @@ namespace WebpConverter\Loader;
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
-use WebpConverter\Loader\LoaderInterface;
-use WebpConverter\Loader\LoaderAbstract;
 
 /**
  * Adds integration with active method of loading images.

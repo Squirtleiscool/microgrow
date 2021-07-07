@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Conversion\Directory;
 
-use WebpConverter\Conversion\Directory\DirectoryInterface;
-
 /**
  * Abstract class for class that supports data about directory.
  */
@@ -42,8 +40,9 @@ abstract class DirectoryAbstract implements DirectoryInterface {
 	 * @return string Server path of directory.
 	 */
 	public function get_server_path(): string {
-		$source_path = apply_filters( 'webpc_site_root', realpath( ABSPATH ) );
-		return sprintf( '%1$s/%2$s', $source_path, $this->get_relative_path() );
+		$source_path    = apply_filters( 'webpc_site_root', realpath( ABSPATH ) );
+		$directory_name = apply_filters( 'webpc_dir_name', $this->get_relative_path(), $this->get_type() );
+		return sprintf( '%1$s/%2$s', $source_path, $directory_name );
 	}
 
 	/**
@@ -52,7 +51,8 @@ abstract class DirectoryAbstract implements DirectoryInterface {
 	 * @return string URL of directory.
 	 */
 	public function get_path_url(): string {
-		$source_url = apply_filters( 'webpc_site_url', get_site_url() );
-		return sprintf( '%1$s/%2$s', $source_url, $this->get_relative_path() );
+		$source_url     = apply_filters( 'webpc_site_url', get_site_url() );
+		$directory_name = apply_filters( 'webpc_dir_name', $this->get_relative_path(), $this->get_type() );
+		return sprintf( '%1$s/%2$s', $source_url, $directory_name );
 	}
 }

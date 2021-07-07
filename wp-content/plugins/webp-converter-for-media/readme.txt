@@ -1,4 +1,4 @@
-=== WebP Converter for Media ===
+=== WebP Converter for Media - Convert WebP & Optimize Images ===
 Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=readme-donate
 Tags: convert webp, webp, optimize images, compress images, webp converter
@@ -9,7 +9,7 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Speed up your website by serving WebP images instead of standard formats JPEG, PNG and GIF.
+Convert WebP just now! Speed up your website by serving WebP images instead of standard formats JPEG, PNG and GIF.
 
 == Description ==
 
@@ -17,17 +17,17 @@ Speed up your website by serving WebP images. By replacing files in standard JPE
 
 After installing the plugin you do not have to do anything more. Your current images will be converted into a new format. When compress images is finished, users will automatically receive new, much lighter images than the original ones.
 
-As of today, over 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Now you can speed up it in a few seconds without much effort!
+As of today, over 90% of users use browsers that support the WebP format. The loading time of your website depends to a large extent on its weight. Using convert WebP, now you can and speed up it in a few seconds without much effort!
 
 This will be a profit both for your users who will not have to download so much data, but also for a server that will be less loaded. Remember that a better optimized website also affects your Google ranking.
 
 #### Support for additional directories
 
-Now you can optimize images not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
+Now you can convert WebP and optimize images not only from `/uploads` directory but also from `/plugins` and `/themes` directories. This allows full integration with the WebP format!
 
 #### How does this work?
 
-- By adding images to your Media Library, they are automatically converted and saved in a separate directory.
+- By adding images to your Media Library, convert WebP starts automatically and WebP images are saved in a separate directory.
 - If you have just installed the plugin, you can optimize images with one click.
 - As WebP you will see all the images added to the Media Library and other selected directories.
 - When the browser tries to download an image file, the server verifies if it supports `image/webp` files and if the file exists.
@@ -38,7 +38,7 @@ Now you can optimize images not only from `/uploads` directory but also from `/p
 - In case rewriting by rules from .htaccess file is blocked, a mode is available which loads images via PHP file. Then image URLs are changed, but the logic of operation is the same as in the case of the default mode.
 - The final result is that your users download less than half of the data, and the website itself loads faster!
 
-#### WebP images are the future!
+#### Convert WebP - it is the future!
 
 Optimize images and raise your website to a new level now! Install the plugin and enjoy the website that loads faster by image optimization. Surely you and your users will appreciate it.
 
@@ -70,7 +70,7 @@ When adding a thread, follow these steps and reply to each of them:
 
 **1.** Do you have any error on the plugin settings page? Please read [this thread](https://wordpress.org/support/topic/server-configuration-error-what-to-do/) if you have any errors.
 
-**2.** URL of your website. If your site is not publicly available, add it to test environment.
+**2.** URL of your website.
 
 **3.** Configuration of your server *(link to it can be found on the settings page of plugin in the section **"We are waiting for your message"**)* - please take a screenshot of the ENTIRE page and send it to me.
 
@@ -78,11 +78,13 @@ When adding a thread, follow these steps and reply to each of them:
 
 **5.** Please do the test, which is described in the FAQ in question `How to check if plugin works?`. Please send a screenshot of Devtools with test results.
 
-**6.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
+**6.** Enable [debugging to the file](https://wordpress.org/support/article/debugging-in-wordpress/#wp_debug_log) and check if any errors are generated in the debug.log file when the works. Provide their content.
 
-**7.** What plugin version are you using? If it is not the latest then update and check everything again.
+**7.** Do you use any plugin filters or actions from this FAQ? If so, list them all.
 
-**8.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
+**8.** What plugin version are you using? If it is not the latest then update and check everything again.
+
+**9.** A list of all the plugins you use. Have you tried checking the plugin operation by turning off all others and activating the default theme? If not, please try whenever possible. **This is very important because other plugins or themes can cause problems.** Therefore, we recommend disabling all necessary plugins and enabling the default theme.
 
 Please remember to include the answers for all questions by adding a thread. It is much easier and accelerate the solution of your problem.
 
@@ -362,7 +364,7 @@ and add below code in this file *(add these lines to very beginning of file if p
 `			break;`
 `		}`
 `		add_header Vary Accept;`
-`		add_header Cache-Control "private";
+`		add_header Cache-Control "private" always;`
 `		expires 365d;`
 `		try_files /wp-content/uploads-webpc/$path.$ext.webp $uri =404;`
 `	}`
@@ -433,6 +435,15 @@ This is all very important to us and allows us to do even better things for you!
 3. Screenshot when regenerating images
 
 == Changelog ==
+
+= 3.0.6 (2021-06-20) =
+* `[Fixed]` Generating URLs for images using Pass Thru method
+* `[Added]` Filter `webpc_passthru_url_nocache` to remove nocache param from URL using Pass Thru method
+
+= 3.0.5 (2021-06-09) =
+* `[Fixed]` Handling of filters for changing directory paths
+* `[Fixed]` Converting using Imagick method for 100% image quality
+* `[Changed]` Default conversion method from Gd to Imagick
 
 = 3.0.4 (2021-05-28) =
 * `[Fixed]` Caching rewrites on CDN and Proxy servers

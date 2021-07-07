@@ -1,0 +1,694 @@
+0000.001 (0) Opened log file at time: Tue, 01 Jun 2021 17:25:50 +0000 on https://microgrow.com
+0000.003 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.16.56 WP: 5.7 PHP: 7.0.33-0+deb9u9 (cgi-fcgi, Linux lsh1010 4.14.194-hw+ #90 SMP Mon Aug 24 05:38:30 UTC 2020 x86_64) MySQL: 5.5.39-MariaDB-2 WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 33.2M | 38M) multisite: N openssl: OpenSSL 1.1.0l  10 Sep 2019 mcrypt: Y LANG:  ZipArchive::addFile: Y
+0000.005 (0) Free space on disk containing Updraft's temporary directory: 2294261 MB
+0000.007 (0) Deleting old log file: log.1a26ec63351f.txt
+0000.009 (0) Deleting old log file: log.49ea832f2964.txt
+0000.009 (0) Deleting old log file: log.36357cf493e1.txt
+0000.009 (0) Deleting old log file: log.19556641bb38.txt
+0000.010 (0) Deleting old log file: log.dbb68947c554.txt
+0000.011 (0) Tasks: Backup files: 1 (schedule: manual) Backup DB: 1 (schedule: manual)
+0000.037 (0) Requesting semaphore lock (fd) (apparently not via scheduler)
+0000.041 (0) Set semaphore last lock (fd) time to 2021-06-01 17:25:50
+0000.042 (0) Semaphore lock (fd) complete
+0000.047 (0) Backup run: resumption=0, nonce=11581dffb66d, file_nonce=11581dffb66d begun at=1622568350 (0s ago), job type=backup
+0000.049 (0) Scheduling a resumption (1) after 300 seconds (1622568650) in case this run gets aborted
+0000.124 (0) Checking if we have a zip executable available
+0000.126 (0) Testing: /usr/bin/zip
+0000.141 (0) Output: zip warning: binziptest/test.zip not found or empty
+0000.143 (0) Output: adding: binziptest/subdir1/	(in=0) (out=0) (stored 0%)
+0000.144 (0) Output: adding: binziptest/subdir1/subdir2/	(in=0) (out=0) (stored 0%)
+0000.145 (0) Output: adding: binziptest/subdir1/subdir2/test.html	(in=131) (out=107) (deflated 18%)
+0000.147 (0) Output: total bytes=131, compressed=107 -> 18% savings
+0000.161 (0) Output: adding: binziptest/subdir1/subdir2/test2.html	(in=138) (out=113) (deflated 18%)
+0000.163 (0) Output: total bytes=269, compressed=220 -> 18% savings
+0000.176 (0) Working binary zip found: /usr/bin/zip
+0000.179 (0) Zip engine: found/will use a binary zip: /usr/bin/zip
+0000.180 (0) Creation of backups of directories: beginning
+0000.186 (0) Beginning creation of dump of plugins (split every: 400 MB)
+0002.329 (0) Total entities for the zip file: 1843 directories, 9643 files (0 skipped as non-modified), 130.4 MB
+0002.349 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 100 files added (on-disk size: 0 KB)
+0002.368 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 200 files added (on-disk size: 0 KB)
+0002.389 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 300 files added (on-disk size: 0 KB)
+0002.392 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 2.0 seconds have passed since the last write (3.9 MB, 301 (301) files added so far); re-opening (prior size: 0 KB)
+0007.649 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: size is now: 2.40 MB
+0007.672 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 400 files added (on-disk size: 2453.1 KB)
+0007.693 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 500 files added (on-disk size: 2453.1 KB)
+0007.712 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 600 files added (on-disk size: 2453.1 KB)
+0007.731 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 700 files added (on-disk size: 2453.1 KB)
+0007.752 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 800 files added (on-disk size: 2453.1 KB)
+0007.771 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 900 files added (on-disk size: 2453.1 KB)
+0007.791 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1000 files added (on-disk size: 2453.1 KB)
+0007.813 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1100 files added (on-disk size: 2453.1 KB)
+0007.833 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1200 files added (on-disk size: 2453.1 KB)
+0007.853 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1300 files added (on-disk size: 2453.1 KB)
+0007.855 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (23 MB, 9643 files batched, 1001 (1302) added so far); re-opening (prior size: 2453.1 KB)
+0026.455 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: size is now: 12.60 MB
+0026.487 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1400 files added (on-disk size: 12874 KB)
+0026.516 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1500 files added (on-disk size: 12874 KB)
+0026.559 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1600 files added (on-disk size: 12874 KB)
+0026.595 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1700 files added (on-disk size: 12874 KB)
+0026.628 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1800 files added (on-disk size: 12874 KB)
+0026.661 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 1900 files added (on-disk size: 12874 KB)
+0026.693 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2000 files added (on-disk size: 12874 KB)
+0026.723 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2100 files added (on-disk size: 12874 KB)
+0026.753 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2200 files added (on-disk size: 12874 KB)
+0026.781 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2300 files added (on-disk size: 12874 KB)
+0026.784 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (8.3 MB, 9643 files batched, 1001 (2303) added so far); re-opening (prior size: 12874 KB)
+0043.756 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: size is now: 16.40 MB
+0043.779 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2400 files added (on-disk size: 16809.1 KB)
+0043.799 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2500 files added (on-disk size: 16809.1 KB)
+0043.818 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2600 files added (on-disk size: 16809.1 KB)
+0043.838 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2700 files added (on-disk size: 16809.1 KB)
+0043.857 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2800 files added (on-disk size: 16809.1 KB)
+0043.877 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 2900 files added (on-disk size: 16809.1 KB)
+0043.898 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3000 files added (on-disk size: 16809.1 KB)
+0043.918 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3100 files added (on-disk size: 16809.1 KB)
+0043.937 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3200 files added (on-disk size: 16809.1 KB)
+0043.955 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3300 files added (on-disk size: 16809.1 KB)
+0043.958 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (15.6 MB, 9643 files batched, 1001 (3304) added so far); re-opening (prior size: 16809.1 KB)
+0060.837 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: size is now: 23.20 MB
+0060.868 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3400 files added (on-disk size: 23748.8 KB)
+0060.889 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3500 files added (on-disk size: 23748.8 KB)
+0060.909 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3600 files added (on-disk size: 23748.8 KB)
+0060.933 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3700 files added (on-disk size: 23748.8 KB)
+0060.953 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3800 files added (on-disk size: 23748.8 KB)
+0060.974 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 3900 files added (on-disk size: 23748.8 KB)
+0060.994 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4000 files added (on-disk size: 23748.8 KB)
+0061.015 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4100 files added (on-disk size: 23748.8 KB)
+0061.048 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4200 files added (on-disk size: 23748.8 KB)
+0061.067 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4300 files added (on-disk size: 23748.8 KB)
+0061.070 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (17.9 MB, 9643 files batched, 1001 (4305) added so far); re-opening (prior size: 23748.8 KB)
+0077.820 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: size is now: 28.50 MB
+0077.855 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4400 files added (on-disk size: 29188.1 KB)
+0077.888 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4500 files added (on-disk size: 29188.1 KB)
+0077.920 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4600 files added (on-disk size: 29188.1 KB)
+0077.954 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4700 files added (on-disk size: 29188.1 KB)
+0077.987 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4800 files added (on-disk size: 29188.1 KB)
+0078.017 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 4900 files added (on-disk size: 29188.1 KB)
+0078.041 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5000 files added (on-disk size: 29188.1 KB)
+0078.071 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5100 files added (on-disk size: 29188.1 KB)
+0078.101 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5200 files added (on-disk size: 29188.1 KB)
+0078.132 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5300 files added (on-disk size: 29188.1 KB)
+0078.136 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (15.7 MB, 9643 files batched, 1001 (5306) added so far); re-opening (prior size: 29188.1 KB)
+0094.413 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5400 files added (on-disk size: 34951.4 KB)
+0094.460 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5500 files added (on-disk size: 34951.4 KB)
+0094.510 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5600 files added (on-disk size: 34951.4 KB)
+0094.558 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5700 files added (on-disk size: 34951.4 KB)
+0094.618 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5800 files added (on-disk size: 34951.4 KB)
+0094.724 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 5900 files added (on-disk size: 34951.4 KB)
+0094.794 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6000 files added (on-disk size: 34951.4 KB)
+0094.841 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6100 files added (on-disk size: 34951.4 KB)
+0094.881 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6200 files added (on-disk size: 34951.4 KB)
+0094.928 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6300 files added (on-disk size: 34951.4 KB)
+0094.933 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (15.2 MB, 9643 files batched, 1001 (6307) added so far); re-opening (prior size: 34951.4 KB)
+0102.066 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6400 files added (on-disk size: 40529.4 KB)
+0102.102 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6500 files added (on-disk size: 40529.4 KB)
+0102.140 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6600 files added (on-disk size: 40529.4 KB)
+0102.180 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6700 files added (on-disk size: 40529.4 KB)
+0102.217 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6800 files added (on-disk size: 40529.4 KB)
+0102.248 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 6900 files added (on-disk size: 40529.4 KB)
+0102.275 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7000 files added (on-disk size: 40529.4 KB)
+0102.304 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7100 files added (on-disk size: 40529.4 KB)
+0102.338 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7200 files added (on-disk size: 40529.4 KB)
+0102.372 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7300 files added (on-disk size: 40529.4 KB)
+0102.376 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (9.4 MB, 9643 files batched, 1001 (7308) added so far); re-opening (prior size: 40529.4 KB)
+0103.800 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7400 files added (on-disk size: 43587.6 KB)
+0103.833 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7500 files added (on-disk size: 43587.6 KB)
+0103.865 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7600 files added (on-disk size: 43587.6 KB)
+0103.897 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7700 files added (on-disk size: 43587.6 KB)
+0103.931 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7800 files added (on-disk size: 43587.6 KB)
+0103.965 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 7900 files added (on-disk size: 43587.6 KB)
+0103.997 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8000 files added (on-disk size: 43587.6 KB)
+0104.031 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8100 files added (on-disk size: 43587.6 KB)
+0104.062 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8200 files added (on-disk size: 43587.6 KB)
+0104.201 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8300 files added (on-disk size: 43587.6 KB)
+0104.204 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (9.3 MB, 9643 files batched, 1001 (8309) added so far); re-opening (prior size: 43587.6 KB)
+0105.662 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8400 files added (on-disk size: 48046.5 KB)
+0105.701 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8500 files added (on-disk size: 48046.5 KB)
+0105.741 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8600 files added (on-disk size: 48046.5 KB)
+0105.775 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8700 files added (on-disk size: 48046.5 KB)
+0105.804 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8800 files added (on-disk size: 48046.5 KB)
+0105.836 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 8900 files added (on-disk size: 48046.5 KB)
+0105.868 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9000 files added (on-disk size: 48046.5 KB)
+0105.898 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9100 files added (on-disk size: 48046.5 KB)
+0105.928 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9200 files added (on-disk size: 48046.5 KB)
+0105.959 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9300 files added (on-disk size: 48046.5 KB)
+0105.963 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (10.8 MB, 9643 files batched, 1001 (9310) added so far); re-opening (prior size: 48046.5 KB)
+0107.611 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9400 files added (on-disk size: 51424.9 KB)
+0107.641 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9500 files added (on-disk size: 51424.9 KB)
+0107.677 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip.tmp: 9600 files added (on-disk size: 51424.9 KB)
+0109.822 (0) Created plugins zip (0) - 51881.1 KB in 109.6 s (473.2 KB/s) (sha1: 0af824d201ad9970bc18fbcb0aa735b3404e1af5, sha256: 655741f33a782fdfecc5346ad74a69b449d91169b33de9fd5f5bd77557117a6a)
+0109.828 (0) Beginning creation of dump of themes (split every: 400 MB)
+0110.044 (0) Total entities for the zip file: 87 directories, 559 files (0 skipped as non-modified), 11.1 MB
+0110.064 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: 100 files added (on-disk size: 0 KB)
+0110.082 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: 200 files added (on-disk size: 0 KB)
+0110.101 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: 300 files added (on-disk size: 0 KB)
+0110.124 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: 400 files added (on-disk size: 0 KB)
+0110.147 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: 500 files added (on-disk size: 0 KB)
+0123.948 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip.tmp: size is now: 5.80 MB
+0124.090 (0) Created themes zip (0) - 5978.6 KB in 14.3 s (419.3 KB/s) (sha1: 46d178433a465630d987706eb7957fd9600988ce, sha256: 7d5d9d3f7f9182ae3da73e55a2680097533ef56172798921714ab2cbd0bd6e9b)
+0124.100 (0) Exclusion option setting (uploads): backup*,*backups,backwpup*,wp-clone,snapshots
+0124.103 (0) Looking for candidates to backup in: /home/59/66/2016659/web/wp-content/uploads
+0124.107 (0) finding files: 2016: adding to list (1)
+0124.111 (0) finding files: 2017: adding to list (2)
+0124.115 (0) finding files: 2018: adding to list (3)
+0124.118 (0) finding files: 2019: adding to list (4)
+0124.122 (0) finding files: 2020: adding to list (5)
+0124.125 (0) finding files: 2021: adding to list (6)
+0124.129 (0) finding files: hugeit-slider: adding to list (7)
+0124.133 (0) finding files: slider4: adding to list (8)
+0124.137 (0) finding files: wp-file-manager-pro: adding to list (9)
+0124.141 (0) finding files: .htaccess: adding to list (10)
+0124.145 (0) finding files: revisr-backups: skipping: excluded by options (glob)
+0124.149 (0) Beginning creation of dump of uploads (split every: 400 MB)
+0124.563 (0) Total entities for the zip file: 64 directories, 1141 files (0 skipped as non-modified), 149.6 MB
+0124.582 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 100 files added (on-disk size: 0 KB)
+0124.594 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 25 MB added on this batch (25 MB, 1141 files batched, 161 (161) added so far); re-opening (prior size: 0 KB)
+0128.314 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: size is now: 24.40 MB
+0128.319 (0) A useful amount of data was added after this amount of zip processing: 4.9 s (normalised: 4.9 s, rate: 5199.4 KB/s)
+0128.322 (0) Performance is good - will increase the amount of data we attempt to batch (time=4.9334149360657, normalised_time=4.9236487402517, max_time=128.31957912445, data points known=1, old_max_bytes=26214400, new_max_bytes=209715200)
+0128.332 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 200 files added (on-disk size: 25028.3 KB)
+0128.352 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 300 files added (on-disk size: 25028.3 KB)
+0128.373 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 400 files added (on-disk size: 25028.3 KB)
+0128.393 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 500 files added (on-disk size: 25028.3 KB)
+0128.413 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 600 files added (on-disk size: 25028.3 KB)
+0128.433 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 700 files added (on-disk size: 25028.3 KB)
+0128.452 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 800 files added (on-disk size: 25028.3 KB)
+0128.473 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 900 files added (on-disk size: 25028.3 KB)
+0128.493 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 1000 files added (on-disk size: 25028.3 KB)
+0128.512 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: 1100 files added (on-disk size: 25028.3 KB)
+0153.473 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip.tmp: size is now: 148.10 MB
+0156.964 (0) Created uploads zip (0) - 151635.3 KB in 32.8 s (4621.9 KB/s) (sha1: 84ee660ba805a14005ff643bc6daa97bc5993f80, sha256: 8b381812fca8b4464af0d49fa92ea1db8cef61112b8c2d2cfe5ffdb9376e4d42)
+0156.969 (0) Beginning backup of other directories found in the content directory (index: 0)
+0156.971 (0) Exclusion option setting (others): upgrade,cache,updraft,backup*,*backups,mysql.sql,debug.log
+0156.972 (0) Looking for candidates to backup in: /home/59/66/2016659/web/wp-content
+0156.974 (0) finding files: plugins: skipping: this is the plugins directory
+0156.976 (0) finding files: themes: skipping: this is the themes directory
+0156.977 (0) finding files: updraft: skipping: this is the updraft directory
+0156.978 (0) finding files: upgrade: skipping: excluded by options
+0156.979 (0) finding files: uploads: skipping: this is the uploads directory
+0156.981 (0) finding files: cache: skipping: excluded by options
+0156.982 (0) finding files: themes-old: adding to list (1)
+0156.983 (0) finding files: gallery-old: adding to list (2)
+0156.985 (0) finding files: gallery: adding to list (3)
+0156.986 (0) finding files: ngg-old: adding to list (4)
+0156.988 (0) finding files: ngg: adding to list (5)
+0156.989 (0) finding files: uploads-webpc-old: adding to list (6)
+0156.991 (0) finding files: uploads-webpc: adding to list (7)
+0156.992 (0) finding files: w3tc-config-old: adding to list (8)
+0156.994 (0) finding files: w3tc-config: adding to list (9)
+0156.995 (0) finding files: wflogs-old: adding to list (10)
+0156.997 (0) finding files: wflogs: adding to list (11)
+0156.998 (0) finding files: .htaccess-old: adding to list (12)
+0157.000 (0) finding files: .htaccess: adding to list (13)
+0157.001 (0) finding files: .DS_Store: adding to list (14)
+0157.002 (0) finding files: .DS_Store-old-old: adding to list (15)
+0157.004 (0) finding files: .DS_Store-old: adding to list (16)
+0157.005 (0) finding files: index.php: adding to list (17)
+0157.006 (0) finding files: index.php-old: adding to list (18)
+0157.008 (0) finding files: temp-write-test-1469660453: adding to list (19)
+0157.009 (0) finding files: temp-write-test-1469660453-old: adding to list (20)
+0157.010 (0) finding files: temp-write-test-1469660597: adding to list (21)
+0157.011 (0) finding files: temp-write-test-1469660597-old: adding to list (22)
+0157.013 (0) finding files: temp-write-test-1470550233: adding to list (23)
+0157.014 (0) finding files: temp-write-test-1470550233-old-old: adding to list (24)
+0157.015 (0) finding files: temp-write-test-1470550271: adding to list (25)
+0157.017 (0) finding files: temp-write-test-1470550271-old: adding to list (26)
+0157.018 (0) finding files: temp-write-test-5cd1682813c7f4-90678582: adding to list (27)
+0157.019 (0) finding files: temp-write-test-5cd1682813c7f4-90678582-old-old: adding to list (28)
+0157.021 (0) finding files: temp-write-test-5cd1682813c7f4-90678582-old: adding to list (29)
+0157.022 (0) finding files: plugins-old: adding to list (30)
+0157.024 (0) finding files: uploads-old: adding to list (31)
+0157.025 (0) finding files: index.php-old-old: adding to list (32)
+0157.026 (0) finding files: temp-write-test-1469660453-old-old: adding to list (33)
+0157.028 (0) finding files: temp-write-test-1469660597-old-old: adding to list (34)
+0157.029 (0) finding files: temp-write-test-1470550233-old: adding to list (35)
+0157.031 (0) finding files: temp-write-test-1470550271-old-old: adding to list (36)
+0158.247 (0) Total entities for the zip file: 284 directories, 2541 files (0 skipped as non-modified), 196.6 MB
+0158.273 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 100 files added (on-disk size: 0 KB)
+0158.296 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 200 files added (on-disk size: 0 KB)
+0158.320 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 300 files added (on-disk size: 0 KB)
+0158.344 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 400 files added (on-disk size: 0 KB)
+0158.366 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 500 files added (on-disk size: 0 KB)
+0158.393 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 600 files added (on-disk size: 0 KB)
+0158.417 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 700 files added (on-disk size: 0 KB)
+0158.440 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 800 files added (on-disk size: 0 KB)
+0158.464 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 900 files added (on-disk size: 0 KB)
+0158.487 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1000 files added (on-disk size: 0 KB)
+0158.490 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (130.9 MB, 2541 files batched, 1001 (1001) added so far); re-opening (prior size: 0 KB)
+0190.108 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: size is now: 125.20 MB
+0190.132 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1100 files added (on-disk size: 128175.6 KB)
+0190.151 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1200 files added (on-disk size: 128175.6 KB)
+0190.171 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1300 files added (on-disk size: 128175.6 KB)
+0190.190 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1400 files added (on-disk size: 128175.6 KB)
+0190.209 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1500 files added (on-disk size: 128175.6 KB)
+0190.227 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1600 files added (on-disk size: 128175.6 KB)
+0190.247 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1700 files added (on-disk size: 128175.6 KB)
+0190.276 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1800 files added (on-disk size: 128175.6 KB)
+0190.295 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 1900 files added (on-disk size: 128175.6 KB)
+0190.313 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2000 files added (on-disk size: 128175.6 KB)
+0190.315 (0) Adding batch to zip file (UpdraftPlus_BinZip): over 1000 files added on this batch (39.4 MB, 2541 files batched, 1001 (2002) added so far); re-opening (prior size: 128175.6 KB)
+0213.706 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: size is now: 164.60 MB
+0213.735 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2100 files added (on-disk size: 168599.1 KB)
+0213.762 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2200 files added (on-disk size: 168599.1 KB)
+0213.815 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2300 files added (on-disk size: 168599.1 KB)
+0213.842 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2400 files added (on-disk size: 168599.1 KB)
+0213.869 (0) Zip: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip.tmp: 2500 files added (on-disk size: 168599.1 KB)
+0234.912 (0) Created others zip (0) - 189723.3 KB in 77.9 s (2436.2 KB/s) (sha1: f8c69e33e7348f93eeff264c2a4068f5959f8b07, sha256: 86c935fcca817eb5eb17e053a02ed044bc103c28dc4da6bdb1b662acb85a80eb)
+0234.921 (0) Saving backup status to database (elements: 8)
+0234.926 (0) Beginning creation of database dump (WordPress DB)
+0234.927 (0) Couldn't get the sql_mode value (N;)
+0234.929 (0) SQL compatibility mode successfully changed to 
+0234.932 (0) Testing potential mysqldump binary: /usr/bin/mysqldump
+0235.063 (0) Output: /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;\n/*!40103 SET TIME_ZONE='+00:00' */;\n/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;\n/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;\n/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;\n/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;\nDROP TABLE IF EXISTS `wp_mg_options`;\n/*!40101 SET @saved_cs_client     = @@character_set_client */;\n/*!40101 SET character_set_client = utf8 */;\n (truncated - 1238 bytes total)
+0235.067 (0) Working binary mysqldump found: /usr/bin/mysqldump
+0235.095 (0) Table wp_mg_options: Total expected rows (approximate): 11669
+0235.229 (0) Table wp_mg_options: binary mysqldump finished (writes: 33) in 0.13 seconds
+0235.236 (0) Table wp_mg_options: finishing file(s) (1, 357 KB)
+0235.243 (0) Table wp_mg_users: Total expected rows (approximate): 1
+0235.248 (0) Table wp_mg_users: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=1404) in 0.00 seconds
+0235.254 (0) Table wp_mg_users: finishing file(s) (2, 0.6 KB)
+0235.259 (0) Table wp_mg_usermeta: Total expected rows (approximate): 78
+0235.262 (0) Table wp_mg_usermeta: Rows added in this batch (next record: 247): 78 (uncompressed bytes in this segment=8665) in 0.00 seconds
+0235.268 (0) Table wp_mg_usermeta: finishing file(s) (2, 3.6 KB)
+0235.273 (0) Table wp_mg_commentmeta: Total expected rows (approximate): 0
+0235.275 (0) Table wp_mg_commentmeta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=691) in 0.00 seconds
+0235.282 (0) Table wp_mg_commentmeta: finishing file(s) (2, 0.4 KB)
+0235.287 (0) Table wp_mg_comments: Total expected rows (approximate): 0
+0235.289 (0) Table wp_mg_comments: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1687) in 0.00 seconds
+0235.295 (0) Table wp_mg_comments: finishing file(s) (2, 0.5 KB)
+0235.300 (0) Table wp_mg_links: Total expected rows (approximate): 0
+0235.303 (0) Table wp_mg_links: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1288) in 0.00 seconds
+0235.309 (0) Table wp_mg_links: finishing file(s) (2, 0.5 KB)
+0235.318 (0) Table wp_mg_postmeta: Total expected rows (approximate): 1926
+0235.361 (0) Table wp_mg_postmeta: Rows added in this batch (next record: 7423): 2108 (uncompressed bytes in this segment=543272) in 0.04 seconds
+0235.371 (0) Table wp_mg_postmeta: finishing file(s) (2, 63.6 KB)
+0235.380 (0) Table wp_mg_posts: Total expected rows (approximate): 374
+0235.406 (0) Table wp_mg_posts: Rows added in this batch (next record: 2257): 463 (uncompressed bytes in this segment=210652) in 0.02 seconds
+0235.415 (0) Table wp_mg_posts: finishing file(s) (2, 30.3 KB)
+0235.498 (0) Table wp_mg_term_relationships: Total expected rows (approximate): 57
+0235.505 (0) Table wp_mg_term_relationships: Rows added in this batch (next record: 100000): 57 (uncompressed bytes in this segment=1568) in 0.00 seconds
+0235.512 (0) Table wp_mg_term_relationships: finishing file(s) (2, 0.5 KB)
+0235.518 (0) Table wp_mg_term_taxonomy: Total expected rows (approximate): 34
+0235.522 (0) Table wp_mg_term_taxonomy: Rows added in this batch (next record: 35): 34 (uncompressed bytes in this segment=2090) in 0.00 seconds
+0235.528 (0) Table wp_mg_term_taxonomy: finishing file(s) (2, 0.7 KB)
+0235.532 (0) Table wp_mg_termmeta: Total expected rows (approximate): 0
+0235.534 (0) Table wp_mg_termmeta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=664) in 0.00 seconds
+0235.540 (0) Table wp_mg_termmeta: finishing file(s) (2, 0.4 KB)
+0235.544 (0) Table wp_mg_terms: Total expected rows (approximate): 34
+0235.547 (0) Table wp_mg_terms: Rows added in this batch (next record: 35): 34 (uncompressed bytes in this segment=2331) in 0.00 seconds
+0235.553 (0) Table wp_mg_terms: finishing file(s) (2, 0.9 KB)
+0235.558 (0) Table wp_mg_EWD_OTP_Custom_Fields: Total expected rows (approximate): 0
+0235.561 (0) Table wp_mg_EWD_OTP_Custom_Fields: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=929) in 0.00 seconds
+0235.566 (0) Table wp_mg_EWD_OTP_Custom_Fields: finishing file(s) (2, 0.4 KB)
+0235.571 (0) Table wp_mg_EWD_OTP_Customers: Total expected rows (approximate): 0
+0235.574 (0) Table wp_mg_EWD_OTP_Customers: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=745) in 0.00 seconds
+0235.580 (0) Table wp_mg_EWD_OTP_Customers: finishing file(s) (2, 0.4 KB)
+0235.585 (0) Table wp_mg_EWD_OTP_Fields_Meta: Total expected rows (approximate): 0
+0235.588 (0) Table wp_mg_EWD_OTP_Fields_Meta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=652) in 0.00 seconds
+0235.594 (0) Table wp_mg_EWD_OTP_Fields_Meta: finishing file(s) (2, 0.3 KB)
+0235.598 (0) Table wp_mg_EWD_OTP_Order_Statuses: Total expected rows (approximate): 12
+0235.601 (0) Table wp_mg_EWD_OTP_Order_Statuses: Rows added in this batch (next record: 12): 12 (uncompressed bytes in this segment=1452) in 0.00 seconds
+0235.607 (0) Table wp_mg_EWD_OTP_Order_Statuses: finishing file(s) (2, 0.6 KB)
+0235.612 (0) Table wp_mg_EWD_OTP_Orders: Total expected rows (approximate): 2
+0235.616 (0) Table wp_mg_EWD_OTP_Orders: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=1728) in 0.00 seconds
+0235.623 (0) Table wp_mg_EWD_OTP_Orders: finishing file(s) (2, 0.7 KB)
+0235.628 (0) Table wp_mg_EWD_OTP_Sales_Reps: Total expected rows (approximate): 0
+0235.631 (0) Table wp_mg_EWD_OTP_Sales_Reps: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=694) in 0.00 seconds
+0235.637 (0) Table wp_mg_EWD_OTP_Sales_Reps: finishing file(s) (2, 0.4 KB)
+0235.641 (0) Table wp_mg_huge_itslider_images_backup: Total expected rows (approximate): 3
+0235.645 (0) Table wp_mg_huge_itslider_images_backup: Rows added in this batch (next record: 3): 3 (uncompressed bytes in this segment=1736) in 0.00 seconds
+0235.651 (0) Table wp_mg_huge_itslider_images_backup: finishing file(s) (2, 0.7 KB)
+0235.655 (0) Table wp_mg_huge_itslider_params_backup: Total expected rows (approximate): 1585
+0235.676 (0) Table wp_mg_huge_itslider_params_backup: Rows added in this batch (next record: 1673): 1585 (uncompressed bytes in this segment=160756) in 0.02 seconds
+0235.683 (0) Table wp_mg_huge_itslider_params_backup: finishing file(s) (2, 8.4 KB)
+0235.687 (0) Table wp_mg_huge_itslider_sliders_backup: Total expected rows (approximate): 1
+0235.691 (0) Table wp_mg_huge_itslider_sliders_backup: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=1221) in 0.00 seconds
+0235.732 (0) Table wp_mg_huge_itslider_sliders_backup: finishing file(s) (2, 0.6 KB)
+0235.747 (0) Table wp_mg_hugeit_slider_slide: Total expected rows (approximate): 7
+0235.760 (0) Table wp_mg_hugeit_slider_slide: Rows added in this batch (next record: 7): 7 (uncompressed bytes in this segment=2574) in 0.00 seconds
+0235.766 (0) Table wp_mg_hugeit_slider_slide: finishing file(s) (2, 0.8 KB)
+0235.775 (0) Table wp_mg_hugeit_slider_slider: Total expected rows (approximate): 2
+0235.781 (0) Table wp_mg_hugeit_slider_slider: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=3532) in 0.00 seconds
+0235.789 (0) Table wp_mg_hugeit_slider_slider: finishing file(s) (2, 1 KB)
+0235.801 (0) Table wp_mg_litespeed_img_optm: Total expected rows (approximate): 1003
+0235.815 (0) Table wp_mg_litespeed_img_optm: Rows added in this batch (next record: 962): 962 (uncompressed bytes in this segment=68186) in 0.01 seconds
+0235.824 (0) Table wp_mg_litespeed_img_optm: finishing file(s) (2, 12.3 KB)
+0235.830 (0) Table wp_mg_litespeed_img_optming: Total expected rows (approximate): 0
+0235.833 (0) Table wp_mg_litespeed_img_optming: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=817) in 0.00 seconds
+0235.839 (0) Table wp_mg_litespeed_img_optming: finishing file(s) (2, 0.4 KB)
+0235.845 (0) Table wp_mg_nextend2_image_storage: Total expected rows (approximate): 63
+0235.849 (0) Table wp_mg_nextend2_image_storage: Rows added in this batch (next record: 49): 49 (uncompressed bytes in this segment=20437) in 0.00 seconds
+0235.855 (0) Table wp_mg_nextend2_image_storage: finishing file(s) (2, 2.3 KB)
+0235.860 (0) Table wp_mg_nextend2_section_storage: Total expected rows (approximate): 13
+0235.869 (0) Table wp_mg_nextend2_section_storage: Rows added in this batch (next record: 25199): 15 (uncompressed bytes in this segment=174098) in 0.01 seconds
+0235.883 (0) Table wp_mg_nextend2_section_storage: finishing file(s) (2, 15.1 KB)
+0235.888 (0) Table wp_mg_nextend2_smartslider3_generators: Total expected rows (approximate): 0
+0235.891 (0) Table wp_mg_nextend2_smartslider3_generators: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=609) in 0.00 seconds
+0235.898 (0) Table wp_mg_nextend2_smartslider3_generators: finishing file(s) (2, 0.3 KB)
+0235.903 (0) Table wp_mg_nextend2_smartslider3_sliders: Total expected rows (approximate): 10
+0235.907 (0) Table wp_mg_nextend2_smartslider3_sliders: Rows added in this batch (next record: 9): 8 (uncompressed bytes in this segment=31311) in 0.00 seconds
+0235.913 (0) Table wp_mg_nextend2_smartslider3_sliders: finishing file(s) (2, 3.4 KB)
+0235.919 (0) Table wp_mg_nextend2_smartslider3_sliders_xref: Total expected rows (approximate): 7
+0235.922 (0) Table wp_mg_nextend2_smartslider3_sliders_xref: Rows added in this batch (next record: 1000): 7 (uncompressed bytes in this segment=791) in 0.00 seconds
+0235.929 (0) Table wp_mg_nextend2_smartslider3_sliders_xref: finishing file(s) (2, 0.4 KB)
+0236.037 (0) Table wp_mg_nextend2_smartslider3_slides: Total expected rows (approximate): 23
+0236.046 (0) Table wp_mg_nextend2_smartslider3_slides: Rows added in this batch (next record: 32): 21 (uncompressed bytes in this segment=210093) in 0.01 seconds
+0236.053 (0) Table wp_mg_nextend2_smartslider3_slides: finishing file(s) (2, 11.1 KB)
+0236.061 (0) Table wp_mg_ngg_album: Total expected rows (approximate): 0
+0236.064 (0) Table wp_mg_ngg_album: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=835) in 0.00 seconds
+0236.070 (0) Table wp_mg_ngg_album: finishing file(s) (2, 0.4 KB)
+0236.082 (0) Table wp_mg_ngg_gallery: Total expected rows (approximate): 21
+0236.086 (0) Table wp_mg_ngg_gallery: Rows added in this batch (next record: 22): 21 (uncompressed bytes in this segment=3200) in 0.00 seconds
+0236.092 (0) Table wp_mg_ngg_gallery: finishing file(s) (2, 1 KB)
+0236.099 (0) Table wp_mg_ngg_pictures: Total expected rows (approximate): 67
+0236.105 (0) Table wp_mg_ngg_pictures: Rows added in this batch (next record: 88): 62 (uncompressed bytes in this segment=88883) in 0.01 seconds
+0236.112 (0) Table wp_mg_ngg_pictures: finishing file(s) (2, 13.7 KB)
+0236.117 (0) Table wp_mg_revisr: Total expected rows (approximate): 28
+0236.121 (0) Table wp_mg_revisr: Rows added in this batch (next record: 28): 28 (uncompressed bytes in this segment=4665) in 0.00 seconds
+0236.127 (0) Table wp_mg_revisr: finishing file(s) (2, 1 KB)
+0236.133 (0) Table wp_mg_smush_dir_images: Total expected rows (approximate): 0
+0236.136 (0) Table wp_mg_smush_dir_images: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1083) in 0.00 seconds
+0236.142 (0) Table wp_mg_smush_dir_images: finishing file(s) (2, 0.5 KB)
+0236.150 (0) Table wp_mg_wfBlockedIPLog: Total expected rows (approximate): 112
+0236.157 (0) Table wp_mg_wfBlockedIPLog: Rows added in this batch (next record: 1000): 112 (uncompressed bytes in this segment=7801) in 0.01 seconds
+0236.166 (0) Table wp_mg_wfBlockedIPLog: finishing file(s) (2, 1.3 KB)
+0236.174 (0) Table wp_mg_wfBlocks7: Total expected rows (approximate): 16
+0236.187 (0) Table wp_mg_wfBlocks7: Rows added in this batch (next record: 150): 16 (uncompressed bytes in this segment=3179) in 0.01 seconds
+0236.195 (0) Table wp_mg_wfBlocks7: finishing file(s) (2, 0.8 KB)
+0236.200 (0) Table wp_mg_wfConfig: Total expected rows (approximate): 233
+0236.635 (0) Table wp_mg_wfConfig: Rows added in this batch (next record: 1000): 286 (uncompressed bytes in this segment=4513113) in 0.43 seconds
+0236.655 (0) Table wp_mg_wfConfig: finishing file(s) (2, 1156.2 KB)
+0236.662 (0) Table wp_mg_wfCrawlers: Total expected rows (approximate): 48
+0236.666 (0) Table wp_mg_wfCrawlers: Rows added in this batch (next record: 1000): 48 (uncompressed bytes in this segment=7070) in 0.00 seconds
+0236.673 (0) Table wp_mg_wfCrawlers: finishing file(s) (2, 1.1 KB)
+0236.680 (0) Table wp_mg_wfFileChanges: Total expected rows (approximate): 0
+0236.683 (0) Table wp_mg_wfFileChanges: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=470) in 0.00 seconds
+0236.690 (0) Table wp_mg_wfFileChanges: finishing file(s) (2, 0.3 KB)
+0236.699 (0) Table wp_mg_wfFileMods: Total expected rows (approximate): 21445
+0236.999 (0) Table wp_mg_wfFileMods: binary mysqldump finished (writes: 38) in 0.30 seconds
+0237.006 (0) Table wp_mg_wfFileMods: finishing file(s) (1, 1654.1 KB)
+0237.014 (0) Table wp_mg_wfHits: Total expected rows (approximate): 1671
+0237.064 (0) Table wp_mg_wfHits: Rows added in this batch (next record: 235784): 1652 (uncompressed bytes in this segment=549675) in 0.05 seconds
+0237.071 (0) Table wp_mg_wfHits: finishing file(s) (2, 38.1 KB)
+0237.076 (0) Table wp_mg_wfHoover: Total expected rows (approximate): 0
+0237.079 (0) Table wp_mg_wfHoover: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=494) in 0.00 seconds
+0237.086 (0) Table wp_mg_wfHoover: finishing file(s) (2, 0.3 KB)
+0237.091 (0) Table wp_mg_wfIssues: Total expected rows (approximate): 8
+0237.095 (0) Table wp_mg_wfIssues: Rows added in this batch (next record: 2830668): 8 (uncompressed bytes in this segment=9269) in 0.00 seconds
+0237.102 (0) Table wp_mg_wfIssues: finishing file(s) (2, 2.7 KB)
+0237.113 (0) Table wp_mg_wfKnownFileList: Total expected rows (approximate): 17444
+0237.220 (0) Table wp_mg_wfKnownFileList: binary mysqldump finished (writes: 29) in 0.11 seconds
+0237.226 (0) Table wp_mg_wfKnownFileList: finishing file(s) (1, 193 KB)
+0237.232 (0) Table wp_mg_wfLiveTrafficHuman: Total expected rows (approximate): 0
+0237.236 (0) Table wp_mg_wfLiveTrafficHuman: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=666) in 0.00 seconds
+0237.243 (0) Table wp_mg_wfLiveTrafficHuman: finishing file(s) (2, 0.3 KB)
+0237.248 (0) Table wp_mg_wfLocs: Total expected rows (approximate): 50
+0237.252 (0) Table wp_mg_wfLocs: Rows added in this batch (next record: 1000): 50 (uncompressed bytes in this segment=7367) in 0.00 seconds
+0237.258 (0) Table wp_mg_wfLocs: finishing file(s) (2, 1.1 KB)
+0237.264 (0) Table wp_mg_wfLogins: Total expected rows (approximate): 2385
+0237.341 (0) Table wp_mg_wfLogins: Rows added in this batch (next record: 61548): 2378 (uncompressed bytes in this segment=550907) in 0.08 seconds
+0237.352 (0) Table wp_mg_wfLogins: finishing file(s) (2, 55.7 KB)
+0237.359 (0) Table wp_mg_wfNotifications: Total expected rows (approximate): 93
+0237.364 (0) Table wp_mg_wfNotifications: Rows added in this batch (next record: 1000): 93 (uncompressed bytes in this segment=16379) in 0.00 seconds
+0237.371 (0) Table wp_mg_wfNotifications: finishing file(s) (2, 1.8 KB)
+0237.380 (0) Table wp_mg_wfPendingIssues: Total expected rows (approximate): 1
+0237.384 (0) Table wp_mg_wfPendingIssues: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=1441) in 0.00 seconds
+0237.392 (0) Table wp_mg_wfPendingIssues: finishing file(s) (2, 0.7 KB)
+0237.398 (0) Table wp_mg_wfReverseCache: Total expected rows (approximate): 57
+0237.405 (0) Table wp_mg_wfReverseCache: Rows added in this batch (next record: 1000): 57 (uncompressed bytes in this segment=5282) in 0.01 seconds
+0237.415 (0) Table wp_mg_wfReverseCache: finishing file(s) (2, 1.2 KB)
+0237.422 (0) Table wp_mg_wfSNIPCache: Total expected rows (approximate): 8
+0237.430 (0) Table wp_mg_wfSNIPCache: Rows added in this batch (next record: 2619): 8 (uncompressed bytes in this segment=1258) in 0.01 seconds
+0237.441 (0) Table wp_mg_wfSNIPCache: finishing file(s) (2, 0.5 KB)
+0237.456 (0) Table wp_mg_wfStatus: Total expected rows (approximate): 904
+0237.475 (0) Table wp_mg_wfStatus: Rows added in this batch (next record: 291988): 953 (uncompressed bytes in this segment=96528) in 0.02 seconds
+0237.484 (0) Table wp_mg_wfStatus: finishing file(s) (2, 17.3 KB)
+0237.490 (0) Table wp_mg_wfTrafficRates: Total expected rows (approximate): 0
+0237.492 (0) Table wp_mg_wfTrafficRates: Rows added in this batch (next record: 0): 0 (uncompressed bytes in this segment=584) in 0.00 seconds
+0237.499 (0) Table wp_mg_wfTrafficRates: finishing file(s) (2, 0.3 KB)
+0237.503 (0) Table wp_mg_wfls_2fa_secrets: Total expected rows (approximate): 0
+0237.507 (0) Table wp_mg_wfls_2fa_secrets: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=699) in 0.00 seconds
+0237.513 (0) Table wp_mg_wfls_2fa_secrets: finishing file(s) (2, 0.4 KB)
+0237.518 (0) Table wp_mg_wfls_settings: Total expected rows (approximate): 19
+0237.521 (0) Table wp_mg_wfls_settings: Rows added in this batch (next record: 1000): 19 (uncompressed bytes in this segment=1609) in 0.00 seconds
+0237.527 (0) Table wp_mg_wfls_settings: finishing file(s) (2, 0.8 KB)
+0237.533 (0) Table wp_mg_wpfm_backup: Total expected rows (approximate): 0
+0237.535 (0) Table wp_mg_wpfm_backup: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=520) in 0.00 seconds
+0237.541 (0) Table wp_mg_wpfm_backup: finishing file(s) (2, 0.3 KB)
+0237.547 (0) Table wp_mg_yoast_indexable: Total expected rows (approximate): 410
+0237.577 (0) Table wp_mg_yoast_indexable: Rows added in this batch (next record: 538): 392 (uncompressed bytes in this segment=259495) in 0.03 seconds
+0237.585 (0) Table wp_mg_yoast_indexable: finishing file(s) (2, 30.4 KB)
+0237.592 (0) Table wp_mg_yoast_indexable_hierarchy: Total expected rows (approximate): 136
+0237.596 (0) Table wp_mg_yoast_indexable_hierarchy: Rows added in this batch (next record: 1000): 136 (uncompressed bytes in this segment=3229) in 0.00 seconds
+0237.602 (0) Table wp_mg_yoast_indexable_hierarchy: finishing file(s) (2, 0.8 KB)
+0237.608 (0) Table wp_mg_yoast_migrations: Total expected rows (approximate): 21
+0237.611 (0) Table wp_mg_yoast_migrations: Rows added in this batch (next record: 21): 21 (uncompressed bytes in this segment=1169) in 0.00 seconds
+0237.617 (0) Table wp_mg_yoast_migrations: finishing file(s) (2, 0.6 KB)
+0237.622 (0) Table wp_mg_yoast_primary_term: Total expected rows (approximate): 3
+0237.625 (0) Table wp_mg_yoast_primary_term: Rows added in this batch (next record: 3): 3 (uncompressed bytes in this segment=1161) in 0.00 seconds
+0237.631 (0) Table wp_mg_yoast_primary_term: finishing file(s) (2, 0.5 KB)
+0237.636 (0) Table wp_mg_yoast_seo_links: Total expected rows (approximate): 47
+0237.639 (0) Table wp_mg_yoast_seo_links: Rows added in this batch (next record: 488): 47 (uncompressed bytes in this segment=7548) in 0.00 seconds
+0237.645 (0) Table wp_mg_yoast_seo_links: finishing file(s) (2, 1.3 KB)
+0237.651 (0) Table wp_mg_yoast_seo_meta: Total expected rows (approximate): 964
+0237.657 (0) Table wp_mg_yoast_seo_meta: Rows added in this batch (next record: 2213): 792 (uncompressed bytes in this segment=12273) in 0.01 seconds
+0237.665 (0) Table wp_mg_yoast_seo_meta: finishing file(s) (2, 2.4 KB)
+0237.667 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_options.table.gz (1/64): adding to final database dump
+0237.738 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_users.table.tmpr2.gz (2/64): adding to final database dump
+0237.740 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_users.table.gz (3/64): adding to final database dump
+0237.742 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_usermeta.table.tmpr248.gz (4/64): adding to final database dump
+0237.744 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_usermeta.table.gz (5/64): adding to final database dump
+0237.746 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_commentmeta.table.tmpr0.gz (6/64): adding to final database dump
+0237.748 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_commentmeta.table.gz (7/64): adding to final database dump
+0237.750 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_comments.table.tmpr0.gz (8/64): adding to final database dump
+0237.752 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_comments.table.gz (9/64): adding to final database dump
+0237.754 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_links.table.tmpr0.gz (10/64): adding to final database dump
+0237.756 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_links.table.gz (11/64): adding to final database dump
+0237.758 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_postmeta.table.tmpr7424.gz (12/64): adding to final database dump
+0237.774 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_postmeta.table.gz (13/64): adding to final database dump
+0237.776 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_posts.table.tmpr2258.gz (14/64): adding to final database dump
+0237.786 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_posts.table.gz (15/64): adding to final database dump
+0237.789 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_term_relationships.table.tmpr100001.gz (16/64): adding to final database dump
+0237.791 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_term_relationships.table.gz (17/64): adding to final database dump
+0237.792 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_term_taxonomy.table.tmpr36.gz (18/64): adding to final database dump
+0237.794 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_term_taxonomy.table.gz (19/64): adding to final database dump
+0237.796 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_termmeta.table.tmpr0.gz (20/64): adding to final database dump
+0237.797 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_termmeta.table.gz (21/64): adding to final database dump
+0237.799 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_terms.table.tmpr36.gz (22/64): adding to final database dump
+0237.801 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_terms.table.gz (23/64): adding to final database dump
+0237.802 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Custom_Fields.table.tmpr0.gz (24/64): adding to final database dump
+0237.804 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Custom_Fields.table.gz (25/64): adding to final database dump
+0237.806 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Customers.table.tmpr0.gz (26/64): adding to final database dump
+0237.807 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Customers.table.gz (27/64): adding to final database dump
+0237.809 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Fields_Meta.table.tmpr0.gz (28/64): adding to final database dump
+0237.810 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Fields_Meta.table.gz (29/64): adding to final database dump
+0237.812 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Order_Statuses.table.tmpr13.gz (30/64): adding to final database dump
+0237.813 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Order_Statuses.table.gz (31/64): adding to final database dump
+0237.815 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Orders.table.tmpr3.gz (32/64): adding to final database dump
+0237.816 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Orders.table.gz (33/64): adding to final database dump
+0237.818 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Sales_Reps.table.tmpr0.gz (34/64): adding to final database dump
+0237.819 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_EWD_OTP_Sales_Reps.table.gz (35/64): adding to final database dump
+0237.821 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_images_backup.table.tmpr4.gz (36/64): adding to final database dump
+0237.823 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_images_backup.table.gz (37/64): adding to final database dump
+0237.824 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_params_backup.table.tmpr1674.gz (38/64): adding to final database dump
+0237.829 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_params_backup.table.gz (39/64): adding to final database dump
+0237.831 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_sliders_backup.table.tmpr2.gz (40/64): adding to final database dump
+0237.832 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_huge_itslider_sliders_backup.table.gz (41/64): adding to final database dump
+0237.834 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_hugeit_slider_slide.table.tmpr8.gz (42/64): adding to final database dump
+0237.836 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_hugeit_slider_slide.table.gz (43/64): adding to final database dump
+0237.838 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_hugeit_slider_slider.table.tmpr3.gz (44/64): adding to final database dump
+0237.839 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_hugeit_slider_slider.table.gz (45/64): adding to final database dump
+0237.841 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_litespeed_img_optm.table.tmpr963.gz (46/64): adding to final database dump
+0237.846 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_litespeed_img_optm.table.gz (47/64): adding to final database dump
+0237.848 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_litespeed_img_optming.table.tmpr0.gz (48/64): adding to final database dump
+0237.849 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_litespeed_img_optming.table.gz (49/64): adding to final database dump
+0237.851 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_image_storage.table.tmpr50.gz (50/64): adding to final database dump
+0237.853 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_image_storage.table.gz (51/64): adding to final database dump
+0237.855 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_section_storage.table.tmpr25200.gz (52/64): adding to final database dump
+0237.861 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_section_storage.table.gz (53/64): adding to final database dump
+0237.863 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_generators.table.tmpr0.gz (54/64): adding to final database dump
+0237.865 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_generators.table.gz (55/64): adding to final database dump
+0237.866 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_sliders.table.tmpr10.gz (56/64): adding to final database dump
+0237.869 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_sliders.table.gz (57/64): adding to final database dump
+0237.870 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_sliders_xref.table.tmpr1001.gz (58/64): adding to final database dump
+0237.872 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_sliders_xref.table.gz (59/64): adding to final database dump
+0237.873 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_slides.table.tmpr33.gz (60/64): adding to final database dump
+0237.878 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_nextend2_smartslider3_slides.table.gz (61/64): adding to final database dump
+0237.880 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_album.table.tmpr0.gz (62/64): adding to final database dump
+0237.882 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_album.table.gz (63/64): adding to final database dump
+0237.883 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_gallery.table.tmpr23.gz (64/64): adding to final database dump
+0237.885 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_gallery.table.gz (65/64): adding to final database dump
+0237.887 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_pictures.table.tmpr89.gz (66/64): adding to final database dump
+0237.891 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_ngg_pictures.table.gz (67/64): adding to final database dump
+0237.892 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_revisr.table.tmpr29.gz (68/64): adding to final database dump
+0237.894 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_revisr.table.gz (69/64): adding to final database dump
+0237.895 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_smush_dir_images.table.tmpr0.gz (70/64): adding to final database dump
+0237.897 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_smush_dir_images.table.gz (71/64): adding to final database dump
+0237.898 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfBlockedIPLog.table.tmpr1001.gz (72/64): adding to final database dump
+0237.900 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfBlockedIPLog.table.gz (73/64): adding to final database dump
+0237.902 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfBlocks7.table.tmpr151.gz (74/64): adding to final database dump
+0237.903 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfBlocks7.table.gz (75/64): adding to final database dump
+0237.905 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfConfig.table.tmpr1001.gz (76/64): adding to final database dump
+0238.332 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfConfig.table.gz (77/64): adding to final database dump
+0238.335 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfCrawlers.table.tmpr1001.gz (78/64): adding to final database dump
+0238.337 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfCrawlers.table.gz (79/64): adding to final database dump
+0238.339 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfFileChanges.table.tmpr1.gz (80/64): adding to final database dump
+0238.341 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfFileChanges.table.gz (81/64): adding to final database dump
+0238.343 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfFileMods.table.gz (82/64): adding to final database dump
+0238.559 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfHits.table.tmpr235785.gz (83/64): adding to final database dump
+0238.577 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfHits.table.gz (84/64): adding to final database dump
+0238.582 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfHoover.table.tmpr0.gz (85/64): adding to final database dump
+0238.584 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfHoover.table.gz (86/64): adding to final database dump
+0238.586 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfIssues.table.tmpr2830669.gz (87/64): adding to final database dump
+0238.589 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfIssues.table.gz (88/64): adding to final database dump
+0238.591 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfKnownFileList.table.gz (89/64): adding to final database dump
+0238.653 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLiveTrafficHuman.table.tmpr1.gz (90/64): adding to final database dump
+0238.655 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLiveTrafficHuman.table.gz (91/64): adding to final database dump
+0238.657 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLocs.table.tmpr1001.gz (92/64): adding to final database dump
+0238.659 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLocs.table.gz (93/64): adding to final database dump
+0238.661 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLogins.table.tmpr61549.gz (94/64): adding to final database dump
+0238.678 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfLogins.table.gz (95/64): adding to final database dump
+0238.681 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfNotifications.table.tmpr1001.gz (96/64): adding to final database dump
+0238.684 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfNotifications.table.gz (97/64): adding to final database dump
+0238.687 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfPendingIssues.table.tmpr2.gz (98/64): adding to final database dump
+0238.689 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfPendingIssues.table.gz (99/64): adding to final database dump
+0238.693 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfReverseCache.table.tmpr1001.gz (100/64): adding to final database dump
+0238.697 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfReverseCache.table.gz (101/64): adding to final database dump
+0238.699 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfSNIPCache.table.tmpr2620.gz (102/64): adding to final database dump
+0238.701 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfSNIPCache.table.gz (103/64): adding to final database dump
+0238.703 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfStatus.table.tmpr291989.gz (104/64): adding to final database dump
+0238.709 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfStatus.table.gz (105/64): adding to final database dump
+0238.711 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfTrafficRates.table.tmpr1.gz (106/64): adding to final database dump
+0238.713 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfTrafficRates.table.gz (107/64): adding to final database dump
+0238.715 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfls_2fa_secrets.table.tmpr0.gz (108/64): adding to final database dump
+0238.717 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfls_2fa_secrets.table.gz (109/64): adding to final database dump
+0238.719 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfls_settings.table.tmpr1001.gz (110/64): adding to final database dump
+0238.720 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wfls_settings.table.gz (111/64): adding to final database dump
+0238.722 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wpfm_backup.table.tmpr0.gz (112/64): adding to final database dump
+0238.724 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_wpfm_backup.table.gz (113/64): adding to final database dump
+0238.726 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_indexable.table.tmpr539.gz (114/64): adding to final database dump
+0238.737 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_indexable.table.gz (115/64): adding to final database dump
+0238.739 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_indexable_hierarchy.table.tmpr1001.gz (116/64): adding to final database dump
+0238.742 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_indexable_hierarchy.table.gz (117/64): adding to final database dump
+0238.743 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_migrations.table.tmpr22.gz (118/64): adding to final database dump
+0238.745 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_migrations.table.gz (119/64): adding to final database dump
+0238.747 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_primary_term.table.tmpr4.gz (120/64): adding to final database dump
+0238.749 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_primary_term.table.gz (121/64): adding to final database dump
+0238.751 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_seo_links.table.tmpr489.gz (122/64): adding to final database dump
+0238.753 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_seo_links.table.gz (123/64): adding to final database dump
+0238.755 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_seo_meta.table.tmpr2214.gz (124/64): adding to final database dump
+0238.758 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db-table-wp_mg_yoast_seo_meta.table.gz (125/64): adding to final database dump
+0238.800 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz: finished writing out complete database file (3672 KB)
+0238.919 (0) Total database tables backed up: 64 (backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz, size: 3776800, sha1: d341ed76c2dc057e7651be8fd1cf468ee914be9f, sha256: 59c4efda73bf1f90d3adcfe1df500bb6f1253163033d480881dc27680f469f08)
+0238.938 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip: plugins: This file has not yet been successfully uploaded: will queue
+0238.942 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip: themes: This file has not yet been successfully uploaded: will queue
+0238.945 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip: uploads: This file has not yet been successfully uploaded: will queue
+0238.949 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip: others: This file has not yet been successfully uploaded: will queue
+0238.952 (0) backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz: db: This file has not yet been successfully uploaded: will queue
+0238.955 (0) Saving backup history. Total backup size: 393.5 MB
+0238.970 (0) Requesting upload of the files that have not yet been successfully uploaded (5)
+0238.979 (0) Cloud backup selection (1/1): googledrive with instance (1/1) (last)
+0238.981 (0) Beginning dispatch of backup to remote (googledrive) (instance identifier s-908c86a429606b3591693ba29921389f)
+0241.156 (0) Google Drive: quota usage: used=872.6 MB, total=15360 MB, available=14487.4 MB
+0241.159 (0) Google Drive: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip: Attempting to upload to Google Drive (into folder id: 1EIygsBTv21goS8mZy7EEGVZbE0U8O90-)
+0241.695 (0) Googledrive chunked upload: 2 % uploaded (1048576 - increasing chunk size to 2048 KB - memory usage: 34.5 / 48)
+0242.032 (0) Googledrive chunked upload: 5.9 % uploaded (3145728 - increasing chunk size to 4096 KB - memory usage: 34.5 / 48)
+0242.454 (0) Googledrive chunked upload: 13.8 % uploaded (7340032 - increasing chunk size to 8192 KB - memory usage: 34.5 / 48)
+0242.935 (0) Googledrive chunked upload: 29.6 % uploaded (15728640 - increasing chunk size to 16384 KB - memory usage: 34.5 / 48)
+0243.432 (0) Googledrive chunked upload: 61.2 % uploaded (32505856 - increasing chunk size to 32768 KB - memory usage: 34.5 / 48)
+0245.391 (0) Googledrive chunked upload: 100 % uploaded (32505856)
+0245.396 (0) Google Drive: OK: Archive backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip uploaded in 4.24 seconds
+0245.398 (0) Recording as successfully uploaded: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip
+0245.420 (0) Deleting local file: backup_2021-06-01-1725_Microgrow_11581dffb66d-plugins.zip: OK
+0245.685 (0) Google Drive: quota usage: used=923.2 MB, total=15360 MB, available=14436.8 MB
+0245.687 (0) Google Drive: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip: Attempting to upload to Google Drive (into folder id: 1EIygsBTv21goS8mZy7EEGVZbE0U8O90-)
+0246.262 (0) Googledrive chunked upload: 17.1 % uploaded (1048576 - increasing chunk size to 2048 KB - memory usage: 34.5 / 48)
+0246.538 (0) Googledrive chunked upload: 51.4 % uploaded (3145728 - increasing chunk size to 4096 KB - memory usage: 34.5 / 48)
+0247.724 (0) Googledrive chunked upload: 100 % uploaded (3145728)
+0247.730 (0) Google Drive: OK: Archive backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip uploaded in 2.04 seconds
+0247.732 (0) Recording as successfully uploaded: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip
+0247.738 (0) Deleting local file: backup_2021-06-01-1725_Microgrow_11581dffb66d-themes.zip: OK
+0247.959 (0) Google Drive: quota usage: used=929.1 MB, total=15360 MB, available=14430.9 MB
+0247.964 (0) Google Drive: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip: Attempting to upload to Google Drive (into folder id: 1EIygsBTv21goS8mZy7EEGVZbE0U8O90-)
+0248.529 (0) Googledrive chunked upload: 0.7 % uploaded (1048576 - increasing chunk size to 2048 KB - memory usage: 34.5 / 48)
+0248.878 (0) Googledrive chunked upload: 2 % uploaded (3145728 - increasing chunk size to 4096 KB - memory usage: 34.5 / 48)
+0249.300 (0) Googledrive chunked upload: 4.7 % uploaded (7340032 - increasing chunk size to 8192 KB - memory usage: 34.5 / 48)
+0249.754 (0) Googledrive chunked upload: 10.1 % uploaded (15728640 - increasing chunk size to 16384 KB - memory usage: 34.5 / 48)
+0250.341 (0) Googledrive chunked upload: 20.9 % uploaded (32505856 - increasing chunk size to 32768 KB - memory usage: 34.5 / 48)
+0251.303 (0) Googledrive chunked upload: 42.5 % uploaded (66060288 - increasing chunk size to 65536 KB - memory usage: 34.5 / 48)
+0252.755 (0) Googledrive chunked upload: 85.8 % uploaded (133169152)
+0254.363 (0) Googledrive chunked upload: 100 % uploaded (133169152)
+0254.372 (0) Google Drive: OK: Archive backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip uploaded in 6.4 seconds
+0254.374 (0) Recording as successfully uploaded: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip
+0254.437 (0) Deleting local file: backup_2021-06-01-1725_Microgrow_11581dffb66d-uploads.zip: OK
+0254.620 (0) Google Drive: quota usage: used=1077.2 MB, total=15360 MB, available=14282.8 MB
+0254.622 (0) Google Drive: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip: Attempting to upload to Google Drive (into folder id: 1EIygsBTv21goS8mZy7EEGVZbE0U8O90-)
+0255.202 (0) The scheduled resumption is within 45 seconds - will reschedule
+0255.206 (0) Rescheduling resumption 1: moving to 345 seconds from now (1622568950)
+0255.211 (0) To decrease the likelihood of overlaps, increasing resumption interval to: 300 + 45 = 345
+0255.213 (0) Googledrive chunked upload: 0.5 % uploaded (1048576 - increasing chunk size to 2048 KB - memory usage: 34.5 / 48)
+0255.570 (0) Googledrive chunked upload: 1.6 % uploaded (3145728 - increasing chunk size to 4096 KB - memory usage: 34.5 / 48)
+0255.872 (0) Googledrive chunked upload: 3.8 % uploaded (7340032 - increasing chunk size to 8192 KB - memory usage: 34.5 / 48)
+0256.342 (0) Googledrive chunked upload: 8.1 % uploaded (15728640 - increasing chunk size to 16384 KB - memory usage: 34.5 / 48)
+0256.953 (0) Googledrive chunked upload: 16.7 % uploaded (32505856 - increasing chunk size to 32768 KB - memory usage: 34.5 / 48)
+0258.503 (0) Googledrive chunked upload: 34 % uploaded (66060288 - increasing chunk size to 65536 KB - memory usage: 34.5 / 48)
+0261.143 (0) Googledrive chunked upload: 68.5 % uploaded (133169152)
+0263.705 (0) Googledrive chunked upload: 100 % uploaded (133169152)
+0263.711 (0) Google Drive: OK: Archive backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip uploaded in 9.09 seconds
+0263.713 (0) Recording as successfully uploaded: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip
+0263.789 (0) Deleting local file: backup_2021-06-01-1725_Microgrow_11581dffb66d-others.zip: OK
+0263.974 (0) Google Drive: quota usage: used=1262.4 MB, total=15360 MB, available=14097.6 MB
+0263.976 (0) Google Drive: backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz: Attempting to upload to Google Drive (into folder id: 1EIygsBTv21goS8mZy7EEGVZbE0U8O90-)
+0264.480 (0) Googledrive chunked upload: 27.8 % uploaded (1048576 - increasing chunk size to 2048 KB - memory usage: 34.5 / 48)
+0264.754 (0) Googledrive chunked upload: 83.3 % uploaded (3145728 - increasing chunk size to 4096 KB - memory usage: 34.5 / 48)
+0265.817 (0) Googledrive chunked upload: 100 % uploaded (3145728)
+0265.825 (0) Google Drive: OK: Archive backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz uploaded in 1.85 seconds
+0265.830 (0) Recording as successfully uploaded: backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz
+0265.836 (0) Deleting local file: backup_2021-06-01-1725_Microgrow_11581dffb66d-db.gz: OK
+0265.841 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0265.843 (0) These backup set(s) were imported from a remote location, so will not be counted or pruned. Skipping: 1617922020, 1614202320, 1578526860, 1566842400, 1537392060, 1526063880
+0265.844 (0) Number of backup sets in history: 9; groups (db): 1
+0265.846 (0) Examining (for databases) backup set with group_id=0, nonce=11581dffb66d, datestamp=1622568350 (Jun 01 2021 17:25:50)
+0265.847 (0) This backup set is the backup set just made, so will not be deleted.
+0265.847 (0) Examining (for databases) backup set with group_id=0, nonce=9cea5f2b5117, datestamp=1620422080 (May 07 2021 21:14:40)
+0265.847 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0265.848 (0) Examining (for databases) backup set with group_id=0, nonce=dbb68947c554, datestamp=1617812998 (Apr 07 2021 16:29:58)
+0265.848 (0) 1617812998: db: this set includes a database (backup_2021-04-07-1629_Microgrow_dbb68947c554-db.gz); db count is now 2
+0265.848 (0) 1617812998: db: over retain limit (2); will delete this database
+0265.848 (0) Delete file: backup_2021-04-07-1629_Microgrow_dbb68947c554-db.gz, service=googledrive
+0266.891 (0) Google Drive: backup_2021-04-07-1629_Microgrow_dbb68947c554-db.gz: Deletion successful
+0266.895 (0) This backup set remains non-empty (f=1/d=0); will retain in history
+0266.896 (0) Number of backup sets in history: 9; groups (files): 1
+0266.898 (0) Examining (for files) backup set with nonce=11581dffb66d, datestamp=1622568350 (Jun 01 2021 17:25:50)
+0266.898 (0) This backup set is the backup set just made, so will not be deleted.
+0266.899 (0) This backup set is the backup set just made, so will not be deleted.
+0266.899 (0) This backup set is the backup set just made, so will not be deleted.
+0266.899 (0) This backup set is the backup set just made, so will not be deleted.
+0266.899 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0266.900 (0) Examining (for files) backup set with nonce=9cea5f2b5117, datestamp=1620422080 (May 07 2021 21:14:40)
+0266.901 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0266.901 (0) Examining (for files) backup set with nonce=dbb68947c554, datestamp=1617812998 (Apr 07 2021 16:29:58)
+0266.901 (0) plugins: over retain limit (2); will delete this file entity
+0266.901 (0) themes: over retain limit (2); will delete this file entity
+0266.901 (0) uploads: over retain limit (2); will delete this file entity
+0266.901 (0) others: over retain limit (2); will delete this file entity
+0266.901 (0) Delete file: backup_2021-04-07-1629_Microgrow_dbb68947c554-plugins.zip, service=googledrive
+0266.902 (0) Delete file: backup_2021-04-07-1629_Microgrow_dbb68947c554-themes.zip, service=googledrive
+0266.904 (0) Delete file: backup_2021-04-07-1629_Microgrow_dbb68947c554-uploads.zip, service=googledrive
+0266.905 (0) Delete file: backup_2021-04-07-1629_Microgrow_dbb68947c554-others.zip, service=googledrive
+0267.700 (0) Google Drive: backup_2021-04-07-1629_Microgrow_dbb68947c554-others.zip: Deletion successful
+0268.234 (0) Google Drive: backup_2021-04-07-1629_Microgrow_dbb68947c554-uploads.zip: Deletion successful
+0268.834 (0) Google Drive: backup_2021-04-07-1629_Microgrow_dbb68947c554-themes.zip: Deletion successful
+0269.411 (0) Google Drive: backup_2021-04-07-1629_Microgrow_dbb68947c554-plugins.zip: Deletion successful
+0269.415 (0) This backup set is now empty; will remove from history
+0269.416 (0) Corresponding log file (log.dbb68947c554.txt) not found - must have already been deleted
+0269.418 (0) Retain: saving new backup history (sets now: 8) and finishing retain operation
+0269.423 (0) Resume backup (11581dffb66d, 0): finish run
+0269.426 (0) Decremented the semaphore (fd) by 1
+0269.428 (0) Semaphore (fd) unlocked
+0269.429 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0269.435 (0) Fetching RSS news feed
+0269.668 (0) Fetched RSS news feed; result is a: SimplePie
+0269.701 (0) Sending email ('Files and database (Full backup)') report (attachments: 0, size: 0 KB) to: sales...
+0269.791 (0) The backup apparently succeeded and is now complete

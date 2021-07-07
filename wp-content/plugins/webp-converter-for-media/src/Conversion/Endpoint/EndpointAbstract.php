@@ -4,7 +4,6 @@ namespace WebpConverter\Conversion\Endpoint;
 
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
-use WebpConverter\Conversion\Endpoint\EndpointInterface;
 
 /**
  * Abstract class for class that supports image conversion method.

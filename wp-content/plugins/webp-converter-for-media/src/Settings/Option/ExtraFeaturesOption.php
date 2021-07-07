@@ -2,10 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Settings\Option\ConversionMethodOption;
-use WebpConverter\Settings\Option\LoaderTypeOption;
 use WebpConverter\Conversion\Method\ImagickMethod;
 use WebpConverter\Loader\HtaccessLoader;
 

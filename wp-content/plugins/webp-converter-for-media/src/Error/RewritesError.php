@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
 use WebpConverter\Conversion\OutputPath;
 use WebpConverter\Conversion\Format\WebpFormat;
 use WebpConverter\Loader\LoaderAbstract;
@@ -85,14 +83,16 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 	private function if_redirects_are_works(): bool {
 		$uploads_dir = apply_filters( 'webpc_dir_path', '', 'uploads' );
 		$uploads_url = apply_filters( 'webpc_dir_url', '', 'uploads' );
-		$ver_param   = sprintf( '?ver=%s', time() );
+		$ver_param   = sprintf( 'ver=%s', time() );
 
 		$file_size = FileLoader::get_file_size_by_path(
 			$uploads_dir . self::PATH_OUTPUT_FILE_PNG
 		);
 		$file_webp = FileLoader::get_file_size_by_url(
-			$uploads_url . self::PATH_OUTPUT_FILE_PNG . $ver_param,
-			$this->get_plugin()
+			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
+			$this->get_plugin(),
+			true,
+			$ver_param
 		);
 
 		return ( $file_webp < $file_size );
@@ -105,15 +105,19 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 	 */
 	private function if_bypassing_apache_is_active(): bool {
 		$uploads_url = apply_filters( 'webpc_dir_url', '', 'uploads' );
-		$ver_param   = sprintf( '?ver=%s', time() );
+		$ver_param   = sprintf( '&?ver=%s', time() );
 
 		$file_png  = FileLoader::get_file_size_by_url(
-			$uploads_url . self::PATH_OUTPUT_FILE_PNG . $ver_param,
-			$this->get_plugin()
+			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
+			$this->get_plugin(),
+			true,
+			$ver_param
 		);
 		$file_png2 = FileLoader::get_file_size_by_url(
-			$uploads_url . self::PATH_OUTPUT_FILE_PNG2 . $ver_param,
-			$this->get_plugin()
+			$uploads_url . self::PATH_OUTPUT_FILE_PNG2,
+			$this->get_plugin(),
+			true,
+			$ver_param
 		);
 
 		return ( $file_png > $file_png2 );
@@ -126,16 +130,19 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 	 */
 	private function if_redirects_are_cached(): bool {
 		$uploads_url = apply_filters( 'webpc_dir_url', '', 'uploads' );
-		$ver_param   = sprintf( '?ver=%s', time() );
+		$ver_param   = sprintf( 'ver=%s', time() );
 
 		$file_webp     = FileLoader::get_file_size_by_url(
-			$uploads_url . self::PATH_OUTPUT_FILE_PNG . $ver_param,
-			$this->get_plugin()
+			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
+			$this->get_plugin(),
+			true,
+			$ver_param
 		);
 		$file_original = FileLoader::get_file_size_by_url(
-			$uploads_url . self::PATH_OUTPUT_FILE_PNG . $ver_param,
+			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
 			$this->get_plugin(),
-			false
+			false,
+			$ver_param
 		);
 
 		return ( ( $file_webp > 0 ) && ( $file_webp === $file_original ) );

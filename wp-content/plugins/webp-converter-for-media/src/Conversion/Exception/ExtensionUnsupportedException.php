@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "unsupported_extension" exception when converting images.
  */

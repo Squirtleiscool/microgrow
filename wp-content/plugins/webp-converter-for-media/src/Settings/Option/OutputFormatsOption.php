@@ -2,10 +2,7 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Settings\Option\ConversionMethodOption;
-use WebpConverter\Conversion\Formats;
+use WebpConverter\Conversion\Format\FormatFactory;
 use WebpConverter\Conversion\Format\WebpFormat;
 
 /**
@@ -18,7 +15,7 @@ class OutputFormatsOption extends OptionAbstract implements OptionInterface {
 	/**
 	 * Object of integration class supports all conversion methods.
 	 *
-	 * @var Formats
+	 * @var FormatFactory
 	 */
 	private $formats_integration;
 
@@ -26,7 +23,7 @@ class OutputFormatsOption extends OptionAbstract implements OptionInterface {
 	 * OutputFormatsOption constructor.
 	 */
 	public function __construct() {
-		$this->formats_integration = new Formats();
+		$this->formats_integration = new FormatFactory();
 	}
 
 	/**

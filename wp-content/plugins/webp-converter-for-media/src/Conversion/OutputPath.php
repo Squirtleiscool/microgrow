@@ -2,8 +2,7 @@
 
 namespace WebpConverter\Conversion;
 
-use WebpConverter\Conversion\Formats;
-use WebpConverter\Conversion\Format\WebpFormat;
+use WebpConverter\Conversion\Format\FormatFactory;
 
 /**
  * Generates output paths from source paths.
@@ -40,7 +39,7 @@ class OutputPath {
 			return [];
 		}
 
-		$extensions = ( new Formats() )->get_format_extensions();
+		$extensions = ( new FormatFactory() )->get_format_extensions();
 		$paths      = [];
 		foreach ( $extensions as $extension ) {
 			$output_path = sprintf( '%1$s.%2$s', $new_path, $extension );

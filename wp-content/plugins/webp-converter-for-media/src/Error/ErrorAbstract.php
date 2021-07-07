@@ -4,7 +4,6 @@ namespace WebpConverter\Error;
 
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
-use WebpConverter\Error\ErrorInterface;
 
 /**
  * Abstract class for class that checks for configuration errors.

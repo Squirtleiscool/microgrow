@@ -2,7 +2,6 @@
 
 namespace WebpConverter\Conversion\Endpoint;
 
-use WebpConverter\Conversion\Endpoint\EndpointInterface;
 use WebpConverter\HookableInterface;
 
 /**

@@ -2,10 +2,6 @@
 
 namespace WebpConverter;
 
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\WebpConverter;
-use WebpConverter\HookableInterface;
-
 /**
  * Allows class to access handle to main plugin class.
  */

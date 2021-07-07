@@ -2,9 +2,7 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Conversion\Directories;
+use WebpConverter\Conversion\Directory\DirectoryFactory;
 
 /**
  * Handles data about "Supported directories" field in plugin settings.
@@ -57,7 +55,7 @@ class SupportedDirectoriesOption extends OptionAbstract implements OptionInterfa
 	 * @return string[] Values for field.
 	 */
 	public function get_values( array $settings ): array {
-		return ( new Directories() )->get_directories();
+		return ( new DirectoryFactory() )->get_directories();
 	}
 
 	/**

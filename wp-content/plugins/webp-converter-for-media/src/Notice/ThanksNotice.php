@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeAbstract;
-use WebpConverter\Notice\NoticeInterface;
-
 /**
  * Supports notice displayed as thank you for using plugin.
  */

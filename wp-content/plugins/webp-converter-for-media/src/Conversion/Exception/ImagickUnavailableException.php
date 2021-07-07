@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "server_configuration" exception when converting images.
  */

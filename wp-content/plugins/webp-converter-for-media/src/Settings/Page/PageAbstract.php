@@ -4,7 +4,6 @@ namespace WebpConverter\Settings\Page;
 
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
-use WebpConverter\Settings\Page\PageInterface;
 
 /**
  * Abstract class for class that supports tab in plugin settings page.

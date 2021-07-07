@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "invalid_image" exception when converting images.
  */

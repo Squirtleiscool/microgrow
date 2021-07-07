@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
-
 /**
  * Checks for configuration errors about incorrect paths of directories.
  */

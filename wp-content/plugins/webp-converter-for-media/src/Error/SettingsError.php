@@ -3,8 +3,6 @@
 namespace WebpConverter\Error;
 
 use WebpConverter\PluginAccessInterface;
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
 
 /**
  * Checks for configuration errors about incorrectly saved plugin settings.

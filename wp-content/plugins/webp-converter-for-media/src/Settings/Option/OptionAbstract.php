@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionInterface;
-
 /**
  * Abstract class for class that supports notice displayed in admin panel.
  */

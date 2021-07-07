@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Conversion\Endpoint;
 
-use WebpConverter\Conversion\Endpoint\EndpointAbstract;
-use WebpConverter\Conversion\Endpoint\EndpointInterface;
 use WebpConverter\Conversion\Method\MethodIntegrator;
 
 /**

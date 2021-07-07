@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Format;
 
-use WebpConverter\Conversion\Format\FormatAbstract;
-use WebpConverter\Conversion\Format\FormatInterface;
-
 /**
  * Supports WebP as output format for images.
  */

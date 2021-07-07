@@ -2,11 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Loader\HtaccessLoader;
-use WebpConverter\Loader\PassthruLoader;
-use WebpConverter\Conversion\Method\GdMethod;
-use WebpConverter\Conversion\Method\ImagickMethod;
-
 /**
  * Interface for class that supports data field in plugin settings.
  */

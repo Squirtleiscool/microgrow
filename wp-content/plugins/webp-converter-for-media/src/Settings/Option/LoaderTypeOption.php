@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
 use WebpConverter\Loader\HtaccessLoader;
 use WebpConverter\Loader\PassthruLoader;
 

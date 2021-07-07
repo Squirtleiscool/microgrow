@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Directory;
 
-use WebpConverter\Conversion\Directory\DirectoryAbstract;
-use WebpConverter\Conversion\Directory\DirectoryInterface;
-
 /**
  * Supports data about /themes directory.
  */

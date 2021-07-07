@@ -2,8 +2,7 @@
 
 namespace WebpConverter\Conversion\Format;
 
-use WebpConverter\Conversion\Format\FormatInterface;
-use WebpConverter\Conversion\Methods;
+use WebpConverter\Conversion\Method\MethodFactory;
 
 /**
  * Abstract class for class that supports output format for images.
@@ -27,6 +26,6 @@ abstract class FormatAbstract implements FormatInterface {
 	 * @return bool Is format available?
 	 */
 	public function is_available( string $conversion_method ): bool {
-		return ( new Methods() )->is_method_available( $conversion_method, $this->get_extension() );
+		return ( new MethodFactory() )->is_method_available( $conversion_method, $this->get_extension() );
 	}
 }

@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Conversion\Exception;
 
-use WebpConverter\Conversion\Exception\ExceptionAbstract;
-use WebpConverter\Conversion\Exception\ExceptionInterface;
-
 /**
  * Handles "larger_than_original" exception when converting images.
  */

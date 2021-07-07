@@ -2,10 +2,6 @@
 
 namespace WebpConverter\Conversion\Endpoint;
 
-use WebpConverter\Conversion\Endpoint\EndpointAbstract;
-use WebpConverter\Conversion\Endpoint\EndpointInterface;
-use WebpConverter\Conversion\Endpoint\EndpointIntegration;
-
 /**
  * Supports endpoint to get list of image paths to be converted.
  */

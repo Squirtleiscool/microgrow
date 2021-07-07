@@ -19,7 +19,7 @@ class WebpConverter {
 	/**
 	 * Handler of class with plugin settings.
 	 *
-	 * @var Settings\Options
+	 * @var Settings\Option\OptionFactory
 	 */
 	private $settings_object;
 
@@ -41,23 +41,23 @@ class WebpConverter {
 	 * WebpConverter constructor.
 	 */
 	public function __construct() {
-		$this->settings_object = new Settings\Options();
+		$this->settings_object = new Settings\Option\OptionFactory();
 
 		( new Action\ConvertAttachment() )->set_plugin_hookable( $this );
 		( new Action\ConvertDir() )->init_hooks();
 		( new Action\ConvertPaths() )->set_plugin_hookable( $this );
 		( new Action\DeletePaths() )->init_hooks();
 		( new Action\RegenerateAll() )->set_plugin_hookable( $this );
-		( new Conversion\Directories() )->init_hooks();
+		( new Conversion\Directory\DirectoryFactory() )->init_hooks();
 		( new Conversion\DirectoryFiles() )->set_plugin_hookable( $this );
-		( new Conversion\Endpoints() )->set_plugin_hookable( $this );
+		( new Conversion\Endpoint\EndpointFactory() )->set_plugin_hookable( $this );
 		( new Conversion\SkipExists() )->set_plugin_hookable( $this );
 		( new Conversion\SkipLarger() )->set_plugin_hookable( $this );
 		( new Cron\Event() )->set_plugin_hookable( $this );
 		( new Cron\Schedules() )->init_hooks();
-		( new Error\Errors() )->set_plugin_hookable( $this );
-		( new Notice\Notices() )->init_hooks();
-		( new Loader\Loaders() )->set_plugin_hookable( $this );
+		( new Error\ErrorFactory() )->set_plugin_hookable( $this );
+		( new Notice\NoticeFactory() )->init_hooks();
+		( new Loader\LoaderFactory() )->set_plugin_hookable( $this );
 		( new Media\Delete() )->init_hooks();
 		( new Media\Upload() )->set_plugin_hookable( $this );
 		( new Plugin\Activation() )->init_hooks();
@@ -65,7 +65,7 @@ class WebpConverter {
 		( new Plugin\Links() )->init_hooks();
 		( new Plugin\Uninstall() )->init_hooks();
 		( new Plugin\Update() )->set_plugin_hookable( $this );
-		( new Settings\Pages() )->set_plugin_hookable( $this );
+		( new Settings\Page\PageFactory() )->set_plugin_hookable( $this );
 	}
 
 	/**

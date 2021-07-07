@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Error\ErrorAbstract;
-use WebpConverter\Error\ErrorInterface;
 use WebpConverter\Conversion\Method\GdMethod;
 use WebpConverter\Conversion\Method\ImagickMethod;
 use WebpConverter\Conversion\Format\AvifFormat;

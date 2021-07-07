@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Conversion\Method;
 
-use WebpConverter\Conversion\Method\MethodAbstract;
-use WebpConverter\Conversion\Method\MethodInterface;
 use WebpConverter\Conversion\Format\WebpFormat;
 use WebpConverter\Conversion\Format\AvifFormat;
 use WebpConverter\Conversion\Exception;
@@ -13,7 +11,8 @@ use WebpConverter\Conversion\Exception;
  */
 class GdMethod extends MethodAbstract implements MethodInterface {
 
-	const METHOD_NAME = 'gd';
+	const METHOD_NAME        = 'gd';
+	const MAX_METHOD_QUALITY = 99.9;
 
 	/**
 	 * Returns name of conversion method.
@@ -30,8 +29,7 @@ class GdMethod extends MethodAbstract implements MethodInterface {
 	 * @return string Method label.
 	 */
 	public function get_label(): string {
-		/* translators: %s method name */
-		return sprintf( __( '%s (recommended)', 'webp-converter-for-media' ), 'GD' );
+		return 'GD';
 	}
 
 	/**
@@ -171,14 +169,15 @@ class GdMethod extends MethodAbstract implements MethodInterface {
 			return;
 		}
 
-		$image    = apply_filters( 'webpc_gd_before_saving', $image, $source_path );
-		$settings = $this->get_plugin()->get_settings();
+		$image          = apply_filters( 'webpc_gd_before_saving', $image, $source_path );
+		$settings       = $this->get_plugin()->get_settings();
+		$output_quality = min( $settings['quality'], self::MAX_METHOD_QUALITY );
 
 		if ( ! function_exists( $function ) ) {
 			throw new Exception\FunctionUnavailableException( $function );
 		} elseif ( ( imagesx( $image ) > 8192 ) || ( imagesy( $image ) > 8192 ) ) {
 			throw new Exception\ResolutionOversizeException( $source_path );
-		} elseif ( is_callable( $function ) && ! $function( $image, $output_path, $settings['quality'] ) ) {
+		} elseif ( is_callable( $function ) && ! $function( $image, $output_path, $output_quality ) ) {
 			throw new Exception\ConversionErrorException( $source_path );
 		}
 

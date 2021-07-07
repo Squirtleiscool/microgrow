@@ -5,7 +5,6 @@ namespace WebpConverter\Conversion\Cron;
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
-use WebpConverter\Conversion\Cron\Schedules;
 
 /**
  * Adds cron event that converts images.

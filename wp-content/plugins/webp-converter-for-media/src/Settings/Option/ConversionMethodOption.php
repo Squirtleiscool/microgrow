@@ -2,9 +2,7 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-use WebpConverter\Conversion\Methods;
+use WebpConverter\Conversion\Method\MethodFactory;
 
 /**
  * Handles data about "Conversion method" field in plugin settings.
@@ -16,7 +14,7 @@ class ConversionMethodOption extends OptionAbstract implements OptionInterface {
 	/**
 	 * Object of integration class supports all output formats.
 	 *
-	 * @var Methods
+	 * @var MethodFactory
 	 */
 	private $methods_integration;
 
@@ -24,7 +22,7 @@ class ConversionMethodOption extends OptionAbstract implements OptionInterface {
 	 * ConversionMethodOption constructor.
 	 */
 	public function __construct() {
-		$this->methods_integration = new Methods();
+		$this->methods_integration = new MethodFactory();
 	}
 
 	/**
@@ -95,6 +93,7 @@ class ConversionMethodOption extends OptionAbstract implements OptionInterface {
 	 * @return string Default value of field.
 	 */
 	public function get_default_value( array $settings = null ): string {
-		return array_keys( $this->methods_integration->get_available_methods() )[0] ?? '';
+		$methods_available = $this->methods_integration->get_available_methods();
+		return array_keys( $methods_available )[0] ?? '';
 	}
 }

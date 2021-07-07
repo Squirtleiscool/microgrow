@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeInterface;
-
 /**
  * Abstract class for class that supports data field in plugin settings.
  */

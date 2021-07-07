@@ -3,7 +3,7 @@
 namespace WebpConverter\Plugin;
 
 use WebpConverter\HookableInterface;
-use WebpConverter\Settings\Pages;
+use WebpConverter\Settings\Page\PageIntegration;
 
 /**
  * Adds links to plugin in list of plugins in panel.
@@ -64,7 +64,7 @@ class Links implements HookableInterface {
 			sprintf(
 			/* translators: %1$s: open anchor tag, %2$s: close anchor tag */
 				esc_html( __( '%1$sSettings%2$s', 'webp-converter-for-media' ) ),
-				'<a href="' . Pages::get_settings_page_url() . '">',
+				'<a href="' . PageIntegration::get_settings_page_url() . '">',
 				'</a>'
 			)
 		);

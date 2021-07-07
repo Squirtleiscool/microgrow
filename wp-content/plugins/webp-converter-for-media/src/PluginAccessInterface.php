@@ -2,9 +2,6 @@
 
 namespace WebpConverter;
 
-use WebpConverter\WebpConverter;
-use WebpConverter\PluginAccessAbstract;
-
 /**
  * Interface for class having access handle to main plugin class.
  */

@@ -6,8 +6,8 @@ use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
 use WebpConverter\Conversion\Cron\Event;
 use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Settings\Options;
-use WebpConverter\Conversion\Directories;
+use WebpConverter\Settings\Option\OptionFactory;
+use WebpConverter\Conversion\Directory\DirectoryFactory;
 
 /**
  * Supports saving plugin settings on plugin settings page.
@@ -31,7 +31,7 @@ class SettingsSave extends PluginAccessAbstract implements PluginAccessInterface
 			return;
 		}
 
-		update_option( self::SETTINGS_OPTION, ( new Options() )->get_values( false, $_POST ) );
+		update_option( self::SETTINGS_OPTION, ( new OptionFactory() )->get_values( false, $_POST ) );
 		$settings = $this->get_plugin()->get_settings( true );
 		$this->get_plugin()->get_settings_debug( true );
 		$this->init_actions_after_save( $settings );
@@ -47,6 +47,6 @@ class SettingsSave extends PluginAccessAbstract implements PluginAccessInterface
 	private function init_actions_after_save( array $settings ) {
 		do_action( LoaderAbstract::ACTION_NAME, true );
 		wp_clear_scheduled_hook( Event::CRON_ACTION );
-		( new Directories() )->remove_unused_output_directories( $settings['dirs'] );
+		( new DirectoryFactory() )->remove_unused_output_directories( $settings['dirs'] );
 	}
 }

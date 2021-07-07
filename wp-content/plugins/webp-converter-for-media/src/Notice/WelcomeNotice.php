@@ -2,9 +2,7 @@
 
 namespace WebpConverter\Notice;
 
-use WebpConverter\Notice\NoticeAbstract;
-use WebpConverter\Notice\NoticeInterface;
-use WebpConverter\Settings\Pages;
+use WebpConverter\Settings\Page\PageIntegration;
 
 /**
  * Supports notice displayed after plugin installation.
@@ -57,7 +55,7 @@ class WelcomeNotice extends NoticeAbstract implements NoticeInterface {
 	 */
 	public function get_vars_for_view(): array {
 		return [
-			'settings_url' => Pages::get_settings_page_url(),
+			'settings_url' => PageIntegration::get_settings_page_url(),
 		];
 	}
 

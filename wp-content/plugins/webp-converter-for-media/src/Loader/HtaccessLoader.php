@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Loader\LoaderInterface;
-
 /**
  * Supports method of loading images using rewrites from .htaccess file.
  */
@@ -176,7 +173,7 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	private function get_mod_headers_rules( array $settings ): string {
 		$content  = '<IfModule mod_headers.c>' . PHP_EOL;
-		$content .= '  Header Set Cache-Control "private"' . PHP_EOL;
+		$content .= '  Header always set Cache-Control "private"' . PHP_EOL;
 		$content .= '</IfModule>';
 
 		return apply_filters( 'webpc_htaccess_mod_headers', $content );

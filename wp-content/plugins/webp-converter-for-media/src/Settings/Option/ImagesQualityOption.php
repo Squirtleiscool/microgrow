@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Settings\Option;
 
-use WebpConverter\Settings\Option\OptionAbstract;
-use WebpConverter\Settings\Option\OptionInterface;
-
 /**
  * Handles data about "Images quality" field in plugin settings.
  */

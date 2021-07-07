@@ -3,14 +3,11 @@
 
 namespace WebpConverter\Settings\Page;
 
-use WebpConverter\Settings\Page\PageAbstract;
-use WebpConverter\Settings\Page\PageInterface;
 use WebpConverter\Conversion\Endpoint\PathsEndpoint;
 use WebpConverter\Conversion\Endpoint\RegenerateEndpoint;
 use WebpConverter\Helper\ViewLoader;
 use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Settings\Options;
-use WebpConverter\Settings\Pages;
+use WebpConverter\Settings\Option\OptionFactory;
 use WebpConverter\Settings\SettingsSave;
 
 /**
@@ -43,17 +40,17 @@ class SettingsPage extends PageAbstract implements PageInterface {
 			self::PAGE_VIEW_PATH,
 			[
 				'errors'             => apply_filters( 'webpc_server_errors_messages', [], false, true ),
-				'options'            => ( new Options() )->get_options(),
+				'options'            => ( new OptionFactory() )->get_options(),
 				'submit_value'       => SettingsSave::SUBMIT_VALUE,
 				'settings_url'       => sprintf(
 					'%1$s&%2$s=%3$s',
-					Pages::get_settings_page_url(),
+					PageIntegration::get_settings_page_url(),
 					SettingsSave::NONCE_PARAM_KEY,
 					wp_create_nonce( SettingsSave::NONCE_PARAM_VALUE )
 				),
 				'settings_debug_url' => sprintf(
 					'%s&action=server',
-					Pages::get_settings_page_url()
+					PageIntegration::get_settings_page_url()
 				),
 				'api_paths_url'      => ( new PathsEndpoint() )->get_route_url(),
 				'api_regenerate_url' => ( new RegenerateEndpoint() )->get_route_url(),

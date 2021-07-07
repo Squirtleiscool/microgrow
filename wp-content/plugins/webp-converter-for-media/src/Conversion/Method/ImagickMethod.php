@@ -2,8 +2,6 @@
 
 namespace WebpConverter\Conversion\Method;
 
-use WebpConverter\Conversion\Method\MethodAbstract;
-use WebpConverter\Conversion\Method\MethodInterface;
 use WebpConverter\Conversion\Format\WebpFormat;
 use WebpConverter\Conversion\Format\AvifFormat;
 use WebpConverter\Conversion\Exception;
@@ -13,7 +11,8 @@ use WebpConverter\Conversion\Exception;
  */
 class ImagickMethod extends MethodAbstract implements MethodInterface {
 
-	const METHOD_NAME = 'imagick';
+	const METHOD_NAME        = 'imagick';
+	const MAX_METHOD_QUALITY = 99.9;
 
 	/**
 	 * Returns name of conversion method.
@@ -30,7 +29,8 @@ class ImagickMethod extends MethodAbstract implements MethodInterface {
 	 * @return string Method label.
 	 */
 	public function get_label(): string {
-		return 'Imagick';
+		/* translators: %s method name */
+		return sprintf( __( '%s (recommended)', 'webp-converter-for-media' ), 'Imagick' );
 	}
 
 	/**
@@ -116,9 +116,10 @@ class ImagickMethod extends MethodAbstract implements MethodInterface {
 	 * @throws Exception\ImagickNotSupportWebpException
 	 */
 	public function convert_image_to_output( $image, string $source_path, string $output_path, string $format ) {
-		$extension = self::get_format_extension( $format );
-		$image     = apply_filters( 'webpc_imagick_before_saving', $image, $source_path );
-		$settings  = $this->get_plugin()->get_settings();
+		$extension      = self::get_format_extension( $format );
+		$image          = apply_filters( 'webpc_imagick_before_saving', $image, $source_path );
+		$settings       = $this->get_plugin()->get_settings();
+		$output_quality = min( $settings['quality'], self::MAX_METHOD_QUALITY );
 
 		if ( ! in_array( $extension, $image->queryFormats() ) ) {
 			throw new Exception\ImagickNotSupportWebpException();
@@ -128,7 +129,7 @@ class ImagickMethod extends MethodAbstract implements MethodInterface {
 		if ( ! in_array( 'keep_metadata', $settings['features'] ) ) {
 			$image->stripImage();
 		}
-		$image->setImageCompressionQuality( $settings['quality'] );
+		$image->setImageCompressionQuality( $output_quality );
 		$blob = $image->getImageBlob();
 
 		if ( ! file_put_contents( $output_path, $blob ) ) {

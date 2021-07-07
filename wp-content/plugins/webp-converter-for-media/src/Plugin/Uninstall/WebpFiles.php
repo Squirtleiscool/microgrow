@@ -3,7 +3,7 @@
 namespace WebpConverter\Plugin\Uninstall;
 
 use WebpConverter\Conversion\SkipLarger;
-use WebpConverter\Conversion\Formats;
+use WebpConverter\Conversion\Format\FormatFactory;
 
 /**
  * Removes all output files /uploads-webpc directory.
@@ -18,9 +18,11 @@ class WebpFiles {
 	 * @return void
 	 */
 	public static function remove_webp_files( string $output_path = null ) {
-		$path    = ( $output_path !== null ) ? $output_path : apply_filters( 'webpc_dir_path', '', 'webp' );
-		$paths   = self::get_paths_from_location( $path );
-		$paths[] = $path;
+		$path  = ( $output_path !== null ) ? $output_path : apply_filters( 'webpc_dir_path', '', 'webp' );
+		$paths = self::get_paths_from_location( $path );
+		if ( $output_path === null ) {
+			$paths[] = $path;
+		}
 		self::remove_files( $paths );
 	}
 
@@ -59,7 +61,7 @@ class WebpFiles {
 			return;
 		}
 
-		$extensions   = ( new Formats() )->get_format_extensions();
+		$extensions   = ( new FormatFactory() )->get_format_extensions();
 		$extensions[] = SkipLarger::DELETED_FILE_EXTENSION;
 
 		foreach ( $paths as $path ) {

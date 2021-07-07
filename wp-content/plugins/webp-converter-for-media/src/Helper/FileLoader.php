@@ -16,10 +16,11 @@ class FileLoader {
 	 * @param string        $url         URL of image.
 	 * @param WebpConverter $plugin      .
 	 * @param bool          $set_headers Whether to send headers to confirm that browser supports WebP?
+	 * @param string        $extra_param Additional GET param.
 	 *
 	 * @return int Size of retrieved file.
 	 */
-	public static function get_file_size_by_url( string $url, WebpConverter $plugin, bool $set_headers = true ): int {
+	public static function get_file_size_by_url( string $url, WebpConverter $plugin, bool $set_headers = true, string $extra_param = '' ): int {
 		$headers = [
 			'Accept: image/webp',
 			'Referer: ' . WEBPC_URL,
@@ -29,6 +30,10 @@ class FileLoader {
 		$loader->set_plugin( $plugin );
 
 		$image_url = $loader->update_image_urls( $url, true );
+		if ( $extra_param ) {
+			$image_url .= ( ( strpos( $image_url, '?' ) !== false ) ? '&' : '?' ) . $extra_param;
+		}
+
 		return self::get_file_size_for_loaded_file( $image_url, ( $set_headers ) ? $headers : [] );
 	}
 

@@ -2,9 +2,6 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Loader\LoaderInterface;
-
 /**
  * Supports method of loading images using .php file as Pass Thru.
  */
@@ -92,7 +89,11 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	 * @internal
 	 */
 	public function start_buffer() {
-		ob_start( [ $this, 'update_image_urls' ] );
+		ob_start(
+			function( $buffer ) {
+				return $this->update_image_urls( $buffer );
+			}
+		);
 	}
 
 	/**
@@ -116,10 +117,12 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 			return $buffer;
 		}
 
-		$dir_paths = str_replace( '/', '\\/', implode( '|', $allowed_dirs ) );
+		$dir_paths   = str_replace( '/', '\\/', implode( '|', $allowed_dirs ) );
+		$has_nocache = apply_filters( 'webpc_passthru_url_nocache', true );
+
 		return preg_replace(
 			'/(https?:\/\/(?:[^\s()"\']+)(?:' . $dir_paths . ')(?:[^\s()"\']+)\.(?:' . $extensions . '))/',
-			$source_dir . '?src=$1&nocache=1',
+			$source_dir . '?src=$1' . ( ( $has_nocache ) ? '&nocache=1' : '' ),
 			$buffer
 		) ?: '';
 	}

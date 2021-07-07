@@ -5,9 +5,7 @@ namespace WebpConverter\Conversion;
 use WebpConverter\PluginAccessAbstract;
 use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
-use WebpConverter\Conversion\OutputPath;
-use WebpConverter\Conversion\SkipLarger;
-use WebpConverter\Conversion\Formats;
+use WebpConverter\Conversion\Format\FormatFactory;
 
 /**
  * Removes from list of source file paths those that have already been converted.
@@ -63,7 +61,7 @@ class SkipExists extends PluginAccessAbstract implements PluginAccessInterface, 
 	 */
 	private function get_output_extensions(): array {
 		$settings   = $this->get_plugin()->get_settings();
-		$extensions = ( new Formats() )->get_available_formats( $settings['method'] );
+		$extensions = ( new FormatFactory() )->get_available_formats( $settings['method'] );
 
 		$values = [];
 		foreach ( $extensions as $extension => $format_label ) {
