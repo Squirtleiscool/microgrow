@@ -3,7 +3,7 @@
 Plugin Name: Wonder PDF Embed
 Plugin URI: https://www.wonderplugin.com/wordpress-pdf-embed/
 Description: Embed PDF to your WordPress website
-Version: 1.6
+Version: 1.7
 Author: Magic Hills Pty Ltd
 Author URI: https://www.wonderplugin.com
 */
@@ -96,6 +96,18 @@ class WonderPlugin_PDF_Plugin {
 			return __('No URL defined for Wonder PDF Embed', 'wonderplugin_pdf');
 		}
 		
+		foreach($atts as $key => $value)
+		{
+			if (strtolower($key) == 'src') 
+			{
+				$atts[$key] = esc_url($value);
+			}
+			else
+			{
+				$atts[$key] = esc_attr($value);
+			}
+		}
+
 		$src = urlencode(trim($atts['src']));
 		
 		$engine = $this->get_pdf_engine();
@@ -108,7 +120,12 @@ class WonderPlugin_PDF_Plugin {
 		
 		foreach($atts as $key => $value)
 		{
-			$iframe .= ' ' . $key . '="' . $value . '"';
+			$allowedtags = apply_filters( 'wonderplugin_pdf_allowed_tags', array('width', 'height', 'style') );
+			
+			if (in_array(strtolower($key), $allowedtags)) 
+			{
+				$iframe .= ' ' . $key . '="' . $value . '"';
+			}
 		}
 		
 		$iframe .= '></iframe>';

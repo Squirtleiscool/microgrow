@@ -8,7 +8,7 @@ use WebpConverter\Conversion\Format\WebpFormat;
 /**
  * Handles data about "Supported output formats" field in plugin settings.
  */
-class OutputFormatsOption extends OptionAbstract implements OptionInterface {
+class OutputFormatsOption extends OptionAbstract {
 
 	const LOADER_TYPE = 'output_formats';
 
@@ -19,46 +19,33 @@ class OutputFormatsOption extends OptionAbstract implements OptionInterface {
 	 */
 	private $formats_integration;
 
-	/**
-	 * OutputFormatsOption constructor.
-	 */
 	public function __construct() {
 		$this->formats_integration = new FormatFactory();
 	}
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::LOADER_TYPE;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'List of supported output formats', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_values( array $settings ): array {
 		return $this->formats_integration->get_formats();
@@ -79,11 +66,7 @@ class OutputFormatsOption extends OptionAbstract implements OptionInterface {
 	}
 
 	/**
-	 * Returns unavailable values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_disabled_values( array $settings ): array {
 		$method            = $settings['method'] ?? ( new ConversionMethodOption() )->get_default_value();

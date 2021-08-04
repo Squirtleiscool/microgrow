@@ -10,9 +10,7 @@ use WebpConverter\HookableInterface;
 class ConvertDir implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_convert_dir', [ $this, 'convert_files_by_directory' ], 10, 2 );

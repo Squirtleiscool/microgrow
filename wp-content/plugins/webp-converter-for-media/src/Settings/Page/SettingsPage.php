@@ -13,28 +13,22 @@ use WebpConverter\Settings\SettingsSave;
 /**
  * Supports default tab in plugin settings page.
  */
-class SettingsPage extends PageAbstract implements PageInterface {
+class SettingsPage extends PageAbstract {
 
 	const PAGE_VIEW_PATH = 'views/settings.php';
 
 	/**
-	 * Returns status if view is active.
-	 *
-	 * @return bool Is view active?
+	 * {@inheritdoc}
 	 */
 	public function is_page_active(): bool {
 		return ( ! isset( $_GET['action'] ) || ( $_GET['action'] !== 'server' ) ); // phpcs:ignore
 	}
 
 	/**
-	 * Displays view for plugin settings page.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function show_page_view() {
-		$settings_save = new SettingsSave();
-		$settings_save->set_plugin( $this->get_plugin() );
-		$settings_save->save_settings();
+		( new SettingsSave( $this->plugin_data ) )->save_settings();
 
 		ViewLoader::load_view(
 			self::PAGE_VIEW_PATH,
@@ -52,8 +46,8 @@ class SettingsPage extends PageAbstract implements PageInterface {
 					'%s&action=server',
 					PageIntegration::get_settings_page_url()
 				),
-				'api_paths_url'      => ( new PathsEndpoint() )->get_route_url(),
-				'api_regenerate_url' => ( new RegenerateEndpoint() )->get_route_url(),
+				'api_paths_url'      => ( new PathsEndpoint( $this->plugin_data ) )->get_route_url(),
+				'api_regenerate_url' => ( new RegenerateEndpoint( $this->plugin_data ) )->get_route_url(),
 			]
 		);
 

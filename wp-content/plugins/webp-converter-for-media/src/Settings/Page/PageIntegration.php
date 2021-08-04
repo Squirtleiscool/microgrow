@@ -2,16 +2,15 @@
 
 namespace WebpConverter\Settings\Page;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
+use WebpConverter\Notice\NoticeIntegration;
 use WebpConverter\Notice\WelcomeNotice;
 use WebpConverter\Settings\AdminAssets;
 
 /**
  * Adds plugin settings page in admin panel.
  */
-class PageIntegration extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class PageIntegration implements HookableInterface {
 
 	const ADMIN_MENU_PAGE = 'webpc_admin_page';
 
@@ -23,9 +22,7 @@ class PageIntegration extends PluginAccessAbstract implements PluginAccessInterf
 	private $pages = [];
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'admin_menu', [ $this, 'add_settings_page_for_admin' ] );
@@ -120,7 +117,6 @@ class PageIntegration extends PluginAccessAbstract implements PluginAccessInterf
 	 * @return void
 	 */
 	private function init_page_is_active( PageInterface $page ) {
-		$page->set_plugin( $this->get_plugin() );
 		if ( ! $page->is_page_active() ) {
 			return;
 		}
@@ -135,7 +131,7 @@ class PageIntegration extends PluginAccessAbstract implements PluginAccessInterf
 	 * @internal
 	 */
 	public function load_scripts_for_page() {
-		WelcomeNotice::disable_notice();
+		( new NoticeIntegration( new WelcomeNotice() ) )->set_disable_value();
 		( new AdminAssets() )->init_hooks();
 	}
 }

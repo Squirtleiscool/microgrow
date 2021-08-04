@@ -10,9 +10,7 @@ use WebpConverter\HookableInterface;
 class NoticeFactory implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		$this->set_integration( new ThanksNotice() );

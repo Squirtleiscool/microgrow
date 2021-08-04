@@ -618,7 +618,7 @@ class Slide extends AbstractRenderableOwner {
 
     public function getTitle($isAdmin = false) {
 
-        return Sanitize::esc_html($this->fill($this->title));
+        return $this->fill($this->title);
     }
 
     public function getDescription() {

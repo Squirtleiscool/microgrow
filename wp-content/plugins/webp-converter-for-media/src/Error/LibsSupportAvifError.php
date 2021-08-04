@@ -2,22 +2,33 @@
 
 namespace WebpConverter\Error;
 
+use WebpConverter\Conversion\Format\AvifFormat;
 use WebpConverter\Conversion\Method\GdMethod;
 use WebpConverter\Conversion\Method\ImagickMethod;
-use WebpConverter\Conversion\Format\AvifFormat;
+use WebpConverter\PluginData;
 
 /**
  * Checks for configuration errors about image conversion methods that do not support AVIF output format.
  */
-class LibsSupportAvifError extends ErrorAbstract implements ErrorInterface {
+class LibsSupportAvifError implements ErrorInterface {
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
-		$output_formats = $this->get_plugin()->get_settings()['output_formats'] ?? [];
+		$output_formats = $this->plugin_data->get_plugin_settings()['output_formats'] ?? [];
 		$errors         = [];
 
 		if ( in_array( AvifFormat::FORMAT_EXTENSION, $output_formats )

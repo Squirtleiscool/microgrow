@@ -19,8 +19,6 @@ class EndpointIntegration implements HookableInterface {
 	private $endpoint_object;
 
 	/**
-	 * EndpointIntegration constructor.
-	 *
 	 * @param EndpointInterface $endpoint_object .
 	 */
 	public function __construct( EndpointInterface $endpoint_object ) {
@@ -28,9 +26,7 @@ class EndpointIntegration implements HookableInterface {
 	}
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'rest_api_init', [ $this, 'register_rest_route' ] );

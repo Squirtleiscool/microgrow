@@ -75,7 +75,8 @@ class SliderManager {
     }
 
     public function setUsage($usage) {
-        $this->usage           = $usage;
+
+        $this->usage = $usage;
 
         if ($usage === 'iframe') {
             $this->slider->isFrame = true;

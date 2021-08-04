@@ -13,42 +13,41 @@ class Links implements HookableInterface {
 	const DONATION_URL = 'https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=plugin-links';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
-		add_filter( 'plugin_action_links_' . WEBPC_NAME, [ $this, 'add_link_to_settings_for_admin' ] );
-		add_filter( 'network_admin_plugin_action_links_' . WEBPC_NAME, [ $this, 'add_link_to_settings_for_network' ] );
-		add_filter( 'plugin_action_links_' . WEBPC_NAME, [ $this, 'add_link_to_donate' ] );
-		add_filter( 'network_admin_plugin_action_links_' . WEBPC_NAME, [ $this, 'add_link_to_donate' ] );
+		add_filter( 'plugin_action_links_' . WEBPC_NAME, [ $this, 'add_plugin_links_for_admin' ] );
+		add_filter( 'network_admin_plugin_action_links_' . WEBPC_NAME, [ $this, 'add_plugin_links_for_network' ] );
 	}
 
 	/**
-	 * Adds links to plugin for non-multisite websites.
+	 * Adds new links to list of plugin actions for non-multisite websites.
 	 *
 	 * @param string[] $links Plugin action links.
 	 *
 	 * @return string[] Plugin action links.
 	 * @internal
 	 */
-	public function add_link_to_settings_for_admin( array $links ): array {
+	public function add_plugin_links_for_admin( array $links ): array {
 		if ( is_multisite() ) {
 			return $links;
 		}
-		return $this->add_link_to_settings( $links );
+
+		$links = $this->add_link_to_settings( $links );
+		return $this->add_link_to_donate( $links );
 	}
 
 	/**
-	 * Adds links to plugin for multisite websites.
+	 * Adds new links to list of plugin actions for multisite websites.
 	 *
 	 * @param string[] $links Plugin action links.
 	 *
 	 * @return string[] Plugin action links.
 	 * @internal
 	 */
-	public function add_link_to_settings_for_network( array $links ): array {
-		return $this->add_link_to_settings( $links );
+	public function add_plugin_links_for_network( array $links ): array {
+		$links = $this->add_link_to_settings( $links );
+		return $this->add_link_to_donate( $links );
 	}
 
 	/**
@@ -79,7 +78,7 @@ class Links implements HookableInterface {
 	 * @return string[] Plugin action links.
 	 * @internal
 	 */
-	public function add_link_to_donate( array $links ): array {
+	private function add_link_to_donate( array $links ): array {
 		$links[] = sprintf(
 		/* translators: %1$s: open anchor tag, %2$s: close anchor tag */
 			esc_html( __( '%1$sProvide us a coffee%2$s', 'webp-converter-for-media' ) ),

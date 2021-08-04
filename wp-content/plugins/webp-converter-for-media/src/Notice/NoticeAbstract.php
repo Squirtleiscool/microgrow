@@ -8,18 +8,14 @@ namespace WebpConverter\Notice;
 abstract class NoticeAbstract implements NoticeInterface {
 
 	/**
-	 * Returns name of action using in WP Ajax.
-	 *
-	 * @return string Name of ajax action.
+	 * {@inheritdoc}
 	 */
-	public function get_ajax_action_to_disable(): string {
-		return '';
+	public function get_ajax_action_to_disable() {
+		return null;
 	}
 
 	/**
-	 * Returns variables with values using in view template.
-	 *
-	 * @return string[] Args extract in view template.
+	 * {@inheritdoc}
 	 */
 	public function get_vars_for_view(): array {
 		return [];

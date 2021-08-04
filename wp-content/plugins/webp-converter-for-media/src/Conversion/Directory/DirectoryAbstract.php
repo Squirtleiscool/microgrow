@@ -8,36 +8,28 @@ namespace WebpConverter\Conversion\Directory;
 abstract class DirectoryAbstract implements DirectoryInterface {
 
 	/**
-	 * Returns label of directory.
-	 *
-	 * @return string Directory label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return '';
 	}
 
 	/**
-	 * Returns status if directory is available.
-	 *
-	 * @return bool Directory is available?
+	 * {@inheritdoc}
 	 */
 	public function is_available(): bool {
 		return ( file_exists( $this->get_server_path() ) );
 	}
 
 	/**
-	 * Returns status if directory is destined for output.
-	 *
-	 * @return bool Directory for output?
+	 * {@inheritdoc}
 	 */
 	public function is_output_directory(): bool {
 		return false;
 	}
 
 	/**
-	 * Returns server path of directory.
-	 *
-	 * @return string Server path of directory.
+	 * {@inheritdoc}
 	 */
 	public function get_server_path(): string {
 		$source_path    = apply_filters( 'webpc_site_root', realpath( ABSPATH ) );
@@ -46,9 +38,7 @@ abstract class DirectoryAbstract implements DirectoryInterface {
 	}
 
 	/**
-	 * Returns URL of directory.
-	 *
-	 * @return string URL of directory.
+	 * {@inheritdoc}
 	 */
 	public function get_path_url(): string {
 		$source_url     = apply_filters( 'webpc_site_url', get_site_url() );

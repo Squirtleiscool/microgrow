@@ -5,12 +5,10 @@ namespace WebpConverter\Error;
 /**
  * Checks for configuration errors about disabled REST API.
  */
-class RestapiError extends ErrorAbstract implements ErrorInterface {
+class RestapiError implements ErrorInterface {
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
 		$errors = [];

@@ -3,7 +3,7 @@ Contributors: mateuszgbiorczyk
 Donate link: https://ko-fi.com/gbiorczyk/?utm_source=webp-converter-for-media&utm_medium=readme-donate
 Tags: convert webp, webp, optimize images, compress images, webp converter
 Requires at least: 4.9
-Tested up to: 5.7
+Tested up to: 5.8
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPLv2 or later
@@ -435,6 +435,12 @@ This is all very important to us and allows us to do even better things for you!
 3. Screenshot when regenerating images
 
 == Changelog ==
+
+= 3.0.8 (2021-07-25) =
+* `[Fixed]` Compatibility of plugin settings for multisite websites
+
+= 3.0.7 (2021-07-19) =
+* `[Added]` Changes to improve performance of plugin
 
 = 3.0.6 (2021-06-20) =
 * `[Fixed]` Generating URLs for images using Pass Thru method

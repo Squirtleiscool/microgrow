@@ -5,29 +5,23 @@ namespace WebpConverter\Loader;
 /**
  * Supports method of loading images using rewrites from .htaccess file.
  */
-class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
+class HtaccessLoader extends LoaderAbstract {
 
 	const LOADER_TYPE = 'htaccess';
 
 	/**
-	 * Returns status if loader is active.
-	 *
-	 * @return bool Is loader active?
+	 * {@inheritdoc}
 	 */
 	public function is_active_loader(): bool {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		return ( ! isset( $settings['loader_type'] ) || ( $settings['loader_type'] === self::LOADER_TYPE ) );
 	}
 
 	/**
-	 * Initializes actions for activating loader.
-	 *
-	 * @param bool $is_debug Is debugging?
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function activate_loader( bool $is_debug = false ) {
-		$settings = ( $is_debug ) ? $this->get_plugin()->get_settings_debug() : $this->get_plugin()->get_settings();
+		$settings = ( $is_debug ) ? $this->plugin_data->get_debug_settings() : $this->plugin_data->get_plugin_settings();
 
 		$this->add_rewrite_rules_to_wp_content( true, $settings );
 		$this->add_rewrite_rules_to_uploads( true, $settings );
@@ -35,12 +29,10 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	}
 
 	/**
-	 * Initializes actions for deactivating loader.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function deactivate_loader() {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 
 		$this->add_rewrite_rules_to_wp_content( false, $settings );
 		$this->add_rewrite_rules_to_uploads( false, $settings );
@@ -172,7 +164,9 @@ class HtaccessLoader extends LoaderAbstract implements LoaderInterface {
 	 * @return string Rules for .htaccess file.
 	 */
 	private function get_mod_headers_rules( array $settings ): string {
-		$content  = '<IfModule mod_headers.c>' . PHP_EOL;
+		$content = '';
+
+		$content .= '<IfModule mod_headers.c>' . PHP_EOL;
 		$content .= '  Header always set Cache-Control "private"' . PHP_EOL;
 		$content .= '</IfModule>';
 

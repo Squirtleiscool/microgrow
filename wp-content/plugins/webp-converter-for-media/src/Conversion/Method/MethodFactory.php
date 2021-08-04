@@ -16,9 +16,6 @@ class MethodFactory {
 	 */
 	private $methods = [];
 
-	/**
-	 * Methods constructor.
-	 */
 	public function __construct() {
 		$this->set_integration( new ImagickMethod() );
 		$this->set_integration( new GdMethod() );

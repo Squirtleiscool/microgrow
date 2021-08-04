@@ -4,16 +4,27 @@ namespace WebpConverter\Error;
 
 use WebpConverter\Loader\LoaderAbstract;
 use WebpConverter\Loader\PassthruLoader;
+use WebpConverter\PluginData;
 
 /**
  * Checks for configuration errors about disabled file supports Pass Thru loader.
  */
-class PassthruError extends ErrorAbstract implements ErrorInterface {
+class PassthruError implements ErrorInterface {
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
 		$errors = [];
@@ -35,8 +46,7 @@ class PassthruError extends ErrorAbstract implements ErrorInterface {
 	 * @return bool Verification status.
 	 */
 	private function if_passthru_execution_allowed(): bool {
-		$loader = new PassthruLoader();
-		$loader->set_plugin( $this->get_plugin() );
+		$loader = new PassthruLoader( $this->plugin_data );
 		if ( $loader->is_active_loader() !== true ) {
 			return true;
 		}

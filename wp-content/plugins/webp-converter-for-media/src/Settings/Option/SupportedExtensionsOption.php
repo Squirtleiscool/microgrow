@@ -5,43 +5,33 @@ namespace WebpConverter\Settings\Option;
 /**
  * Handles data about "Supported files extensions" field in plugin settings.
  */
-class SupportedExtensionsOption extends OptionAbstract implements OptionInterface {
+class SupportedExtensionsOption extends OptionAbstract {
 
 	const LOADER_TYPE = 'extensions';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::LOADER_TYPE;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'List of supported files extensions', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_values( array $settings ): array {
 		return [

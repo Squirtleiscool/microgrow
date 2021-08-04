@@ -2,19 +2,28 @@
 
 namespace WebpConverter\Conversion;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Returns paths to files in given directory.
  */
-class DirectoryFiles extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class DirectoryFiles implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'webpc_dir_files', [ $this, 'get_files_by_directory' ], 10, 3 );
@@ -35,7 +44,7 @@ class DirectoryFiles extends PluginAccessAbstract implements PluginAccessInterfa
 			return $value;
 		}
 
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		$excluded = apply_filters( 'webpc_dir_excluded', [] );
 
 		$paths = $this->find_files_in_directory( $dir_path, $settings['extensions'], $excluded );

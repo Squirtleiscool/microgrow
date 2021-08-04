@@ -2,12 +2,10 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\PluginAccessInterface;
-
 /**
  * Interface for class that checks for configuration errors.
  */
-interface ErrorInterface extends PluginAccessInterface {
+interface ErrorInterface {
 
 	/**
 	 * Returns list of error codes.

@@ -17,9 +17,6 @@ class DirectoryFactory implements HookableInterface {
 	 */
 	private $directories_integration;
 
-	/**
-	 * Directories constructor.
-	 */
 	public function __construct() {
 		$this->set_integration( new GalleryDirectory() );
 		$this->set_integration( new PluginsDirectory() );
@@ -43,9 +40,7 @@ class DirectoryFactory implements HookableInterface {
 	}
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		$this->directories_integration->init_hooks();

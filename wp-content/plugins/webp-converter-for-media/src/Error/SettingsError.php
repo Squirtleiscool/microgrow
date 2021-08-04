@@ -2,17 +2,27 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\PluginAccessInterface;
+use WebpConverter\PluginData;
 
 /**
  * Checks for configuration errors about incorrectly saved plugin settings.
  */
-class SettingsError extends ErrorAbstract implements PluginAccessInterface, ErrorInterface {
+class SettingsError implements ErrorInterface {
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
 		$errors = [];
@@ -29,7 +39,7 @@ class SettingsError extends ErrorAbstract implements PluginAccessInterface, Erro
 	 * @return bool Verification status.
 	 */
 	private function if_settings_are_correct(): bool {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		if ( ( ! isset( $settings['extensions'] ) || ! $settings['extensions'] )
 			|| ( ! isset( $settings['dirs'] ) || ! $settings['dirs'] )
 			|| ( ! isset( $settings['method'] ) || ! $settings['method'] )

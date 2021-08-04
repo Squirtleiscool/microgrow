@@ -7,52 +7,40 @@ use WebpConverter\Conversion\Directory\DirectoryFactory;
 /**
  * Handles data about "Supported directories" field in plugin settings.
  */
-class SupportedDirectoriesOption extends OptionAbstract implements OptionInterface {
+class SupportedDirectoriesOption extends OptionAbstract {
 
 	const LOADER_TYPE = 'dirs';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::LOADER_TYPE;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'List of supported directories', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return __( 'Files from these directories will be supported in output formats.', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_values( array $settings ): array {
 		return ( new DirectoryFactory() )->get_directories();

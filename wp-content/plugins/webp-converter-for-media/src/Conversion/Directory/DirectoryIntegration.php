@@ -2,8 +2,8 @@
 
 namespace WebpConverter\Conversion\Directory;
 
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\OutputPath;
+use WebpConverter\HookableInterface;
 
 /**
  * Returns various types of paths for directories.
@@ -20,9 +20,7 @@ class DirectoryIntegration implements HookableInterface {
 	private $directories = [];
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'webpc_dir_name', [ $this, 'get_dir_as_name' ], 0, 2 );

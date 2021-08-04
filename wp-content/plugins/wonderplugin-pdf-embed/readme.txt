@@ -3,7 +3,7 @@ Contributors: wonderplugin
 Tags: pdf embed, pdf viewer, responsive pdf embed, responsive pdf viewer, pdf lightbox
 Donate link: https://www.wonderplugin.com/wordpress-pdf-embed/
 Requires at least: 3.6
-Tested up to: 5.2
+Tested up to: 5.7.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -95,6 +95,9 @@ Please check your PDF URL and make sure it complies with the following requireme
 == Screenshots ==
 
 == Changelog ==
+
+= 1.7 =
+* Escape shortcode attributes
 
 = 1.6 =
 * Add an option to hide the whole toolbar

@@ -5,37 +5,29 @@ namespace WebpConverter\Loader;
 /**
  * Supports method of loading images using .php file as Pass Thru.
  */
-class PassthruLoader extends LoaderAbstract implements LoaderInterface {
+class PassthruLoader extends LoaderAbstract {
 
 	const LOADER_TYPE   = 'passthru';
 	const PATH_LOADER   = '/webpc-passthru.php';
 	const LOADER_SOURCE = '/includes/passthru.php';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'get_header', [ $this, 'start_buffer' ] );
 	}
 
 	/**
-	 * Returns status if loader is active.
-	 *
-	 * @return bool Is loader active?
+	 * {@inheritdoc}
 	 */
 	public function is_active_loader(): bool {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		return ( isset( $settings['loader_type'] ) && ( $settings['loader_type'] === self::LOADER_TYPE ) );
 	}
 
 	/**
-	 * Initializes actions for activating loader.
-	 *
-	 * @param bool $is_debug Is debugging?
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function activate_loader( bool $is_debug = false ) {
 		$path_source = WEBPC_PATH . self::LOADER_SOURCE;
@@ -71,9 +63,7 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	}
 
 	/**
-	 * Initializes actions for deactivating loader.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function deactivate_loader() {
 		$dir_output = dirname( apply_filters( 'webpc_dir_path', '', 'uploads' ) ) . self::PATH_LOADER;
@@ -90,7 +80,7 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 	 */
 	public function start_buffer() {
 		ob_start(
-			function( $buffer ) {
+			function ( $buffer ) {
 				return $this->update_image_urls( $buffer );
 			}
 		);
@@ -110,7 +100,7 @@ class PassthruLoader extends LoaderAbstract implements LoaderInterface {
 			return $buffer;
 		}
 
-		$settings   = ( ! $is_debug ) ? $this->get_plugin()->get_settings() : $this->get_plugin()->get_settings_debug();
+		$settings   = ( ! $is_debug ) ? $this->plugin_data->get_plugin_settings() : $this->plugin_data->get_debug_settings();
 		$extensions = implode( '|', $settings['extensions'] ?? [] );
 		if ( ! $extensions || ( ! $source_dir = self::get_loader_url() )
 			|| ( ! $allowed_dirs = $this->get_allowed_dirs( $settings ) ) ) {

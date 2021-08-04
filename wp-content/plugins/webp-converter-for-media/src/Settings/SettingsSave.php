@@ -2,17 +2,29 @@
 
 namespace WebpConverter\Settings;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\Conversion\Cron\Event;
-use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Settings\Option\OptionFactory;
 use WebpConverter\Conversion\Directory\DirectoryFactory;
+use WebpConverter\Helper\OptionsAccess;
+use WebpConverter\Loader\LoaderAbstract;
+use WebpConverter\PluginData;
+use WebpConverter\Settings\Option\OptionFactory;
 
 /**
  * Supports saving plugin settings on plugin settings page.
  */
-class SettingsSave extends PluginAccessAbstract implements PluginAccessInterface {
+class SettingsSave {
+
+	/**
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
 
 	const SETTINGS_OPTION   = 'webpc_settings';
 	const SUBMIT_VALUE      = 'webpc_save';
@@ -31,22 +43,21 @@ class SettingsSave extends PluginAccessAbstract implements PluginAccessInterface
 			return;
 		}
 
-		update_option( self::SETTINGS_OPTION, ( new OptionFactory() )->get_values( false, $_POST ) );
-		$settings = $this->get_plugin()->get_settings( true );
-		$this->get_plugin()->get_settings_debug( true );
-		$this->init_actions_after_save( $settings );
+		OptionsAccess::update_option( self::SETTINGS_OPTION, ( new OptionFactory() )->get_values( false, $_POST ) );
+		$this->plugin_data->invalidate_plugin_settings();
+		$this->init_actions_after_save();
 	}
 
 	/**
 	 * Runs actions needed after saving plugin settings.
 	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
 	 * @return void
 	 */
-	private function init_actions_after_save( array $settings ) {
+	private function init_actions_after_save() {
 		do_action( LoaderAbstract::ACTION_NAME, true );
 		wp_clear_scheduled_hook( Event::CRON_ACTION );
+
+		$settings = $this->plugin_data->get_plugin_settings();
 		( new DirectoryFactory() )->remove_unused_output_directories( $settings['dirs'] );
 	}
 }

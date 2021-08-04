@@ -2,8 +2,8 @@
 
 namespace WebpConverter\Plugin\Uninstall;
 
-use WebpConverter\Conversion\SkipLarger;
 use WebpConverter\Conversion\Format\FormatFactory;
+use WebpConverter\Conversion\SkipLarger;
 
 /**
  * Removes all output files /uploads-webpc directory.

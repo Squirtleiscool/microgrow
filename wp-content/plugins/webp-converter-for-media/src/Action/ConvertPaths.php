@@ -2,20 +2,29 @@
 
 namespace WebpConverter\Action;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\Method\MethodIntegrator;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Initializes conversion of all images in list of paths.
  */
-class ConvertPaths extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class ConvertPaths implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_convert_paths', [ $this, 'convert_files_by_paths' ] );
@@ -30,9 +39,8 @@ class ConvertPaths extends PluginAccessAbstract implements PluginAccessInterface
 	 * @internal
 	 */
 	public function convert_files_by_paths( array $paths ) {
-		$method_integrator = new MethodIntegrator();
-		$method_integrator->set_plugin( $this->get_plugin() );
-		$method_integrator->init_conversion( $this->remove_paths_of_excluded_dirs( $paths ) );
+		( new MethodIntegrator( $this->plugin_data ) )
+			->init_conversion( $this->remove_paths_of_excluded_dirs( $paths ) );
 	}
 
 	/**

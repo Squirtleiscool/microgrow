@@ -7,21 +7,17 @@ use WebpConverter\Conversion\Method\MethodIntegrator;
 /**
  * Supports endpoint for converting list of paths to images.
  */
-class RegenerateEndpoint extends EndpointAbstract implements EndpointInterface {
+class RegenerateEndpoint extends EndpointAbstract {
 
 	/**
-	 * Returns route of endpoint.
-	 *
-	 * @return string Endpoint route.
+	 * {@inheritdoc}
 	 */
 	public function get_route_name(): string {
 		return 'regenerate';
 	}
 
 	/**
-	 * Returns list of params for endpoint.
-	 *
-	 * @return array[] Params of endpoint.
+	 * {@inheritdoc}
 	 */
 	public function get_route_args(): array {
 		return [
@@ -37,12 +33,7 @@ class RegenerateEndpoint extends EndpointAbstract implements EndpointInterface {
 	}
 
 	/**
-	 * Returns response to endpoint.
-	 *
-	 * @param \WP_REST_Request $request REST request object.
-	 *
-	 * @return \WP_REST_Response|\WP_Error REST response object or WordPress Error object.
-	 * @internal
+	 * {@inheritdoc}
 	 */
 	public function get_route_response( \WP_REST_Request $request ) {
 		$params = $request->get_params();
@@ -71,10 +62,7 @@ class RegenerateEndpoint extends EndpointAbstract implements EndpointInterface {
 	 * @return array[]|false Status of conversion.
 	 */
 	public function convert_images( array $paths ) {
-		$method_integrator = new MethodIntegrator();
-		$method_integrator->set_plugin( $this->get_plugin() );
-
-		$response = $method_integrator->init_conversion( $paths );
+		$response = ( new MethodIntegrator( $this->plugin_data ) )->init_conversion( $paths );
 		if ( $response === null ) {
 			return false;
 		}

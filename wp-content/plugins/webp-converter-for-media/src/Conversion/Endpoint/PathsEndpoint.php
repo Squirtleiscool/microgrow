@@ -5,23 +5,19 @@ namespace WebpConverter\Conversion\Endpoint;
 /**
  * Supports endpoint to get list of image paths to be converted.
  */
-class PathsEndpoint extends EndpointAbstract implements EndpointInterface {
+class PathsEndpoint extends EndpointAbstract {
 
 	const PATHS_PER_REQUEST = 10;
 
 	/**
-	 * Returns route of endpoint.
-	 *
-	 * @return string Endpoint route.
+	 * {@inheritdoc}
 	 */
 	public function get_route_name(): string {
 		return 'paths';
 	}
 
 	/**
-	 * Returns list of params for endpoint.
-	 *
-	 * @return array[] Params of endpoint.
+	 * {@inheritdoc}
 	 */
 	public function get_route_args(): array {
 		return [
@@ -64,7 +60,7 @@ class PathsEndpoint extends EndpointAbstract implements EndpointInterface {
 	 * @return array[] Server paths of source images.
 	 */
 	public function get_paths( bool $skip_exists = false, int $chunk_size = 0 ): array {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		$dirs     = array_filter(
 			array_map(
 				function ( $dir_name ) {

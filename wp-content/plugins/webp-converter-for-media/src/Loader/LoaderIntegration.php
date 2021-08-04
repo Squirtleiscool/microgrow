@@ -2,14 +2,12 @@
 
 namespace WebpConverter\Loader;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
 
 /**
  * Adds integration with active method of loading images.
  */
-class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class LoaderIntegration implements HookableInterface {
 
 	/**
 	 * Object of image loader method.
@@ -19,8 +17,6 @@ class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInte
 	private $loader;
 
 	/**
-	 * LoaderIntegration constructor.
-	 *
 	 * @param LoaderInterface $loader .
 	 */
 	public function __construct( LoaderInterface $loader ) {
@@ -28,9 +24,7 @@ class LoaderIntegration extends PluginAccessAbstract implements PluginAccessInte
 	}
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'plugins_loaded', [ $this, 'load_loader_actions' ] );

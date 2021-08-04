@@ -2,23 +2,20 @@
 
 namespace WebpConverter\Plugin;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
+use WebpConverter\Helper\OptionsAccess;
 use WebpConverter\HookableInterface;
 use WebpConverter\Loader\LoaderAbstract;
-use WebpConverter\Notice\WelcomeNotice;
+use WebpConverter\Plugin\Activation\DefaultSettings;
 
 /**
  * Runs actions after plugin update to new version.
  */
-class Update extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class Update implements HookableInterface {
 
 	const VERSION_OPTION = 'webpc_latest_version';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'admin_init', [ $this, 'run_actions_after_update' ], 0 );
@@ -31,16 +28,14 @@ class Update extends PluginAccessAbstract implements PluginAccessInterface, Hook
 	 * @internal
 	 */
 	public function run_actions_after_update() {
-		$version = get_option( self::VERSION_OPTION, null );
+		$version = OptionsAccess::get_option( self::VERSION_OPTION );
 		if ( $version === WEBPC_VERSION ) {
 			return;
 		}
 
-		if ( $version !== null ) {
-			WelcomeNotice::disable_notice();
-		}
-
+		( new DefaultSettings() )->add_default_options();
 		do_action( LoaderAbstract::ACTION_NAME, true );
-		update_option( self::VERSION_OPTION, WEBPC_VERSION );
+
+		OptionsAccess::update_option( self::VERSION_OPTION, WEBPC_VERSION );
 	}
 }

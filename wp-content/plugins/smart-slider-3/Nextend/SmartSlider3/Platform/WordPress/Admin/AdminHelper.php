@@ -117,22 +117,37 @@ class AdminHelper {
         PageFlow::markApplicationEnd();
     }
 
+    private function checkForCap() {
+
+        if (!current_user_can('unfiltered_html')) {
+            wp_die(sprintf('<div class="error">%s</div>', wpautop(sprintf('Smart Slider allows you to place many things on your slider, so only users with the %s capability have can access to it. You do not have this capability and only the administrator of your website can grant it to you.', '<i>unfiltered_html</i>'))));
+        }
+    }
+
     public function display_admin() {
+
+        $this->checkForCap();
 
         $this->display_controller('sliders', 'gettingstarted');
     }
 
     public function display_admin_index() {
 
+        $this->checkForCap();
+
         $this->display_controller('sliders');
     }
 
     public function display_help() {
 
+        $this->checkForCap();
+
         $this->display_controller('help');
     }
 
     public function display_go_pro() {
+
+        $this->checkForCap();
 
         $this->display_controller('goPro');
     }

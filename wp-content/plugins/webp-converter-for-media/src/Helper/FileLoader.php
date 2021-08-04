@@ -3,7 +3,7 @@
 namespace WebpConverter\Helper;
 
 use WebpConverter\Loader\PassthruLoader;
-use WebpConverter\WebpConverter;
+use WebpConverter\PluginData;
 
 /**
  * Returns size of image downloaded based on server path or URL.
@@ -13,23 +13,20 @@ class FileLoader {
 	/**
 	 * Checks size of file by sending request using active image loader.
 	 *
-	 * @param string        $url         URL of image.
-	 * @param WebpConverter $plugin      .
-	 * @param bool          $set_headers Whether to send headers to confirm that browser supports WebP?
-	 * @param string        $extra_param Additional GET param.
+	 * @param string     $url         URL of image.
+	 * @param PluginData $plugin_data .
+	 * @param bool       $set_headers Whether to send headers to confirm that browser supports WebP?
+	 * @param string     $extra_param Additional GET param.
 	 *
 	 * @return int Size of retrieved file.
 	 */
-	public static function get_file_size_by_url( string $url, WebpConverter $plugin, bool $set_headers = true, string $extra_param = '' ): int {
+	public static function get_file_size_by_url( string $url, PluginData $plugin_data, bool $set_headers = true, string $extra_param = '' ): int {
 		$headers = [
 			'Accept: image/webp',
 			'Referer: ' . WEBPC_URL,
 		];
 
-		$loader = new PassthruLoader();
-		$loader->set_plugin( $plugin );
-
-		$image_url = $loader->update_image_urls( $url, true );
+		$image_url = ( new PassthruLoader( $plugin_data ) )->update_image_urls( $url, true );
 		if ( $extra_param ) {
 			$image_url .= ( ( strpos( $image_url, '?' ) !== false ) ? '&' : '?' ) . $extra_param;
 		}

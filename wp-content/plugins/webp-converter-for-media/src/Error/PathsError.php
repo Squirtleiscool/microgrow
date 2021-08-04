@@ -5,12 +5,10 @@ namespace WebpConverter\Error;
 /**
  * Checks for configuration errors about incorrect paths of directories.
  */
-class PathsError extends ErrorAbstract implements ErrorInterface {
+class PathsError implements ErrorInterface {
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
 		$errors = [];

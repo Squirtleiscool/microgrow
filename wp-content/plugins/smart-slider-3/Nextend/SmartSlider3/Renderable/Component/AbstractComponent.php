@@ -613,12 +613,12 @@ abstract class AbstractComponent {
             if (empty($gradientHover)) $gradientHover = $gradient;
             if (empty($colorEndHover)) $colorEndHover = $colorEnd;
 
-            $this->addLocalStyle('hover', 'background', $this->getBackgroundCSS($colorHover, $gradientHover, $colorEndHover, $backgroundStyle));
+            $this->addLocalStyle('hover', 'background', $this->getBackgroundCSS($colorHover, $gradientHover, $colorEndHover, $backgroundStyle, true));
         }
     }
 
-    protected function getBackgroundCSS($color, $gradient, $colorend, $backgroundStyle) {
-        if (Color::hex2alpha($color) != 0 || ($gradient != 'off' && Color::hex2alpha($colorend) != 0)) {
+    protected function getBackgroundCSS($color, $gradient, $colorend, $backgroundStyle, $isHover = false) {
+        if (Color::hex2alpha($color) != 0 || ($gradient != 'off' && Color::hex2alpha($colorend) != 0) || $isHover) {
             $this->hasBackground = true;
             switch ($gradient) {
                 case 'horizontal':

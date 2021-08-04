@@ -2,6 +2,7 @@
 
 namespace WebpConverter\Settings\Option;
 
+use WebpConverter\Helper\OptionsAccess;
 use WebpConverter\Settings\SettingsSave;
 
 /**
@@ -16,9 +17,6 @@ class OptionFactory {
 	 */
 	private $options = [];
 
-	/**
-	 * OptionFactory constructor.
-	 */
 	public function __construct() {
 		$this->set_integration( new LoaderTypeOption() );
 		$this->set_integration( new SupportedExtensionsOption() );
@@ -50,7 +48,7 @@ class OptionFactory {
 	 */
 	public function get_options( bool $is_debug = false, array $posted_settings = null ): array {
 		$is_save  = ( $posted_settings !== null );
-		$settings = ( $is_save ) ? $posted_settings : get_option( SettingsSave::SETTINGS_OPTION, [] );
+		$settings = ( $is_save ) ? $posted_settings : OptionsAccess::get_option( SettingsSave::SETTINGS_OPTION, [] );
 
 		$options = [];
 		foreach ( $this->options as $option_object ) {

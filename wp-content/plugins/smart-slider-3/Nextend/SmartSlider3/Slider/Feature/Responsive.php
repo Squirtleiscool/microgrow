@@ -669,12 +669,12 @@ class Responsive {
             'mediaQueries' => $this->mediaQueries,
             'base'         => $this->slider->assets->base,
             'hideOn'       => array(
-                'desktopLandscape' => $this->hideOnDesktopLandscape,
+                'desktopLandscape' => SmartSlider3Info::$forceAllDevices ? false : $this->hideOnDesktopLandscape,
                 'desktopPortrait'  => SmartSlider3Info::$forceDesktop ? false : $this->hideOnDesktopPortrait,
-                'tabletLandscape'  => $this->hideOnTabletLandscape,
-                'tabletPortrait'   => $this->hideOnTabletPortrait,
-                'mobileLandscape'  => $this->hideOnMobileLandscape,
-                'mobilePortrait'   => $this->hideOnMobilePortrait,
+                'tabletLandscape'  => SmartSlider3Info::$forceAllDevices ? false : $this->hideOnTabletLandscape,
+                'tabletPortrait'   => SmartSlider3Info::$forceAllDevices ? false : $this->hideOnTabletPortrait,
+                'mobileLandscape'  => SmartSlider3Info::$forceAllDevices ? false : $this->hideOnMobileLandscape,
+                'mobilePortrait'   => SmartSlider3Info::$forceAllDevices ? false : $this->hideOnMobilePortrait,
             ),
 
             'onResizeEnabled'     => $this->onResizeEnabled,

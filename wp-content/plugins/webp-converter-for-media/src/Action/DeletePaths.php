@@ -2,9 +2,9 @@
 
 namespace WebpConverter\Action;
 
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\OutputPath;
 use WebpConverter\Conversion\SkipLarger;
+use WebpConverter\HookableInterface;
 
 /**
  * Deletes all images in list of paths.
@@ -12,9 +12,7 @@ use WebpConverter\Conversion\SkipLarger;
 class DeletePaths implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'webpc_delete_paths', [ $this, 'delete_files_by_paths' ] );

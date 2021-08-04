@@ -3,35 +3,30 @@
 
 namespace WebpConverter\Settings\Page;
 
+use WebpConverter\Error\RewritesError;
+use WebpConverter\Helper\FileLoader;
+use WebpConverter\Helper\ViewLoader;
 use WebpConverter\Loader\LoaderAbstract;
 use WebpConverter\Settings\SettingsSave;
-use WebpConverter\Helper\ViewLoader;
-use WebpConverter\Helper\FileLoader;
-use WebpConverter\Error\RewritesError;
 
 /**
  * Supports debug tab in plugin settings page.
  */
-class DebugPage extends PageAbstract implements PageInterface {
+class DebugPage extends PageAbstract {
 
 	const PAGE_VIEW_PATH = 'views/settings-debug.php';
 
 	/**
-	 * Returns status if view is active.
-	 *
-	 * @return bool Is view active?
+	 * {@inheritdoc}
 	 */
 	public function is_page_active(): bool {
-		return ( isset( $_GET['action'] ) && ( $_GET['action'] === 'server' ) ); // phpcs:ignore
+		return ( isset( $_GET['action'] ) && ( $_GET['action'] === 'server' ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
 
 	/**
-	 * Displays view for plugin settings page.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function show_page_view() {
-		$plugin       = $this->get_plugin();
 		$uploads_url  = apply_filters( 'webpc_dir_url', '', 'uploads' );
 		$uploads_path = apply_filters( 'webpc_dir_path', '', 'uploads' );
 		$ver_param    = sprintf( 'ver=%s', time() );
@@ -59,25 +54,25 @@ class DebugPage extends PageAbstract implements PageInterface {
 				),
 				'size_png_url'          => FileLoader::get_file_size_by_url(
 					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG,
-					$plugin,
+					$this->plugin_data,
 					false,
 					$ver_param
 				),
 				'size_png2_url'         => FileLoader::get_file_size_by_url(
 					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2,
-					$plugin,
+					$this->plugin_data,
 					false,
 					$ver_param
 				),
 				'size_png_as_webp_url'  => FileLoader::get_file_size_by_url(
 					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG,
-					$plugin,
+					$this->plugin_data,
 					true,
 					$ver_param
 				),
 				'size_png2_as_webp_url' => FileLoader::get_file_size_by_url(
 					$uploads_url . RewritesError::PATH_OUTPUT_FILE_PNG2,
-					$plugin,
+					$this->plugin_data,
 					true,
 					$ver_param
 				),

@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '03b08fcc91827c5754d058f1dbe5ee56ba0bc99c',
+    'reference' => 'a960ecb8763cea51e64d1f4d36b956ccb3106f64',
     'name' => 'gbiorczyk/webp-converter-for-media',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '03b08fcc91827c5754d058f1dbe5ee56ba0bc99c',
+      'reference' => 'a960ecb8763cea51e64d1f4d36b956ccb3106f64',
     ),
   ),
 );

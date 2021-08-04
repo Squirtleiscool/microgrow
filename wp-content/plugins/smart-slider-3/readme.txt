@@ -4,7 +4,7 @@ Tags: slider, wordpress slider, image slider, layer slider, responsive slider, s
 Donate link: https://sites.fastspring.com/nextend/product/smartslider3donate
 Requires at least: 4.9
 Tested up to: 5.7
-Stable tag: 3.5.0.9
+Stable tag: 3.5.0.10
 Requires PHP: 7.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -208,6 +208,28 @@ Of course! Smart Slider use protocol relative urls which works fine on http:// a
 9. Layer slider with layers styles. Made with FREE version.
 
 == Changelog ==
+
+= 3.5.0.10 - 21. June 2021 =
+* Feature: Smart Slider displays a preview image in Gutenberg's Add Block panel 
+* Feature: New Google fonts added to the font suggestion list. 
+* Fix: Slide title and description are copped at Static Save to avoid reaching server limitation. 
+* Fix: From now on the Wrap After option won't be available on non-fullwidth rows, as they break automatically based on the space they need. 
+* Fix: Smart Slider now properly appears on Google's Mobile friendly test. 
+* Fix: Scale to left main animation didn't appear properly in the Free version. 
+* Fix: Compatibility fix for Yandex.News Feed by Teplitsa which wrongly fetched certain slide data. From now on no part of the slider appears in their fetch. 
+* Fix: Text bar will display the HTML codes in the Slide title and description field again. 
+* Fix: Outer right control position was wrong on RTL. 
+* Fix: Better check for RankMath dependency, so it won't be loaded on pages where RankMath doesn't loads its codes. 
+* Fix: Outer left and right controls had wrong width. From now on they'll have the same width as the slider. 
+* Fix: Themify builder conflict fixed with background videos 
+* Fix: The slider's force fullwidth calculation could position the slider wrongly when the slider was placed into another "force fullwith" container. 
+* Fix: Error handling for cases when the Top or Bottom focus selector is invalid. 
+* Fix: Allow transparent color as hover background. 
+* Fix: Pixel bug on the bottom of the slide in certain cases. 
+* Fix: Z-index fixes for the Simple and Block type to avoid 3rd parties modify the z-index of the background images. 
+* Fix: Better error handling for cases when the installation didn't run properly due to some database error. 
+* Fix: WP Bakery Frontend editor will display the slider again when Yoast is enabled. 
+* Fix: From now on the unfiltered_html capability is required to edit the slides on WordPress 
 
 = 3.5.0.9 - 10. June 2021 =
 * Feature: From now on your can set an Alt tag for the Slide Thumbnail. 

@@ -14,9 +14,6 @@ class FormatFactory {
 	 */
 	private $formats = [];
 
-	/**
-	 * Formats constructor.
-	 */
 	public function __construct() {
 		$this->set_integration( new AvifFormat() );
 		$this->set_integration( new WebpFormat() );

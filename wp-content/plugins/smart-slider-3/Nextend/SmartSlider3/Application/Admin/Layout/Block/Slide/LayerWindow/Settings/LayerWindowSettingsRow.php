@@ -75,7 +75,12 @@ class LayerWindowSettingsRow extends AbstractLayerWindowSettings {
             'tipDescription' => n2_('Breaks the columns to the given amount of rows.')
         ));
 
-        new OnOff($rowGeneral, 'row-fullwidth', n2_('Full width'), 1);
+        new OnOff($rowGeneral, 'row-fullwidth', n2_('Full width'), 1, array(
+            'relatedFieldsOn' => array(
+                'layerrow-wrap-after'
+            )
+        ));
+
         new OnOff($rowGeneral, 'row-stretch', n2_('Stretch'), 0, array(
             'tipLabel'       => n2_('Stretch'),
             'tipDescription' => n2_('Makes the row fill the available vertical space')

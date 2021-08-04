@@ -24,9 +24,7 @@ class AdminAssets implements HookableInterface {
 	private $path_js = WEBPC_URL . 'assets/build/js/scripts.js';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'admin_enqueue_scripts', [ $this, 'load_styles' ] );

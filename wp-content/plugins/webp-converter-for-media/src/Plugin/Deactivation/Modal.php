@@ -2,24 +2,34 @@
 
 namespace WebpConverter\Plugin\Deactivation;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\Settings\AdminAssets;
 use WebpConverter\Helper\ViewLoader;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
+use WebpConverter\Settings\AdminAssets;
 
 /**
  * Displays modal with poll in list of plugins when you try to deactivate plugin.
  */
-class Modal extends PluginAccessAbstract implements PluginAccessInterface {
+class Modal implements HookableInterface {
 
 	const FEEDBACK_API_URL = 'https://feedback.gbiorczyk.pl/';
 
 	/**
-	 * Initializes display of poll modal with poll when plugin is deactivated.
-	 *
-	 * @return void
+	 * @var PluginData .
 	 */
-	public function show_deactivation_modal() {
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function init_hooks() {
 		if ( basename( ( $_SERVER['SCRIPT_FILENAME'] ?? '' ), '.php' ) !== 'plugins' ) { // phpcs:ignore
 			return;
 		}
@@ -39,7 +49,7 @@ class Modal extends PluginAccessAbstract implements PluginAccessInterface {
 			[
 				'errors'   => apply_filters( 'webpc_server_errors', [] ),
 				'reasons'  => $this->get_reasons(),
-				'settings' => $this->get_plugin()->get_settings(),
+				'settings' => $this->plugin_data->get_plugin_settings(),
 				'api_url'  => self::FEEDBACK_API_URL,
 			]
 		);

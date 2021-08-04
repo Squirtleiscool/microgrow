@@ -2,20 +2,25 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Loader\PassthruLoader;
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\HookableInterface;
+use WebpConverter\Helper\OptionsAccess;
 use WebpConverter\Helper\ViewLoader;
+use WebpConverter\HookableInterface;
+use WebpConverter\Loader\PassthruLoader;
+use WebpConverter\PluginData;
 
 /**
  * Supports generating list of server configuration errors.
  */
-class ErrorFactory extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class ErrorFactory implements HookableInterface {
 
 	const ERRORS_CACHE_OPTION = 'webpc_errors_cache';
 	const ALLOWED_ERROR_KEYS  = [ 'rewrites_cached' ];
 	const ERROR_FILE_PATH     = 'components/errors/%s.php';
+
+	/**
+	 * @var PluginData .
+	 */
+	private $plugin_data;
 
 	/**
 	 * List of error codes saved in cache.
@@ -25,9 +30,14 @@ class ErrorFactory extends PluginAccessAbstract implements PluginAccessInterface
 	private $cache = [];
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'webpc_server_errors', [ $this, 'get_server_errors' ], 10, 3 );
@@ -45,7 +55,7 @@ class ErrorFactory extends PluginAccessAbstract implements PluginAccessInterface
 	 * @return string[] Errors codes.
 	 */
 	public function get_server_errors( array $values, bool $only_errors = false, bool $is_force_refresh = false ): array {
-		$errors = get_option( self::ERRORS_CACHE_OPTION, $this->cache );
+		$errors = OptionsAccess::get_option( self::ERRORS_CACHE_OPTION, $this->cache );
 		if ( $is_force_refresh ) {
 			$errors = $this->get_errors_list();
 		}
@@ -105,47 +115,35 @@ class ErrorFactory extends PluginAccessAbstract implements PluginAccessInterface
 	private function get_errors_list(): array {
 		$errors = [];
 
-		if ( $new_errors = $this->get_errors_by_detector( new LibsInstalledError() ) ) {
+		if ( $new_errors = ( new LibsInstalledError() )->get_error_codes() ) {
 			$errors = array_merge( $errors, $new_errors );
-		} elseif ( $new_errors = $this->get_errors_by_detector( new LibsSupportWebpError() ) ) {
+		} elseif ( $new_errors = ( new LibsSupportWebpError() )->get_error_codes() ) {
 			$errors = array_merge( $errors, $new_errors );
-		} elseif ( $new_errors = $this->get_errors_by_detector( new LibsSupportAvifError() ) ) {
-			$errors = array_merge( $errors, $new_errors );
-		}
-
-		if ( $new_errors = $this->get_errors_by_detector( new RestapiError() ) ) {
+		} elseif ( $new_errors = ( new LibsSupportAvifError( $this->plugin_data ) )->get_error_codes() ) {
 			$errors = array_merge( $errors, $new_errors );
 		}
 
-		if ( $new_errors = $this->get_errors_by_detector( new PathsError() ) ) {
+		if ( $new_errors = ( new RestapiError() )->get_error_codes() ) {
 			$errors = array_merge( $errors, $new_errors );
 		}
 
-		if ( $new_errors = $this->get_errors_by_detector( new PassthruError() ) ) {
-			$errors = array_merge( $errors, $new_errors );
-		} elseif ( $new_errors = $this->get_errors_by_detector( new RewritesError() ) ) {
+		if ( $new_errors = ( new PathsError() )->get_error_codes() ) {
 			$errors = array_merge( $errors, $new_errors );
 		}
 
-		if ( ! $errors && ( $new_errors = $this->get_errors_by_detector( new SettingsError() ) ) ) {
+		if ( $new_errors = ( new PassthruError( $this->plugin_data ) )->get_error_codes() ) {
+			$errors = array_merge( $errors, $new_errors );
+		} elseif ( $new_errors = ( new RewritesError( $this->plugin_data ) )->get_error_codes() ) {
+			$errors = array_merge( $errors, $new_errors );
+		}
+
+		if ( ! $errors && ( $new_errors = ( new SettingsError( $this->plugin_data ) )->get_error_codes() ) ) {
 			$errors = array_merge( $errors, $new_errors );
 		}
 
 		$this->cache = $errors;
-		update_option( self::ERRORS_CACHE_OPTION, $errors );
+		OptionsAccess::update_option( self::ERRORS_CACHE_OPTION, $errors );
 
 		return $errors;
-	}
-
-	/**
-	 * Returns list of error codes for errors detector.
-	 *
-	 * @param ErrorInterface $error .
-	 *
-	 * @return string[] Error codes.
-	 */
-	private function get_errors_by_detector( ErrorInterface $error ): array {
-		$error->set_plugin( $this->get_plugin() );
-		return $error->get_error_codes();
 	}
 }

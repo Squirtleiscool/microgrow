@@ -96,6 +96,16 @@ class Shortcode {
         ), 0);
 
         /**
+         * Remove sliders from the news feed of Yandex.News Feed by Teplitsa
+         * @url https://wordpress.org/plugins/yandexnews-feed-by-teplitsa/
+         */
+        add_filter('layf_content_feed', function ($content) {
+            Shortcode::shortcodeModeToNoop();
+
+            return $content;
+        }, 1);
+
+        /**
          * Sliders are not available over REST API! Fixes Gutenberg save problems.
          */
         add_action('rest_api_init', array(

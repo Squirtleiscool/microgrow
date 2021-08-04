@@ -16,7 +16,8 @@ class ControllerSlides extends AbstractControllerAdmin {
     public function initialize() {
         parent::initialize();
 
-        SmartSlider3Info::$forceDesktop = true;
+        SmartSlider3Info::$forceDesktop    = true;
+        SmartSlider3Info::$forceAllDevices = true;
     }
 
     public function actionEdit() {

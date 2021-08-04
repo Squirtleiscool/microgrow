@@ -2,13 +2,17 @@
 
 namespace WebpConverter\Conversion\Media;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
+use WebpConverter\PluginData;
 
 /**
  * Returns all image paths for attachment.
  */
-class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
+class Attachment {
+
+	/**
+	 * @var PluginData .
+	 */
+	private $plugin_data;
 
 	/**
 	 * Current upload directory path and URL.
@@ -25,9 +29,10 @@ class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
 	private $image_sizes;
 
 	/**
-	 * Attachment constructor.
+	 * @param PluginData $plugin_data .
 	 */
-	public function __construct() {
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
 		$this->upload_dir  = wp_upload_dir();
 		$this->image_sizes = get_intermediate_image_sizes();
 	}
@@ -40,7 +45,7 @@ class Attachment extends PluginAccessAbstract implements PluginAccessInterface {
 	 * @return string[] Server paths of source images.
 	 */
 	public function get_attachment_paths( int $attachment_id ): array {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		return $this->get_paths_by_attachment( $attachment_id, $settings );
 	}
 

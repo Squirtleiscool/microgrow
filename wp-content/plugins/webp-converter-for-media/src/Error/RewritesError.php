@@ -2,15 +2,16 @@
 
 namespace WebpConverter\Error;
 
-use WebpConverter\Conversion\OutputPath;
 use WebpConverter\Conversion\Format\WebpFormat;
-use WebpConverter\Loader\LoaderAbstract;
+use WebpConverter\Conversion\OutputPath;
 use WebpConverter\Helper\FileLoader;
+use WebpConverter\Loader\LoaderAbstract;
+use WebpConverter\PluginData;
 
 /**
  * Checks for configuration errors about non-working HTTP rewrites.
  */
-class RewritesError extends ErrorAbstract implements ErrorInterface {
+class RewritesError implements ErrorInterface {
 
 	const PATH_SOURCE_FILE_PNG  = '/assets/img/icon-test.png';
 	const PATH_SOURCE_FILE_WEBP = '/assets/img/icon-test.webp';
@@ -18,12 +19,22 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 	const PATH_OUTPUT_FILE_PNG2 = '/webp-converter-for-media-test.png2';
 
 	/**
-	 * Returns list of error codes.
-	 *
-	 * @return string[] Error codes.
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function get_error_codes(): array {
-		$settings = $this->get_plugin()->get_settings();
+		$settings = $this->plugin_data->get_plugin_settings();
 		$errors   = [];
 		if ( ! $settings['dirs'] || ! $settings['output_formats'] ) {
 			return $errors;
@@ -90,7 +101,7 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 		);
 		$file_webp = FileLoader::get_file_size_by_url(
 			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
-			$this->get_plugin(),
+			$this->plugin_data,
 			true,
 			$ver_param
 		);
@@ -109,13 +120,13 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 
 		$file_png  = FileLoader::get_file_size_by_url(
 			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
-			$this->get_plugin(),
+			$this->plugin_data,
 			true,
 			$ver_param
 		);
 		$file_png2 = FileLoader::get_file_size_by_url(
 			$uploads_url . self::PATH_OUTPUT_FILE_PNG2,
-			$this->get_plugin(),
+			$this->plugin_data,
 			true,
 			$ver_param
 		);
@@ -134,13 +145,13 @@ class RewritesError extends ErrorAbstract implements ErrorInterface {
 
 		$file_webp     = FileLoader::get_file_size_by_url(
 			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
-			$this->get_plugin(),
+			$this->plugin_data,
 			true,
 			$ver_param
 		);
 		$file_original = FileLoader::get_file_size_by_url(
 			$uploads_url . self::PATH_OUTPUT_FILE_PNG,
-			$this->get_plugin(),
+			$this->plugin_data,
 			false,
 			$ver_param
 		);

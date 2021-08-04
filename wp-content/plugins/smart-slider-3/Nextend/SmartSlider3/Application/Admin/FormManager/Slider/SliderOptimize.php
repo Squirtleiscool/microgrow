@@ -6,6 +6,7 @@ namespace Nextend\SmartSlider3\Application\Admin\FormManager\Slider;
 
 use Nextend\Framework\Form\Container\ContainerTable;
 use Nextend\Framework\Form\Element\Grouping;
+use Nextend\Framework\Form\Element\Message\Notice;
 use Nextend\Framework\Form\Element\Message\Warning;
 use Nextend\Framework\Form\Element\OnOff;
 use Nextend\Framework\Form\Element\Select;

@@ -114,7 +114,7 @@ class ComponentRow extends AbstractComponent {
             $columns      = $this->getSortedColumns($device);
             $columnsCount = count($columns);
 
-            if ($wrapAfter > 0) {
+            if ($wrapAfter > 0 || !$fullWidth) {
 
                 $this->style->add($device, '-inner > .n2-ss-layer-row-inner', 'flex-wrap:wrap;');
                 if ($fullWidth && $wrapAfter <= $columnsCount) {

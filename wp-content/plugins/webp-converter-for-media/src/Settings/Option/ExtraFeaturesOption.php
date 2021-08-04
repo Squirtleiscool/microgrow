@@ -8,52 +8,40 @@ use WebpConverter\Loader\HtaccessLoader;
 /**
  * Handles data about "Extra features" field in plugin settings.
  */
-class ExtraFeaturesOption extends OptionAbstract implements OptionInterface {
+class ExtraFeaturesOption extends OptionAbstract {
 
 	const LOADER_TYPE = 'features';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::LOADER_TYPE;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_CHECKBOX;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'Extra features', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return __( 'Options allow you to enable new functionalities that will increase capabilities of plugin', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_values( array $settings ): array {
 		return [
@@ -89,11 +77,7 @@ class ExtraFeaturesOption extends OptionAbstract implements OptionInterface {
 	}
 
 	/**
-	 * Returns unavailable values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_disabled_values( array $settings ): array {
 		$values = [];

@@ -13,9 +13,7 @@ use WebpConverter\Plugin\Activation\WebpDirectory;
 class Activation implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		register_activation_hook( WEBPC_FILE, [ $this, 'load_activation_actions' ] );

@@ -2,20 +2,29 @@
 
 namespace WebpConverter\Conversion;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
-use WebpConverter\HookableInterface;
 use WebpConverter\Conversion\Format\FormatFactory;
+use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Removes from list of source file paths those that have already been converted.
  */
-class SkipExists extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class SkipExists implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
+
+	/**
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_filter( 'webpc_files_paths', [ $this, 'skip_exists_images' ], 10, 2 );
@@ -60,7 +69,7 @@ class SkipExists extends PluginAccessAbstract implements PluginAccessInterface, 
 	 * @return string[] Available output extensions.
 	 */
 	private function get_output_extensions(): array {
-		$settings   = $this->get_plugin()->get_settings();
+		$settings   = $this->plugin_data->get_plugin_settings();
 		$extensions = ( new FormatFactory() )->get_available_formats( $settings['method'] );
 
 		$values = [];

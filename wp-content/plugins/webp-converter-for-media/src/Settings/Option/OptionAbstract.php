@@ -12,20 +12,14 @@ abstract class OptionAbstract implements OptionInterface {
 	const OPTION_TYPE_QUALITY  = 'quality';
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return '';
 	}
 
 	/**
-	 * Returns unavailable values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Disabled values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_disabled_values( array $settings ): array {
 		return [];

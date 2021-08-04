@@ -2,21 +2,30 @@
 
 namespace WebpConverter\Conversion\Cron;
 
-use WebpConverter\PluginAccessAbstract;
-use WebpConverter\PluginAccessInterface;
 use WebpConverter\HookableInterface;
+use WebpConverter\PluginData;
 
 /**
  * Adds cron event that converts images.
  */
-class Event extends PluginAccessAbstract implements PluginAccessInterface, HookableInterface {
+class Event implements HookableInterface {
+
+	/**
+	 * @var PluginData .
+	 */
+	private $plugin_data;
+
+	/**
+	 * @param PluginData $plugin_data .
+	 */
+	public function __construct( PluginData $plugin_data ) {
+		$this->plugin_data = $plugin_data;
+	}
 
 	const CRON_ACTION = 'webpc_regenerate_all';
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'add_cron_event' ] );
@@ -30,7 +39,7 @@ class Event extends PluginAccessAbstract implements PluginAccessInterface, Hooka
 	 */
 	public function add_cron_event() {
 		if ( wp_next_scheduled( self::CRON_ACTION )
-			|| ! ( $settings = $this->get_plugin()->get_settings() )
+			|| ! ( $settings = $this->plugin_data->get_plugin_settings() )
 			|| ! in_array( 'cron_enabled', $settings['features'] ) ) {
 			return;
 		}

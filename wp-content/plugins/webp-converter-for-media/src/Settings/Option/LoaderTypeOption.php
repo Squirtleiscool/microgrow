@@ -8,52 +8,40 @@ use WebpConverter\Loader\PassthruLoader;
 /**
  * Handles data about "Image loading mode" field in plugin settings.
  */
-class LoaderTypeOption extends OptionAbstract implements OptionInterface {
+class LoaderTypeOption extends OptionAbstract {
 
 	const LOADER_TYPE = 'loader_type';
 
 	/**
-	 * Returns name of option.
-	 *
-	 * @return string Option name.
+	 * {@inheritdoc}
 	 */
 	public function get_name(): string {
 		return self::LOADER_TYPE;
 	}
 
 	/**
-	 * Returns type of field.
-	 *
-	 * @return string Field type.
+	 * {@inheritdoc}
 	 */
 	public function get_type(): string {
 		return OptionAbstract::OPTION_TYPE_RADIO;
 	}
 
 	/**
-	 * Returns label of option.
-	 *
-	 * @return string Option label.
+	 * {@inheritdoc}
 	 */
 	public function get_label(): string {
 		return __( 'Image loading mode', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns additional information of field.
-	 *
-	 * @return string Additional information.
+	 * {@inheritdoc}
 	 */
 	public function get_info(): string {
 		return __( 'By changing image loading mode it allows you to bypass some server configuration problems.', 'webp-converter-for-media' );
 	}
 
 	/**
-	 * Returns available values for field.
-	 *
-	 * @param mixed[] $settings Plugin settings.
-	 *
-	 * @return string[] Values for field.
+	 * {@inheritdoc}
 	 */
 	public function get_values( array $settings ): array {
 		return [
@@ -71,11 +59,7 @@ class LoaderTypeOption extends OptionAbstract implements OptionInterface {
 	}
 
 	/**
-	 * Returns default value of field.
-	 *
-	 * @param mixed[]|null $settings Plugin settings.
-	 *
-	 * @return string Default value of field.
+	 * {@inheritdoc}
 	 */
 	public function get_default_value( array $settings = null ): string {
 		return HtaccessLoader::LOADER_TYPE;

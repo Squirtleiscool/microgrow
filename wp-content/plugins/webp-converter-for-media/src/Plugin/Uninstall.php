@@ -14,9 +14,7 @@ use WebpConverter\Plugin\Uninstall\WebpFiles;
 class Uninstall implements HookableInterface {
 
 	/**
-	 * Integrates with WordPress hooks.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function init_hooks() {
 		register_uninstall_hook( WEBPC_FILE, [ 'WebpConverter\Plugin\Uninstall', 'load_uninstall_actions' ] );

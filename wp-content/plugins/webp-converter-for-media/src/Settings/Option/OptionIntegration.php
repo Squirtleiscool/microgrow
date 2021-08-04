@@ -15,8 +15,6 @@ class OptionIntegration {
 	private $option;
 
 	/**
-	 * OptionIntegration constructor.
-	 *
 	 * @param OptionInterface $option .
 	 */
 	public function __construct( OptionInterface $option ) {
