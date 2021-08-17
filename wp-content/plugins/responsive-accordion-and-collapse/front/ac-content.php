@@ -76,7 +76,7 @@
 					<div class="wpsm_panel wpsm_panel-default">
 						<div class="wpsm_panel-heading" role="tab" >
 						  <h4 class="wpsm_panel-title">
-							<a  class="<?php if($i!=1){ echo "collapsed"; } ?>"  data-toggle="collapse" data-parent="<?php if($enable_toggle=="no") { ?>#wpsm_accordion_<?php echo $post_id; ?> <?php } ?>" href="#ac_<?php echo $post_id; ?>_collapse<?php echo $i; ?>"  >
+							<a  class="<?php if($i!=1){ echo "collapsed"; } ?>"  data-toggle="collapse" data-parent="<?php if($enable_toggle=="no") { ?>#wpsm_accordion_<?php echo $post_id; ?> <?php } ?>" href="javascript:void(0)" data-target="#ac_<?php echo $post_id; ?>_collapse<?php echo $i; ?>"  >
 								<?php if($op_cl_icon == 'yes' ) 
 								{ ?>
 									<span class="ac_open_cl_icon fa fa-<?php if($i==$j){ echo "minus"; } else { echo "plus"; } ?>"></span>
