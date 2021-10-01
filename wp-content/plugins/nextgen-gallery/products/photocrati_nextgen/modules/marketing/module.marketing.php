@@ -299,7 +299,7 @@ class M_Marketing extends C_Base_Module
             'source'   => $source
         ]);
 
-        $url =  '?utm_source='   . $params['source'];
+        $url .=  '?utm_source='  . $params['source'];
         $url .= '&utm_medium='   . $params['medium'];
         $url .= '&utm_campaign=' . $params['campaign'];
 

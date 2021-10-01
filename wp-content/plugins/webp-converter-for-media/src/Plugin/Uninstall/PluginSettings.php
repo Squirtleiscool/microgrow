@@ -2,7 +2,7 @@
 
 namespace WebpConverter\Plugin\Uninstall;
 
-use WebpConverter\Error\ErrorFactory;
+use WebpConverter\Error\ErrorDetectorAggregator;
 use WebpConverter\Helper\OptionsAccess;
 use WebpConverter\Notice\ThanksNotice;
 use WebpConverter\Notice\WelcomeNotice;
@@ -23,7 +23,7 @@ class PluginSettings {
 		OptionsAccess::delete_option( ThanksNotice::NOTICE_OLD_OPTION );
 		OptionsAccess::delete_option( ThanksNotice::NOTICE_OPTION );
 		OptionsAccess::delete_option( WelcomeNotice::NOTICE_OPTION );
-		OptionsAccess::delete_option( ErrorFactory::ERRORS_CACHE_OPTION );
+		OptionsAccess::delete_option( ErrorDetectorAggregator::ERRORS_CACHE_OPTION );
 		OptionsAccess::delete_option( SettingsSave::SETTINGS_OPTION );
 		OptionsAccess::delete_option( Update::VERSION_OPTION );
 	}

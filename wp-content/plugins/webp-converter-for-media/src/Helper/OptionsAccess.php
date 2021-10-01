@@ -22,7 +22,7 @@ class OptionsAccess {
 	}
 
 	/**
-	 * @param string $option_name .
+	 * @param string $option_name  .
 	 * @param mixed  $option_value .
 	 *
 	 * @return void

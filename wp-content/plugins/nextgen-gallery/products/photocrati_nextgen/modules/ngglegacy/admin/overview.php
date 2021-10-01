@@ -45,10 +45,10 @@ function nggallery_admin_overview()
             if (!$found) { ?>
                 <a href="javascript:void(0)" data-id="ngg-vs-pro-link"><?php _e( 'NextGEN Basic vs Pro', 'nggallery'); ?></a>
             <?php } ?>
+
             <?php if (wp_get_theme() != "Imagely"): ?>
             <a href="javascript:void(0)" data-id="genesis-link"><?php _e( 'Imagely Themes', 'nggallery'); ?></a>
             <?php endif ?>
-            <a href="javascript:void(0)" data-id="ambassador-link"><?php _e( 'Ambassadors', 'nggallery'); ?></a>
             <?php if (!$found) { ?>
                 <a href="javascript:void(0)" data-id="pro-link"><?php _e('Unlock More', 'nggallery'); ?></a>
             <?php } ?>
@@ -376,59 +376,6 @@ function nggallery_admin_overview()
                 <?php } ?>
             </div>
             <?php endif ?>
-
-            <div data-id="ambassador-link">
-
-                <div class="feature-section three-col">
-                    <h2><?php _e( 'Meet the Imagely Product Ambassadors', 'nggallery' ); ?></h2>
-                    <p class="about-text"><?php _e( "NextGEN Gallery and other Imagely products are used by some of the best photographers in the world. Meet some of the Imagely Ambassadors who are putting Imagely and NextGEN Gallery to work professionally.", 'nggallery' ); ?>
-                    </p>
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/the-youngrens/', 'ambassador', 'theyoungrens')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/theyoungrens-ngg.jpg" alt="The Youngrens"/></a>
-                        <h3><?php _e( 'The Youngrens' ); ?></h3>
-                        <p><?php _e( 'Jeff and Erin are a luxury husband and wife photography team who deeply love each other and their photography clients. They shoot weddings and engagements all over the U.S. and beyond. With three photography businesses that serve different clientele, they have unique insights into business strategies and are passionate about improving the day to day lives of other photographers.', 'nggallery' ); ?></p>
-                    </div>
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/tamara-lackey/', 'ambassador', 'tamaralackey')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/TamaraLackey-ngg.jpg" alt="Tamara Lackey" /></a>
-                        <h3><?php _e( 'Tamara Lackey' ); ?></h3>
-                        <p><?php _e( 'Tamara Lackey is a renowned professional photographer, speaker, and author. Her authentic lifestyle photography, from children’s portraits to celebrity portraits, is praised within her industry and published internationally. She is a Nikon USA Ambassador, the host of The reDefine Show web series, and the co-founder of the non-profit charitable organization, Beautiful Together, in support of children waiting for families.', 'nggallery' ); ?></p>
-                    </div>
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/colby-brown/', 'ambassador', 'colbybrown')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/colby-brown-ngg.jpg" alt="Colby Brown" /></a>
-                        <h3><?php _e( 'Colby Brown' ); ?></h3>
-                        <p><?php _e( 'Colby is a photographer, photo educator, and author specializing in landscape, travel and humanitarian photography. With an audience reaching millions, Colby partners on social influencer marketing campaigns with some of the biggest companies and destinations in the world, including Sony, Samsung, Toshiba, Iceland Naturally, Jordan Tourism Board, Australia.com, Visit California and more.', 'nggallery' ); ?></p>
-                    </div>
-                </div>
-
-                <div class="feature-section three-col">
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/jared-platt/', 'ambassador', 'jaredplatt')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/jared-platt-ngg.jpg" alt="Jared Platt" /></a>
-                        <h3><?php _e( 'Jared Platt' ); ?></h3>
-                        <p><?php _e( 'Jared is a professional wedding and lifestyle photographer. He also travels the world giving lectures and workshops on photography, lighting, and post-production efficiency and workflow. His interactive style, and attention to detail and craft make him an entertaining and demanding photography instructor.', 'nggallery' ); ?></p>
-                    </div>
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/brian-matiash/', 'ambassador', 'brianmatiash')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/brian-matiash-ngg.jpeg" alt="" /></a>
-                        <h3><?php _e( 'Brian Matiash' ); ?></h3>
-                        <p><?php _e( 'Brian is a professional photographer, author, and educator. He fuses landscape & travel photography with experiential storytelling and practical instructing to help others grow creatively. He is also a Sony Artisan of Imagery, a Zeiss Lens Ambassador, a Formatt-Hitech Featured Photographer, and a member of G-Technology’s G-Team.', 'nggallery' ); ?></p>
-                    </div>
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/christine-tremoulet/', 'ambassador', 'christinetremoulet')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/Christine-Tremoulet-ngg.jpg" alt="" /></a>
-                        <h3><?php _e( 'Christine Tremoulet' ); ?></h3>
-                        <p><?php _e( 'Christine famously coined the term WordPress. She is an author, speaker, business coach, and story strategist who specializes in helping creatives celebrate their story online through blogging and social media. When not offering actionable know-how to businesses, she can be found taking long road trips across North America in her Mini Cooper.', 'nggallery' ); ?></p>
-                    </div>
-                </div>
-
-                <div class="feature-section three-col">
-                    <div class="col">
-                        <a href="<?php print esc_attr(M_Marketing::get_utm_link('https://www.imagely.com/team-member/david-beckstead/', 'ambassador', 'davidbeckstead')); ?>" target="_blank"><img src="https://f001.backblaze.com/file/nextgen-gallery/david-beckstead-ngg.jpg" alt="David Beckstead" /></a>
-                        <h3><?php _e( 'David Beckstead' ); ?></h3>
-                        <p><?php _e( 'Named one of the Top 10 Wedding Photographers in the World by American Photo magazine, David is a celebrated photographer and educator. He is also a mountain man with a enviable lifestyle: from his base in rural Washington, he travels all over the world teaching workshops, while sharing lessons with 16,000 photographers in the Abstract Canvas Facebook group.', 'nggallery' ); ?></p>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                </div>
-
-            </div>
 
         </div> <!-- /.ngg_page_content_main -->
     
