@@ -1,5 +1,8 @@
 <?php
 if(isset($PostID) && isset($_POST['accordion_setting_save_action'])) {
+			if (!wp_verify_nonce($_POST['wpsm_accordion_security'], 'wpsm_accordion_nonce_save_settings_values')) {
+				die();
+			}
 			$acc_sec_title 		= sanitize_option('acc_sec_title', $_POST['acc_sec_title']);
 			$op_cl_icon      	= sanitize_option('op_cl_icon', $_POST['op_cl_icon']);
 			$acc_title_icon 	= sanitize_option('acc_title_icon', $_POST['acc_title_icon']);
@@ -17,7 +20,7 @@ if(isset($PostID) && isset($_POST['accordion_setting_save_action'])) {
 			$title_size 		= sanitize_text_field($_POST['title_size']);
 			$des_size         	= sanitize_text_field($_POST['des_size']);
 			$font_family        = sanitize_text_field($_POST['font_family']);
-			$custom_css         = stripslashes($_POST['custom_css']);
+			$custom_css         = sanitize_textarea_field($_POST['custom_css']);
 			
 			$Accordion_Settings_Array = serialize( array(
 				'acc_sec_title' 		=> $acc_sec_title,

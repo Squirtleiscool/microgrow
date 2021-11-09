@@ -491,11 +491,18 @@ abstract class AbstractComponent {
             $this->createDeviceProperty('fontsize', 100);
         }
 
-        $devices = $this->owner->getAvailableDevices();
+        $devices         = $this->owner->getAvailableDevices();
+        $desktopFontSize = $this->data->get('desktopportraitfontsize');
         foreach ($devices as $device) {
             $fontSize = $this->data->get($device . 'fontsize');
-            if ($fontSize !== '' && $fontSize != 100) {
-                $this->style->add($device, '', '--ssfont-scale:' . $fontSize / 100 . '');
+            if ($fontSize !== '') {
+                if ($device === 'desktopportrait') {
+                    if ($fontSize != 100) {
+                        $this->style->add($device, '', '--ssfont-scale:' . $fontSize / 100 . '');
+                    }
+                } else if ($fontSize != $desktopFontSize) {
+                    $this->style->add($device, '', '--ssfont-scale:' . $fontSize / 100 . '');
+                }
             }
         }
     }

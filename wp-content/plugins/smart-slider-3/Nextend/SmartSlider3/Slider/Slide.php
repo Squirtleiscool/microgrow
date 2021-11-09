@@ -343,7 +343,7 @@ class Slide extends AbstractRenderableOwner {
                 'class' => 'n2-ss-slide--focus'
             );
 
-            if (isset($this->linkAttributes['role']) && $this->linkAttributes['role'] != 'button') {
+            if (!isset($this->linkAttributes['role']) || $this->linkAttributes['role'] != 'button') {
                 $attributes['tabindex'] = '-1';
             }
 

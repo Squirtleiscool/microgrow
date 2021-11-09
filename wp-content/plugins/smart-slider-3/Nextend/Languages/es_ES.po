@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-07-23 09:55+0200\n"
-"PO-Revision-Date: 2021-07-23 09:59+0200\n"
+"POT-Creation-Date: 2021-09-08 13:54+0200\n"
+"PO-Revision-Date: 2021-09-09 18:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -30,10 +30,6 @@ msgstr ""
 msgctxt "Default Google font family for admin"
 msgid "Montserrat"
 msgstr "Montserrat"
-
-msgctxt "Default Google font charset for admin"
-msgid "latin"
-msgstr "latín"
 
 msgid "You are not allowed to upload!"
 msgstr "¡No tienes permisos para subir archivos!"
@@ -82,7 +78,7 @@ msgstr ""
 "base de datos, por favor %1$sconttáctate con nosotros%2$s con el registro:"
 
 msgid "Contact your server host and ask them to fix this for you!"
-msgstr ""
+msgstr "¡Contacta tu proveedor de hosting y pide que corrijan esto para ti!"
 
 msgid "Unexpected database error."
 msgstr "Error inesperado de la base de datos."
@@ -202,53 +198,6 @@ msgstr "Itálica"
 
 msgid "Normal"
 msgstr "Normal"
-
-msgid "Character set"
-msgstr "Grupo de caracteres"
-
-msgctxt "Character set"
-msgid "Latin"
-msgstr "Latín"
-
-msgctxt "Character set"
-msgid "Latin Extended"
-msgstr "Latín Extendido"
-
-msgctxt "Character set"
-msgid "Greek"
-msgstr "Griego"
-
-msgctxt "Character set"
-msgid "Greek Extended"
-msgstr "Griego Extendido"
-
-msgctxt "Character set"
-msgid "Cyrillic"
-msgstr "Cirílico"
-
-msgctxt "Character set"
-msgid "Devanagari"
-msgstr "Devanagari"
-
-msgctxt "Character set"
-msgid "Arabic"
-msgstr "Arábigo"
-
-msgctxt "Character set"
-msgid "Khmer"
-msgstr "Khmer"
-
-msgctxt "Character set"
-msgid "Telugu"
-msgstr "Telugu"
-
-msgctxt "Character set"
-msgid "Vietnamese"
-msgstr "Vietnamita"
-
-msgctxt "Default font sets"
-msgid "latin"
-msgstr "latín"
 
 msgid "Choose"
 msgstr "Seleccionar"
@@ -478,10 +427,8 @@ msgstr "Encabezado activo"
 msgid "Dashboard"
 msgstr "Panel de control"
 
-#, fuzzy
-#| msgid "Drop files here or"
 msgid "Drop files here"
-msgstr "Suelta los archivos aquí o"
+msgstr "Suelta los archivos aquí"
 
 msgid "Parent directory"
 msgstr "Directorio raíz"
@@ -575,7 +522,7 @@ msgstr "¿Estás seguro?"
 
 #, javascript-format
 msgid "You're about to %s. "
-msgstr ""
+msgstr "Estás a punto de %s. "
 
 #, javascript-format
 msgid "The deletion is irreversible, and it's not possible to recover %s."
@@ -1487,13 +1434,17 @@ msgstr ""
 "útil cuando quieres mostrar un slider en un lightbox o en una lengüeta o tab."
 
 msgid "Legacy font scale"
-msgstr ""
+msgstr "Escala de fuente heredada"
 
 msgid ""
 "This feature brings back the non-adaptive font size for absolute layers "
 "which were made before version 3.5. Turning on can affect website "
 "performance, so we suggest to keep it disabled.\n"
 msgstr ""
+"Esta opción trae de vuelta el tamaño no adaptativo de las fuentes para las "
+"capas en modo absoluto que estaban disponibles antes de la versión 3.5. "
+"Activar esta opción puede afectar el rendimiento del sitio, por lo que "
+"sugerimos desactivarla. \n"
 
 msgid "Slider CSS classes"
 msgstr "Clases CSS del slider"
@@ -1697,18 +1648,14 @@ msgstr "Ancho por defecto"
 msgid "Medium width"
 msgstr "Ancho medio"
 
-#, fuzzy
-#| msgid "Medium Light"
 msgid "Medium height"
-msgstr "Fina Media"
+msgstr "Altura media"
 
 msgid "Small width"
 msgstr "Ancho pequeño"
 
-#, fuzzy
-#| msgid "Small Light"
 msgid "Small height"
-msgstr "Pequeño Claro"
+msgstr "Altura pequeña"
 
 msgid "Retina"
 msgstr "Retina"
@@ -1720,6 +1667,9 @@ msgid ""
 "If your images look blurry on small screens, use the available height option "
 "to match the aspect ratio of the slider and image on that device."
 msgstr ""
+"Si las imágenes se ven borrosas en pantallas pequeñas, utiliza la opción de "
+"altura disponible para que coincida la relación de aspecto del slider y la "
+"imagen en ese dispositivo."
 
 msgid "Resize Thumbnail"
 msgstr "Redimensionar miniatura"
@@ -1737,7 +1687,7 @@ msgid "Layer images"
 msgstr "Imágenes de capas"
 
 msgid "Base64 embed"
-msgstr "Base64 embebido"
+msgstr "Base64 incrustado"
 
 msgid "Embeds the layer images to the page source, reducing the requests."
 msgstr ""
@@ -2082,7 +2032,7 @@ msgid "Check for update"
 msgstr "Buscar actualización"
 
 msgid "Check"
-msgstr "Chequear"
+msgstr "Comprobar"
 
 msgid "Your license is active"
 msgstr "Tu licencia está activa"
@@ -2332,10 +2282,8 @@ msgstr "Título del slide"
 msgid "Description"
 msgstr "Descripción"
 
-#, fuzzy
-#| msgid "Thumbnail Quality"
 msgid "Thumbnail alt"
-msgstr "Calidad de la miniatura"
+msgstr "Alt de la miniatura"
 
 msgid "Custom lightbox image"
 msgstr "Imagen de lightbox personalizada"
@@ -2720,19 +2668,16 @@ msgstr "Cache borrado."
 msgid "Clear cache"
 msgstr "Borrar cache"
 
-#, fuzzy
-#| msgid "Clear cache"
 msgid "Clear cache options"
-msgstr "Borrar cache"
+msgstr "Limpiar opciones del cache"
 
-#, fuzzy
-#| msgid "Remove resized images"
 msgid "Delete resized image cache"
-msgstr "Remover imágenes redimensionadas"
+msgstr "Eliminar cache de imágenes redimencionadas"
 
 #, php-format
 msgid "If enabled the following folder will be <b>permanently deleted</b>: %s"
 msgstr ""
+"Si se activa la siguiente carpeta se <b>eliminará permanentemente</b>: %s"
 
 msgid "Configuration"
 msgstr "Configuración"
@@ -2809,12 +2754,15 @@ msgid "Into the slider"
 msgstr "Dentro del slider"
 
 msgid "Async non-primary CSS"
-msgstr ""
+msgstr "CSS asincrónico"
 
 msgid ""
 "Google Fonts, icon and lightbox CSS are loaded in a non-blocking way. "
 "Disable if you see missing icons, fonts or styles."
 msgstr ""
+"Fuentes de Google, íconos y lightbox se cargan de modo que no bloqueen. "
+"Desactiva esta opción si te encuentras con íconos, fuentes o estilos que "
+"faltan."
 
 msgid "Load Font Awesome 4"
 msgstr "Cargar Font Awesome 4"
@@ -2993,10 +2941,8 @@ msgstr "Slide duplicado."
 msgid "%s slider type is not available."
 msgstr "%s el tipo de slider no está disponible."
 
-#, fuzzy
-#| msgid "This block is not available in the free version. %s"
 msgid "Groups are only available in the Pro version."
-msgstr "Este bloque no está disponible en la versión gratuita. %s"
+msgstr "Los Grupos están disponibles solo en la versión Pro."
 
 msgid "Slider moved to the trash."
 msgstr "Radio del borde del slider."
@@ -3139,10 +3085,8 @@ msgstr "Puedes seleccionar cuales imágenes deben cargarse."
 msgid "Trash"
 msgstr "Papelera"
 
-#, fuzzy
-#| msgid "empty the trash"
 msgid "Empty trash"
-msgstr "vaciar la papelera"
+msgstr "Vaciar la papelera"
 
 msgid "Slide saved."
 msgstr "Slide grabado."
@@ -3265,6 +3209,9 @@ msgid ""
 "Framework settings -> Async Non-Primary CSS. If your Google fonts are not "
 "loading, turn this option off."
 msgstr ""
+"JCH Optimize puede generar conflictos con la opción Ajustes -> Framework -> "
+"CSS asincrónico. Si tienes problemas para que se carguen las fuentes de "
+"Google, apaga esta opción."
 
 msgid ""
 "This plugin breaks JavaScript in the admin area, deactivate it and use "
@@ -3294,6 +3241,9 @@ msgid ""
 "when %1$s is set to %2$s. Also it has not received any updates since "
 "WordPress 3.9."
 msgstr ""
+"Este plugin corrompe las opciones de filtrado de los generadores de slides "
+"dinámicos cuando %1$s se establece en %2$s. Además ten en cuenta que no ha "
+"recibido ninguna actualización desde WordPress 3.9."
 
 msgid "Add column"
 msgstr "Agregar columna"
@@ -3725,6 +3675,18 @@ msgstr "O"
 msgid "Select A Slider"
 msgstr "Seleccionar un slider"
 
+msgid "Insert a slider into your content"
+msgstr "Insertar un slider en tu contenido"
+
+msgid "Select Slider"
+msgstr "Selecciona un slider"
+
+msgid "Edit Slider"
+msgstr "Editar slider"
+
+msgid "Select the slider you want to insert."
+msgstr "Selecciona el slider que deseas insertar."
+
 msgctxt "Button layer default text"
 msgid "MORE"
 msgstr "MÁS"
@@ -4081,12 +4043,6 @@ msgid "The background and the main animation plays simultaneously or shifted."
 msgstr ""
 "La animación de fondo y la animación principal se reproducen simultáneamente "
 "o cambiadas."
-
-msgid "Loop single slide"
-msgstr "Repetir slide simple"
-
-msgid "In case of one slide, it repeats the animation of the slide."
-msgstr "En el caso de tener un slide, repite la animación de ese slide."
 
 msgid "Slider CSS Preset"
 msgstr "Preajuste de CSS del Slider"
@@ -5136,7 +5092,7 @@ msgid "Images"
 msgstr "Imagenes"
 
 msgid "Timezone offset in hours. For example: +2 or -7."
-msgstr ""
+msgstr "Compensación de zona horaria expresada en horas. Por ejemplo: +2 ó -7."
 
 msgid "The data in the given url is not valid XML."
 msgstr "Los datos entregados en la url no son válidos XML."
@@ -5559,15 +5515,13 @@ msgstr "Ver galería"
 msgid "Creates slides by your custom settings."
 msgstr "Crea slides para tus opciones personalizadas."
 
-#, fuzzy, php-format
-#| msgid ""
-#| "%2$s Check the documentation %3$s to learn how to configure your %1$s app."
+#, php-format
 msgid ""
 "You don't have custom generators yet. %1$s Check the documentation %2$s to "
 "learn how to create your own generator."
 msgstr ""
-"%2$s Consulta la documentación %3$s para conocer como configurar tu "
-"aplicación de %1$s."
+"No tienes ningún generador personalizado todavía. %1$s Consulta la "
+"documentación %2$s para aprender como crear tu propio generador."
 
 msgid "No options given"
 msgstr "No se ingresaron opciones"
@@ -6565,14 +6519,11 @@ msgstr "Entrar en pantalla completa"
 
 #, php-format
 msgid ""
-"%1$s %2$s does not support the full screen API %3$s so other elements of the "
-"page may overlap the slider in Fullscreen mode. To avoid such problems, we "
-"suggest hiding the Fullscreen control from mobile view!"
+"%1$s does not support the full screen API. For this reason the full screen "
+"button will not appear on %1$s devices."
 msgstr ""
-"%1$s %2$s no soporta la API de pantalla completa %3$s por lo que otros "
-"elementos de la página pueden superponer el slider en el modo pantalla "
-"completa. ¡Para evitar estos problemas, te recomendamos ocultar el control "
-"de pantalla completa para dispositivos móviles!"
+"%1$s no soporta la API de pantalla completa. Por esta razón, el botón de "
+"pantalla completa no aparecerá en los dispositivos %1$s."
 
 msgid "Indicator"
 msgstr "Indicador"
@@ -6585,6 +6536,74 @@ msgstr "Color de la pista"
 
 msgid "Bar color"
 msgstr "Color de la barra"
+
+#~ msgctxt "Default Google font charset for admin"
+#~ msgid "latin"
+#~ msgstr "latín"
+
+#~ msgid "Character set"
+#~ msgstr "Grupo de caracteres"
+
+#~ msgctxt "Character set"
+#~ msgid "Latin"
+#~ msgstr "Latín"
+
+#~ msgctxt "Character set"
+#~ msgid "Latin Extended"
+#~ msgstr "Latín Extendido"
+
+#~ msgctxt "Character set"
+#~ msgid "Greek"
+#~ msgstr "Griego"
+
+#~ msgctxt "Character set"
+#~ msgid "Greek Extended"
+#~ msgstr "Griego Extendido"
+
+#~ msgctxt "Character set"
+#~ msgid "Cyrillic"
+#~ msgstr "Cirílico"
+
+#~ msgctxt "Character set"
+#~ msgid "Devanagari"
+#~ msgstr "Devanagari"
+
+#~ msgctxt "Character set"
+#~ msgid "Arabic"
+#~ msgstr "Arábigo"
+
+#~ msgctxt "Character set"
+#~ msgid "Khmer"
+#~ msgstr "Khmer"
+
+#~ msgctxt "Character set"
+#~ msgid "Telugu"
+#~ msgstr "Telugu"
+
+#~ msgctxt "Character set"
+#~ msgid "Vietnamese"
+#~ msgstr "Vietnamita"
+
+#~ msgctxt "Default font sets"
+#~ msgid "latin"
+#~ msgstr "latín"
+
+#~ msgid "Loop single slide"
+#~ msgstr "Repetir slide simple"
+
+#~ msgid "In case of one slide, it repeats the animation of the slide."
+#~ msgstr "En el caso de tener un slide, repite la animación de ese slide."
+
+#, php-format
+#~ msgid ""
+#~ "%1$s %2$s does not support the full screen API %3$s so other elements of "
+#~ "the page may overlap the slider in Fullscreen mode. To avoid such "
+#~ "problems, we suggest hiding the Fullscreen control from mobile view!"
+#~ msgstr ""
+#~ "%1$s %2$s no soporta la API de pantalla completa %3$s por lo que otros "
+#~ "elementos de la página pueden superponer el slider en el modo pantalla "
+#~ "completa. ¡Para evitar estos problemas, te recomendamos ocultar el "
+#~ "control de pantalla completa para dispositivos móviles!"
 
 #~ msgid "Upload"
 #~ msgstr "Subir"

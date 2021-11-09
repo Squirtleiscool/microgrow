@@ -52,7 +52,7 @@
 
     img {
       object-fit: cover;
-      max-width: none;
+      max-width: none !important;
     }
   }
 

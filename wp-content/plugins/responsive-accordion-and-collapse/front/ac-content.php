@@ -50,7 +50,7 @@
 			<style>
 				<?php require('style.php'); ?>	
 			</style>
-			<div class="wpsm_panel-group" id="wpsm_accordion_<?php echo $post_id; ?>" >
+			<div class="wpsm_panel-group" id="wpsm_accordion_<?php echo esc_attr($post_id); ?>" >
 				<?php 	
 				$i=1;
 				foreach($accordion_data as $accordion_single_data)
@@ -76,7 +76,7 @@
 					<div class="wpsm_panel wpsm_panel-default">
 						<div class="wpsm_panel-heading" role="tab" >
 						  <h4 class="wpsm_panel-title">
-							<a  class="<?php if($i!=1){ echo "collapsed"; } ?>"  data-toggle="collapse" data-parent="<?php if($enable_toggle=="no") { ?>#wpsm_accordion_<?php echo $post_id; ?> <?php } ?>" href="javascript:void(0)" data-target="#ac_<?php echo $post_id; ?>_collapse<?php echo $i; ?>"  >
+							<a  class="<?php if($i!=1){ echo "collapsed"; } ?>"  data-toggle="collapse" data-parent="<?php if($enable_toggle=="no") { ?>#wpsm_accordion_<?php echo esc_attr($post_id); ?> <?php } ?>" href="javascript:void(0)" data-target="#ac_<?php echo esc_attr($post_id); ?>_collapse<?php echo esc_attr($i); ?>" onclick="do_resize()">
 								<?php if($op_cl_icon == 'yes' ) 
 								{ ?>
 									<span class="ac_open_cl_icon fa fa-<?php if($i==$j){ echo "minus"; } else { echo "plus"; } ?>"></span>
@@ -89,7 +89,7 @@
 										 if($enable_single_icon=="yes")
 										{
 									?>
-											<span style="margin-right:6px;" class="fa <?php echo $accordion_title_icon; ?>"></span>
+											<span style="margin-right:6px;" class="fa <?php echo esc_attr($accordion_title_icon); ?>"></span>
 									<?php
 										}
 									}
@@ -98,7 +98,7 @@
 							</a>
 						  </h4>
 						</div>
-						<div id="ac_<?php echo $post_id; ?>_collapse<?php echo $i; ?>" class="wpsm_panel-collapse collapse <?php if($i==$j){ echo "in"; } ?>"  >
+						<div id="ac_<?php echo esc_attr($post_id); ?>_collapse<?php echo esc_attr($i); ?>" class="wpsm_panel-collapse collapse <?php if($i==$j){ echo "in"; } ?>"  >
 						  <div class="wpsm_panel-body">
 							<?php  echo do_shortcode($accordion_desc); ?>
 						  </div>
@@ -117,3 +117,21 @@
 			echo "<h3> No Accordion Found </h3>";
 		}
 	endwhile; ?>
+
+<script type="text/javascript">
+	
+		function do_resize(){
+
+			var width=jQuery( '.wpsm_panel .wpsm_panel-body iframe' ).width();
+			var height=jQuery( '.wpsm_panel .wpsm_panel-body iframe' ).height();
+
+			var toggleSize = true;
+			jQuery('iframe').animate({
+			    width: toggleSize ? width : 640,
+			    height: toggleSize ? height : 360
+			  }, 250);
+
+			  toggleSize = !toggleSize;
+		}
+		
+</script>	

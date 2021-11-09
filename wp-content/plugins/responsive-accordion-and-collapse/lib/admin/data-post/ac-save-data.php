@@ -1,5 +1,8 @@
 <?php
 if(isset($PostID) && isset($_POST['ac_save_data_action']) ) {
+			if (!wp_verify_nonce($_POST['wpsm_accordion_security'], 'wpsm_accordion_nonce_save_settings_values')) {
+				die();
+			}
 			$TotalCount = count($_POST['accordion_title']);
 			$AccordionArray = array();
 			if($TotalCount) {

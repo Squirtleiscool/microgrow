@@ -45,6 +45,7 @@ class wpsm_accordion {
 			//line editor
 			wp_enqueue_style('wpsm_ac_line-edtor', wpshopmart_accordion_directory_url.'css/jquery-linedtextarea.css');
 			wp_enqueue_script( 'wpsm_ac-line-edit-js', wpshopmart_accordion_directory_url.'js/jquery-linedtextarea.js');
+			wp_enqueue_script( 'wpsm_ac-custom-js', wpshopmart_accordion_directory_url.'js/accordion-custom.js');
 			wp_enqueue_script( 'wpsm_ac-bootstrap-js', wpshopmart_accordion_directory_url.'js/bootstrap.js');
 			
 			//tooltip
@@ -83,7 +84,7 @@ class wpsm_accordion {
         global $post;
         switch( $column ) {
           case 'shortcode' :
-            echo '<input type="text" onclick="this.select()" value="[WPSM_AC id='.$post_id.']" readonly="readonly" />';
+            echo '<input type="text" onclick="this.select()" value="[WPSM_AC id='.esc_html($post_id).']" readonly="readonly" />';
             break;
           default :
             break;
@@ -128,13 +129,15 @@ class wpsm_accordion {
 			}
 			
 		</style>
-		<h3>Accordion Shortcode</h3>
+		<h3><?php esc_html_e('Accordion Shortcode',wpshopmart_accordion_text_domain); ?></h3>
 		<p><?php _e("Use below shortcode in any Page/Post to publish your Accordion", wpshopmart_accordion_text_domain);?></p>
-		<input readonly="readonly" type="text" onclick="this.select()" value="<?php echo "[WPSM_AC id=".get_the_ID()."]"; ?>">
+		<input readonly="readonly" type="text" onclick="this.select()" value="<?php echo esc_attr("[WPSM_AC id=".get_the_ID()."]"); ?>">
 		<?php
 		 $PostId = get_the_ID();
 		$Accordion_Settings = unserialize(get_post_meta( $PostId, 'Accordion_Settings', true));
-		if($Accordion_Settings['acc_sec_title'] && $Accordion_Settings['op_cl_icon'] && $Accordion_Settings['acc_title_bg_clr']) {  
+
+
+		if( $Accordion_Settings !="" ) {  
 			 $custom_css     	= $Accordion_Settings['custom_css'];
 		}
 		else{
@@ -142,8 +145,8 @@ class wpsm_accordion {
 		}		
 		?>
 		<h3>Custom Css</h3>
-		<textarea name="custom_css" id="custom_css" style="width:100% !important ;height:300px;background:#ECECEC;"><?php echo $custom_css ; ?></textarea>
-		<p>Enter Css without <strong>&lt;style&gt; &lt;/style&gt; </strong> tag</p>
+		<textarea name="custom_css" id="custom_css" style="width:100% !important ;height:300px;background:#ECECEC;"><?php echo esc_html($custom_css); ?></textarea>
+		<p><?php esc_html_e('Enter Css without ',wpshopmart_accordion_text_domain); ?><strong>&lt;style&gt; &lt;/style&gt; </strong><?php esc_html_e(' tag',wpshopmart_accordion_text_domain); ?></p>
 		<br>
 		
 		<?php 
@@ -222,7 +225,7 @@ class wpsm_accordion {
 			}
 		</style>
 		<br />
-		<a href="http://demo.wpshopmart.com/responsive-accordion-and-collapse/" target="_blank" class="button button-primary button-hero ">View Demo For Help</a>
+		<a href="http://demo.wpshopmart.com/responsive-accordion-and-collapse/" target="_blank" class="button button-primary button-hero "><?php esc_html_e('View Demo For Help',wpshopmart_accordion_text_domain); ?></a>
 			
 		<?php
 	}
@@ -274,10 +277,10 @@ class wpsm_accordion {
 				
 			}
 		</style>
-		   <h1>Follow Us On</h1>
-		   <h3>Youtube To Grab Free Web design Course & WordPress Help/Tips </h3>
-			<a href="https://www.youtube.com/c/wpshopmart" target="_blank"><img style="width:200px;height:auto" src="<?php echo wpshopmart_accordion_directory_url.'img/youtube.png'; ?>" /></a>
-			<a href="https://www.youtube.com/c/wpshopmart?sub_confirmation=1" target="_blank" class="button button-primary button-hero ">Subscribe Us Now</a>
+		   <h1><?php esc_html_e('Follow Us On',wpshopmart_accordion_text_domain); ?></h1>
+		   <h3><?php esc_html_e('Youtube To Grab Free Web design Course & WordPress Help/Tips',wpshopmart_accordion_text_domain); ?></h3>
+			<a href="https://www.youtube.com/c/wpshopmart" target="_blank"><img style="width:200px;height:auto" src="<?php echo esc_url(wpshopmart_accordion_directory_url.'img/youtube.png'); ?>" /></a>
+			<a href="https://www.youtube.com/c/wpshopmart?sub_confirmation=1" target="_blank" class="button button-primary button-hero "><?php esc_html_e('Subscribe Us Now',wpshopmart_accordion_text_domain); ?></a>
 			
 		<?php 
 	}

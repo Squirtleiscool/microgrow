@@ -7,8 +7,8 @@
 		margin-bottom:20px;
 	}
 	</style>
-	<h1>Accordion Design Template </h1>
-		<div style="overflow:hidden;display:block;width:100%;padding-top:20px">
+	<h1><?php esc_html_e('Accordion Design Template',wpshopmart_accordion_text_domain); ?></h1>
+		<div class="row" style="overflow:hidden;width:100%;padding-top:20px">
 			
 			<div class="col-md-3">
 				<div class="demoftr">	
@@ -16,12 +16,12 @@
 					<div class="">
 						<div class="wpsm_home_portfolio_showcase">
 							<div class="wpsm_ribbon"><a target="_blank" href="https://wpshopmart.com/plugins/tabs-pro-plugin/"><span> Selected </span></a></div>
-							<img class="wpsm_img_responsive ftr_img" src="<?php echo wpshopmart_accordion_directory_url.'/img/accordion-1.png'?>">
+							<img class="wpsm_img_responsive ftr_img" src="<?php echo esc_url(wpshopmart_accordion_directory_url.'/img/accordion-1.png'); ?>">
 							</div>
 					</div>
 					<div style="padding:13px;overflow:hidden; background: #EFEFEF; border-top: 1px dashed #ccc;">
 						<h3 class="text-center pull-left" style="margin-top: 10px;margin-bottom: 10px;font-weight:900">Selected Design</h3>
-						<a type="button"  class="pull-right btn btn-danger design_btn" id="templates_btn1" target="_blank" href="http://demo.wpshopmart.com/responsive-accordion-and-collapse/" >Check Demo</a>
+						<a type="button"  class="pull-right btn btn-danger design_btn" id="templates_btn1" target="_blank" href="http://demo.wpshopmart.com/responsive-accordion-and-collapse/" ><?php esc_html_e('Check Demo',wpshopmart_accordion_text_domain); ?></a>
 							</div>		
 				</div>	
 			</div>
@@ -32,12 +32,12 @@
 					<div class="">
 						<div class="wpsm_home_portfolio_showcase">
 							<div class="wpsm_ribbon wpsm_ribbon2"><a target="_blank" href="https://wpshopmart.com/plugins/accordion-pro/"><span>Buy Now</span></a></div>
-							<img class="wpsm_img_responsive ftr_img" src="<?php echo wpshopmart_accordion_directory_url.'/img/Untitled-1.jpg'?>">
+							<img class="wpsm_img_responsive ftr_img" src="<?php echo esc_url(wpshopmart_accordion_directory_url.'/img/Untitled-1.jpg'); ?>">
 							</div>
 					</div>
 					<div style="padding:13px;overflow:hidden; background: #EFEFEF; border-top: 1px dashed #ccc;">
 						<h3 class="text-center pull-left" style="margin-top: 10px;margin-bottom: 10px;font-weight:900">Pro Templates </h3>
-						<a type="button"  class="pull-right btn btn-danger design_btn" id="templates_btn2" target="_blank" href="http://demo.wpshopmart.com/accordion-pro/" >Check Demo</a>
+						<a type="button"  class="pull-right btn btn-danger design_btn" id="templates_btn2" target="_blank" href="http://demo.wpshopmart.com/accordion-pro/" ><?php esc_html_e('Check Demo',wpshopmart_accordion_text_domain); ?></a>
 							</div>		
 				</div>	
 			</div>
@@ -66,17 +66,17 @@
 							<input type="text" id="accordion_title[]" name="accordion_title[]" value="<?php echo esc_attr($accordion_title); ?>" placeholder="Enter Accordion Title Here" class="wpsm_ac_label_text">
 							<span class="ac_label"><?php _e('Accordion Description',wpshopmart_accordion_text_domain); ?></span>
 							<textarea  id="accordion_desc[]" name="accordion_desc[]"  placeholder="Enter Accordion Description Here" class="wpsm_ac_label_text"><?php echo esc_html($accordion_desc); ?></textarea>
-							<a type="button" class="btn btn-primary btn-block html_editor_button" data-remodal-target="modal" href="#" id="<?php echo $i; ?>"  onclick="open_editor(<?php echo $i; ?>)">Use WYSIWYG Editor </a>
+							<a type="button" class="btn btn-primary btn-block html_editor_button" data-remodal-target="modal" href="#" id="<?php echo esc_attr($i); ?>"  onclick="open_editor(<?php echo esc_attr($i); ?>)"><?php esc_html_e('Use WYSIWYG Editor',wpshopmart_accordion_text_domain); ?></a>
 							
 							<span class="ac_label"><?php _e('Accordion Icon',wpshopmart_accordion_text_domain); ?></span>
 							<div class="form-group input-group">
-								<input data-placement="bottomRight" id="accordion_title_icon[]" name="accordion_title_icon[]" class="form-control icp icp-auto" value="<?php echo  $accordion_title_icon; ?>" type="text" readonly="readonly" />
+								<input data-placement="bottomRight" id="accordion_title_icon[]" name="accordion_title_icon[]" class="form-control icp icp-auto" value="<?php echo esc_attr($accordion_title_icon); ?>" type="text" readonly="readonly" />
 								<span class="input-group-addon "></span>
 							</div>
 							<span class="ac_label"><?php _e('Display Above Icon',wpshopmart_accordion_text_domain); ?></span>
 							<select name="enable_single_icon[]" style="width:100%" >
-								<option value="yes" <?php if($enable_single_icon == 'yes') echo "selected=selected"; ?>>Yes</option>
-								<option value="no" <?php if($enable_single_icon == 'no') echo "selected=selected"; ?>>No</option>
+								<option value="yes" <?php if($enable_single_icon == 'yes') echo "selected=selected"; ?>><?php esc_html_e('Yes',wpshopmart_accordion_text_domain); ?></option>
+								<option value="no" <?php if($enable_single_icon == 'no') echo "selected=selected"; ?>><?php esc_html_e('No',wpshopmart_accordion_text_domain); ?></option>
 								
 							</select>
 							
@@ -101,7 +101,7 @@
 						<span class="ac_label"><?php _e('Accordion Description',wpshopmart_accordion_text_domain); ?></span>
 						
 						<textarea  id="accordion_desc[]" name="accordion_desc[]"  placeholder="Enter Accordion Description Here" class="wpsm_ac_label_text">Accordion Sample Description</textarea>
-						<a type="button" class="btn btn-primary btn-block html_editor_button" data-remodal-target="modal" href="#" id="<?php echo $i; ?>"  onclick="open_editor(<?php echo $i; ?>)">Use WYSIWYG Editor </a>
+						<a type="button" class="btn btn-primary btn-block html_editor_button" data-remodal-target="modal" href="#" id="<?php echo esc_attr($i); ?>"  onclick="open_editor(<?php echo esc_attr($i); ?>)"><?php esc_html_e('Use WYSIWYG Editor',wpshopmart_accordion_text_domain); ?></a>
 						
 						<span class="ac_label"><?php _e('Accordion Icon',wpshopmart_accordion_text_domain); ?></span>
 						<div class="form-group input-group">
@@ -111,8 +111,8 @@
 						<span class="ac_label"><?php _e('Display Above Icon',wpshopmart_accordion_text_domain); ?></span>
 							
 						<select name="enable_single_icon[]" style="width:100%" >
-								<option value="yes" selected=selected>Yes</option>
-								<option value="no" >No</option>
+								<option value="yes" selected=selected><?php esc_html_e('Yes',wpshopmart_accordion_text_domain); ?></option>
+								<option value="no" ><?php esc_html_e('No',wpshopmart_accordion_text_domain); ?></option>
 						</select>
 						<a class="remove_button" href="#delete" id="remove_bt" ><i class="fa fa-trash-o"></i></a>
 						
@@ -127,7 +127,7 @@
 <div class="remodal" data-remodal-options=" closeOnOutsideClick: false" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
   <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
   <div>
-	<h2 id="modal1Title">Accordion Editor</h2>
+	<h2 id="modal1Title"><?php esc_html_e('Accordion Editor',wpshopmart_accordion_text_domain); ?></h2>
 	<p id="modal1Desc">
 	  <?php
 		$content = '';

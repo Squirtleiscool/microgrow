@@ -7,6 +7,7 @@ namespace Nextend\SmartSlider3\Slider\SliderType\Simple;
 use Nextend\Framework\Asset\Js\Js;
 use Nextend\Framework\Model\Section;
 use Nextend\Framework\Parser\Color;
+use Nextend\Framework\ResourceTranslator\ResourceTranslator;
 use Nextend\Framework\Sanitize;
 use Nextend\Framework\View\Html;
 use Nextend\SmartSlider3\BackgroundAnimation\BackgroundAnimationStorage;
@@ -197,7 +198,11 @@ class SliderTypeSimpleFrontend extends AbstractSliderTypeFrontend {
             foreach ($backgroundAnimations as $animationId) {
                 $animation = Section::getById($animationId, 'backgroundanimation');
                 if (isset($animation)) {
-                    $jsProps[] = $animation['value']['data'];
+                    $data = $animation['value']['data'];
+                    if (isset($data['displacementImage'])) {
+                        $data['displacementImage'] = ResourceTranslator::toUrl($data['displacementImage']);
+                    }
+                    $jsProps[] = $data;
                 }
 
             }

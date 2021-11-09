@@ -56,7 +56,7 @@ class ResourceTranslator {
             $keyword = $resourceIdentifier->getKeyword();
             if (strpos($resourcePath, $keyword) === 0) {
 
-                return $resourceIdentifier->getUrl() . substr($resourcePath, strlen($keyword));
+                return str_replace(DIRECTORY_SEPARATOR, '/', $resourceIdentifier->getUrl() . substr($resourcePath, strlen($keyword)));
             }
         }
 

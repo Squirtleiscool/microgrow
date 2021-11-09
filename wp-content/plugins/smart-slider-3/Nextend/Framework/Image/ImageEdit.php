@@ -19,7 +19,7 @@ class ImageEdit {
         if (strpos($imageUrlOrPath, Filesystem::getBasePath()) === 0) {
             $imageUrl = Url::pathToUri($imageUrlOrPath);
         } else {
-            $imageUrl = ResourceTranslator::toUrl($imageUrlOrPath);
+            $imageUrl = ResourceTranslator::toUrl(ResourceTranslator::pathToResource($imageUrlOrPath));
         }
 
         if ($targetWidth <= 0 || $targetHeight <= 0 || !function_exists('imagecreatefrompng')) {

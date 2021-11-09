@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-09-08 13:54+0200\n"
+"POT-Creation-Date: 2021-10-16 08:50+0200\n"
 "PO-Revision-Date: 2020-03-10 19:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1367,6 +1367,15 @@ msgstr ""
 msgid "The cache of the posts with the given ID will be cleared upon save."
 msgstr ""
 
+msgid "Fallback slider"
+msgstr ""
+
+msgid "ID or Alias"
+msgstr ""
+
+msgid "Select another slider by its ID or Alias that displays if your current slider has no published slides."
+msgstr ""
+
 msgid "Thumbnail"
 msgstr ""
 
@@ -1449,6 +1458,9 @@ msgstr ""
 msgid "Loading"
 msgstr ""
 
+msgid "Loading type"
+msgstr ""
+
 msgid "Instant"
 msgstr ""
 
@@ -1456,9 +1468,6 @@ msgid "After page loaded"
 msgstr ""
 
 msgid "After delay"
-msgstr ""
-
-msgid "Loading type"
 msgstr ""
 
 msgid "If your slider is above the fold, you can load it immediately. Otherwise, you can load it only after the page has loaded."
@@ -1610,6 +1619,9 @@ msgid "Slide background image fill"
 msgstr ""
 
 msgid "If the size of your image is not the same as your slider's, you can improve the result with the filling modes."
+msgstr ""
+
+msgid "Background Blur"
 msgstr ""
 
 msgid "Randomize"
@@ -2094,6 +2106,9 @@ msgstr ""
 
 #, php-format
 msgid "Please read %1$sour detailed guide%2$s about setting your own slide background correctly."
+msgstr ""
+
+msgid "Background blur"
 msgstr ""
 
 msgid "Blur"
@@ -3550,6 +3565,9 @@ msgstr ""
 msgid "If you turn off this option, you can't switch to the first slide from the last one."
 msgstr ""
 
+msgid "Background animations only work on the slide background images, which have Fill selected at their Fill mode. They don't affect any images if the background parallax is enabled."
+msgstr ""
+
 msgid "Shifted"
 msgstr ""
 
@@ -3699,6 +3717,42 @@ msgid "Random elastic"
 msgstr ""
 
 msgid "My text animations"
+msgstr ""
+
+msgid "Morph - Wave"
+msgstr ""
+
+msgid "Morph - Brush"
+msgstr ""
+
+msgid "Morph - Flow"
+msgstr ""
+
+msgid "Morph - Noise"
+msgstr ""
+
+msgid "Distortion - Mosaic"
+msgstr ""
+
+msgid "Distortion - Triangle"
+msgstr ""
+
+msgid "Distortion - Flow"
+msgstr ""
+
+msgid "Distortion - Warp"
+msgstr ""
+
+msgid "Distortion - Storm"
+msgstr ""
+
+msgid "Distortion - Wave"
+msgstr ""
+
+msgid "Distortion - Shard"
+msgstr ""
+
+msgid "Distortion - Noise"
 msgstr ""
 
 msgid "Slices - Single"
@@ -5274,6 +5328,99 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
+msgid "Icon Size"
+msgstr ""
+
+msgid "Before After"
+msgstr ""
+
+msgid "Left top"
+msgstr ""
+
+msgid "Center top"
+msgstr ""
+
+msgid "Right top"
+msgstr ""
+
+msgid "Left center"
+msgstr ""
+
+msgid "Right Center"
+msgstr ""
+
+msgid "Left bottom"
+msgstr ""
+
+msgid "Center bottom"
+msgstr ""
+
+msgid "Right bottom"
+msgstr ""
+
+msgid "Before Image"
+msgstr ""
+
+msgid "After Image"
+msgstr ""
+
+msgid "Labels"
+msgstr ""
+
+msgid "Show Label"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Before label"
+msgstr ""
+
+msgid "After label"
+msgstr ""
+
+msgid "Behavior"
+msgstr ""
+
+msgid "Interaction"
+msgstr ""
+
+msgid "Divider"
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Show Caption"
+msgstr ""
+
+msgid "Caption text"
+msgstr ""
+
+msgid "2"
+msgstr ""
+
+msgid "4"
+msgstr ""
+
+msgid "6"
+msgstr ""
+
+msgid "8"
+msgstr ""
+
+msgid "10"
+msgstr ""
+
+msgid "Before image alt tag"
+msgstr ""
+
+msgid "After image alt tag"
+msgstr ""
+
+msgid "Optimize images"
+msgstr ""
+
 msgid "Full"
 msgstr ""
 
@@ -5305,9 +5452,6 @@ msgid "Active color"
 msgstr ""
 
 msgid "Stroke width"
-msgstr ""
-
-msgid "Labels"
 msgstr ""
 
 msgid "Inner before"

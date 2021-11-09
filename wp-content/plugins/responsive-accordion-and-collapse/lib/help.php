@@ -1,6 +1,6 @@
 <style>
 	.wpsm_ac_h_i{
-		background:url('<?php echo wpshopmart_accordion_directory_url.'img/slideshow-01.jpg'; ?>') 50% 0 repeat fixed;		
+		background:url('<?php echo esc_url(wpshopmart_accordion_directory_url.'img/slideshow-01.jpg'); ?>') 50% 0 repeat fixed;		
 		margin-left: -20px;
 		font-family: Myriad Pro ;
 		cursor: pointer;
@@ -172,10 +172,10 @@
 							}
 					
 							echo '<div class="star-rating" title="' . esc_attr( $title ) . '">';
-							echo '<span class="screen-reader-text">' . $title . '</span>';
-							echo str_repeat( '<div class="star star-full"></div>', $full_stars );
-							echo str_repeat( '<div class="star star-half"></div>', $half_stars );
-							echo str_repeat( '<div class="star star-empty"></div>', $empty_stars);
+							echo '<span class="screen-reader-text">' . esc_html($title) . '</span>';
+							echo str_repeat( '<div class="star star-full"></div>', esc_html($full_stars) );
+							echo str_repeat( '<div class="star star-half"></div>', esc_html($half_stars) );
+							echo str_repeat( '<div class="star star-empty"></div>', esc_html($empty_stars) );
 							echo '</div>';
 						}
 					}
@@ -268,20 +268,20 @@
 																				<div class="plugin-div-top plugin-div-settings-top">
 																					<div class="plugin-div-inner-content">
 																						<a href="<?php echo esc_url( $details_link ); ?>" class="thickbox plugin-icon plugin-icon-custom">
-																							<img class="custom_icon" src="<?php echo esc_attr( $plugin_icon_url ) ?>" />
+																							<img class="custom_icon" src="<?php echo esc_url( $plugin_icon_url ) ?>" />
 																						</a>
 																						<div class="name column-name">
 																							<h4>
-																								<a href="<?php echo esc_url( $details_link ); ?>" class="thickbox"><?php echo $title; ?></a>
+																								<a href="<?php echo esc_url( $details_link ); ?>" class="thickbox"><?php echo esc_html($title); ?></a>
 																							</h4>
 																						</div>
 																						<div class="desc column-description">
 																							<p>
-																								<?php echo $description; ?>
+																								<?php echo esc_html($description); ?>
 																							</p>
 																							<p class="authors">
 																								<cite>
-																									By <?php echo $author;?>
+																									<?php esc_html_e('By ',wpshopmart_accordion_text_domain); ?><?php  echo wp_kses_data($author);?>
 																								</cite>
 																							</p>
 																						</div>
@@ -292,7 +292,7 @@
 																								<?php
 																									if ($action_links)
 																									{
-																										echo implode("</li><li>", $action_links);
+																										echo wp_kses_data(implode("</li><li>", $action_links));
 																									}
 																										
 																									switch($plugin["slug"])

@@ -137,6 +137,6 @@ class SliderDeveloper extends AbstractSliderTab {
             'tipLink'        => 'https://smartslider.helpscoutdocs.com/article/1806-slider-settings-developer#post-ids-one-per-line',
             'height'         => 26
         ));
-    
+
     }
 }

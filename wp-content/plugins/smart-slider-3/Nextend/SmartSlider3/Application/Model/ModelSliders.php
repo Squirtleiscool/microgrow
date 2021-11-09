@@ -151,6 +151,15 @@ class ModelSliders extends AbstractModelTable {
         return Database::queryAll("SELECT id, title FROM " . $this->getTableName() . " WHERE " . implode(' AND ', $wheres) . " ORDER BY title ASC");
     }
 
+    public function getFallbackUsage($sliderIDs) {
+        $wheres = array();
+        foreach ($sliderIDs as $id) {
+            $wheres[] = 'params LIKE \'%"fallback-slider":"' . $id . '"%\'';
+        }
+
+        return Database::queryAll("SELECT id FROM " . $this->getTableName() . " as sliders WHERE " . implode(" OR  ", $wheres));
+    }
+
     public function import($slider, $groupID = 0) {
         try {
             $this->table->insert(array(

@@ -138,7 +138,11 @@ display:block;
 
 
 .iconpicker-container .input-group-addon {
-
+	padding: 6px 12px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1;
+  border-radius: 0 4px 4px 0;
   color: #fff !important;
   text-align: center;
   background-color: #31a3dd !important;
@@ -245,4 +249,10 @@ background: linear-gradient(#03A9F4 0%, #2196F3 100%);
 .design_btn{
 	text-decoration:none;
 	
+}
+
+.input-group .form-control:first-child{
+	border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 0;
 }
