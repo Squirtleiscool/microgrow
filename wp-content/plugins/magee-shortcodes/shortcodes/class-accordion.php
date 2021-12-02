@@ -103,6 +103,8 @@ class Magee_Accordion {
 		extract( $defaults );
 		self::$args = $defaults;
         $html = '';
+		
+		if( '' == $content) return '';
 
 		if( $status == "open" ) {
 			$status   = "in";

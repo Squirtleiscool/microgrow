@@ -125,6 +125,8 @@ class Magee_Tabs {
 			), $args
 		);
 
+		if( '' == $content) return '';
+
 		extract( $defaults );
 		self::$args = $defaults;
 		$itemId = ' '.$this->id."-".$this->num;

@@ -164,7 +164,7 @@ class Config{
                     'desc' => __( 'Insert the background color for the title.', 'magee-shortcodes'),
                 ),
                 
-                ),
+            ),
             'child_shortcode' => array(
                 'params' => array(
                                 

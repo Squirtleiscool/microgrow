@@ -64,7 +64,7 @@ class Magee_Timeline {
 				'title' =>'',
 			), $args
 		);
-
+		if( '' == $content) return '';
 		extract( $defaults );
 		self::$args = $defaults;
 		$columns  = absint($this->columns);

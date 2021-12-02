@@ -69,7 +69,8 @@ class Magee_ProcessSteps {
 				'title' =>'',
 			), $args
 		);
-
+		if( '' == $content) return '';
+		
 		extract( $defaults );
 		self::$args = $defaults;
 		$columns  = $this->columns;

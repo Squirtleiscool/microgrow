@@ -228,7 +228,7 @@ class Magee_Pricing {
 		);
 
 		extract( $defaults );
-		
+		if( '' == $content) return '';
 		$html = '<li>'.do_shortcode( Helper::fix_shortcodes($content)).'</li>';
 		return $html;
 	}

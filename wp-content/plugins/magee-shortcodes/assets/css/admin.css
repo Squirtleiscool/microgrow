@@ -1642,3 +1642,46 @@ max-width:100%;
     }
 }
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.sr-only-focusable:active,.sr-only-focusable:focus{position:static;width:auto;height:auto;margin:0;overflow:visible;clip:auto}[role=button]{cursor:pointer}
+.hidden{display: none;}
+.magee_shortcodes_container .button-primary,
+.magee-shortcode-actions .button-primary {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.magee_shortcodes_container .button,
+.magee-shortcode-actions .button,
+.magee_shortcodes_container .button-primary,
+.magee_shortcodes_container .button-secondary {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 2.15384615;
+    min-height: 30px;
+    margin: 0;
+    padding: 0 10px;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: 3px;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+.magee_shortcodes_container .button.button-large,
+.magee_shortcodes_container .button-group.button-large .button {
+    min-height: 32px;
+    line-height: 2.30769231;
+    padding: 0 12px;
+}
+.magee_shortcodes_container .button,
+.magee-shortcode-actions .button-secondary,
+.magee_shortcodes_container .button-secondary {
+    color: #2271b1;
+    border-color: #2271b1;
+    background: #f6f7f7;
+    vertical-align: top;
+}

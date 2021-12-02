@@ -7,8 +7,8 @@ class Magee_List {
 
 	public static $args;
     private  $id;
-	private static $icon_a;
-	private static $css_style;
+	private $icon_a;
+	private $css_style;
 
 	/**
 	 * Initiate the shortcode
@@ -35,11 +35,11 @@ class Magee_List {
 				'item_border' 			=>'no',
 				'item_size' 			=>'12px',
 				'class' 				=>'',
-				'icon_a' 					=>'',
+				'icon_a' 				=>'',
 				'icon_color_a' 			=>'',
 				'icon_boxed_a' 			=>'no',
-				'background_color_a' 		=>'',
-				'boxed_shape_a' 			=>'circle',
+				'background_color_a' 	=>'',
+				'boxed_shape_a' 		=>'circle',
 				'is_preview' => ''
 			), $args
 		);
@@ -121,6 +121,8 @@ class Magee_List {
 		self::$args = $defaults;
 		$uniqid_li = Utils::rand_str('li-');
 		$css_style = '';
+
+		if( '' == $content) return '';
 
 		if( isset($this->icon_a) && $this->icon_a !== '' ):
 		    if( stristr($this->icon_a, 'fa-')):				 

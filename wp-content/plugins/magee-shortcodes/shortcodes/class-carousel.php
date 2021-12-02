@@ -135,7 +135,7 @@ class Magee_Carousel {
 
 		extract( $defaults );
 		self::$args = $defaults;
-		
+		if( '' == $content) return '';
 		$html = '';
 		if($content):
 	    	$html .= '<div class="item">';

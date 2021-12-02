@@ -15,35 +15,36 @@ class Helper{
 
 		add_action( 'plugins_loaded', array( $this, 'init' ) );
 
-		add_action('media_buttons', array($this, 'add_shortcodes_button'));
+		add_action( 'media_buttons', array($this, 'add_shortcodes_button'));
 		add_action( 'enqueue_block_editor_assets', array( $this, 'block_editor_button') );
 
 		add_action( 'init',array($this, 'magee_register_post_types'),10) ;
 		add_action( 'admin_menu',array($this, 'magee_admin_menu')) ;
-		add_filter("manage_edit-".MAGEE_PORTFOLIO."_columns",array($this, "magee_show_portfolio_columns"));
-		add_action("manage_posts_custom_column",array($this, "magee_portfolio_custom_columns"));
+		add_filter( "manage_edit-".MAGEE_PORTFOLIO."_columns",array($this, "magee_show_portfolio_columns"));
+		add_action( "manage_posts_custom_column",array($this, "magee_portfolio_custom_columns"));
 
 		add_action( 'admin_enqueue_scripts', array($this, 'admin_scripts' ));
-		add_action('wp_ajax_magee_shortcodes_popup', array($this, 'popup') );
+		add_action( 'elementor/editor/before_enqueue_scripts', array($this, 'admin_scripts' ));
+		add_action( 'wp_ajax_magee_shortcodes_popup', array($this, 'popup') );
 		add_action( 'wp_ajax_nopriv_magee_shortcodes_popup', array($this, 'popup') );
 		
-		add_action('wp_ajax_magee_shortcode_form', array($this, 'shortcode_form') );
+		add_action( 'wp_ajax_magee_shortcode_form', array($this, 'shortcode_form') );
 		add_action( 'wp_ajax_nopriv_magee_shortcode_form', array($this, 'shortcode_form') );
 		
-		add_action('wp_ajax_magee_create_shortcode', array($this, 'create_shortcode') );
+		add_action( 'wp_ajax_magee_create_shortcode', array($this, 'create_shortcode') );
 		add_action( 'wp_ajax_nopriv_magee_create_shortcode', array($this, 'create_shortcode') );
 			
-		add_action('wp_ajax_live_preview', array($this, 'live_preview'));
-		add_action('wp_ajax_nopriv_live_preview', array($this, 'live_preview'));
+		add_action( 'wp_ajax_live_preview', array($this, 'live_preview'));
+		add_action( 'wp_ajax_nopriv_live_preview', array($this, 'live_preview'));
 		
-		add_action('wp_ajax_preview_js', array($this, 'preview_js'));
-		add_action('wp_ajax_nopriv_preview_js', array($this, 'preview_js'));
+		add_action( 'wp_ajax_preview_js', array($this, 'preview_js'));
+		add_action( 'wp_ajax_nopriv_preview_js', array($this, 'preview_js'));
 		
-		add_action('wp_ajax_magee_contact', array($this, 'magee_contact'));
+		add_action( 'wp_ajax_magee_contact', array($this, 'magee_contact'));
 		add_action('wp_ajax_nopriv_magee_contact', array($this, 'magee_contact'));
 		
-		add_action('wp_ajax_magee_contact_advanced', array($this, 'magee_contact_advanced'));
-		add_action('wp_ajax_nopriv_magee_contact_advanced', array($this, 'magee_contact_advanced'));
+		add_action( 'wp_ajax_magee_contact_advanced', array($this, 'magee_contact_advanced'));
+		add_action( 'wp_ajax_nopriv_magee_contact_advanced', array($this, 'magee_contact_advanced'));
 
 		add_action( 'wp_enqueue_scripts', array($this, 'frontend_scripts' ));
 	
@@ -85,7 +86,7 @@ class Helper{
 				'magee-admin',
 				'MSEditorL10n',
 				array( 
-					'insertShortcode' => __( 'Magee shortcodes', 'magee-shortcodes' ),
+					'insertShortcode' => __( 'Magee Shortcodes', 'magee-shortcodes' ),
 					'doc' => __( 'Document', 'magee-shortcodes' ),
 					'forums' => __( 'Forums', 'magee-shortcodes' ),
 					'preview' => __( 'Live Preview', 'magee-shortcodes' ),
@@ -93,6 +94,7 @@ class Helper{
 					'top' => __( 'Top', 'magee-shortcodes' ),
 					'select_img' => __( 'Select Image', 'magee-shortcodes' ),
 					'remove' => __( 'Remove', 'magee-shortcodes' ),
+					'ver' => MAGEE_SHORTCODES_VER,
 				)
 			);
 			wp_localize_script(
@@ -134,9 +136,8 @@ class Helper{
 	//action to add a custom button to the content editor
 	function add_shortcodes_button($args) {
 		$target = is_string( $args ) ? $args : 'content';
-		$img =  MAGEE_SHORTCODES_URL.'assets/images/shortcode.png';
 		$title = __('Magee Shortcodes', 'magee-shortcodes');
-		$context = "<a class='magee_shortcodes button' data-target='{$target}' title='{$title}'><img style='margin-bottom:2px' src='{$img}' />".__("Magee Shortcodes", 'magee-shortcodes')."</a>";
+		$context = "<a class='magee_shortcodes button' data-target='{$target}' title='{$title}'><span class='dashicons dashicons-shortcode' style='vertical-align: middle;padding-bottom: 2px;'></span> ".__("Magee Shortcodes", 'magee-shortcodes')."</a>";
 		echo $context;
 	}
 
@@ -154,9 +155,10 @@ class Helper{
 			'magee-shortcodes-block-editor',
 			'MSBlockEditorL10n',
 			array( 
-				'insertShortcode' => __( 'Magee shortcodes', 'magee-shortcodes' ),
+				'insertShortcode' => __( 'Magee Shortcodes', 'magee-shortcodes' ),
 				'doc' => __( 'Document', 'magee-shortcodes' ),
-				'forums' => __( 'Forums', 'magee-shortcodes' )
+				'forums' => __( 'Forums', 'magee-shortcodes' ),
+				'ver' => MAGEE_SHORTCODES_VER,
 			)
 		);
 
@@ -176,9 +178,10 @@ class Helper{
 	 */
 	function popup() {
 		$magee_shortcodes = Config::shortcodes();
-		$target = $_POST['target'] ?? 'content';
+		$target = $_GET['target'] ?? 'content';
 		?>
 		<div class="white-popup magee_shortcodes_container" data-target="<?php echo $target;?>" id="magee_shortcodes_container">
+		<input type="text" class="magee-form-text magee-input" placeholder="<?php _e( 'Search', 'magee-shortcodes' );?>" name="magee_shortcode_search" id="magee_shortcode_search" value="">
 			<form>
 				<div class="magee_shortcodes_header_container">
 					<ul class="magee_shortcodes_list row">
@@ -259,15 +262,14 @@ class Helper{
 		if ( isset($_POST['shortcode']) && isset($magee_shortcodes[$_POST['shortcode']]) ) {
 			if ( isset($magee_shortcodes[$_POST['shortcode']]['child_shortcode'])) {
 				echo '<h2 class="shortcode-name">'.$magee_shortcodes[$_POST['shortcode']]['popup_title'].'</h2>';
+
 				if (isset($magee_shortcodes[$_POST['shortcode']]['name'])) {
 					echo '<div class="example-list">'.sprintf(__('Want to know more about this shortcode? Check <a class="example-link" target="_blank" href="%1$s"> Examples of use</a>. %2$s', 'magee-shortcodes' ), 'https://www.hoosoft.com/plugins/magee-shortcodes/'.$magee_shortcodes[$_POST['shortcode']]['name'], $remark).'</div>';
 				} 
 				$this->popup = $_POST['shortcode'];
 				echo $this->formate_shortcode();
 				echo '<div class="column-shortcode-inner">'.$this->formate_children_shortcode().'</div>';
-				echo '<div class="shortcode-add"><a href="#" class="child-shortcode-add">add</a></div>' ;
-				
-
+				echo '<div class="shortcode-add"><a href="#" class="child-shortcode-add">add</a></div>';
 				
 			} else {
 				echo '<h2 class="shortcode-name">'.$magee_shortcodes[$_POST['shortcode']]['popup_title'].'</h2>';
@@ -688,14 +690,15 @@ class Helper{
 
 			if ( isset($magee_shortcodes[$popup]['child_shortcode'])):
 			
-			      $common = array_slice($_POST['attr'],count($_POST['attr'])-2,2) ;
-                  array_splice($_POST['attr'],count($_POST['attr'])-2,2);
+			      $common = array_slice($_POST['attr'], count($_POST['attr'])-2, 2) ;
+                  array_splice($_POST['attr'], count($_POST['attr'])-2, 2);
 				  $number = count($magee_shortcodes[$popup]['child_shortcode']['params']);
 				  $expcet = count($magee_shortcodes[$popup]['params']);
-				  array_splice($_POST['attr'],0, $expcet);
+				  array_splice($_POST['attr'], 0, $expcet);
                   $loop = array_chunk($_POST['attr'], $number);
 			      $i = '';
 				  $copyshortcode = '';
+
 				  for( $i=0;$i<count($loop);$i++) {
 	   
 				   $cparams = $magee_shortcodes[$popup]['child_shortcode']['params'];

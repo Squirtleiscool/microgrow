@@ -2,8 +2,8 @@
 Contributors: hoosoft
 Tags: shortcodes, shortcode, accordion, alert, button, column, custom box, countdowns, counter, divider, dropcap, feature box, flip box, highlight, list, modal, popover, tooltip, person, promo box, scocial, tab, testimonial, progress, piechart, timeline, panel, section, slider
 Requires at least: 5.0
-Tested up to: 5.7
-Stable tag: 2.0.5
+Tested up to: 5.8
+Stable tag: 2.0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -125,6 +125,13 @@ Activate plugin at "Plugins" administration page.
 8. Progress Bar shortcode examples.
 
 == Changelog ==
+
+= 2.0.7 =
+* Fix: List shortcode issue
+* Fix: Shortcode generator issue
+
+= 2.0.6 =
+* Fix: Compatibility issues with plugin ACF and elementor editor
 
 = 2.0.5 =
 * Fix: Progress Bar Shortcode stripe issue
