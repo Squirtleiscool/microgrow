@@ -2,7 +2,7 @@
 Contributors: photocrati, imagely
 Tags: wordpress gallery plugin, gallery, nextgen, nextgen gallery, photo gallery, image gallery, photography, slideshow, images, photo, photo album, watermark
 Requires at least: 5.5.4
-Stable tag: 3.17
+Stable tag: 3.18
 Tested up to: 5.8
 License: GPLv3
 Requires PHP: 5.6
@@ -178,6 +178,14 @@ For more information, feel free to visit the official website for the NextGEN Ga
 
 
 == Changelog ==
+
+= V3.18  - 12.08.2021
+* NEW:     Added a constant "NGG_DISABLE_SHORTCODE_MANAGER" to disable content protection workarounds that can be a source of incompatibility itself.
+* NEW:     Added notice to users that ctypes methods are required by NextGEN Gallery.
+* Fixed:   Compatibility with EditorsKit invalidating NextGEN Gallery blocks.
+* Fixed:   In rare circumstances the "Open album images in Pro Lightbox" feature was not working.
+* Fixed:   PHP warnings about undefined array key access when using the XMLRPC API (Lightroom)
+* Fixed:   Searching for images on Manage Galleries could result in duplicates.
 
 = V3.17  - 09.15.2021
 * Fixed:   NGG 3.16 created a problem with the Manage Gallery page's Edit Thumbnail, Rotate Image, and View Meta popups

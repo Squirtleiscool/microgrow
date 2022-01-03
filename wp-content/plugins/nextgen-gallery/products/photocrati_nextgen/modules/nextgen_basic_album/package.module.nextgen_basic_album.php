@@ -692,6 +692,10 @@ class A_NextGen_Basic_Album_Controller extends Mixin_NextGen_Basic_Pagination
             // Let plugins modify the gallery
             $gallery = apply_filters('ngg_album_galleryobject', $gallery);
         }
+        // In at least one rare and so far impossible to reproduce circumstance it's possible for this controller to run
+        // before the following adapter is constructed and thus allowed to register its hook on the following filter below.
+        // This breaks the 'open child galleries in pro lightbox' feature.
+        new A_NextGen_Album_Child_Entities();
         $params['galleries'] = apply_filters('ngg_album_prepared_child_entity', $params['galleries'], $params['displayed_gallery']);
         $params['album'] = reset($this->albums);
         $params['albums'] = $this->albums;

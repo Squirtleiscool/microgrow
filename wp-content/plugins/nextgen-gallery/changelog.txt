@@ -1,6 +1,14 @@
 NextGEN Gallery
 by Imagely
 
+= V3.18  - 12.08.2021
+* NEW:     Added a constant "NGG_DISABLE_SHORTCODE_MANAGER" to disable content protection workarounds that can be a source of incompatibility itself.
+* NEW:     Added notice to users that ctypes methods are required by NextGEN Gallery.
+* Fixed:   Compatibility with EditorsKit invalidating NextGEN Gallery blocks.
+* Fixed:   In rare circumstances the "Open album images in Pro Lightbox" feature was not working.
+* Fixed:   PHP warnings about undefined array key access when using the XMLRPC API (Lightroom)
+* Fixed:   Searching for images on Manage Galleries could result in duplicates.
+
 = V3.17  - 09.15.2021
 * Fixed:   NGG 3.16 created a problem with the Manage Gallery page's Edit Thumbnail, Rotate Image, and View Meta popups
 
